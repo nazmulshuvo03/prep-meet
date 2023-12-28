@@ -14,7 +14,7 @@ export const Navigation = () => {
     ...(user
       ? [
           { to: "/dashboard", name: "Dashboard" },
-          { to: "/account", name: "Account" },
+          // { to: "/account", name: "Account" },
         ]
       : []),
   ];
@@ -32,8 +32,8 @@ export const Navigation = () => {
         <span> </span>
         <span className="text-light-primary dark:text-dark-primary">meet</span>
       </div>
-      <div className="flex gap-2">
-        <nav className="flex gap-2">
+      <div className="flex gap-4 items-center">
+        <nav className="flex items-center">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -46,7 +46,7 @@ export const Navigation = () => {
             </NavLink>
           ))}
         </nav>
-        <Avatar url={user.profileImage} />
+        {user && <Avatar url={user.profileImage} />}
       </div>
     </div>
   );

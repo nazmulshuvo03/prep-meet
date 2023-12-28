@@ -39,8 +39,6 @@ function App() {
     return () => unsubscribe();
   }, [auth]);
 
-  console.log(import.meta.env.FIREBASE_API_KEY);
-
   return (
     <div className={`${darkMode ? "dark" : ""} h-screen w-screen`}>
       <div

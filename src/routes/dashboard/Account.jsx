@@ -1,17 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../redux/user/functions";
-import { Button } from "../../components/Button";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Account = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const profile = useSelector((state) => state.user.profile);
-
-  const handleLogout = async () => {
-    await dispatch(logoutUser());
-    history.push("/");
-  };
 
   return (
     <div>
@@ -34,7 +24,6 @@ const Account = () => {
           </div>
         </div>
       ) : null}
-      <Button onClick={handleLogout}>Logout</Button>
     </div>
   );
 };
