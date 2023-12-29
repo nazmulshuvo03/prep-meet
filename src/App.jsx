@@ -41,9 +41,7 @@ function App() {
 
   return (
     <div className={`${darkMode ? "dark" : ""} h-screen w-screen`}>
-      <div
-        className={`bg-light-background text-light-text dark:bg-dark-background dark:text-dark-text h-full w-full`}
-      >
+      <div className={`bg-background text-text h-full w-full`}>
         <BrowserRouter>
           <Navigation />
           <Switch>

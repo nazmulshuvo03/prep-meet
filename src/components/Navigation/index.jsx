@@ -26,11 +26,9 @@ export const Navigation = () => {
   return (
     <div className="flex justify-between border-b h-24 items-center px-5">
       <div className="text-4xl font-bold opacity-75 ">
-        <span className="text-light-secondary dark:text-dark-secondary">
-          prep
-        </span>
+        <span className="text-secondary">prep</span>
         <span> </span>
-        <span className="text-light-primary dark:text-dark-primary">meet</span>
+        <span className="text-primary">meet</span>
       </div>
       <div className="flex gap-4 items-center">
         <nav className="flex items-center">
@@ -40,7 +38,7 @@ export const Navigation = () => {
               to={link.to}
               isActive={() => isRouteActive(link.to)}
               className="h-fit px-6 py-2 rounded-lg text-slate-950 dark:text-slate-50"
-              activeClassName="bg-light-secondary dark:bg-dark-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
+              activeClassName="bg-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
             >
               {link.name}
             </NavLink>
