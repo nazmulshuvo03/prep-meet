@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import { Avatar } from "../Avatar";
+import { ProfileAvatar } from "../ProfileAvatar";
 
 export const Navigation = () => {
   const location = useLocation();
@@ -44,7 +44,7 @@ export const Navigation = () => {
             </NavLink>
           ))}
         </nav>
-        {user && <Avatar url={user.profileImage} />}
+        {user && <ProfileAvatar url={user.profileImage} />}
       </div>
     </div>
   );

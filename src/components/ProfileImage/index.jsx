@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage } from "../../firebase/functions/files";
 import { updateUserData } from "../../redux/user/functions";
+import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 
 export const ProfileImage = () => {
   const dispatch = useDispatch();
@@ -56,10 +57,18 @@ export const ProfileImage = () => {
           />
         </div>
       </div>
-      <div className="flex gap-2">
-        <div onClick={handleImageUpload}>Save</div>
-        <div onClick={() => setImage()}>Close</div>
-      </div>
+      {image ? (
+        <div className="flex gap-2">
+          <div onClick={handleImageUpload} className="cursor-pointer">
+            <CheckCircledIcon className="h-10 w-10 text-green-500" />
+          </div>
+          <div onClick={() => setImage()} className="cursor-pointer">
+            <CrossCircledIcon className="h-10 w-10 text-red-500" />
+          </div>
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };
