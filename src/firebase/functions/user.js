@@ -5,6 +5,7 @@ import {
   getDoc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { auth, database } from "..";
@@ -78,6 +79,17 @@ export const addUserDoc = async (data) => {
   } catch (e) {
     console.error("Error adding document: ", e.message);
     alert("Error adding document: ", e.message);
+    return null;
+  }
+};
+
+export const updateUserDoc = async (userId, updatedData) => {
+  try {
+    const docRef = doc(database, "profiles", userId);
+    await updateDoc(docRef, updatedData);
+  } catch (e) {
+    console.error("Error updating document: ", e.message);
+    alert("Error updating document: ", e.message);
     return null;
   }
 };

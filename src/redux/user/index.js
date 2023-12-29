@@ -10,6 +10,16 @@ const userSlice = createSlice({
     setProfile: (state, data) => {
       state.profile = data.payload;
     },
+    updateProfile: (state, data) => {
+      const updatedProfile = { ...state.profile };
+
+      Object.keys(data).forEach((key) => {
+        if (state.profile[key] !== data[key]) {
+          updatedProfile[key] = data[key];
+        }
+      });
+      state.profile = updatePeople;
+    },
     setPeople: (state, data) => {
       state.people = data.payload;
     },
@@ -19,5 +29,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setProfile, setPeople, updatePeople } = userSlice.actions;
+export const { setProfile, updateProfile, setPeople, updatePeople } =
+  userSlice.actions;
 export default userSlice.reducer;

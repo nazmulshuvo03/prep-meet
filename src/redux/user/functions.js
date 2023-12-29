@@ -6,8 +6,9 @@ import {
   getUserDocs,
   signInUser,
   signoutUser,
+  updateUserDoc,
 } from "../../firebase/functions/user";
-import { setPeople, setProfile, updatePeople } from ".";
+import { setPeople, setProfile, updateProfile } from ".";
 
 export const fetchPeople = () => async (dispatch) => {
   const userDocs = await getUserDocs();
@@ -55,4 +56,15 @@ export const loginUser = (data) => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   await signoutUser();
   dispatch(setProfile());
+};
+
+export const updateUserData = (userId, updatedData) => async (dispatch) => {
+  try {
+    await updateUserDoc(userId, updatedData);
+    const updatedUser = await getSingleUserDoc(userId);
+    dispatch(setProfile(updatedUser));
+  } catch (e) {
+    console.error("Error updating document in store: ", e.message);
+    alert("Error updating document in store: ", e.message);
+  }
 };
