@@ -9,6 +9,7 @@ import {
   updateUserDoc,
 } from "../../firebase/functions/user";
 import { setPeople, setProfile, updateProfile } from ".";
+import { persistor } from "..";
 
 export const fetchPeople = () => async (dispatch) => {
   const userDocs = await getUserDocs();
@@ -54,8 +55,11 @@ export const loginUser = (data) => async (dispatch) => {
 };
 
 export const logoutUser = () => async (dispatch) => {
-  await signoutUser();
   dispatch(setProfile());
+  localStorage.removeItem("persist:root");
+  localStorage.clear();
+  persistor.purge();
+  await signoutUser();
 };
 
 export const updateUserData = (userId, updatedData) => async (dispatch) => {

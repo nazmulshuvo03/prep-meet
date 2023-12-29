@@ -103,7 +103,7 @@ export const createUser = async (data) => {
     );
     await updateProfile(userCredential.user, {
       displayName: `${data.firstName} ${data.lastName}`,
-      metadata: data,
+      photoURL: data.photoURL,
     });
     console.log("@@@@ user created", userCredential.user);
     return userCredential.user;
@@ -135,7 +135,6 @@ export const signoutUser = async () => {
     signOut(auth)
       .then(() => {
         console.log("Signed out user");
-        alert("Signed out user");
       })
       .catch((error) => {
         console.error("Error signing out:", error.message);
