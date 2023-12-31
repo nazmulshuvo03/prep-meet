@@ -1,0 +1,12 @@
+.radioButton {
+  width: 1.25em;
+  height: 1.25em;
+  appearance: none;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  background-color: var(--background);
+}
+
+.radioButton:checked {
+  background-color: var(--primary);
+}

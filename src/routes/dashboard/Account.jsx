@@ -5,6 +5,13 @@ import { Button } from "../../components/Button";
 import { updateUserData } from "../../redux/user/functions";
 import { Dropdown } from "../../components/Dropdown";
 import { ProfileImage } from "../../components/ProfileImage";
+import { RadioButtonGroup } from "../../components/RadioButtonGroup";
+
+const genderOptions = [
+  { key: "male", value: "Male" },
+  { key: "female", value: "Female" },
+  { key: "not-disclose", value: "Do not want to disclose" },
+];
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -19,6 +26,7 @@ const Account = () => {
     email: "",
     profession: "",
     photoURL: "",
+    gender: "",
   });
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -43,9 +51,15 @@ const Account = () => {
     }));
   };
 
+  // const handleGenderChange = (value) => {
+  //   setState((prev) => ({ ...prev, gender: value }));
+  // };
+
   const handleSave = () => {
     dispatch(updateUserData(profile.id, state));
   };
+
+  console.log("@@@@@@@@@@ state: ", state);
 
   return (
     <div>
@@ -78,6 +92,15 @@ const Account = () => {
               options={professionDropdownOptions}
               onSelect={handleChange}
               defaultText="Select an option"
+            />
+          </div>
+          <div className="p-4">
+            <RadioButtonGroup
+              label="Gender"
+              name={"gender"}
+              options={genderOptions}
+              selectedOption={state.gender}
+              onChange={handleChange}
             />
           </div>
           <div>
