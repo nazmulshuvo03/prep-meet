@@ -28,11 +28,17 @@ const Account = () => {
     lastName: "",
     email: "",
     profession: "",
+    fieldOfInterest: "",
+    currentCompany: "",
+    yearsOfExperience: "",
     photoURL: "",
     gender: "",
     country: "",
     timezone: "",
     profileHeadline: "",
+    university: "",
+    fieldOfStudy: "",
+    degree: "",
   });
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -78,7 +84,7 @@ const Account = () => {
   return (
     <div className="flex items-center justify-center">
       {profile ? (
-        <div className="w-3/4">
+        <div className="w-3/4 flex flex-col gap-4">
           <ProfileImage />
           <div className="flex items-center justify-between gap-4">
             <Input
@@ -98,17 +104,39 @@ const Account = () => {
             <label>Email</label>
             <span>{state.email}</span>
           </div>
-          <div>
+          <div className="flex gap-4 justify-between items-center">
             <Dropdown
-              label={"Profession"}
+              label={"Current Profession"}
               name={"profession"}
               value={state.profession}
               options={professionDropdownOptions}
               onSelect={handleChange}
               defaultText="Select an option"
             />
+            <Dropdown
+              label={"Field of interest"}
+              name={"fieldOfInterest"}
+              value={state.fieldOfInterest}
+              options={professionDropdownOptions}
+              onSelect={handleChange}
+              defaultText="Select an option"
+            />
           </div>
-          <div className="p-4">
+          <div className="flex items-center justify-between gap-4">
+            <Input
+              label={"Current Company"}
+              name={"currentCompany"}
+              value={state.currentCompany}
+              onChange={handleChange}
+            />
+            <Input
+              label={"Years of experience"}
+              name={"yearsOfExperience"}
+              value={state.yearsOfExperience}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
             <RadioButtonGroup
               label="Gender"
               name={"gender"}
@@ -146,6 +174,26 @@ const Account = () => {
             value={state.profileHeadline}
             setValue={handleChange}
           />
+          <div className="flex justify-between items-center gap-2">
+            <Input
+              label={"University"}
+              name={"university"}
+              value={state.university}
+              onChange={handleChange}
+            />
+            <Input
+              label={"Field of study"}
+              name={"fieldOfStudy"}
+              value={state.fieldOfStudy}
+              onChange={handleChange}
+            />
+            <Input
+              label={"Degree"}
+              name={"degree"}
+              value={state.degree}
+              onChange={handleChange}
+            />
+          </div>
           <div>
             <Button onClick={handleSave}>Save</Button>
           </div>
