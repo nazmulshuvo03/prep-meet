@@ -1,14 +1,14 @@
-import React from "react";
-
 export const Dropdown = ({
   label = "",
   options = [],
   onSelect = () => {},
   defaultText,
+  defaultKey = "key",
+  defaultLabel = "label",
   ...rest
 }) => {
   return (
-    <div>
+    <div className="w-full">
       <label>{label}</label>
       <select
         className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -20,9 +20,12 @@ export const Dropdown = ({
             {defaultText}
           </option>
         )}
-        {options.map((option) => (
-          <option key={option.key} value={option.key}>
-            {option.label}
+        {options.map((option, i) => (
+          <option
+            key={defaultKey ? option[defaultKey] : i}
+            value={option[defaultKey]}
+          >
+            {option[defaultLabel]}
           </option>
         ))}
       </select>

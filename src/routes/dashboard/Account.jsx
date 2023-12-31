@@ -7,6 +7,8 @@ import { Dropdown } from "../../components/Dropdown";
 import { ProfileImage } from "../../components/ProfileImage";
 import { RadioButtonGroup } from "../../components/RadioButtonGroup";
 import { TextInput } from "../../components/TextInput";
+import COUNTRY_DATA from "../../assets/data/countries.json";
+import TIMEZONE_DATA from "../../assets/data/timezones.json";
 
 const genderOptions = [
   { key: "male", value: "Male" },
@@ -28,6 +30,8 @@ const Account = () => {
     profession: "",
     photoURL: "",
     gender: "",
+    country: "",
+    timezone: "",
     profileHeadline: "",
   });
 
@@ -53,9 +57,17 @@ const Account = () => {
     }));
   };
 
-  // const handleGenderChange = (value) => {
-  //   setState((prev) => ({ ...prev, gender: value }));
-  // };
+  const handleCountryChange = (event) => {
+    const selectedValue = event.target.value;
+    const selectedOption = COUNTRY_DATA.find(
+      (option) => option["name"] === selectedValue
+    );
+    setState((prev) => ({
+      ...prev,
+      country: selectedOption.name,
+      timezone: selectedOption.fullZoneName,
+    }));
+  };
 
   const handleSave = () => {
     dispatch(updateUserData(profile.id, state));
@@ -103,6 +115,28 @@ const Account = () => {
               options={genderOptions}
               selectedOption={state.gender}
               onChange={handleChange}
+            />
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <Dropdown
+              label={"Country"}
+              name={"country"}
+              value={state.country}
+              options={COUNTRY_DATA}
+              defaultKey="name"
+              defaultLabel="name"
+              onSelect={handleCountryChange}
+              defaultText="Select an option"
+            />
+            <Dropdown
+              label={"Timezone"}
+              name={"timezone"}
+              value={state.timezone}
+              options={TIMEZONE_DATA}
+              defaultKey="fullZoneName"
+              defaultLabel="fullZoneName"
+              onSelect={handleChange}
+              defaultText="Select an option"
             />
           </div>
           <TextInput
