@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage } from "../../firebase/functions/files";
 import { updateUserData } from "../../redux/user/functions";
-import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleCheck,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const ProfileImage = () => {
   const dispatch = useDispatch();
@@ -37,7 +41,7 @@ export const ProfileImage = () => {
   const fileInputRef = React.createRef();
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center gap-2">
       <div className="flex items-center justify-center">
         <input
           type="file"
@@ -58,12 +62,18 @@ export const ProfileImage = () => {
         </div>
       </div>
       {image ? (
-        <div className="flex gap-2">
+        <div className="flex gap-5">
           <div onClick={handleImageUpload} className="cursor-pointer">
-            <CheckCircledIcon className="h-10 w-10 text-green-500" />
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              className="h-8 w-8 text-green-500"
+            />
           </div>
           <div onClick={() => setImage()} className="cursor-pointer">
-            <CrossCircledIcon className="h-10 w-10 text-red-500" />
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="h-8 w-8 text-red-500"
+            />
           </div>
         </div>
       ) : (

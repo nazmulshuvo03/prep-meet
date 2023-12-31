@@ -20,9 +20,9 @@ export const ProfileMenu = () => {
   };
 
   return (
-    <div>
+    <div className="absolute top-12 right-1 bg-white border shadow-lg min-w-48 rounded-md">
       {user && (
-        <div className="px-3 py-1">
+        <div className="px-3 py-3">
           <div className="font-semibold text-lg">
             <span>{user.firstName}</span>
             <span> </span>
