@@ -1,11 +1,8 @@
-import styles from "./radio.module.css";
-
 export const RadioButtonGroup = ({
   label = "",
   options = [],
   selectedOption = "",
   onChange = () => {},
-  buttonSize = 5,
   ...rest
 }) => {
   return (
@@ -22,14 +19,9 @@ export const RadioButtonGroup = ({
               value={key}
               checked={selectedOption === key}
               onChange={onChange}
-              className={styles.radioButton}
+              className={`h-5 w-5 appearance-none border-2 border-primary rounded-full bg-background checked:bg-primary`}
               {...rest}
             />
-            {/* <div
-              className={`w-${buttonSize} h-${buttonSize} rounded-full border border-primary ${
-                selectedOption === key ? "bg-primary" : "bg-white"
-              }`}
-            ></div> */}
             <span className="text-text">{value}</span>
           </label>
         ))}

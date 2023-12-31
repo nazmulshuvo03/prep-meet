@@ -6,6 +6,7 @@ import { updateUserData } from "../../redux/user/functions";
 import { Dropdown } from "../../components/Dropdown";
 import { ProfileImage } from "../../components/ProfileImage";
 import { RadioButtonGroup } from "../../components/RadioButtonGroup";
+import { TextInput } from "../../components/TextInput";
 
 const genderOptions = [
   { key: "male", value: "Male" },
@@ -27,6 +28,7 @@ const Account = () => {
     profession: "",
     photoURL: "",
     gender: "",
+    profileHeadline: "",
   });
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -62,11 +64,11 @@ const Account = () => {
   console.log("@@@@@@@@@@ state: ", state);
 
   return (
-    <div>
+    <div className="flex items-center justify-center">
       {profile ? (
-        <div>
+        <div className="w-3/4">
           <ProfileImage />
-          <div>
+          <div className="flex items-center justify-between gap-4">
             <Input
               label={"First Name"}
               name={"firstName"}
@@ -103,6 +105,13 @@ const Account = () => {
               onChange={handleChange}
             />
           </div>
+          <TextInput
+            label="Profile Headline (Optional)"
+            name={"profileHeadline"}
+            placeholder={"Write the headline of your profile"}
+            value={state.profileHeadline}
+            setValue={handleChange}
+          />
           <div>
             <Button onClick={handleSave}>Save</Button>
           </div>
