@@ -9,7 +9,7 @@ export const RadioButtonGroup = ({
     <div>
       <div>{label}</div>
       <div className="flex gap-2">
-        {options.map(({ key, value }) => (
+        {options.map(({ key, label }) => (
           <label
             key={key}
             className="inline-flex items-center space-x-2 cursor-pointer"
@@ -22,7 +22,7 @@ export const RadioButtonGroup = ({
               className={`h-5 w-5 appearance-none border-2 border-primary rounded-full bg-background checked:bg-primary`}
               {...rest}
             />
-            <span className="text-text">{value}</span>
+            <span className="text-text">{label}</span>
           </label>
         ))}
       </div>

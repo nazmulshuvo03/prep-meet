@@ -9,19 +9,9 @@ import { RadioButtonGroup } from "../../components/RadioButtonGroup";
 import { TextInput } from "../../components/TextInput";
 import COUNTRY_DATA from "../../assets/data/countries.json";
 import TIMEZONE_DATA from "../../assets/data/timezones.json";
+import GENDER_DATA from "../../assets/data/genders.json";
+import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { fetchProfessions } from "../../redux/profession/functions";
-
-const genderOptions = [
-  { key: "male", value: "Male" },
-  { key: "female", value: "Female" },
-  { key: "not-disclose", value: "Do not want to disclose" },
-];
-
-const languageOptions = [
-  { key: "english", label: "English" },
-  { key: "french", label: "French" },
-  { key: "spanish", label: "Spanish" },
-];
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -47,7 +37,7 @@ const Account = () => {
     university: "",
     fieldOfStudy: "",
     degree: "",
-    language: "english",
+    language: "",
   });
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -68,12 +58,12 @@ const Account = () => {
   const handleCountryChange = (event) => {
     const selectedValue = event.target.value;
     const selectedOption = COUNTRY_DATA.find(
-      (option) => option["name"] === selectedValue
+      (option) => option["key"] === selectedValue
     );
     setState((prev) => ({
       ...prev,
-      country: selectedOption.name,
-      timezone: selectedOption.fullZoneName,
+      country: selectedOption.key,
+      timezone: selectedOption.timezone,
     }));
   };
 
@@ -92,8 +82,10 @@ const Account = () => {
     dispatch(fetchProfessions());
   }, []);
 
+  console.log("account state: ", state);
+
   return (
-    <div className="flex items-center justify-center w-full h-full p-4">
+    <div className="flex items-center justify-center w-full h-full">
       {profile ? (
         <div className="w-3/4 flex flex-col gap-4">
           <div className="flex gap-4">
@@ -117,7 +109,7 @@ const Account = () => {
                 label={"Language"}
                 name={"language"}
                 value={state.language}
-                options={languageOptions}
+                options={LANGUAGE_DATA}
                 onSelect={handleChange}
                 defaultText="Select an option"
               />
@@ -163,7 +155,7 @@ const Account = () => {
             <RadioButtonGroup
               label="Gender"
               name={"gender"}
-              options={genderOptions}
+              options={GENDER_DATA}
               selectedOption={state.gender}
               onChange={handleChange}
             />
@@ -174,8 +166,6 @@ const Account = () => {
               name={"country"}
               value={state.country}
               options={COUNTRY_DATA}
-              defaultKey="name"
-              defaultLabel="name"
               onSelect={handleCountryChange}
               defaultText="Select an option"
             />
@@ -184,8 +174,6 @@ const Account = () => {
               name={"timezone"}
               value={state.timezone}
               options={TIMEZONE_DATA}
-              defaultKey="fullZoneName"
-              defaultLabel="fullZoneName"
               onSelect={handleChange}
               defaultText="Select an option"
             />

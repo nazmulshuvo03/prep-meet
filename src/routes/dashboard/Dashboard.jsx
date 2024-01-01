@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople } from "../../redux/user/functions";
-import { Link } from "react-router-dom";
+import { PersonCard } from "../../components/Cards/PersonCard";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>Dashboard page</h1>
-      <div>
+      <div className="grid grid-cols-3 gap-4">
         {people && people.length
           ? people.map((person) => (
               <Link
@@ -22,10 +22,7 @@ const Dashboard = () => {
                 className="flex gap-2"
                 to={`/dashboard/${person.id}`}
               >
-                <div>{person.firstName}</div>
-                <div>{person.lastName}</div>
-                <div>{person.email}</div>
-                <div>{person.profession}</div>
+                <PersonCard data={person} />
               </Link>
             ))
           : null}

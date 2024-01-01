@@ -1,37 +1,55 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchProfile } from "../../redux/user/functions";
+import { getSingleUserDoc } from "../../firebase/functions/user";
+import { getDataLabelFromKey } from "../../utils/data";
 
 const Profile = () => {
+  const [profile, setProfile] = useState();
   const { userId } = useParams();
-  const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.profile);
+
+  const professionList = useSelector((state) => state.profession.keyLabelPairs);
+
+  const fetchPublicProfile = async () => {
+    const res = await getSingleUserDoc(userId);
+    console.log("######### public profile: ", res);
+    setProfile(res);
+  };
 
   useEffect(() => {
-    if (!profile) {
-      dispatch(fetchProfile(userId));
-    }
-  }, [profile]);
+    fetchPublicProfile();
+  }, []);
 
   return (
     <div>
-      <h1>Profile page</h1>
       {profile ? (
         <div>
           <div>
-            <label>Name</label>
+            <span>Name</span>
             <span>
               {profile.firstName} {profile.lastName}
             </span>
           </div>
           <div>
-            <label>Email</label>
+            <span>Email</span>
             <span>{profile.email}</span>
           </div>
           <div>
-            <label>Profession</label>
-            <span>{profile.profession}</span>
+            <span>Profession</span>
+            <span>
+              {profile.profession
+                ? getDataLabelFromKey({
+                    data: professionList,
+                    key: profile.profession,
+                  })
+                : ""}
+            </span>
+          </div>
+          <span>{profile.university}</span>
+          <span>{profile.language}</span>
+          <div>
+            <span>{profile.country}</span>
+            <span>{profile.timezone}</span>
           </div>
         </div>
       ) : null}

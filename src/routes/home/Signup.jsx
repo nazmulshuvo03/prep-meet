@@ -17,6 +17,7 @@ const Signup = () => {
     photoURL:
       "https://th.bing.com/th/id/OIP._tSfQ4W6y7yLOqxMejgq2wHaHg?rs=1&pid=ImgDetMain",
     role: "user",
+    language: "english",
   });
 
   const handleChange = (e) => {
