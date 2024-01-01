@@ -1,26 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signupUser } from "../../redux/user/functions";
-import { useHistory } from "react-router-dom";
-import { fetchProfessions } from "../../redux/profession/functions";
-import { Dropdown } from "../../components/Dropdown";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const professionDropdownOptions = useSelector(
-    (state) => state.profession.keyLabelPairs
-  );
+
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    profession: "",
     photoURL:
       "https://th.bing.com/th/id/OIP._tSfQ4W6y7yLOqxMejgq2wHaHg?rs=1&pid=ImgDetMain",
+    role: "user",
   });
 
   const handleChange = (e) => {
@@ -36,10 +32,6 @@ const Signup = () => {
     await dispatch(signupUser(state));
     history.push("/dashboard");
   };
-
-  useEffect(() => {
-    dispatch(fetchProfessions());
-  }, []);
 
   return (
     <div className="w-full flex items-center justify-center">
@@ -73,14 +65,6 @@ const Signup = () => {
             type="password"
             value={state.password}
             onChange={handleChange}
-          />
-          <Dropdown
-            label={"Profession"}
-            name={"profession"}
-            value={state.profession}
-            options={professionDropdownOptions}
-            onSelect={handleChange}
-            defaultText="Select an option"
           />
           <div className="flex justify-center items-center">
             <Button type={"submit"} onClick={handleSubmit}>

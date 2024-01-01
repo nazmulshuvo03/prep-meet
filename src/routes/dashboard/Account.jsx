@@ -9,6 +9,7 @@ import { RadioButtonGroup } from "../../components/RadioButtonGroup";
 import { TextInput } from "../../components/TextInput";
 import COUNTRY_DATA from "../../assets/data/countries.json";
 import TIMEZONE_DATA from "../../assets/data/timezones.json";
+import { fetchProfessions } from "../../redux/profession/functions";
 
 const genderOptions = [
   { key: "male", value: "Male" },
@@ -33,6 +34,7 @@ const Account = () => {
     firstName: "",
     lastName: "",
     email: "",
+    role: "",
     profession: "",
     fieldOfInterest: "",
     currentCompany: "",
@@ -54,13 +56,6 @@ const Account = () => {
       return updatedState;
     }, {});
   };
-
-  useEffect(() => {
-    if (profile) {
-      const updatedState = updateStateFromProfile(state, profile);
-      setState(updatedState);
-    }
-  }, [profile]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,26 +81,51 @@ const Account = () => {
     dispatch(updateUserData(profile.id, state));
   };
 
-  console.log("@@@@@@@@@@ state: ", state);
+  useEffect(() => {
+    if (profile) {
+      const updatedState = updateStateFromProfile(state, profile);
+      setState(updatedState);
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    dispatch(fetchProfessions());
+  }, []);
 
   return (
-    <div className="flex items-center justify-center w-full h-full">
+    <div className="flex items-center justify-center w-full h-full p-4">
       {profile ? (
         <div className="w-3/4 flex flex-col gap-4">
-          <ProfileImage />
-          <div className="flex items-center justify-between gap-4">
-            <Input
-              label={"First Name"}
-              name={"firstName"}
-              value={state.firstName}
-              onChange={handleChange}
-            />
-            <Input
-              label={"Last Name"}
-              name={"lastName"}
-              value={state.lastName}
-              onChange={handleChange}
-            />
+          <div className="flex gap-4">
+            <ProfileImage />
+            <div className="flex-1">
+              <div className="flex justify-between gap-4">
+                <Input
+                  // label={"First Name"}
+                  name={"firstName"}
+                  value={state.firstName}
+                  onChange={handleChange}
+                />
+                <Input
+                  // label={"Last Name"}
+                  name={"lastName"}
+                  value={state.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+              <Dropdown
+                label={"Language"}
+                name={"language"}
+                value={state.language}
+                options={languageOptions}
+                onSelect={handleChange}
+                defaultText="Select an option"
+              />
+              <div className="flex justify-between">
+                <div>{state.email}</div>
+                <div>Role: {state.role}</div>
+              </div>
+            </div>
           </div>
           <div className="flex gap-4 justify-between items-center">
             <Dropdown
@@ -195,16 +215,6 @@ const Account = () => {
               name={"degree"}
               value={state.degree}
               onChange={handleChange}
-            />
-          </div>
-          <div>
-            <Dropdown
-              label={"Language"}
-              name={"language"}
-              value={state.language}
-              options={languageOptions}
-              onSelect={handleChange}
-              defaultText="Select an option"
             />
           </div>
           <div className="flex justify-center items-center">
