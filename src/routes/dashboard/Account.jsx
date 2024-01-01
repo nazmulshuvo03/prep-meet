@@ -16,6 +16,12 @@ const genderOptions = [
   { key: "not-disclose", value: "Do not want to disclose" },
 ];
 
+const languageOptions = [
+  { key: "english", label: "English" },
+  { key: "french", label: "French" },
+  { key: "spanish", label: "Spanish" },
+];
+
 const Account = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
@@ -39,6 +45,7 @@ const Account = () => {
     university: "",
     fieldOfStudy: "",
     degree: "",
+    language: "english",
   });
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -82,7 +89,7 @@ const Account = () => {
   console.log("@@@@@@@@@@ state: ", state);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-full h-full">
       {profile ? (
         <div className="w-3/4 flex flex-col gap-4">
           <ProfileImage />
@@ -99,10 +106,6 @@ const Account = () => {
               value={state.lastName}
               onChange={handleChange}
             />
-          </div>
-          <div>
-            <label>Email</label>
-            <span>{state.email}</span>
           </div>
           <div className="flex gap-4 justify-between items-center">
             <Dropdown
@@ -195,6 +198,16 @@ const Account = () => {
             />
           </div>
           <div>
+            <Dropdown
+              label={"Language"}
+              name={"language"}
+              value={state.language}
+              options={languageOptions}
+              onSelect={handleChange}
+              defaultText="Select an option"
+            />
+          </div>
+          <div className="flex justify-center items-center">
             <Button onClick={handleSave}>Save</Button>
           </div>
         </div>

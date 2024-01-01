@@ -13,6 +13,8 @@ import Profile from "./routes/dashboard/Profile";
 import Professions from "./routes/home/Professions";
 import Account from "./routes/dashboard/Account";
 
+const NAV_HEIGHT = 96;
+
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user.profile);
 
@@ -40,19 +42,32 @@ function App() {
   }, [auth]);
 
   return (
-    <div className={`${darkMode ? "dark" : ""} h-screen w-screen`}>
-      <div className={`bg-background text-text h-full w-full`}>
+    <div
+      className={`${darkMode ? "dark" : ""} h-screen w-screen overflow-hidden`}
+    >
+      <div className={`bg-background text-text h-full w-full overflow-y-auto`}>
         <BrowserRouter>
-          <Navigation />
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/professions" component={Professions} />
-            <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
-            <AuthenticatedRoute path="/account" component={Account} />
-            <AuthenticatedRoute path="/dashboard/:userId" component={Profile} />
-          </Switch>
+          <div className="fixed top-0 left-0 w-full h-24">
+            <Navigation />
+          </div>
+          <div className="mt-24 ">
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/professions" component={Professions} />
+              <AuthenticatedRoute
+                exact
+                path="/dashboard"
+                component={Dashboard}
+              />
+              <AuthenticatedRoute path="/account" component={Account} />
+              <AuthenticatedRoute
+                path="/dashboard/:userId"
+                component={Profile}
+              />
+            </Switch>
+          </div>
         </BrowserRouter>
       </div>
     </div>

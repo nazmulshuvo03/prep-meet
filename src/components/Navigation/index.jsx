@@ -24,7 +24,7 @@ export const Navigation = () => {
   };
 
   return (
-    <div className="flex justify-between border-b h-24 items-center px-5">
+    <div className="flex justify-between border-b w-full h-full items-center px-5 bg-background">
       <div className="text-4xl font-bold opacity-75 ">
         <span className="text-secondary">prep</span>
         <span> </span>
