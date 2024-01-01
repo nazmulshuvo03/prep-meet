@@ -1,22 +1,42 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectTheme, setTheme } from "../../redux/theme";
-import { Button } from "../Button";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { ThemeSwitch } from "../Switch/ThemeSwitch";
 
-const ThemeProvider = ({ children }) => {
-  const dispatch = useDispatch();
-  const darkTheme = useSelector(selectTheme);
+export const ThemeProvider = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
 
   const toggleTheme = () => {
-    dispatch(setTheme());
+    const newTheme = darkMode ? "light" : "dark";
+    setDarkMode(!darkMode);
+    localStorage.setItem("theme", newTheme);
+
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   };
 
   return (
-    <div className={`theme-${darkTheme}`}>
-      <Button onClick={toggleTheme}>Toggle Theme</Button>
-      {children}
+    <div className="py-2 border">
+      <ThemeSwitch
+        leftText={
+          <FontAwesomeIcon icon={faSun} className="text-sky-400 h-4 w-4" />
+        }
+        rightText={
+          <FontAwesomeIcon icon={faMoon} className="text-sky-400 h-4 w-4" />
+        }
+        handleAction={toggleTheme}
+      />
     </div>
   );
 };
-
-export default ThemeProvider;

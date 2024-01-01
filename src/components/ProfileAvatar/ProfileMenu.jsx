@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../redux/user/functions";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { ThemeProvider } from "../ThemeProvider";
 
 const MenuLink = ({ children }) => (
   <div className="border-t py-3 px-3 font-light text-sm text-gray-600 hover:text-gray-800 flex items-center justify-center">
@@ -40,6 +41,7 @@ export const ProfileMenu = () => {
       <MenuLink>
         <Link to="/privacy">Privacy Policy</Link>
       </MenuLink>
+      <ThemeProvider />
       <div
         className="bg-red-600 text-slate-50 rounded-t-md h-10 flex justify-center items-center font-semibold text-base shadow-md"
         onClick={handleLogout}
