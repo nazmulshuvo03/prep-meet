@@ -27,7 +27,7 @@ export const ThemeProvider = () => {
   };
 
   return (
-    <div className="py-2 border">
+    <div className="py-2 border-t">
       <ThemeSwitch
         leftText={
           <FontAwesomeIcon icon={faSun} className="text-sky-400 h-4 w-4" />

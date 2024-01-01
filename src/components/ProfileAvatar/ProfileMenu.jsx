@@ -21,7 +21,7 @@ export const ProfileMenu = () => {
   };
 
   return (
-    <div className="absolute top-12 right-1 bg-white border shadow-lg min-w-48 rounded-md">
+    <div className="absolute top-12 right-1 bg-background text-text border border-text shadow-lg min-w-48 rounded-md">
       {user && (
         <div className="px-3 py-3">
           <div className="font-semibold text-lg">
@@ -43,7 +43,7 @@ export const ProfileMenu = () => {
       </MenuLink>
       <ThemeProvider />
       <div
-        className="bg-red-600 text-slate-50 rounded-t-md h-10 flex justify-center items-center font-semibold text-base shadow-md"
+        className="bg-red-600 dark:bg-red-800 text-slate-50 dark:text-slate-100 rounded-t-md h-10 flex justify-center items-center font-semibold text-base shadow-md"
         onClick={handleLogout}
       >
         Logout
