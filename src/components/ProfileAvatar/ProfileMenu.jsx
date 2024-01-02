@@ -41,7 +41,9 @@ export const ProfileMenu = () => {
       <MenuLink>
         <Link to="/privacy">Privacy Policy</Link>
       </MenuLink>
-      <ThemeProvider />
+      <div className="border-t py-3">
+        <ThemeProvider />
+      </div>
       <div
         className="bg-red-600 dark:bg-red-800 text-slate-50 dark:text-slate-100 rounded-t-md h-10 flex justify-center items-center font-semibold text-base shadow-md"
         onClick={handleLogout}
