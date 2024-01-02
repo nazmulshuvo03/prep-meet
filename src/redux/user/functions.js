@@ -11,12 +11,14 @@ import {
 import { setPeople, setProfile, updateProfile } from ".";
 import { persistor } from "..";
 
-export const fetchPeople = () => async (dispatch) => {
-  const userDocs = await getUserDocs();
-  if (userDocs) {
-    dispatch(setPeople(userDocs));
-  }
-};
+export const fetchPeople =
+  (queries = []) =>
+  async (dispatch) => {
+    const userDocs = await getUserDocs(queries);
+    if (userDocs) {
+      dispatch(setPeople(userDocs));
+    }
+  };
 
 export const fetchProfile = (userId) => async (dispatch) => {
   const userDoc = await getSingleUserDoc(userId);

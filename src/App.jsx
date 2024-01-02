@@ -13,8 +13,6 @@ import Profile from "./routes/dashboard/Profile";
 import Professions from "./routes/home/Professions";
 import Account from "./routes/dashboard/Account";
 
-const NAV_HEIGHT = 96;
-
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user.profile);
 

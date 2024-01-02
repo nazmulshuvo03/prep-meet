@@ -15,11 +15,15 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { combinedQuery } from "./helpers";
 
-export const getUserDocs = async () => {
+export const getUserDocs = async (queries = []) => {
   try {
     let response = [];
-    const querySnapshot = await getDocs(collection(database, "profiles"));
+    let querySnapshot;
+    if (queries && queries.length) {
+      querySnapshot = await getDocs(combinedQuery({ queries }));
+    } else querySnapshot = await getDocs(collection(database, "profiles"));
     querySnapshot.forEach(async (doc) => {
       if (doc.exists()) {
         let resItem = {
@@ -56,7 +60,6 @@ export const getSingleUserFromUID = async (uid) => {
   try {
     const q = query(collection(database, "profiles"), where("uid", "==", uid));
     const querySnapshot = await getDocs(q);
-    console.log("@@@@@@@@@@@", querySnapshot.docs[0].data());
     if (querySnapshot) {
       const snapshot = querySnapshot.docs[0];
       return { id: snapshot.id, ...snapshot.data() };
