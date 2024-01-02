@@ -46,23 +46,24 @@ function App() {
       className={`${darkMode ? "dark" : ""} h-screen w-screen overflow-hidden`}
     >
       <div className={`bg-background text-text h-full w-full overflow-y-auto`}>
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <div className="fixed top-0 left-0 w-full h-24">
             <Navigation />
           </div>
           <div className="mt-24 p-4">
             <Switch>
               <Route exact path="/" component={Landing} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/professions" component={Professions} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/professions" component={Professions} />
               <AuthenticatedRoute
                 exact
                 path="/dashboard"
                 component={Dashboard}
               />
-              <AuthenticatedRoute path="/account" component={Account} />
+              <AuthenticatedRoute exact path="/account" component={Account} />
               <AuthenticatedRoute
+                exact
                 path="/dashboard/:userId"
                 component={Profile}
               />
