@@ -33,6 +33,7 @@ export const PersonCard = ({ data }) => {
               })
             : ""}
         </div>
+        <div>Years of experience: {data.yearsOfExperience}</div>
       </div>
     </div>
   );

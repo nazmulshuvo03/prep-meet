@@ -28,7 +28,7 @@ const Account = () => {
     profession: "",
     fieldOfInterest: "",
     currentCompany: "",
-    yearsOfExperience: "",
+    yearsOfExperience: 0,
     photoURL: "",
     gender: "",
     country: "",
@@ -48,10 +48,10 @@ const Account = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
     setState((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: type === "number" ? Number(value) : value,
     }));
   };
 
@@ -145,6 +145,7 @@ const Account = () => {
               onChange={handleChange}
             />
             <Input
+              type={"number"}
               label={"Years of experience"}
               name={"yearsOfExperience"}
               value={state.yearsOfExperience}

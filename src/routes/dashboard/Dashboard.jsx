@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import LANGUAGE_DATA from "../../assets/data/languages.json";
+import COUNTRY_DATA from "../../assets/data/countries.json";
+import TIMEZONE_DATA from "../../assets/data/timezones.json";
+
 import { fetchPeople } from "../../redux/user/functions";
 import { PersonCard } from "../../components/Cards/PersonCard";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
-import LANGUAGE_DATA from "../../assets/data/languages.json";
-import COUNTRY_DATA from "../../assets/data/countries.json";
-import TIMEZONE_DATA from "../../assets/data/timezones.json";
+import { RangeSlider } from "../../components/Slider/RangeSlider";
+
+const EXPERIENCE_MIN_VALUE = 0;
+const EXPERIENCE_MAX_VALUE = 20;
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -17,6 +23,8 @@ const Dashboard = () => {
   );
 
   const [queries, setQueries] = useState([]);
+  const [minExp, setMinExp] = useState(EXPERIENCE_MIN_VALUE);
+  const [maxExp, setMaxExp] = useState(EXPERIENCE_MAX_VALUE);
 
   useEffect(() => {
     if (queries) {
@@ -34,7 +42,36 @@ const Dashboard = () => {
       if (existingIndex !== -1) {
         updatedQueries[existingIndex] = { [e.target.name]: e.target.value };
       } else {
-        updatedQueries.unshift({ [e.target.name]: e.target.value });
+        updatedQueries.unshift({ [e.target.name]: e.target.value, rel: "==" });
+      }
+      return updatedQueries;
+    });
+  };
+
+  const handleExperienceSelect = (values, i) => {
+    setMaxExp(values[1]);
+    setMinExp(values[0]);
+    const relations = [">=", "<="];
+    setQueries((prev) => {
+      const updatedQueries = [...prev];
+      for (let j = 0; j <= i; j++) {
+        const existingIndex = updatedQueries.findIndex(
+          (item) =>
+            Object.keys(item)[0] === "yearsOfExperience" &&
+            item["rel"] === relations[j]
+        );
+
+        if (existingIndex !== -1) {
+          updatedQueries[existingIndex] = {
+            yearsOfExperience: values[j],
+            rel: relations[j],
+          };
+        } else {
+          updatedQueries.unshift({
+            yearsOfExperience: values[j],
+            rel: relations[j],
+          });
+        }
       }
       return updatedQueries;
     });
@@ -87,6 +124,16 @@ const Dashboard = () => {
         <div>
           <Button onClick={() => setQueries([])}>Reset</Button>
         </div>
+      </div>
+      <div className="w-60">
+        <RangeSlider
+          label="Filter by years of experience"
+          lowerValue={minExp}
+          upperValue={maxExp}
+          handleChange={handleExperienceSelect}
+          min={EXPERIENCE_MIN_VALUE}
+          max={EXPERIENCE_MAX_VALUE}
+        />
       </div>
       <div className="grid grid-cols-3 gap-4">
         {people && people.length

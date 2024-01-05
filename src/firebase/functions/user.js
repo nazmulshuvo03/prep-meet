@@ -35,7 +35,8 @@ export const getUserDocs = async (queries = []) => {
     });
     return response;
   } catch (e) {
-    console.error("Error getting documents: ", e);
+    console.error("Error getting documents: ", e.message);
+    alert("Error getting documents: ", e.message);
     return null;
   }
 };
