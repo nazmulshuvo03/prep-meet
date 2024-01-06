@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import { updateUserData } from "../../redux/user/functions";
-import { Dropdown } from "../../components/Dropdown";
-import { ProfileImage } from "../../components/ProfileImage";
-import { RadioButtonGroup } from "../../components/RadioButtonGroup";
-import { TextInput } from "../../components/TextInput";
+import { Input } from "../Input";
+import { Button } from "../Button";
+import { Dropdown } from "../Dropdown";
+import { ProfileImage } from "../ProfileImage";
+import { RadioButtonGroup } from "../RadioButtonGroup";
+import { TextInput } from "../TextInput";
 import COUNTRY_DATA from "../../assets/data/countries.json";
 import TIMEZONE_DATA from "../../assets/data/timezones.json";
 import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
+import { updateUserData } from "../../redux/user/functions";
 import { fetchProfessions } from "../../redux/profession/functions";
 
-const Account = () => {
+export const PersonalAccount = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const professionDropdownOptions = useSelector(
@@ -85,9 +85,9 @@ const Account = () => {
   console.log("account state: ", state);
 
   return (
-    <div className="flex items-center justify-center w-full h-full">
+    <div className="h-ful w-full px-4 py-2">
       {profile ? (
-        <div className="w-3/4 flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           <div className="flex gap-4">
             <ProfileImage />
             <div className="flex-1">
@@ -214,5 +214,3 @@ const Account = () => {
     </div>
   );
 };
-
-export default Account;

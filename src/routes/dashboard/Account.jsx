@@ -1,8 +1,9 @@
+import { PersonalAccount } from "../../components/PersonalAccount";
 import { Tabs } from "../../components/Tabs";
 
 const Account = () => {
   const TABS = [
-    { id: 1, name: "Personal Details", component: <div>First Tab</div> },
+    { id: 1, name: "Personal Details", component: <PersonalAccount /> },
     { id: 2, name: "Available Times", component: <div>Second Tab</div> },
   ];
 
