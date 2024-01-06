@@ -48,7 +48,10 @@ function App() {
           <div className="fixed top-0 left-0 w-full h-24">
             <Navigation />
           </div>
-          <div className="mt-24 p-4">
+          <div
+            className="mt-24 p-4"
+            style={{ height: "-webkit-fill-available" }}
+          >
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />
