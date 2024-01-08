@@ -55,7 +55,7 @@ export const AvailableTimes = () => {
     if (userAvailabilities) {
       for (let data of userAvailabilities) {
         const foundState = states.find((state) => state.day.key === data.day);
-        foundState.hours = data.hours;
+        if (foundState) foundState.hours = data.hours;
       }
     }
     setState(states);
