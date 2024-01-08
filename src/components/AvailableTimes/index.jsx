@@ -6,7 +6,10 @@ import {
 } from "../../utils/TimeDate";
 import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserAvailabilities } from "../../redux/availability/function";
+import {
+  createOrUpdateUserAvailability,
+  fetchUserAvailabilities,
+} from "../../redux/availability/function";
 
 export const AvailableTimes = () => {
   const dispatch = useDispatch();
@@ -41,8 +44,18 @@ export const AvailableTimes = () => {
     });
   };
 
-  const handleSave = () => {
-    console.log("@@@@ state: ", state);
+  const handleSave = async () => {
+    for (let item of state) {
+      console.log("@@@@ state: ", item);
+      const data = {
+        userId: profile.id,
+        uuid: profile.uid,
+        day: item.day.key,
+        hours: item.hours,
+        dateTimeStamp: [],
+      };
+      // await dispatch(createOrUpdateUserAvailability(data));
+    }
   };
 
   useEffect(() => {
@@ -61,7 +74,7 @@ export const AvailableTimes = () => {
     setState(states);
   }, [userAvailabilities]);
 
-  console.log("@@@@@@@@@@@@@", state);
+  // console.log("@@@@@@@@@@@@@", userAvailabilities);
 
   // console.log(
   //   dateArray,
