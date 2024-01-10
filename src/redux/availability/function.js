@@ -1,7 +1,9 @@
 import { setUserAvailabilities } from ".";
 import {
-  addUserAvailabilities,
+  addUserAvailability,
+  checkUserAvailability,
   getUserAvailabilities,
+  updateUserAvailability,
 } from "../../firebase/functions/availabilities";
 
 export const fetchUserAvailabilities = (userId) => async (dispatch) => {
@@ -12,10 +14,10 @@ export const fetchUserAvailabilities = (userId) => async (dispatch) => {
 };
 
 export const createOrUpdateUserAvailability = (data) => async (dispatch) => {
-  console.log("@@@ received data: ", data);
-  const createRes = await addUserAvailabilities(data);
-  console.log("@@ created res: ", createRes);
-  if (createRes) {
-    dispatch(setUserAvailabilities(createRes));
+  const found = await checkUserAvailability(data.userId, data.day);
+  if (found) {
+    updateUserAvailability(found.id, data);
+  } else {
+    await addUserAvailability(data);
   }
 };

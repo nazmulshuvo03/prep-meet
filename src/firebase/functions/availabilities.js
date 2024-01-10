@@ -1,4 +1,13 @@
-import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { database } from "..";
 import { combinedQuery } from "./helpers";
 
@@ -46,7 +55,7 @@ export const checkUserAvailability = async (userId, day = null) => {
       combinedQuery({ queries, dbName: "availabilities" })
     );
     let doc = snapshot?.docs[0];
-    if (doc.exists()) {
+    if (doc && doc.exists()) {
       const formattedDoc = {
         id: doc.id,
         ...doc.data(),
@@ -60,7 +69,7 @@ export const checkUserAvailability = async (userId, day = null) => {
   }
 };
 
-export const getUseAvalDoc = async (docId) => {
+export const getUserAvalDoc = async (docId) => {
   try {
     const snapshot = await getDoc(doc(database, "availabilities", docId));
     if (snapshot.exists()) {
@@ -76,16 +85,25 @@ export const getUseAvalDoc = async (docId) => {
   }
 };
 
-export const addUserAvailabilities = async (data) => {
+export const addUserAvailability = async (data) => {
   try {
     const docRef = await addDoc(collection(database, "availabilities"), data);
-    console.log("@@@ doc ref: ", docRef);
-    let response = await getUseAvalDoc(docRef.id);
-    console.log("@@@ avaiability doc: ", response);
+    let response = await getUserAvalDoc(docRef.id);
     return response;
   } catch (e) {
     console.error("Error adding user availability data: ", e.message);
     alert("Error adding user availability data: ", e.message);
+    return null;
+  }
+};
+
+export const updateUserAvailability = async (docId, updatedData) => {
+  try {
+    const docRef = doc(database, "availabilities", docId);
+    await updateDoc(docRef, updatedData);
+  } catch (e) {
+    console.error("Error updating availability: ", e.message);
+    alert("Error updating availability: ", e.message);
     return null;
   }
 };

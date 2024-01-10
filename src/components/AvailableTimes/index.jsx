@@ -18,7 +18,13 @@ export const AvailableTimes = () => {
     (state) => state.availability.userAvailabilities
   );
 
-  const [state, setState] = useState([]);
+  const [state, setState] = useState([]); // state is an array of following object
+  /**
+   * {
+   *    day: {key: , label: },
+   *    hours: [],
+   * }
+   */
 
   const dateArray = generateDateArray();
   const hourArray = generateHourArray();
@@ -28,13 +34,14 @@ export const AvailableTimes = () => {
       const foundIndex = previous.findIndex(
         (prev) => prev.day.key === item.day.key
       );
+      // the day in which time is selected
       if (foundIndex !== -1) {
-        const found = { ...previous[foundIndex] };
-        const index = found.hours.indexOf(time.key);
+        const found = { ...previous[foundIndex] }; // that day data
+        const index = found.hours.indexOf(time.key); // check if the selected time exists in that day
         found.hours =
           index > -1
-            ? found.hours.filter((key) => key !== time.key)
-            : [...found.hours, time.key];
+            ? found.hours.filter((key) => key !== time.key) // if that time exists on that day, remove it
+            : [...found.hours, time.key]; // otherwise add it
 
         const newState = [...previous];
         newState[foundIndex] = found;
@@ -46,15 +53,13 @@ export const AvailableTimes = () => {
 
   const handleSave = async () => {
     for (let item of state) {
-      console.log("@@@@ state: ", item);
       const data = {
         userId: profile.id,
         uuid: profile.uid,
         day: item.day.key,
         hours: item.hours,
-        dateTimeStamp: [],
       };
-      // await dispatch(createOrUpdateUserAvailability(data));
+      await dispatch(createOrUpdateUserAvailability(data));
     }
   };
 
@@ -68,22 +73,13 @@ export const AvailableTimes = () => {
     if (userAvailabilities) {
       for (let data of userAvailabilities) {
         const foundState = states.find((state) => state.day.key === data.day);
-        if (foundState) foundState.hours = data.hours;
+        if (foundState) {
+          foundState.hours = data.hours;
+        }
       }
     }
     setState(states);
   }, [userAvailabilities]);
-
-  // console.log("@@@@@@@@@@@@@", userAvailabilities);
-
-  // console.log(
-  //   dateArray,
-  //   selectedDate,
-  //   selectedHours,
-  //   getDateTimeStamp(14),
-  //   userAvailabilities,
-  //   state
-  // );
 
   return (
     <div className="p-2">
