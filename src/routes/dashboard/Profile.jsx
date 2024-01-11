@@ -139,12 +139,15 @@ const Profile = () => {
         ) : null}
       </div>
       <div>
-        <div className="font-bold text-3xl text-primary">
-          Select time to request a meeting
-        </div>
+        {availabilities && availabilities.length ? (
+          <div className="font-bold text-3xl text-primary">
+            Select time to request a meeting
+          </div>
+        ) : (
+          <div />
+        )}
         <div>
-          {availabilities &&
-            availabilities.length &&
+          {availabilities && availabilities.length ? (
             availabilities.map((avl) => {
               if (avl.hours && avl.hours.length) {
                 return (
@@ -165,7 +168,10 @@ const Profile = () => {
                   </div>
                 );
               }
-            })}
+            })
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     </div>
