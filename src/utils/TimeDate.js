@@ -1,5 +1,5 @@
 // Function to get formatted date with weekday (DD-MM-YYYY, Weekday)
-function getFormattedDateWithWeekday(date) {
+export function getFormattedDateWithWeekday(date) {
   date.setHours(0, 0, 0, 0); // Set time to 00:00:00 (midnight)
   const options = {
     weekday: "long",
@@ -36,7 +36,7 @@ export function generateDateArray() {
 }
 
 // Function to format the hour in 12-hour format with am/pm
-function formatHourWithAMPM(hour) {
+export function formatHourWithAMPM(hour) {
   const period = hour >= 12 ? "PM" : "AM";
   const formattedHour = hour % 12 || 12;
   return `${formattedHour}:00 ${period}`;

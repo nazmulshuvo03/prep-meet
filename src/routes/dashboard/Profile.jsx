@@ -11,6 +11,11 @@ import {
   faFlag,
   faLanguage,
 } from "@fortawesome/free-solid-svg-icons";
+import { getUserAvailabilities } from "../../firebase/functions/availabilities";
+import {
+  formatHourWithAMPM,
+  getFormattedDateWithWeekday,
+} from "../../utils/TimeDate";
 
 const ProfileHighlightItem = ({ icon, value }) => {
   return (
@@ -31,6 +36,7 @@ const ProfileHighlightItem = ({ icon, value }) => {
 
 const Profile = () => {
   const [profile, setProfile] = useState();
+  const [availabilities, setAvailabilities] = useState();
   const { userId } = useParams();
 
   const professionList = useSelector((state) => state.profession.keyLabelPairs);
@@ -38,6 +44,11 @@ const Profile = () => {
   const fetchPublicProfile = async () => {
     const res = await getSingleUserDoc(userId);
     setProfile(res);
+  };
+
+  const fetchAvailabilities = async () => {
+    const res = await getUserAvailabilities(userId);
+    setAvailabilities(res);
   };
 
   const formattedProfession = (profile) => {
@@ -67,63 +78,96 @@ const Profile = () => {
 
   useEffect(() => {
     fetchPublicProfile();
+    fetchAvailabilities();
   }, []);
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
-      {profile ? (
-        <div>
-          <div className="flex gap-4">
-            <img
-              src={profile.photoURL}
-              alt="Profile photo"
-              className="h-52 w-52 rounded-md"
-            />
-            <div className="flex-1">
-              <div className="mb-4">
-                <div className="font-semibold text-4xl text-text">
-                  {profile.firstName} {profile.lastName}
+    <div className="w-full h-full">
+      <div>
+        {profile ? (
+          <div>
+            <div className="flex gap-4">
+              <img
+                src={profile.photoURL}
+                alt="Profile photo"
+                className="h-52 w-52 rounded-md"
+              />
+              <div className="flex-1">
+                <div className="mb-4">
+                  <div className="font-semibold text-4xl text-text">
+                    {profile.firstName} {profile.lastName}
+                  </div>
+                  <div className="font-extralight text-sm">
+                    {formattedProfession(profile)}
+                  </div>
                 </div>
-                <div className="font-extralight text-sm">
-                  {formattedProfession(profile)}
+                <div className="font-normal text-base text-text">
+                  <ProfileHighlightItem
+                    icon={<FontAwesomeIcon icon={faBuildingColumns} />}
+                    value={formattedDegree(profile)}
+                  />
+                  <ProfileHighlightItem
+                    icon={<FontAwesomeIcon icon={faLanguage} />}
+                    value={
+                      profile.language
+                        ? getDataLabelFromKey({
+                            data: LANGUAGE_DATA,
+                            key: profile.language,
+                          })
+                        : ""
+                    }
+                  />
+                  <ProfileHighlightItem
+                    icon={<FontAwesomeIcon icon={faFlag} />}
+                    value={profile.country}
+                  />
+                  <ProfileHighlightItem
+                    icon={<FontAwesomeIcon icon={faClock} />}
+                    value={profile.timezone}
+                  />
                 </div>
-              </div>
-              <div className="font-normal text-base text-text">
-                <ProfileHighlightItem
-                  icon={<FontAwesomeIcon icon={faBuildingColumns} />}
-                  value={formattedDegree(profile)}
-                />
-                <ProfileHighlightItem
-                  icon={<FontAwesomeIcon icon={faLanguage} />}
-                  value={
-                    profile.language
-                      ? getDataLabelFromKey({
-                          data: LANGUAGE_DATA,
-                          key: profile.language,
-                        })
-                      : ""
-                  }
-                />
-                <ProfileHighlightItem
-                  icon={<FontAwesomeIcon icon={faFlag} />}
-                  value={profile.country}
-                />
-                <ProfileHighlightItem
-                  icon={<FontAwesomeIcon icon={faClock} />}
-                  value={profile.timezone}
-                />
               </div>
             </div>
+            {profile.profileHeadline ? (
+              <div className="p-2 my-4 border text-accent rounded-md">
+                {profile.profileHeadline}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          {profile.profileHeadline ? (
-            <div className="p-2 my-4 border text-accent rounded-md">
-              {profile.profileHeadline}
-            </div>
-          ) : (
-            ""
-          )}
+        ) : null}
+      </div>
+      <div>
+        <div className="font-bold text-3xl text-primary">
+          Select time to request a meeting
         </div>
-      ) : null}
+        <div>
+          {availabilities &&
+            availabilities.length &&
+            availabilities.map((avl) => {
+              if (avl.hours && avl.hours.length) {
+                return (
+                  <div key={avl.id} className="py-2">
+                    <div className="mb-2 py-1 border-b-2 border-b-secondary font-medium text-xl text-secondary">
+                      {getFormattedDateWithWeekday(new Date(avl.day))}
+                    </div>
+                    <div className="flex gap-2">
+                      {avl.hours.map((hour) => (
+                        <div
+                          key={hour}
+                          className="cursor-pointer px-8 py-2 rounded-md bg-accent text-white"
+                        >
+                          {formatHourWithAMPM(hour)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+            })}
+        </div>
+      </div>
     </div>
   );
 };
