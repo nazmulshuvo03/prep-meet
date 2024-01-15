@@ -1,5 +1,14 @@
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { database } from "..";
+import { getSingleUserDoc } from "./user";
 
 export const getSingleMeetingDoc = async (docId) => {
   try {
@@ -25,6 +34,34 @@ export const createMeeting = async (data) => {
   } catch (e) {
     console.error("Error adding meeting: ", e.message);
     alert("Error adding meeting: ", e.message);
+    return null;
+  }
+};
+
+export const getAcceptorsMeetings = async (acptId) => {
+  try {
+    const response = [];
+    const querySnapshot = await getDocs(
+      query(collection(database, "meetings"), where("acceptor", "==", acptId))
+    );
+    querySnapshot.forEach(async (doc) => {
+      if (doc.exists()) {
+        const data = doc.data();
+        let resItem = {
+          id: doc.id,
+          ...data,
+        };
+        response.push(resItem);
+      }
+    });
+    for (let item of response) {
+      const initiatorProfile = await getSingleUserDoc(item.initiator);
+      item.initiatorProfile = initiatorProfile;
+    }
+    return response;
+  } catch (e) {
+    console.error("Error getting documents: ", e.message);
+    alert("Error getting documents: ", e.message);
     return null;
   }
 };

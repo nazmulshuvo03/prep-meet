@@ -4,9 +4,7 @@ import {
   doc,
   getDoc,
   getDocs,
-  query,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import { database } from "..";
 import { combinedQuery } from "./helpers";
