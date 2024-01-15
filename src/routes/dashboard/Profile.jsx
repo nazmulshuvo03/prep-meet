@@ -14,10 +14,12 @@ import {
 import { getUserAvailabilities } from "../../firebase/functions/availabilities";
 import {
   formatHourWithAMPM,
+  getDateTimeStamp,
   getFormattedDateWithWeekday,
 } from "../../utils/TimeDate";
 import { Modal } from "../../components/Modal";
 import { MeetConfirmation } from "../../components/PublicProfile/MeetConfirmation";
+import { createMeeting } from "../../firebase/functions/meetings";
 
 const ProfileHighlightItem = ({ icon, value }) => {
   return (
@@ -37,9 +39,10 @@ const ProfileHighlightItem = ({ icon, value }) => {
 };
 
 const Profile = () => {
+  const userProfile = useSelector((state) => state.user.profile);
   const [profile, setProfile] = useState();
   const [availabilities, setAvailabilities] = useState();
-  const [openMeetingModal, setOpenMeetingModal] = useState(false);
+  const [meetingData, setMeetingData] = useState(false);
   const { userId } = useParams();
 
   const professionList = useSelector((state) => state.profession.keyLabelPairs);
@@ -77,6 +80,19 @@ const Profile = () => {
             : ""
         }`
       : "";
+  };
+
+  const confirmMeet = async () => {
+    const meeting = await createMeeting({
+      initiator: userProfile.id,
+      acceptor: profile.id,
+      status: parseInt(0),
+      time: parseInt(getDateTimeStamp(meetingData.time, meetingData.date)),
+    });
+    alert(
+      `You have requested meeting with this user at ${new Date(meeting.time)}`
+    );
+    setMeetingData();
   };
 
   useEffect(() => {
@@ -164,11 +180,9 @@ const Profile = () => {
                           key={hour}
                           className="cursor-pointer px-8 py-2 rounded-md bg-accent text-white"
                           onClick={() =>
-                            setOpenMeetingModal({
-                              time: formatHourWithAMPM(hour),
-                              date: getFormattedDateWithWeekday(
-                                new Date(avl.day)
-                              ),
+                            setMeetingData({
+                              time: hour,
+                              date: avl.day,
                               ...profile,
                             })
                           }
@@ -186,11 +200,12 @@ const Profile = () => {
           )}
         </div>
       </div>
-      {openMeetingModal ? (
-        <Modal handleClose={() => setOpenMeetingModal()}>
+      {meetingData ? (
+        <Modal handleClose={() => setMeetingData()}>
           <MeetConfirmation
-            data={openMeetingModal}
-            handleClose={() => setOpenMeetingModal()}
+            data={meetingData}
+            handleClose={() => setMeetingData()}
+            handleConfirm={confirmMeet}
           />
         </Modal>
       ) : (

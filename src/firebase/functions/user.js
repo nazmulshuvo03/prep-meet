@@ -78,7 +78,7 @@ export const getSingleUserFromUID = async (uid) => {
 export const addUserDoc = async (data) => {
   try {
     const docRef = await addDoc(collection(database, "profiles"), data);
-    let user = getSingleUserDoc(docRef.id);
+    let user = await getSingleUserDoc(docRef.id);
     return user;
   } catch (e) {
     console.error("Error adding document: ", e.message);
