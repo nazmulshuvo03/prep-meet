@@ -86,8 +86,6 @@ const Dashboard = () => {
     } else return "";
   };
 
-  console.log("!!!!!!!!!!!!!!!!!", queries);
-
   return (
     <div>
       <div className="flex justify-between items-center pb-4">

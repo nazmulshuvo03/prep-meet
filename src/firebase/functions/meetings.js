@@ -65,3 +65,31 @@ export const getAcceptorsMeetings = async (acptId) => {
     return null;
   }
 };
+
+export const getInitiatorMeetings = async (intrId) => {
+  try {
+    const response = [];
+    const querySnapshot = await getDocs(
+      query(collection(database, "meetings"), where("initiator", "==", intrId))
+    );
+    querySnapshot.forEach(async (doc) => {
+      if (doc.exists()) {
+        const data = doc.data();
+        let resItem = {
+          id: doc.id,
+          ...data,
+        };
+        response.push(resItem);
+      }
+    });
+    for (let item of response) {
+      const acceptorProfile = await getSingleUserDoc(item.acceptor);
+      item.acceptorProfile = acceptorProfile;
+    }
+    return response;
+  } catch (e) {
+    console.error("Error getting documents: ", e.message);
+    alert("Error getting documents: ", e.message);
+    return null;
+  }
+};
