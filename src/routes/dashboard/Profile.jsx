@@ -16,6 +16,8 @@ import {
   formatHourWithAMPM,
   getFormattedDateWithWeekday,
 } from "../../utils/TimeDate";
+import { Modal } from "../../components/Modal";
+import { MeetConfirmation } from "../../components/PublicProfile/MeetConfirmation";
 
 const ProfileHighlightItem = ({ icon, value }) => {
   return (
@@ -37,6 +39,7 @@ const ProfileHighlightItem = ({ icon, value }) => {
 const Profile = () => {
   const [profile, setProfile] = useState();
   const [availabilities, setAvailabilities] = useState();
+  const [openMeetingModal, setOpenMeetingModal] = useState(false);
   const { userId } = useParams();
 
   const professionList = useSelector((state) => state.profession.keyLabelPairs);
@@ -160,6 +163,15 @@ const Profile = () => {
                         <div
                           key={hour}
                           className="cursor-pointer px-8 py-2 rounded-md bg-accent text-white"
+                          onClick={() =>
+                            setOpenMeetingModal({
+                              time: formatHourWithAMPM(hour),
+                              date: getFormattedDateWithWeekday(
+                                new Date(avl.day)
+                              ),
+                              ...profile,
+                            })
+                          }
                         >
                           {formatHourWithAMPM(hour)}
                         </div>
@@ -174,6 +186,16 @@ const Profile = () => {
           )}
         </div>
       </div>
+      {openMeetingModal ? (
+        <Modal handleClose={() => setOpenMeetingModal()}>
+          <MeetConfirmation
+            data={openMeetingModal}
+            handleClose={() => setOpenMeetingModal()}
+          />
+        </Modal>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };
