@@ -88,6 +88,7 @@ const Profile = () => {
       acceptor: profile.id,
       status: parseInt(0),
       time: parseInt(getDateTimeStamp(meetingData.time, meetingData.date)),
+      meetLink: "",
     });
     alert(
       `You have requested meeting with this user at ${new Date(meeting.time)}`

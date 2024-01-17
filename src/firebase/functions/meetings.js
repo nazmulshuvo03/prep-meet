@@ -5,6 +5,7 @@ import {
   getDoc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { database } from "..";
@@ -39,7 +40,7 @@ export const createMeeting = async (data) => {
   }
 };
 
-export const getAcceptorsMeetings = async (acptId) => {
+export const getMeetingRequests = async (acptId) => {
   try {
     const response = [];
     const today = new Date();
@@ -47,6 +48,7 @@ export const getAcceptorsMeetings = async (acptId) => {
     const queries = [
       { acceptor: acptId, rel: "==" },
       { time: todayMidnight, rel: ">=" },
+      { status: 0, rel: "==" },
     ];
     const querySnapshot = await getDocs(
       combinedQuery({ queries, dbName: "meetings" })
@@ -73,7 +75,7 @@ export const getAcceptorsMeetings = async (acptId) => {
   }
 };
 
-export const getInitiatorMeetings = async (intrId) => {
+export const getMeetingsInitiated = async (intrId) => {
   try {
     const response = [];
     const today = new Date();
@@ -103,6 +105,17 @@ export const getInitiatorMeetings = async (intrId) => {
   } catch (e) {
     console.error("Error getting documents: ", e.message);
     alert("Error getting documents: ", e.message);
+    return null;
+  }
+};
+
+export const updateMeeting = async (docId, updatedData) => {
+  try {
+    const docRef = doc(database, "meetings", docId);
+    await updateDoc(docRef, updatedData);
+  } catch (e) {
+    console.error("Error updating document: ", e.message);
+    alert("Error updating document: ", e.message);
     return null;
   }
 };

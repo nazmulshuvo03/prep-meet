@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getInitiatorMeetings } from "../../firebase/functions/meetings";
+import { getMeetingsInitiated } from "../../firebase/functions/meetings";
 import { useSelector } from "react-redux";
 import { Capsul } from "../Capsul";
 
@@ -8,7 +8,7 @@ export const PendingRequests = () => {
   const [requests, setRequests] = useState();
 
   const fetchMeetingRequests = async () => {
-    const meetings = await getInitiatorMeetings(profile.id);
+    const meetings = await getMeetingsInitiated(profile.id);
     setRequests(meetings);
   };
 

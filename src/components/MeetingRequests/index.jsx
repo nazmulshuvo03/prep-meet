@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAcceptorsMeetings } from "../../firebase/functions/meetings";
+import {
+  getMeetingRequests,
+  updateMeeting,
+} from "../../firebase/functions/meetings";
 import { useSelector } from "react-redux";
 import { Button } from "../Button";
 
@@ -8,13 +11,25 @@ export const MeetingRequests = () => {
   const [requests, setRequests] = useState();
 
   const fetchMeetingRequests = async () => {
-    const meetings = await getAcceptorsMeetings(profile.id);
+    const meetings = await getMeetingRequests(profile.id);
     setRequests(meetings);
   };
 
   useEffect(() => {
     if (profile) fetchMeetingRequests();
   }, [profile]);
+
+  const handleAcceptMeeting = async (meetId) => {
+    await updateMeeting(meetId, { status: 1 });
+    alert("Meeting accepted");
+  };
+
+  const handleRejectMeeting = async (meetId) => {
+    await updateMeeting(meetId, { status: -1 });
+    alert("Meeting rejected");
+  };
+
+  console.log("@@@@@@@@ requests", requests);
 
   return (
     <div>
@@ -31,7 +46,17 @@ export const MeetingRequests = () => {
               <div>{request.initiatorProfile.firstName}</div>
               <div>{request.initiatorProfile.lastName}</div>
               <div>{new Date(parseInt(request.time)).toString()}</div>
-              <Button>Accept</Button>
+              <div className="flex gap-2">
+                <Button onClick={() => handleAcceptMeeting(request.id)}>
+                  Accept
+                </Button>
+                <Button
+                  onClick={() => handleRejectMeeting(request.id)}
+                  className="bg-red-500"
+                >
+                  Reject
+                </Button>
+              </div>
             </div>
           ))
         ) : (
