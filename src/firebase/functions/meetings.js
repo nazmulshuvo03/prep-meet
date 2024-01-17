@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { database } from "..";
 import { getSingleUserDoc } from "./user";
+import { combinedQuery } from "./helpers";
 
 export const getSingleMeetingDoc = async (docId) => {
   try {
@@ -41,8 +42,14 @@ export const createMeeting = async (data) => {
 export const getAcceptorsMeetings = async (acptId) => {
   try {
     const response = [];
+    const today = new Date();
+    const todayMidnight = today.setHours(0, 0, 0, 0);
+    const queries = [
+      { acceptor: acptId, rel: "==" },
+      { time: todayMidnight, rel: ">=" },
+    ];
     const querySnapshot = await getDocs(
-      query(collection(database, "meetings"), where("acceptor", "==", acptId))
+      combinedQuery({ queries, dbName: "meetings" })
     );
     querySnapshot.forEach(async (doc) => {
       if (doc.exists()) {
@@ -69,8 +76,14 @@ export const getAcceptorsMeetings = async (acptId) => {
 export const getInitiatorMeetings = async (intrId) => {
   try {
     const response = [];
+    const today = new Date();
+    const todayMidnight = today.setHours(0, 0, 0, 0);
+    const queries = [
+      { initiator: intrId, rel: "==" },
+      { time: todayMidnight, rel: ">=" },
+    ];
     const querySnapshot = await getDocs(
-      query(collection(database, "meetings"), where("initiator", "==", intrId))
+      combinedQuery({ queries, dbName: "meetings" })
     );
     querySnapshot.forEach(async (doc) => {
       if (doc.exists()) {

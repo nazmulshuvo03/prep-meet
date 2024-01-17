@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getInitiatorMeetings } from "../../firebase/functions/meetings";
 import { useSelector } from "react-redux";
-import { Button } from "../Button";
 import { Capsul } from "../Capsul";
 
 export const PendingRequests = () => {
@@ -23,8 +22,7 @@ export const PendingRequests = () => {
         Your Meeting Requests
       </div>
       <div>
-        {requests &&
-          requests.length &&
+        {requests && requests.length ? (
           requests.map((request) => (
             <div
               key={request.id}
@@ -41,7 +39,10 @@ export const PendingRequests = () => {
                 <Capsul className={"bg-yellow-500"}>PENDING</Capsul>
               )}
             </div>
-          ))}
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );

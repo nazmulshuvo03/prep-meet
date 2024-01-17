@@ -22,8 +22,7 @@ export const MeetingRequests = () => {
         Your Meeting Requests
       </div>
       <div>
-        {requests &&
-          requests.length &&
+        {requests && requests.length ? (
           requests.map((request) => (
             <div
               key={request.id}
@@ -34,7 +33,10 @@ export const MeetingRequests = () => {
               <div>{new Date(parseInt(request.time)).toString()}</div>
               <Button>Accept</Button>
             </div>
-          ))}
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
