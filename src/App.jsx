@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      dispatch(fetchAccountDetails(user.uid));
+      if (user) dispatch(fetchAccountDetails(user.uid));
     });
 
     return () => unsubscribe();

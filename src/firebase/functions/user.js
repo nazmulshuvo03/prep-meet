@@ -63,7 +63,9 @@ export const getSingleUserFromUID = async (uid) => {
     const querySnapshot = await getDocs(q);
     if (querySnapshot) {
       const snapshot = querySnapshot.docs[0];
-      return { id: snapshot.id, ...snapshot.data() };
+      if (snapshot) {
+        return { id: snapshot.id, ...snapshot.data() };
+      }
     } else {
       console.error("No such document!");
       return null;
