@@ -36,6 +36,7 @@ export const ProfileImage = () => {
   const handleImageUpload = async () => {
     const imageUrl = await uploadImage(image);
     dispatch(updateUserData(profile.id, { photoURL: imageUrl }));
+    setImage();
   };
 
   const fileInputRef = React.createRef();
