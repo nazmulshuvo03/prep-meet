@@ -21,8 +21,8 @@ const asyncWrapper = (fn) => {
   };
 };
 
-export const fetchContent = asyncWrapper(async (url) => {
-  const response = await axios.get(`${baseUrl}${url}`);
+export const fetchContent = asyncWrapper(async (url, body) => {
+  const response = await axios.get(`${baseUrl}${url}`, body);
   return response.data;
 });
 
@@ -31,7 +31,7 @@ export const postContent = asyncWrapper(async (url, body) => {
   return response.data;
 });
 
-export const updateContent = asyncWrapper(async (url, updatedData) => {
+export const putContent = asyncWrapper(async (url, updatedData) => {
   const response = await axios.put(`${baseUrl}${url}`, updatedData);
   return response.data;
 });

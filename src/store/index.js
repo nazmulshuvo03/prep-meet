@@ -3,10 +3,14 @@ import { persistStore, persistReducer } from "redux-persist";
 import persistConfig from "./persistConfig";
 import globalReducer from "./slices/global";
 import userReducer from "./slices/user";
+import professionReducer from "./slices/profession";
+import availabilityReducer from "./slices/availability";
 
 const rootReducer = combineReducers({
   global: globalReducer,
   user: userReducer,
+  profession: professionReducer,
+  availability: availabilityReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,0 +1,2 @@
+export const all_availabilities_url = () => `/availability/all`;
+export const availability_url = () => `/availability`;
