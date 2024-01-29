@@ -12,8 +12,8 @@ const asyncWrapper = (fn) => {
       const errorData = error.response.data;
       console.log("Error: ", errorData);
       if (errorData.statusCode === 401) {
-        // window.location.href = loginPageUrl;
-        return errorData;
+        window.location.href = loginPageUrl;
+        // return errorData;
       } else {
         return errorData;
       }
