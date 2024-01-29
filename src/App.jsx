@@ -1,15 +1,12 @@
 import { useEffect } from "react";
-import { fetchContent } from "./services/api";
-import { all_profile_url, all_users_url } from "./services/user";
+import { fetchPeople } from "./store/middlewares/user";
+import { useDispatch } from "react-redux";
 
 function App() {
-  const fetchData = async () => {
-    const reponse = await fetchContent(all_profile_url());
-    // console.log("respnse: ", reponse);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchPeople());
   }, []);
 
   return (
