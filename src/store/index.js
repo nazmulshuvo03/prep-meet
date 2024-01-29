@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/user";
 import { persistStore, persistReducer } from "redux-persist";
 import persistConfig from "./persistConfig";
+import globalReducer from "./slices/global";
+import userReducer from "./slices/user";
 
 const rootReducer = combineReducers({
+  global: globalReducer,
   user: userReducer,
 });
 
