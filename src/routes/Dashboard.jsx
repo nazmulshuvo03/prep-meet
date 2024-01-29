@@ -7,7 +7,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(fetchPeople());
-    // dispatch(fetchUsers());
+    dispatch(fetchUsers());
   }, []);
 
   return <div>Dashboard</div>;

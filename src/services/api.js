@@ -12,8 +12,8 @@ const asyncWrapper = (fn) => {
       const errorData = error.response.data;
       console.log("Error: ", errorData);
       if (errorData.statusCode === 401) {
-        window.location.href = loginPageUrl;
-        // return errorData;
+        // window.location.href = loginPageUrl;
+        return errorData;
       } else {
         return errorData;
       }
@@ -22,21 +22,41 @@ const asyncWrapper = (fn) => {
 };
 
 export const fetchContent = asyncWrapper(async (url, body) => {
-  const response = await axios.get(`${baseUrl}${url}`, body);
+  const response = await axios.get(
+    `${baseUrl}${url}`,
+    {
+      withCredentials: true,
+    },
+    body
+  );
   return response.data;
 });
 
 export const postContent = asyncWrapper(async (url, body) => {
-  const response = await axios.post(`${baseUrl}${url}`, body);
+  const response = await axios.post(
+    `${baseUrl}${url}`,
+    {
+      withCredentials: true,
+    },
+    body
+  );
   return response.data;
 });
 
 export const putContent = asyncWrapper(async (url, updatedData) => {
-  const response = await axios.put(`${baseUrl}${url}`, updatedData);
+  const response = await axios.put(
+    `${baseUrl}${url}`,
+    {
+      withCredentials: true,
+    },
+    updatedData
+  );
   return response.data;
 });
 
 export const deleteContent = asyncWrapper(async (url) => {
-  const response = await axios.delete(`${baseUrl}${url}`);
+  const response = await axios.delete(`${baseUrl}${url}`, {
+    withCredentials: true,
+  });
   return response.data;
 });
