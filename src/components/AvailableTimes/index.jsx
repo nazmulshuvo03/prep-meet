@@ -14,9 +14,7 @@ import {
 export const AvailableTimes = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  const userAvailabilities = useSelector(
-    (state) => state.availability.userAvailabilities
-  );
+  const userAvailabilities = profile.availability;
 
   const [state, setState] = useState([]); // state is an array of following object
   /**
@@ -62,10 +60,6 @@ export const AvailableTimes = () => {
       await dispatch(createOrUpdateUserAvailability(data));
     }
   };
-
-  useEffect(() => {
-    dispatch(fetchUserAvailabilities(profile.id));
-  }, [profile]);
 
   useEffect(() => {
     let states = [];

@@ -4,6 +4,8 @@ export const getDataLabelFromKey = ({
   defaultKey = "key",
   defaultLabel = "label",
 }) => {
-  const found = data.find((item) => item[defaultKey] === key);
-  return found[defaultLabel];
+  if (data && data.length) {
+    const found = data.find((item) => item[defaultKey] === key);
+    return found ? found[defaultLabel] : "";
+  } else return "";
 };
