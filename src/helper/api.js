@@ -11,7 +11,8 @@ export const responseHandler = async (
   } else {
     if (typeof errorHandler === "function") {
       errorHandler();
-      alert(response.data);
+      // alert(response.data);
+      console.log("Error: ", response.data);
     } else errorHandler;
   }
 };

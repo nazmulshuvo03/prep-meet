@@ -2,12 +2,12 @@ import axios from "axios";
 
 const serverUrl = import.meta.env.VITE_SERVER_URL;
 const baseUrl = serverUrl + "/api/v1";
-const loginPageUrl = serverUrl + "/";
+export const loginPageUrl = serverUrl + "/";
 
 const asyncWrapper = (fn) => {
-  return async (params) => {
+  return async (...params) => {
     try {
-      return await fn(params);
+      return await fn(...params);
     } catch (error) {
       const errorData = error.response.data;
       console.log("Error: ", errorData);
@@ -21,14 +21,10 @@ const asyncWrapper = (fn) => {
   };
 };
 
-export const fetchContent = asyncWrapper(async (url, body) => {
-  const response = await axios.get(
-    `${baseUrl}${url}`,
-    {
-      withCredentials: true,
-    },
-    body
-  );
+export const fetchContent = asyncWrapper(async (url) => {
+  const response = await axios.get(`${baseUrl}${url}`, {
+    withCredentials: true,
+  });
   return response.data;
 });
 

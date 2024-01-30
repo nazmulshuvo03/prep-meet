@@ -11,6 +11,7 @@ import { setPeople, setProfile } from "../slices/user";
 export const fetchPeople =
   (queries = []) =>
   async (dispatch) => {
+    console.log("dashboard queries: ", queries);
     dispatch(setLoading());
     const response = await fetchContent(all_profile_url());
     console.log("Profile docs: ", response);
@@ -24,11 +25,18 @@ export const fetchUsers =
     const response = await fetchContent(all_users_url());
     responseHandler(response);
   };
-export const fetchProfile = (data) => async (dispatch) => {
-  const response = await fetchContent(user_url(), data);
-  console.log("user doc: ", response);
-  responseHandler(response, dispatch(setProfile(response.data)));
-};
+
+export const fetchUserProfile =
+  ({ userId, successHandler = () => {}, errorHandler = () => {} }) =>
+  async (dispatch) => {
+    const response = await fetchContent(user_url(userId));
+    console.log("user doc: ", response);
+    const handleSuccess = () => {
+      dispatch(setProfile(response.data));
+      successHandler();
+    };
+    responseHandler(response, handleSuccess, errorHandler);
+  };
 
 export const updateUserData = (updatedData) => async (dispatch) => {
   const res = await putContent(user_url(), updatedData);

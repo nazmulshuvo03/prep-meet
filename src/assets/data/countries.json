@@ -1,0 +1,1252 @@
+[
+  {
+    "key": "Afghanistan",
+    "label": "Afghanistan",
+    "timezone": "Asia/Kabul (UTC+04:30)"
+  },
+  {
+    "key": "Åland Islands",
+    "label": "Åland Islands",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Albania",
+    "label": "Albania",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Algeria",
+    "label": "Algeria",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "American Samoa",
+    "label": "American Samoa",
+    "timezone": "Pacific/Midway (UTC-11:00)"
+  },
+  {
+    "key": "Andorra",
+    "label": "Andorra",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Angola",
+    "label": "Angola",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Anguilla",
+    "label": "Anguilla",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Antarctica",
+    "label": "Antarctica",
+    "timezone": "America/Araguaina (UTC-03:00)"
+  },
+  {
+    "key": "Antigua and Barbuda",
+    "label": "Antigua and Barbuda",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Argentina",
+    "label": "Argentina",
+    "timezone": "America/Araguaina (UTC-03:00)"
+  },
+  {
+    "key": "Armenia",
+    "label": "Armenia",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Aruba",
+    "label": "Aruba",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Australia",
+    "label": "Australia",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Austria",
+    "label": "Austria",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Azerbaijan",
+    "label": "Azerbaijan",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Bahamas",
+    "label": "Bahamas",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Bahrain",
+    "label": "Bahrain",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Bangladesh",
+    "label": "Bangladesh",
+    "timezone": "Asia/Almaty (UTC+06:00)"
+  },
+  {
+    "key": "Barbados",
+    "label": "Barbados",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Belarus",
+    "label": "Belarus",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Belgium",
+    "label": "Belgium",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Belize",
+    "label": "Belize",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Benin",
+    "label": "Benin",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Bermuda",
+    "label": "Bermuda",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Bhutan",
+    "label": "Bhutan",
+    "timezone": "Asia/Almaty (UTC+06:00)"
+  },
+  {
+    "key": "Bolivia",
+    "label": "Bolivia",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Bosnia and Herzegovina",
+    "label": "Bosnia and Herzegovina",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Botswana",
+    "label": "Botswana",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Bouvet Island",
+    "label": "Bouvet Island",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Brazil",
+    "label": "Brazil",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "British Indian Ocean Territory",
+    "label": "British Indian Ocean Territory",
+    "timezone": "Asia/Almaty (UTC+06:00)"
+  },
+  {
+    "key": "British Virgin Islands",
+    "label": "British Virgin Islands",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Brunei",
+    "label": "Brunei",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Bulgaria",
+    "label": "Bulgaria",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Burkina Faso",
+    "label": "Burkina Faso",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Burundi",
+    "label": "Burundi",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Cambodia",
+    "label": "Cambodia",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Cameroon",
+    "label": "Cameroon",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Canada",
+    "label": "Canada",
+    "timezone": "America/Los_Angeles (UTC-08:00)"
+  },
+  {
+    "key": "Cape Verde",
+    "label": "Cape Verde",
+    "timezone": "America/Scoresbysund (UTC-01:00)"
+  },
+  {
+    "key": "Caribbean Netherlands",
+    "label": "Caribbean Netherlands",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Cayman Islands",
+    "label": "Cayman Islands",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Central African Republic",
+    "label": "Central African Republic",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Chad",
+    "label": "Chad",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Chile",
+    "label": "Chile",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "China",
+    "label": "China",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Christmas Island",
+    "label": "Christmas Island",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Cocos (Keeling) Islands",
+    "label": "Cocos (Keeling) Islands",
+    "timezone": "Asia/Yangon (UTC+06:30)"
+  },
+  {
+    "key": "Colombia",
+    "label": "Colombia",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Comoros",
+    "label": "Comoros",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Cook Islands",
+    "label": "Cook Islands",
+    "timezone": "America/Adak (UTC-10:00)"
+  },
+  {
+    "key": "Costa Rica",
+    "label": "Costa Rica",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Croatia",
+    "label": "Croatia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Cuba",
+    "label": "Cuba",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Curaçao",
+    "label": "Curaçao",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Cyprus",
+    "label": "Cyprus",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Czechia",
+    "label": "Czechia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Denmark",
+    "label": "Denmark",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Djibouti",
+    "label": "Djibouti",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Dominica",
+    "label": "Dominica",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Dominican Republic",
+    "label": "Dominican Republic",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "DR Congo",
+    "label": "DR Congo",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Ecuador",
+    "label": "Ecuador",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Egypt",
+    "label": "Egypt",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "El Salvador",
+    "label": "El Salvador",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Equatorial Guinea",
+    "label": "Equatorial Guinea",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Eritrea",
+    "label": "Eritrea",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Estonia",
+    "label": "Estonia",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Eswatini",
+    "label": "Eswatini",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Ethiopia",
+    "label": "Ethiopia",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Falkland Islands",
+    "label": "Falkland Islands",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Faroe Islands",
+    "label": "Faroe Islands",
+    "timezone": "Africa/Abidjan (UTC+00:00)"
+  },
+  {
+    "key": "Fiji",
+    "label": "Fiji",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "Finland",
+    "label": "Finland",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "France",
+    "label": "France",
+    "timezone": "America/Adak (UTC-10:00)"
+  },
+  {
+    "key": "French Guiana",
+    "label": "French Guiana",
+    "timezone": "America/Araguaina (UTC-03:00)"
+  },
+  {
+    "key": "French Polynesia",
+    "label": "French Polynesia",
+    "timezone": "America/Adak (UTC-10:00)"
+  },
+  {
+    "key": "French Southern and Antarctic Lands",
+    "label": "French Southern and Antarctic Lands",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Gabon",
+    "label": "Gabon",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Gambia",
+    "label": "Gambia",
+    "timezone": "Africa/Abidjan (UTC+00:00)"
+  },
+  {
+    "key": "Georgia",
+    "label": "Georgia",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Germany",
+    "label": "Germany",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Ghana",
+    "label": "Ghana",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Gibraltar",
+    "label": "Gibraltar",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Greece",
+    "label": "Greece",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Greenland",
+    "label": "Greenland",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Grenada",
+    "label": "Grenada",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Guadeloupe",
+    "label": "Guadeloupe",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Guam",
+    "label": "Guam",
+    "timezone": "Antarctica/DumontDUrville (UTC+10:00)"
+  },
+  {
+    "key": "Guatemala",
+    "label": "Guatemala",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Guernsey",
+    "label": "Guernsey",
+    "timezone": "Africa/Abidjan (UTC+00:00)"
+  },
+  {
+    "key": "Guinea",
+    "label": "Guinea",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Guinea-Bissau",
+    "label": "Guinea-Bissau",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Guyana",
+    "label": "Guyana",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Haiti",
+    "label": "Haiti",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Heard Island and McDonald Islands",
+    "label": "Heard Island and McDonald Islands",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Honduras",
+    "label": "Honduras",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Hong Kong",
+    "label": "Hong Kong",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Hungary",
+    "label": "Hungary",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Iceland",
+    "label": "Iceland",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "India",
+    "label": "India",
+    "timezone": "Asia/Colombo (UTC+05:30)"
+  },
+  {
+    "key": "Indonesia",
+    "label": "Indonesia",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Iran",
+    "label": "Iran",
+    "timezone": "Asia/Tehran (UTC+03:30)"
+  },
+  {
+    "key": "Iraq",
+    "label": "Iraq",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Ireland",
+    "label": "Ireland",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Isle of Man",
+    "label": "Isle of Man",
+    "timezone": "Africa/Abidjan (UTC+00:00)"
+  },
+  {
+    "key": "Israel",
+    "label": "Israel",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Italy",
+    "label": "Italy",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Ivory Coast",
+    "label": "Ivory Coast",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Jamaica",
+    "label": "Jamaica",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Japan",
+    "label": "Japan",
+    "timezone": "Asia/Chita (UTC+09:00)"
+  },
+  {
+    "key": "Jersey",
+    "label": "Jersey",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Jordan",
+    "label": "Jordan",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Kazakhstan",
+    "label": "Kazakhstan",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Kenya",
+    "label": "Kenya",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Kiribati",
+    "label": "Kiribati",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "Kosovo",
+    "label": "Kosovo",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Kuwait",
+    "label": "Kuwait",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Kyrgyzstan",
+    "label": "Kyrgyzstan",
+    "timezone": "Asia/Almaty (UTC+06:00)"
+  },
+  {
+    "key": "Laos",
+    "label": "Laos",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Latvia",
+    "label": "Latvia",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Lebanon",
+    "label": "Lebanon",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Lesotho",
+    "label": "Lesotho",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Liberia",
+    "label": "Liberia",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Libya",
+    "label": "Libya",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Liechtenstein",
+    "label": "Liechtenstein",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Lithuania",
+    "label": "Lithuania",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Luxembourg",
+    "label": "Luxembourg",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Macau",
+    "label": "Macau",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Madagascar",
+    "label": "Madagascar",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Malawi",
+    "label": "Malawi",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Malaysia",
+    "label": "Malaysia",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Maldives",
+    "label": "Maldives",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Mali",
+    "label": "Mali",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Malta",
+    "label": "Malta",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Marshall Islands",
+    "label": "Marshall Islands",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "Martinique",
+    "label": "Martinique",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Mauritania",
+    "label": "Mauritania",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Mauritius",
+    "label": "Mauritius",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Mayotte",
+    "label": "Mayotte",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Mexico",
+    "label": "Mexico",
+    "timezone": "America/Los_Angeles (UTC-08:00)"
+  },
+  {
+    "key": "Micronesia",
+    "label": "Micronesia",
+    "timezone": "Antarctica/DumontDUrville (UTC+10:00)"
+  },
+  {
+    "key": "Moldova",
+    "label": "Moldova",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Monaco",
+    "label": "Monaco",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Mongolia",
+    "label": "Mongolia",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Montenegro",
+    "label": "Montenegro",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Montserrat",
+    "label": "Montserrat",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Morocco",
+    "label": "Morocco",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Mozambique",
+    "label": "Mozambique",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Myanmar",
+    "label": "Myanmar",
+    "timezone": "Asia/Yangon (UTC+06:30)"
+  },
+  {
+    "key": "Namibia",
+    "label": "Namibia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Nauru",
+    "label": "Nauru",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "Nepal",
+    "label": "Nepal",
+    "timezone": "Asia/Kathmandu (UTC+05:45)"
+  },
+  {
+    "key": "Netherlands",
+    "label": "Netherlands",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "New Caledonia",
+    "label": "New Caledonia",
+    "timezone": "Antarctica/Macquarie (UTC+11:00)"
+  },
+  {
+    "key": "New Zealand",
+    "label": "New Zealand",
+    "timezone": "Pacific/Midway (UTC-11:00)"
+  },
+  {
+    "key": "Nicaragua",
+    "label": "Nicaragua",
+    "timezone": "America/Bahia_Banderas (UTC-06:00)"
+  },
+  {
+    "key": "Niger",
+    "label": "Niger",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Nigeria",
+    "label": "Nigeria",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Niue",
+    "label": "Niue",
+    "timezone": "Pacific/Midway (UTC-11:00)"
+  },
+  {
+    "key": "Norfolk Island",
+    "label": "Norfolk Island",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "North Korea",
+    "label": "North Korea",
+    "timezone": "Asia/Chita (UTC+09:00)"
+  },
+  {
+    "key": "North Macedonia",
+    "label": "North Macedonia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Northern Mariana Islands",
+    "label": "Northern Mariana Islands",
+    "timezone": "Antarctica/DumontDUrville (UTC+10:00)"
+  },
+  {
+    "key": "Norway",
+    "label": "Norway",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Oman",
+    "label": "Oman",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Pakistan",
+    "label": "Pakistan",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Palau",
+    "label": "Palau",
+    "timezone": "Asia/Chita (UTC+09:00)"
+  },
+  {
+    "key": "Palestine",
+    "label": "Palestine",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Panama",
+    "label": "Panama",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Papua New Guinea",
+    "label": "Papua New Guinea",
+    "timezone": "Antarctica/DumontDUrville (UTC+10:00)"
+  },
+  {
+    "key": "Paraguay",
+    "label": "Paraguay",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Peru",
+    "label": "Peru",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "Philippines",
+    "label": "Philippines",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Pitcairn Islands",
+    "label": "Pitcairn Islands",
+    "timezone": "America/Los_Angeles (UTC-08:00)"
+  },
+  {
+    "key": "Poland",
+    "label": "Poland",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Portugal",
+    "label": "Portugal",
+    "timezone": "America/Scoresbysund (UTC-01:00)"
+  },
+  {
+    "key": "Puerto Rico",
+    "label": "Puerto Rico",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Qatar",
+    "label": "Qatar",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Republic of the Congo",
+    "label": "Republic of the Congo",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Réunion",
+    "label": "Réunion",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Romania",
+    "label": "Romania",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Russia",
+    "label": "Russia",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Rwanda",
+    "label": "Rwanda",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Saint Barthélemy",
+    "label": "Saint Barthélemy",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Saint Helena, Ascension and Tristan da Cunha",
+    "label": "Saint Helena, Ascension and Tristan da Cunha",
+    "timezone": "Africa/Abidjan (UTC+00:00)"
+  },
+  {
+    "key": "Saint Kitts and Nevis",
+    "label": "Saint Kitts and Nevis",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Saint Lucia",
+    "label": "Saint Lucia",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Saint Martin",
+    "label": "Saint Martin",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Saint Pierre and Miquelon",
+    "label": "Saint Pierre and Miquelon",
+    "timezone": "America/Araguaina (UTC-03:00)"
+  },
+  {
+    "key": "Saint Vincent and the Grenadines",
+    "label": "Saint Vincent and the Grenadines",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Samoa",
+    "label": "Samoa",
+    "timezone": "Antarctica/McMurdo (UTC+13:00)"
+  },
+  {
+    "key": "San Marino",
+    "label": "San Marino",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "São Tomé and Príncipe",
+    "label": "São Tomé and Príncipe",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Saudi Arabia",
+    "label": "Saudi Arabia",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Senegal",
+    "label": "Senegal",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Serbia",
+    "label": "Serbia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Seychelles",
+    "label": "Seychelles",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "Sierra Leone",
+    "label": "Sierra Leone",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Singapore",
+    "label": "Singapore",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Sint Maarten",
+    "label": "Sint Maarten",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Slovakia",
+    "label": "Slovakia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Slovenia",
+    "label": "Slovenia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Solomon Islands",
+    "label": "Solomon Islands",
+    "timezone": "Antarctica/Macquarie (UTC+11:00)"
+  },
+  {
+    "key": "Somalia",
+    "label": "Somalia",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "South Africa",
+    "label": "South Africa",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "South Georgia",
+    "label": "South Georgia",
+    "timezone": "America/Noronha (UTC-02:00)"
+  },
+  {
+    "key": "South Korea",
+    "label": "South Korea",
+    "timezone": "Asia/Chita (UTC+09:00)"
+  },
+  {
+    "key": "South Sudan",
+    "label": "South Sudan",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Spain",
+    "label": "Spain",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Sri Lanka",
+    "label": "Sri Lanka",
+    "timezone": "Asia/Colombo (UTC+05:30)"
+  },
+  {
+    "key": "Sudan",
+    "label": "Sudan",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Suriname",
+    "label": "Suriname",
+    "timezone": "America/Araguaina (UTC-03:00)"
+  },
+  {
+    "key": "Svalbard and Jan Mayen",
+    "label": "Svalbard and Jan Mayen",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Sweden",
+    "label": "Sweden",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Switzerland",
+    "label": "Switzerland",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Syria",
+    "label": "Syria",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Taiwan",
+    "label": "Taiwan",
+    "timezone": "Antarctica/Casey (UTC+08:00)"
+  },
+  {
+    "key": "Tajikistan",
+    "label": "Tajikistan",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Tanzania",
+    "label": "Tanzania",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Thailand",
+    "label": "Thailand",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Timor-Leste",
+    "label": "Timor-Leste",
+    "timezone": "Asia/Chita (UTC+09:00)"
+  },
+  {
+    "key": "Togo",
+    "label": "Togo",
+    "timezone": "Africa/Abidjan (UTC)"
+  },
+  {
+    "key": "Tokelau",
+    "label": "Tokelau",
+    "timezone": "Antarctica/McMurdo (UTC+13:00)"
+  },
+  {
+    "key": "Tonga",
+    "label": "Tonga",
+    "timezone": "Antarctica/McMurdo (UTC+13:00)"
+  },
+  {
+    "key": "Trinidad and Tobago",
+    "label": "Trinidad and Tobago",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Tunisia",
+    "label": "Tunisia",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Turkey",
+    "label": "Turkey",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Turkmenistan",
+    "label": "Turkmenistan",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Turks and Caicos Islands",
+    "label": "Turks and Caicos Islands",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Tuvalu",
+    "label": "Tuvalu",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "Uganda",
+    "label": "Uganda",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Ukraine",
+    "label": "Ukraine",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "United Arab Emirates",
+    "label": "United Arab Emirates",
+    "timezone": "Asia/Baku (UTC+04:00)"
+  },
+  {
+    "key": "United Kingdom",
+    "label": "United Kingdom",
+    "timezone": "America/Los_Angeles (UTC-08:00)"
+  },
+  {
+    "key": "United States",
+    "label": "United States",
+    "timezone": "America/Atikokan (UTC-05:00)"
+  },
+  {
+    "key": "United States Minor Outlying Islands",
+    "label": "United States Minor Outlying Islands",
+    "timezone": "Pacific/Midway (UTC-11:00)"
+  },
+  {
+    "key": "United States Virgin Islands",
+    "label": "United States Virgin Islands",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Uruguay",
+    "label": "Uruguay",
+    "timezone": "America/Araguaina (UTC-03:00)"
+  },
+  {
+    "key": "Uzbekistan",
+    "label": "Uzbekistan",
+    "timezone": "Antarctica/Mawson (UTC+05:00)"
+  },
+  {
+    "key": "Vanuatu",
+    "label": "Vanuatu",
+    "timezone": "Antarctica/Macquarie (UTC+11:00)"
+  },
+  {
+    "key": "Vatican City",
+    "label": "Vatican City",
+    "timezone": "Africa/Algiers (UTC+01:00)"
+  },
+  {
+    "key": "Venezuela",
+    "label": "Venezuela",
+    "timezone": "America/Anguilla (UTC-04:00)"
+  },
+  {
+    "key": "Vietnam",
+    "label": "Vietnam",
+    "timezone": "Antarctica/Davis (UTC+07:00)"
+  },
+  {
+    "key": "Wallis and Futuna",
+    "label": "Wallis and Futuna",
+    "timezone": "Asia/Anadyr (UTC+12:00)"
+  },
+  {
+    "key": "Western Sahara",
+    "label": "Western Sahara",
+    "timezone": "Africa/Abidjan (UTC+00:00)"
+  },
+  {
+    "key": "Yemen",
+    "label": "Yemen",
+    "timezone": "Africa/Addis_Ababa (UTC+03:00)"
+  },
+  {
+    "key": "Zambia",
+    "label": "Zambia",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  },
+  {
+    "key": "Zimbabwe",
+    "label": "Zimbabwe",
+    "timezone": "Africa/Blantyre (UTC+02:00)"
+  }
+]
