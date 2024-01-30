@@ -17,6 +17,6 @@ const globalSlice = createSlice({
 });
 
 export const { setLoading, setTheme } = globalSlice.actions;
-export const selectTheme = (state) => state.theme.dark;
+export const selectTheme = (state) => state.global.dark;
 
 export default globalSlice.reducer;

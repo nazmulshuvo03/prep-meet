@@ -29,24 +29,16 @@ export const fetchContent = asyncWrapper(async (url) => {
 });
 
 export const postContent = asyncWrapper(async (url, body) => {
-  const response = await axios.post(
-    `${baseUrl}${url}`,
-    {
-      withCredentials: true,
-    },
-    body
-  );
+  const response = await axios.post(`${baseUrl}${url}`, body, {
+    withCredentials: true,
+  });
   return response.data;
 });
 
 export const putContent = asyncWrapper(async (url, updatedData) => {
-  const response = await axios.put(
-    `${baseUrl}${url}`,
-    {
-      withCredentials: true,
-    },
-    updatedData
-  );
+  const response = await axios.put(`${baseUrl}${url}`, updatedData, {
+    withCredentials: true,
+  });
   return response.data;
 });
 

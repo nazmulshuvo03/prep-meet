@@ -1,27 +1,27 @@
 import { useSelector } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
+// import { NavLink, useLocation } from "react-router-dom";
 import { ProfileAvatar } from "../ProfileAvatar";
 
 export const Navigation = () => {
-  const location = useLocation();
+  // const location = useLocation();
   const user = useSelector((state) => state.user.profile);
 
-  const navLinks = [
-    { to: "/", name: "Home" },
-    { to: "/signup", name: "Sign Up" },
-    { to: "/login", name: "Login" },
-    { to: "/professions", name: "Professions" },
-    ...(user
-      ? [
-          { to: "/dashboard", name: "Dashboard" },
-          // { to: "/account", name: "Account" },
-        ]
-      : []),
-  ];
+  // const navLinks = [
+  //   { to: "/", name: "Home" },
+  //   { to: "/signup", name: "Sign Up" },
+  //   { to: "/login", name: "Login" },
+  //   { to: "/professions", name: "Professions" },
+  //   ...(user
+  //     ? [
+  //         { to: "/dashboard", name: "Dashboard" },
+  //         // { to: "/account", name: "Account" },
+  //       ]
+  //     : []),
+  // ];
 
-  const isRouteActive = (routePath) => {
-    return location.pathname === routePath;
-  };
+  // const isRouteActive = (routePath) => {
+  //   return location.pathname === routePath;
+  // };
 
   return (
     <div className="flex justify-between border-b w-full h-full items-center px-5 bg-background">
@@ -31,7 +31,7 @@ export const Navigation = () => {
         <span className="text-primary">meet</span>
       </div>
       <div className="flex gap-4 items-center">
-        <nav className="flex items-center">
+        {/* <nav className="flex items-center">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -43,7 +43,7 @@ export const Navigation = () => {
               {link.name}
             </NavLink>
           ))}
-        </nav>
+        </nav> */}
         {user && <ProfileAvatar url={user.profileImage} />}
       </div>
     </div>

@@ -38,8 +38,8 @@ export const fetchUserProfile =
     responseHandler(response, handleSuccess, errorHandler);
   };
 
-export const updateUserData = (updatedData) => async (dispatch) => {
-  const res = await putContent(user_url(), updatedData);
+export const updateUserData = (userId, updatedData) => async (dispatch) => {
+  const res = await putContent(user_url(userId), updatedData);
   console.log("user data updated: ", res);
   responseHandler(res, dispatch(setProfile(res.data)));
 };
