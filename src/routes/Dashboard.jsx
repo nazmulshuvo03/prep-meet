@@ -139,7 +139,7 @@ const Dashboard = () => {
               <Link
                 key={person.id}
                 className="flex gap-2"
-                to={`/dashboard/${person.id}`}
+                to={`/profile/${person.id}`}
               >
                 <PersonCard data={person} />
               </Link>

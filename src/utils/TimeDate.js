@@ -1,5 +1,6 @@
 // Function to get formatted date with weekday (DD-MM-YYYY, Weekday)
 export function getFormattedDateWithWeekday(date) {
+  // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!", date);
   date.setHours(0, 0, 0, 0); // Set time to 00:00:00 (midnight)
   const options = {
     weekday: "long",

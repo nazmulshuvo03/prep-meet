@@ -18,11 +18,11 @@ const Home = () => {
   useEffect(() => {
     if (userId) {
       dispatch(
-        fetchUserProfile({
+        fetchUserProfile(
           userId,
-          successHandler: () => history.push("/dashboard"),
-          errorHandler: () => (window.location.href = loginPageUrl),
-        })
+          () => history.push("/dashboard"),
+          () => (window.location.href = loginPageUrl)
+        )
       );
     }
   }, [userId]);

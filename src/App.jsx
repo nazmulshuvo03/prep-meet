@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
+import Profile from "./routes/Profile";
 
 function App() {
   const global = useSelector((state) => state.global);
@@ -27,6 +28,7 @@ function App() {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/dashboard/:userId" component={Home} />
               <Route exact path="/account" component={Account} />
+              <Route exact path="/profile/:userId" component={Profile} />
             </Switch>
           </div>
         </BrowserRouter>

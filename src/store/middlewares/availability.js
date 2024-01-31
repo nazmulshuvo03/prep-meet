@@ -9,6 +9,12 @@ export const fetchUserAvailabilities = (userId) => async (dispatch) => {
   responseHandler(res, dispatch(setUserAvailabilities(res.data)));
 };
 
+export const visitUserAvailabilities = (userId) => async (dispatch) => {
+  const res = await fetchContent(availability_url(userId));
+  console.log("user availabilities: ", res);
+  return res.data;
+};
+
 export const createOrUpdateUserAvailability = (data) => async (dispatch) => {
   const res = await postContent(availability_url(data.userId), data);
   responseHandler(
