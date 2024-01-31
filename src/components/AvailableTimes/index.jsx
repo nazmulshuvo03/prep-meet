@@ -14,7 +14,9 @@ import {
 export const AvailableTimes = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  const userAvailabilities = profile.availability;
+  const userAvailabilities = useSelector(
+    (state) => state.availability.userAvailabilities
+  );
 
   const [state, setState] = useState([]); // state is an array of following object
   /**
@@ -53,7 +55,6 @@ export const AvailableTimes = () => {
     for (let item of state) {
       const data = {
         userId: profile.id,
-        uuid: profile.uid,
         day: item.day.key,
         hours: item.hours,
       };
@@ -62,11 +63,17 @@ export const AvailableTimes = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchUserAvailabilities(profile.id));
+  }, []);
+
+  useEffect(() => {
     let states = [];
     states = dateArray.map((date) => [...states, { day: date, hours: [] }][0]);
     if (userAvailabilities) {
       for (let data of userAvailabilities) {
-        const foundState = states.find((state) => state.day.key === data.day);
+        const foundState = states.find(
+          (state) => state.day.key === parseInt(data.day)
+        );
         if (foundState) {
           foundState.hours = data.hours;
         }
