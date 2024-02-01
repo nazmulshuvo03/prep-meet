@@ -5,8 +5,8 @@ import { Tabs } from "../components/Tabs";
 
 const Account = () => {
   const TABS = [
-    { id: 1, name: "My Meetings", component: <MyMeetings /> },
-    { id: 2, name: "Available Times", component: <AvailableTimes /> },
+    { id: 1, name: "Available Times", component: <AvailableTimes /> },
+    { id: 2, name: "My Meetings", component: <MyMeetings /> },
     { id: 3, name: "Personal Details", component: <PersonalAccount /> },
   ];
 

@@ -37,43 +37,38 @@ export const MyMeetings = () => {
 
   return (
     <div>
-      My Meetings
-      <div>
-        {meetings && meetings.length ? (
-          <>
-            {meetings.map((meeting) => {
-              return (
-                <div
-                  key={meeting.id}
-                  className="flex items-center justify-between px-4 py-1 my-2 rounded-md border "
-                >
-                  <div>{formatedDay(meeting.dayHour)}</div>
-                  <div>
-                    {profile.id === meeting.acceptor ? (
-                      <div>
-                        Initiated By: {meeting.initiatorProfile.firstName}{" "}
-                        {meeting.initiatorProfile.lastName}
-                      </div>
-                    ) : (
-                      <div>
-                        Accepted by: {meeting.acceptorProfile.firstName}{" "}
-                        {meeting.acceptorProfile.lastName}
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <Button onClick={() => handleJoin(meeting.url)}>
-                      Join
-                    </Button>
-                  </div>
+      {meetings && meetings.length ? (
+        <>
+          {meetings.map((meeting) => {
+            return (
+              <div
+                key={meeting.id}
+                className="flex items-center justify-between px-4 py-1 my-2 rounded-md border "
+              >
+                <div>{formatedDay(meeting.dayHour)}</div>
+                <div>
+                  {profile.id === meeting.acceptor ? (
+                    <div>
+                      Initiated By: {meeting.initiatorProfile.firstName}{" "}
+                      {meeting.initiatorProfile.lastName}
+                    </div>
+                  ) : (
+                    <div>
+                      Accepted by: {meeting.acceptorProfile.firstName}{" "}
+                      {meeting.acceptorProfile.lastName}
+                    </div>
+                  )}
                 </div>
-              );
-            })}
-          </>
-        ) : (
-          <div />
-        )}
-      </div>
+                <div>
+                  <Button onClick={() => handleJoin(meeting.url)}>Join</Button>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <div className="text-center mt-20">You have no upcoming meetings</div>
+      )}
     </div>
   );
 };
