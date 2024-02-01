@@ -5,12 +5,14 @@ import globalReducer from "./slices/global";
 import userReducer from "./slices/user";
 import professionReducer from "./slices/profession";
 import availabilityReducer from "./slices/availability";
+import meetingReducer from "./slices/meeting";
 
 const rootReducer = combineReducers({
   global: globalReducer,
   user: userReducer,
   profession: professionReducer,
   availability: availabilityReducer,
+  meeting: meetingReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
