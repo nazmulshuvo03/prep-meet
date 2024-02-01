@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import LANGUAGE_DATA from "../assets/data/languages.json";
@@ -10,13 +10,20 @@ import { PersonCard } from "../components/Cards/PersonCard";
 import { Button } from "../components/Button";
 import { Dropdown } from "../components/Dropdown";
 import { RangeSlider } from "../components/Slider/RangeSlider";
+import { setDashboardQuery } from "../store/slices/global";
+import { queryObjectToString } from "../helper/query";
+import { deepEqual, isEmptyObject } from "../helper/object";
 
 const EXPERIENCE_MIN_VALUE = 0;
 const EXPERIENCE_MAX_VALUE = 20;
 
 const Dashboard = () => {
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.profile);
   const people = useSelector((state) => state.user.people);
+  const oldQuery = useSelector((state) => state.global.dashboardQuery);
   const professionDropdownOptions = useSelector(
     (state) => state.profession.keyLabelPairs
   );
@@ -26,14 +33,23 @@ const Dashboard = () => {
   const [maxExp, setMaxExp] = useState(EXPERIENCE_MAX_VALUE);
 
   useEffect(() => {
-    if (queries) {
-      const queryString = Object.keys(queries)
-        .filter((key) => queries[key])
-        .map((key) => `${key}=${encodeURIComponent(queries[key])}`)
-        .join("&");
-      dispatch(fetchPeople(queryString));
+    if (oldQuery) {
+      setQueries(oldQuery);
+      setMaxExp(oldQuery["yearsOfExperience_lte"]);
+      setMinExp(oldQuery["yearsOfExperience_gte"]);
     }
-  }, [queries]);
+  }, [oldQuery]);
+
+  useEffect(() => {
+    if (queries) {
+      if (!isEmptyObject(queries) && !deepEqual(queries, oldQuery)) {
+        dispatch(setDashboardQuery(queries));
+      }
+      const queryString = queryObjectToString(queries);
+      dispatch(fetchPeople(profile.id, queryString));
+      history.push(`/dashboard?${queryString}`);
+    }
+  }, [queries, oldQuery]);
 
   const handleQuerySelect = (e) => {
     const { name, value } = e.target;
@@ -51,6 +67,13 @@ const Dashboard = () => {
       yearsOfExperience_lte: values[1],
       yearsOfExperience_gte: values[0],
     }));
+  };
+
+  const handleResetQuery = () => {
+    setQueries({});
+    setMinExp(EXPERIENCE_MIN_VALUE);
+    setMaxExp(EXPERIENCE_MAX_VALUE);
+    dispatch(setDashboardQuery(""));
   };
 
   return (
@@ -80,15 +103,7 @@ const Dashboard = () => {
           />
         </div>
         <div>
-          <Button
-            onClick={() => {
-              setQueries({});
-              setMinExp(EXPERIENCE_MIN_VALUE);
-              setMaxExp(EXPERIENCE_MAX_VALUE);
-            }}
-          >
-            Reset
-          </Button>
+          <Button onClick={handleResetQuery}>Reset</Button>
         </div>
       </div>
       <div className="w-60">
