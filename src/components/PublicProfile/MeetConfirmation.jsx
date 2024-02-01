@@ -11,22 +11,27 @@ export const MeetConfirmation = ({
   handleClose = () => {},
   handleConfirm = () => {},
 }) => {
+  console.log("!!!!!!", data);
   return (
     <div className="p-4">
       <div className="mb-2">
         <div className="text-center text-3xl font-medium text-zinc-600">
-          Request meet
+          Schedule meet
         </div>
         <div className="text-center text-sm font-normal text-zinc-400">
           with
         </div>
         <div className="text-center text-2xl font-semibold text-accent">
-          {data.firstName} {data.lastName}
+          {data.acceptor.firstName} {data.acceptor.lastName}
         </div>
         <div className="text-secondary text-center">
           <FontAwesomeIcon icon={faCalendarDay} />{" "}
-          <span>{formatHourWithAMPM(data.time)}</span>{" "}
-          <span>{getFormattedDateWithWeekday(new Date(data.date))}</span>
+          <span>{formatHourWithAMPM(data.availability.time)}</span>{" "}
+          <span>
+            {getFormattedDateWithWeekday(
+              new Date(parseInt(data.availability.day))
+            )}
+          </span>
         </div>
       </div>
       <div className="w-full flex justify-between">

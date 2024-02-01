@@ -19,6 +19,8 @@ import { Modal } from "../components/Modal";
 import { MeetConfirmation } from "../components/PublicProfile/MeetConfirmation";
 import { visitUserProfile } from "../store/middlewares/user";
 import { visitUserAvailabilities } from "../store/middlewares/availability";
+import { createMeeting } from "../store/middlewares/meeting";
+import { data } from "autoprefixer";
 
 const ProfileHighlightItem = ({ icon, value }) => {
   return (
@@ -83,16 +85,11 @@ const Profile = () => {
   };
 
   const confirmMeet = async () => {
-    // const meeting = await createMeeting({
-    //   initiator: userProfile.id,
-    //   acceptor: profile.id,
-    //   status: parseInt(0),
-    //   time: parseInt(getDateTimeStamp(meetingData.time, meetingData.date)),
-    //   meetLink: "",
-    // });
-    alert(
-      `You have requested meeting with this user at ${new Date(meeting.time)}`
-    );
+    const meetingPayload = {
+      availabilityId: meetingData.availability.id,
+      acceptorId: meetingData.acceptor.id,
+    };
+    dispatch(createMeeting(meetingPayload));
     setMeetingData();
   };
 
@@ -169,32 +166,26 @@ const Profile = () => {
         <div>
           {availabilities && availabilities.length ? (
             availabilities.map((avl) => {
-              if (avl.hours && avl.hours.length) {
-                return (
-                  <div key={avl.id} className="py-2">
-                    <div className="mb-2 py-1 border-b-2 border-b-secondary font-medium text-xl text-secondary">
-                      {getFormattedDateWithWeekday(new Date(parseInt(avl.day)))}
-                    </div>
-                    <div className="flex gap-2">
-                      {avl.hours.map((hour) => (
-                        <div
-                          key={hour}
-                          className="cursor-pointer px-8 py-2 rounded-md bg-accent text-white"
-                          onClick={() =>
-                            setMeetingData({
-                              time: hour,
-                              date: parseInt(avl.day),
-                              ...profile,
-                            })
-                          }
-                        >
-                          {formatHourWithAMPM(hour)}
-                        </div>
-                      ))}
+              return (
+                <div key={avl.id} className="py-2">
+                  <div className="mb-2 py-1 border-b-2 border-b-secondary font-medium text-xl text-secondary">
+                    {getFormattedDateWithWeekday(new Date(parseInt(avl.day)))}
+                  </div>
+                  <div className="flex gap-2">
+                    <div
+                      key={avl.hour}
+                      className={`cursor-pointer px-8 py-2 rounded-md text-white ${
+                        avl.state === "BOOKED" ? "bg-gray-500" : "bg-accent"
+                      }`}
+                      onClick={() =>
+                        setMeetingData({ availability: avl, acceptor: profile })
+                      }
+                    >
+                      {formatHourWithAMPM(avl.hour)}
                     </div>
                   </div>
-                );
-              }
+                </div>
+              );
             })
           ) : (
             <div />

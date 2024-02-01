@@ -58,6 +58,8 @@ export const AvailableTimes = () => {
                         ${
                           found && found.state === "OPEN"
                             ? "bg-primary text-white"
+                            : found && found.state === "BOOKED"
+                            ? "bg-gray-500 text-white border-gray-500"
                             : "bg-background text-text"
                         }
                             `}

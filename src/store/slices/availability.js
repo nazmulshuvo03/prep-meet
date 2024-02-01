@@ -25,6 +25,7 @@ const availabilitySlice = createSlice({
         );
       });
     },
+    updateAvailabilityState: (state, data) => {},
   },
 });
 
@@ -32,5 +33,6 @@ export const {
   setUserAvailabilities,
   updateUserAvailabilities,
   removeAvailability,
+  updateAvailabilityState,
 } = availabilitySlice.actions;
 export default availabilitySlice.reducer;
