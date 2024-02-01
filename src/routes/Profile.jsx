@@ -175,10 +175,18 @@ const Profile = () => {
                     <div
                       key={avl.hour}
                       className={`cursor-pointer px-8 py-2 rounded-md text-white ${
-                        avl.state === "BOOKED" ? "bg-gray-500" : "bg-accent"
+                        avl.state === "BOOKED"
+                          ? "bg-gray-500 cursor-not-allowed"
+                          : "bg-accent"
                       }`}
-                      onClick={() =>
-                        setMeetingData({ availability: avl, acceptor: profile })
+                      onClick={
+                        avl.state !== "BOOKED"
+                          ? () =>
+                              setMeetingData({
+                                availability: avl,
+                                acceptor: profile,
+                              })
+                          : () => {}
                       }
                     >
                       {formatHourWithAMPM(avl.hour)}

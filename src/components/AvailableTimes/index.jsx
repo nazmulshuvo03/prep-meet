@@ -59,11 +59,15 @@ export const AvailableTimes = () => {
                           found && found.state === "OPEN"
                             ? "bg-primary text-white"
                             : found && found.state === "BOOKED"
-                            ? "bg-gray-500 text-white border-gray-500"
+                            ? "bg-gray-500 text-white border-gray-500 cursor-not-allowed"
                             : "bg-background text-text"
                         }
                             `}
-                          onClick={() => handleTimeSelect(item, hour)}
+                          onClick={
+                            found && found.state !== "BOOKED"
+                              ? () => handleTimeSelect(item, hour)
+                              : () => {}
+                          }
                         >
                           {hour.label}
                         </div>
