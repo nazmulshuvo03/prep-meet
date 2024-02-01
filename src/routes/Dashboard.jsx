@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import LANGUAGE_DATA from "../assets/data/languages.json";
 import COUNTRY_DATA from "../assets/data/countries.json";
-import TIMEZONE_DATA from "../assets/data/timezones.json";
 
 import { fetchPeople } from "../store/middlewares/user";
 import { PersonCard } from "../components/Cards/PersonCard";
@@ -22,68 +21,36 @@ const Dashboard = () => {
     (state) => state.profession.keyLabelPairs
   );
 
-  const [queries, setQueries] = useState([]);
+  const [queries, setQueries] = useState({});
   const [minExp, setMinExp] = useState(EXPERIENCE_MIN_VALUE);
   const [maxExp, setMaxExp] = useState(EXPERIENCE_MAX_VALUE);
 
   useEffect(() => {
     if (queries) {
-      dispatch(fetchPeople(queries));
+      const queryString = Object.keys(queries)
+        .filter((key) => queries[key])
+        .map((key) => `${key}=${encodeURIComponent(queries[key])}`)
+        .join("&");
+      dispatch(fetchPeople(queryString));
     }
   }, [queries]);
 
   const handleQuerySelect = (e) => {
-    setQueries((prev) => {
-      const updatedQueries = [...prev];
-      const existingIndex = updatedQueries.findIndex(
-        (item) => Object.keys(item)[0] === e.target.name
-      );
-
-      if (existingIndex !== -1) {
-        updatedQueries[existingIndex] = { [e.target.name]: e.target.value };
-      } else {
-        updatedQueries.unshift({ [e.target.name]: e.target.value, rel: "==" });
-      }
-      return updatedQueries;
-    });
+    const { name, value } = e.target;
+    setQueries((prevParams) => ({
+      ...prevParams,
+      [name]: value,
+    }));
   };
 
   const handleExperienceSelect = (values, i) => {
     setMaxExp(values[1]);
     setMinExp(values[0]);
-    const relations = [">=", "<="];
-    setQueries((prev) => {
-      const updatedQueries = [...prev];
-      for (let j = 0; j <= i; j++) {
-        const existingIndex = updatedQueries.findIndex(
-          (item) =>
-            Object.keys(item)[0] === "yearsOfExperience" &&
-            item["rel"] === relations[j]
-        );
-
-        if (existingIndex !== -1) {
-          updatedQueries[existingIndex] = {
-            yearsOfExperience: values[j],
-            rel: relations[j],
-          };
-        } else {
-          updatedQueries.unshift({
-            yearsOfExperience: values[j],
-            rel: relations[j],
-          });
-        }
-      }
-      return updatedQueries;
-    });
-  };
-
-  const getCurrentValue = (label) => {
-    if (queries && queries.length) {
-      const foundObject = queries.find(
-        (item) => Object.keys(item)[0] === label
-      );
-      return foundObject ? foundObject[label] : "";
-    } else return "";
+    setQueries((prev) => ({
+      ...prev,
+      yearsOfExperience_lte: values[1],
+      yearsOfExperience_gte: values[0],
+    }));
   };
 
   return (
@@ -92,35 +59,36 @@ const Dashboard = () => {
         <div className="flex gap-2">
           <Dropdown
             name={"profession"}
-            value={getCurrentValue("profession")}
+            value={queries["profession"] || ""}
             options={professionDropdownOptions}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Profession"}
           />
           <Dropdown
             name={"language"}
-            value={getCurrentValue("language")}
+            value={queries["language"] || ""}
             options={LANGUAGE_DATA}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Language"}
           />
           <Dropdown
             name={"country"}
-            value={getCurrentValue("country")}
+            value={queries["country"] || ""}
             options={COUNTRY_DATA}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Country"}
           />
-          <Dropdown
-            name={"timezone"}
-            value={getCurrentValue("timezone")}
-            options={TIMEZONE_DATA}
-            onSelect={handleQuerySelect}
-            defaultText={"Filter by Timezone"}
-          />
         </div>
         <div>
-          <Button onClick={() => setQueries([])}>Reset</Button>
+          <Button
+            onClick={() => {
+              setQueries({});
+              setMinExp(EXPERIENCE_MIN_VALUE);
+              setMaxExp(EXPERIENCE_MAX_VALUE);
+            }}
+          >
+            Reset
+          </Button>
         </div>
       </div>
       <div className="w-60">

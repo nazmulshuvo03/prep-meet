@@ -9,11 +9,11 @@ import { setLoading } from "../slices/global";
 import { setPeople, setProfile } from "../slices/user";
 
 export const fetchPeople =
-  (queries = []) =>
+  (query = "") =>
   async (dispatch) => {
-    console.log("dashboard queries: ", queries);
+    console.log("dashboard query: ", query);
     dispatch(setLoading());
-    const response = await fetchContent(all_profile_url());
+    const response = await fetchContent(all_profile_url(query));
     console.log("Profile docs: ", response);
     responseHandler(response, dispatch(setPeople(response.data)));
     dispatch(setLoading(false));
