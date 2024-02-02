@@ -64,7 +64,7 @@ export const AvailableTimes = () => {
                         }
                             `}
                           onClick={
-                            found && found.state !== "BOOKED"
+                            !found || found.state !== "BOOKED"
                               ? () => handleTimeSelect(item, hour)
                               : () => {}
                           }

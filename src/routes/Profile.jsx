@@ -86,8 +86,8 @@ const Profile = () => {
 
   const confirmMeet = async () => {
     const meetingPayload = {
-      availabilityId: meetingData.availability.id,
-      acceptorId: meetingData.acceptor.id,
+      availabilityId: meetingData.availability.id, // the user whose page is visitng, is the meeting initiator
+      acceptorId: userProfile.id, // meeting acceptor is the current logged in user
     };
     dispatch(createMeeting(meetingPayload));
     setMeetingData();

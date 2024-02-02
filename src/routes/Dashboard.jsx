@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import LANGUAGE_DATA from "../assets/data/languages.json";
@@ -19,7 +19,6 @@ const EXPERIENCE_MAX_VALUE = 20;
 
 const Dashboard = () => {
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const people = useSelector((state) => state.user.people);
@@ -46,10 +45,12 @@ const Dashboard = () => {
         dispatch(setDashboardQuery(queries));
       }
       const queryString = queryObjectToString(queries);
-      dispatch(fetchPeople(profile.id, queryString));
-      history.push(`/dashboard?${queryString}`);
+      if (profile) {
+        dispatch(fetchPeople(profile.id, queryString));
+        history.push(`/dashboard?${queryString}`);
+      }
     }
-  }, [queries, oldQuery]);
+  }, [queries, oldQuery, profile]);
 
   const handleQuerySelect = (e) => {
     const { name, value } = e.target;
