@@ -1,6 +1,8 @@
 import axios from "axios";
+import { SERVER_URL } from "../../.config";
 
-const serverUrl = import.meta.env.VITE_SERVER_URL;
+// const serverUrl = import.meta.env.VITE_SERVER_URL;
+const serverUrl = SERVER_URL;
 const baseUrl = serverUrl + "/api/v1";
 export const loginPageUrl = serverUrl + "/";
 
