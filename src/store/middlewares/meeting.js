@@ -1,5 +1,5 @@
-import { responseHandler } from "../../helper/api";
-import { asyncWrapper } from "../../helper/async";
+import { responseHandler } from "../../utils/api";
+import { asyncWrapper } from "../../utils/async";
 import { fetchContent, postContent } from "../../services/api";
 import { meeting_url, user_meeting_url } from "../../services/urls/meeting";
 import { updateAvailabilityState } from "../slices/availability";

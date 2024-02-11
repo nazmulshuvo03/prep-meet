@@ -1,5 +1,5 @@
-import { responseHandler } from "../../helper/api";
-import { asyncWrapper } from "../../helper/async";
+import { responseHandler } from "../../utils/api";
+import { asyncWrapper } from "../../utils/async";
 import { fetchContent, postContent } from "../../services/api";
 import {
   all_professions_url,

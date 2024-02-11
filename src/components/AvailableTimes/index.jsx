@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { generateDateArray, generateHourArray } from "../../utils/TimeDate";
+import { generateDateArray, generateHourArray } from "../../utils/timeDate";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createUserAvailability,

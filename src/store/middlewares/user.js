@@ -1,6 +1,6 @@
 import { TOAST_TYPES } from "../../constants/Toast";
-import { responseHandler } from "../../helper/api";
-import { asyncWrapper } from "../../helper/async";
+import { responseHandler } from "../../utils/api";
+import { asyncWrapper } from "../../utils/async";
 import { fetchContent, putContent } from "../../services/api";
 import {
   all_profile_url,

@@ -1,12 +1,12 @@
 import { TOAST_TYPES } from "../../constants/Toast";
-import { responseHandler } from "../../helper/api";
-import { asyncWrapper } from "../../helper/async";
+import { responseHandler } from "../../utils/api";
+import { asyncWrapper } from "../../utils/async";
 import { fetchContent, postContent } from "../../services/api";
 import {
   user_availability_url,
   availability_url,
 } from "../../services/urls/availability";
-import { formatHourWithAMPM } from "../../utils/TimeDate";
+import { formatHourWithAMPM } from "../../utils/timeDate";
 import {
   removeAvailability,
   setUserAvailabilities,

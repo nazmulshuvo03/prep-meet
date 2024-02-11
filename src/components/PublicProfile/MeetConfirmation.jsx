@@ -4,7 +4,7 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import {
   formatHourWithAMPM,
   getFormattedDateWithWeekday,
-} from "../../utils/TimeDate";
+} from "../../utils/timeDate";
 
 export const MeetConfirmation = ({
   data,

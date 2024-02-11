@@ -1,5 +1,5 @@
-import { responseHandler } from "../../helper/api";
-import { asyncWrapper } from "../../helper/async";
+import { responseHandler } from "../../utils/api";
+import { asyncWrapper } from "../../utils/async";
 import { loginPageUrl, postContent } from "../../services/api";
 import { logout_url } from "../../services/urls/auth";
 import { persistor } from "../index";

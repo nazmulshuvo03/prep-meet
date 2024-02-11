@@ -14,7 +14,7 @@ import {
   formatHourWithAMPM,
   getDateTimeStamp,
   getFormattedDateWithWeekday,
-} from "../utils/TimeDate";
+} from "../utils/timeDate";
 import { Modal } from "../components/Modal";
 import { MeetConfirmation } from "../components/PublicProfile/MeetConfirmation";
 import { visitUserProfile } from "../store/middlewares/user";

@@ -11,8 +11,8 @@ import { Button } from "../components/Button";
 import { Dropdown } from "../components/Dropdown";
 import { RangeSlider } from "../components/Slider/RangeSlider";
 import { setDashboardQuery } from "../store/slices/global";
-import { queryObjectToString } from "../helper/query";
-import { deepEqual, isEmptyObject } from "../helper/object";
+import { queryObjectToString } from "../utils/query";
+import { deepEqual, isEmptyObject } from "../utils/object";
 
 const EXPERIENCE_MIN_VALUE = 0;
 const EXPERIENCE_MAX_VALUE = 20;
