@@ -5,9 +5,12 @@ import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
 import Profile from "./routes/Profile";
+import CircularProgress from "./components/Progress";
 
 function App() {
   const global = useSelector((state) => state.global);
+
+  console.log("Global state: ", global);
 
   return (
     <div
@@ -33,6 +36,7 @@ function App() {
           </div>
         </BrowserRouter>
       </div>
+      {global?.loading && <CircularProgress />}
     </div>
   );
 }

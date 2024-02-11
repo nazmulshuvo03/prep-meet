@@ -4,12 +4,15 @@ import {
   all_professions_url,
   profession_url,
 } from "../../services/urls/profession";
+import { setLoading } from "../slices/global";
 import { setProfessions } from "../slices/profession";
 
 export const fetchProfessions = () => async (dispatch) => {
+  dispatch(setLoading());
   const res = await fetchContent(all_professions_url());
   console.log("Profession docs: ", res);
   responseHandler(res, dispatch(setProfessions(res.data)));
+  dispatch(setLoading(false));
 };
 
 export const addProfession = (data) => async (dispatch) => {

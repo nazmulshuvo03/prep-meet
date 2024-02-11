@@ -47,7 +47,9 @@ export const visitUserProfile =
   };
 
 export const updateUserData = (userId, updatedData) => async (dispatch) => {
+  dispatch(setLoading());
   const res = await putContent(user_url(userId), updatedData);
   console.log("user data updated: ", res);
   responseHandler(res, dispatch(setProfile(res.data)));
+  dispatch(setLoading(false));
 };
