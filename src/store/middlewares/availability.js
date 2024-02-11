@@ -1,3 +1,4 @@
+import { TOAST_TYPES } from "../../constants/Toast";
 import { responseHandler } from "../../helper/api";
 import { asyncWrapper } from "../../helper/async";
 import { fetchContent, postContent } from "../../services/api";
@@ -5,11 +6,13 @@ import {
   user_availability_url,
   availability_url,
 } from "../../services/urls/availability";
+import { formatHourWithAMPM } from "../../utils/TimeDate";
 import {
   removeAvailability,
   setUserAvailabilities,
   updateUserAvailabilities,
 } from "../slices/availability";
+import { setToastMessage } from "../slices/global";
 
 export const fetchUserAvailabilities = (userId) =>
   asyncWrapper(async (dispatch) => {
@@ -28,11 +31,52 @@ export const visitUserAvailabilities = (userId) =>
 export const createUserAvailability = (data) =>
   asyncWrapper(async (dispatch) => {
     const res = await postContent(availability_url(), data);
-    console.log("availability create", res);
+    console.log("availability create", data, res);
     if (res.data === "Deleted") {
-      responseHandler(res, dispatch(removeAvailability(data)));
+      responseHandler(
+        res,
+        () => {
+          dispatch(removeAvailability(data));
+          dispatch(
+            setToastMessage({
+              type: TOAST_TYPES[0],
+              message: `${new Date(data.day)} ${formatHourWithAMPM(
+                data.hour
+              )} removed`,
+            })
+          );
+        },
+        () => {
+          dispatch(
+            setToastMessage({
+              type: TOAST_TYPES[1],
+              message: `Error removing ${formatHourWithAMPM(data.hour)}`,
+            })
+          );
+        }
+      );
     } else {
-      responseHandler(res, dispatch(updateUserAvailabilities(res.data)));
+      responseHandler(
+        res,
+        () => {
+          dispatch(updateUserAvailabilities(res.data));
+          dispatch(
+            setToastMessage({
+              type: TOAST_TYPES[0],
+              message: `${new Date(data.day)} ${formatHourWithAMPM(
+                data.hour
+              )} added`,
+            })
+          );
+        },
+        () => {
+          dispatch(
+            setToastMessage({
+              type: TOAST_TYPES[1],
+              message: `Error adding ${formatHourWithAMPM(data.hour)}`,
+            })
+          );
+        }
+      );
     }
   });
-

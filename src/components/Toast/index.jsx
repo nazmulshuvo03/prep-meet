@@ -63,13 +63,13 @@ const Toast = ({
 
   return (
     <div
-      className={`fixed bottom-20 left-10 w-96 flex items-center z-50 bg-background ${
+      className={`fixed bottom-20 left-10 min-w-96 flex items-center z-50 bg-background ${
         visible ? "toast-message-slide-in" : "toast-message-slide-out"
       }`}
     >
       <div className="p-3 w-full rounded-md shadow-md flex items-center">
-        <div className="mr-2 my-auto">{getIcon()}</div>
-        <div className="flex-1">
+        <div className="my-auto">{getIcon()}</div>
+        <div className="flex-1 px-2">
           <h2 className="text-lg font-semibold">{message}</h2>
           {description && <p>{description}</p>}
         </div>
