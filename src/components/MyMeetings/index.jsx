@@ -60,7 +60,7 @@ export const MyMeetings = () => {
                   )}
                 </div>
                 <div>
-                  <Button onClick={() => handleJoin(meeting.url)}>Join</Button>
+                  <Button onClick={() => handleJoin(meeting.meet)}>Join</Button>
                 </div>
               </div>
             );
