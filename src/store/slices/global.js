@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const globalSlice = createSlice({
   name: "global",
   initialState: {
-    loading: false,
     dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    loading: false,
+    toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
     dashboardQuery: {},
   },
   reducers: {
@@ -17,10 +18,14 @@ const globalSlice = createSlice({
     setDashboardQuery: (state, data) => {
       state.dashboardQuery = data.payload;
     },
+    setToastMessage: (state, data) => {
+      state.toastMessage = data.payload;
+    },
   },
 });
 
-export const { setLoading, setTheme, setDashboardQuery } = globalSlice.actions;
+export const { setLoading, setTheme, setDashboardQuery, setToastMessage } =
+  globalSlice.actions;
 export const selectTheme = (state) => state.global.dark;
 export const switchLoading = (state) => !state.global.switchLoading;
 

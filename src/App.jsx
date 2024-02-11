@@ -6,6 +6,7 @@ import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
 import Profile from "./routes/Profile";
 import CircularProgress from "./components/Progress";
+import Toast from "./components/Toast";
 
 function App() {
   const global = useSelector((state) => state.global);
@@ -37,6 +38,7 @@ function App() {
         </BrowserRouter>
       </div>
       {global?.loading && <CircularProgress />}
+      {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
     </div>
   );
 }
