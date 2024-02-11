@@ -1,5 +1,6 @@
 import { TOAST_TYPES } from "../../constants/Toast";
 import { responseHandler } from "../../helper/api";
+import { asyncWrapper } from "../../helper/async";
 import { fetchContent, putContent } from "../../services/api";
 import {
   all_profile_url,
@@ -9,27 +10,28 @@ import {
 import { setLoading, setToastMessage } from "../slices/global";
 import { setPeople, setProfile } from "../slices/user";
 
-export const fetchPeople =
-  (userId = null, query = "") =>
-  async (dispatch) => {
+export const fetchPeople = (userId = null, query = "") =>
+  asyncWrapper(async (dispatch) => {
     console.log("dashboard query: ", query);
     dispatch(setLoading());
     const response = await fetchContent(all_profile_url(userId, query));
     console.log("Profile docs: ", response);
     responseHandler(response, dispatch(setPeople(response.data)));
     dispatch(setLoading(false));
-  };
+  });
 
-export const fetchUsers =
-  (queries = []) =>
-  async (dispatch) => {
+export const fetchUsers = (queries = []) =>
+  asyncWrapper(async (dispatch) => {
     const response = await fetchContent(all_users_url());
     responseHandler(response);
-  };
+  });
 
-export const fetchUserProfile =
-  (userId, successHandler = () => {}, errorHandler = () => {}) =>
-  async (dispatch) => {
+export const fetchUserProfile = (
+  userId,
+  successHandler = () => {},
+  errorHandler = () => {}
+) =>
+  asyncWrapper(async (dispatch) => {
     const response = await fetchContent(user_url(userId));
     console.log("user doc: ", response);
     const handleSuccess = () => {
@@ -37,30 +39,32 @@ export const fetchUserProfile =
       successHandler();
     };
     responseHandler(response, handleSuccess, errorHandler);
-  };
+  });
 
-export const visitUserProfile = (userId) => async (dispatch) => {
-  const response = await fetchContent(user_url(userId));
-  console.log("user doc: ", response);
-  return response.data;
-};
+export const visitUserProfile = (userId) =>
+  asyncWrapper(async (dispatch) => {
+    const response = await fetchContent(user_url(userId));
+    console.log("user doc: ", response);
+    return response.data;
+  });
 
-export const updateUserData = (userId, updatedData) => async (dispatch) => {
-  dispatch(setLoading());
-  const res = await putContent(user_url(userId), updatedData);
-  console.log("user data updated: ", res);
-  const handleSuccess = () => {
-    dispatch(setProfile(res.data));
-    dispatch(
-      setToastMessage({
-        type: TOAST_TYPES[0],
-        message: "Personal Details Updated",
-      })
-    );
-  };
-  const handleError = () => {
-    dispatch(setToastMessage({ type: TOAST_TYPES[1], message: res.data }));
-  };
-  responseHandler(res, handleSuccess, handleError);
-  dispatch(setLoading(false));
-};
+export const updateUserData = (userId, updatedData) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await putContent(user_url(userId), updatedData);
+    console.log("user data updated: ", res);
+    const handleSuccess = () => {
+      dispatch(setProfile(res.data));
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[0],
+          message: "Personal Details Updated",
+        })
+      );
+    };
+    const handleError = () => {
+      dispatch(setToastMessage({ type: TOAST_TYPES[1], message: res.data }));
+    };
+    responseHandler(res, handleSuccess, handleError);
+    dispatch(setLoading(false));
+  });
