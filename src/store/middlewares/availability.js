@@ -21,12 +21,11 @@ export const fetchUserAvailabilities = (userId) =>
     responseHandler(res, dispatch(setUserAvailabilities(res.data)));
   });
 
-export const visitUserAvailabilities = (userId) =>
-  asyncWrapper(async (dispatch) => {
-    const res = await fetchContent(user_availability_url(userId));
-    console.log("user availabilities: ", res);
-    return res.data;
-  });
+export const visitUserAvailabilities = (userId) => async (dispatch) => {
+  const res = await fetchContent(user_availability_url(userId));
+  console.log("user availabilities: ", res);
+  return res.data;
+};
 
 export const createUserAvailability = (data) =>
   asyncWrapper(async (dispatch) => {

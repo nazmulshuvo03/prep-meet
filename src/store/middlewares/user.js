@@ -41,12 +41,11 @@ export const fetchUserProfile = (
     responseHandler(response, handleSuccess, errorHandler);
   });
 
-export const visitUserProfile = (userId) =>
-  asyncWrapper(async (dispatch) => {
-    const response = await fetchContent(user_url(userId));
-    console.log("user doc: ", response);
-    return response.data;
-  });
+export const visitUserProfile = (userId) => async (dispatch) => {
+  const response = await fetchContent(user_url(userId));
+  console.log("user doc: ", response);
+  return response.data;
+};
 
 export const updateUserData = (userId, updatedData) =>
   asyncWrapper(async (dispatch) => {
