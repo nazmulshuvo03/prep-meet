@@ -1,4 +1,9 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Dashboard from "./routes/Dashboard";
 import { useSelector } from "react-redux";
 import Home from "./routes/Home";
@@ -20,7 +25,7 @@ function App() {
       } h-screen w-screen overflow-hidden`}
     >
       <div className={`bg-background text-text h-full w-full overflow-y-auto`}>
-        <BrowserRouter basename="/">
+        <Router>
           <div className="fixed top-0 left-0 w-full h-24">
             <Navigation />
           </div>
@@ -35,7 +40,7 @@ function App() {
               <Route exact path="/profile/:userId" component={Profile} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
       {global?.loading && <CircularProgress />}
       {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
