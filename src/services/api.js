@@ -1,7 +1,7 @@
 import axios from "axios";
-import { SERVER_URL } from "../../.config";
+import { config } from "../../.config";
 
-const serverUrl = SERVER_URL;
+const serverUrl = config.SERVER_URL;
 const baseUrl = serverUrl + "/api/v1";
 export const loginPageUrl = serverUrl + "/";
 
