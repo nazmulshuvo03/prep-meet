@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { uploadImage } from "../../firebase/functions/files";
 import { updateUserData } from "../../store/middlewares/user";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleCheck,
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { uploadFile } from "../../store/middlewares/file";
+import { config } from "../../../.config";
 
 export const ProfileImage = () => {
   const dispatch = useDispatch();
@@ -17,12 +18,6 @@ export const ProfileImage = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // const reader = new FileReader();
-      // console.log("********** file", file, reader);
-      // reader.onload = () => {
-      //   setImage(reader.result);
-      // };
-      // reader.readAsDataURL(file);
       setImage(file);
     }
   };
@@ -33,9 +28,16 @@ export const ProfileImage = () => {
     }
   };
 
+  const uploadImage = async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    const responseData = dispatch(uploadFile(formData));
+    return responseData;
+  };
+
   const handleImageUpload = async () => {
-    // const imageUrl = await uploadImage(image);
-    dispatch(updateUserData(profile.id, { photoURL: imageUrl }));
+    const imageData = await uploadImage(image);
+    dispatch(updateUserData(profile.id, { photoURL: imageData.Location }));
     setImage();
   };
 
