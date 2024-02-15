@@ -16,8 +16,6 @@ import Toast from "./components/Toast";
 function App() {
   const global = useSelector((state) => state.global);
 
-  console.log("Global state: ", global, import.meta.env);
-
   return (
     <div
       className={`${

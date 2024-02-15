@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { generateDateArray, generateHourArray } from "../../utils/timeDate";
+import {
+  convertLocalDayTimeToUTCDayTime,
+  generateDateArray,
+  generateHourArray,
+} from "../../utils/timeDate";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createUserAvailability,
@@ -21,6 +25,7 @@ export const AvailableTimes = () => {
       userId: profile.id,
       day: day.key,
       hour: time.key,
+      dayHour: convertLocalDayTimeToUTCDayTime(day.key, time.key),
     };
     dispatch(createUserAvailability(data));
   };
@@ -46,11 +51,14 @@ export const AvailableTimes = () => {
                   {hourArray &&
                     hourArray.length &&
                     hourArray.map((hour) => {
-                      const found = userAvailabilities.find(
-                        (avl) =>
-                          parseInt(avl.day) === item.key &&
-                          avl.hour === hour.key
-                      );
+                      const found =
+                        userAvailabilities &&
+                        typeof userAvailabilities !== "string" &&
+                        userAvailabilities.find(
+                          (avl) =>
+                            parseInt(avl.dayHour) ===
+                            convertLocalDayTimeToUTCDayTime(item.key, hour.key)
+                        );
                       return (
                         <div
                           key={hour.key}

@@ -4,6 +4,8 @@ import { fetchContent, postContent } from "../../services/api";
 import { meeting_url, user_meeting_url } from "../../services/urls/meeting";
 import { updateAvailabilityState } from "../slices/availability";
 import { setUserMeetings } from "../slices/meeting";
+import { setLoading, setToastMessage } from "../slices/global";
+import { TOAST_TYPES } from "../../constants/Toast";
 
 export const getUserMeetings = (userId) =>
   asyncWrapper(async (dispatch) => {
@@ -14,7 +16,28 @@ export const getUserMeetings = (userId) =>
 
 export const createMeeting = (data) =>
   asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
     const res = await postContent(meeting_url(), data);
     console.log("meeting response: ", res);
-    responseHandler(res, dispatch(updateAvailabilityState(res.data)));
+    responseHandler(
+      res,
+      () => {
+        dispatch(updateAvailabilityState(res.data));
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[0],
+            message: "Meeting scheduled",
+          })
+        );
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: "Error scheduling meeting",
+          })
+        );
+      }
+    );
+    dispatch(setLoading(false));
   });

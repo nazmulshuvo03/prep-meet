@@ -70,3 +70,47 @@ export function getDateTimeStamp(timeIn24 = 0, originalDate) {
   const updatedTimestamp = dateWithOriginalTime.getTime();
   return updatedTimestamp;
 }
+
+export function convertUnixLocalToUnixUTC(localTime) {
+  let localDate = new Date(parseInt(localTime));
+  let utcTimestamp =
+    localDate.getTime() + localDate.getTimezoneOffset() * 60000;
+  return utcTimestamp;
+}
+
+export function convertUnixUTCToLocal(utcTime) {
+  let utcDate = new Date(parseInt(utcTime));
+  let localTimeStamp = utcDate.getTime() - utcDate.getTimezoneOffset() * 60000;
+  return localTimeStamp;
+}
+
+export const convertLocalDayTimeToUTCDayTime = (originalDate, hour) => {
+  let dateWithOriginalTime = new Date(originalDate);
+  dateWithOriginalTime.setHours(hour, 0, 0, 0);
+  const updatedTime =
+    dateWithOriginalTime.getTime() +
+    dateWithOriginalTime.getTimezoneOffset() * 60000;
+  return updatedTime;
+};
+
+export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
+  const dateOptions = {
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  };
+  const formattedDate = new Intl.DateTimeFormat("en-IN", dateOptions).format(
+    unixDayTime
+  );
+  const hourOptions = {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  };
+  const formattedHour = new Intl.DateTimeFormat("en-IN", hourOptions).format(
+    unixDayTime
+  );
+  return { date: formattedDate, time: formattedHour };
+};

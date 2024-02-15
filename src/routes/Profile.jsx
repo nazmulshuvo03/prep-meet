@@ -11,9 +11,9 @@ import {
   faLanguage,
 } from "@fortawesome/free-solid-svg-icons";
 import {
+  convertUTCDayTimeToLocalDayTime,
   formatHourWithAMPM,
   getDateTimeStamp,
-  getFormattedDateWithWeekday,
 } from "../utils/timeDate";
 import { Modal } from "../components/Modal";
 import { MeetConfirmation } from "../components/PublicProfile/MeetConfirmation";
@@ -169,11 +169,13 @@ const Profile = () => {
               return (
                 <div key={avl.id} className="py-2">
                   <div className="mb-2 py-1 border-b-2 border-b-secondary font-medium text-xl text-secondary">
-                    {getFormattedDateWithWeekday(new Date(parseInt(avl.day)))}
+                    {
+                      convertUTCDayTimeToLocalDayTime(parseInt(avl.dayHour))
+                        .date
+                    }
                   </div>
                   <div className="flex gap-2">
                     <div
-                      key={avl.hour}
                       className={`cursor-pointer px-8 py-2 rounded-md text-white ${
                         avl.state === "BOOKED"
                           ? "bg-gray-500 cursor-not-allowed"
@@ -189,7 +191,10 @@ const Profile = () => {
                           : () => {}
                       }
                     >
-                      {formatHourWithAMPM(avl.hour)}
+                      {
+                        convertUTCDayTimeToLocalDayTime(parseInt(avl.dayHour))
+                          .time
+                      }
                     </div>
                   </div>
                 </div>

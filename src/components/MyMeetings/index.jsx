@@ -14,8 +14,6 @@ export const MyMeetings = () => {
     }
   }, [profile]);
 
-  console.log("@@@@@@@@@", meetings);
-
   const formatedDay = (timestamp) => {
     timestamp = parseInt(timestamp);
     const dateObject = new Date(timestamp);
