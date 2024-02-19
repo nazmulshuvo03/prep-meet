@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const globalSlice = createSlice({
   name: "global",
   initialState: {
-    dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    // dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    dark: false,
     loading: false,
     toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
     dashboardQuery: {},
