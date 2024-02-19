@@ -34,7 +34,7 @@ export const createMeeting = (data) =>
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[1],
-            message: "Error scheduling meeting",
+            message: res.data,
           })
         );
       }

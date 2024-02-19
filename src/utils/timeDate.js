@@ -94,6 +94,8 @@ export const convertLocalDayTimeToUTCDayTime = (originalDate, hour) => {
 };
 
 export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
+  const localTime =
+    unixDayTime - new Date(parseInt(unixDayTime)).getTimezoneOffset() * 60000;
   const dateOptions = {
     weekday: "long",
     day: "2-digit",
@@ -101,7 +103,7 @@ export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
     year: "numeric",
   };
   const formattedDate = new Intl.DateTimeFormat("en-IN", dateOptions).format(
-    unixDayTime
+    localTime
   );
   const hourOptions = {
     hour: "numeric",
@@ -110,7 +112,7 @@ export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
     hour12: true,
   };
   const formattedHour = new Intl.DateTimeFormat("en-IN", hourOptions).format(
-    unixDayTime
+    localTime
   );
   return { date: formattedDate, time: formattedHour };
 };

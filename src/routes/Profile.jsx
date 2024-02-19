@@ -20,7 +20,6 @@ import { MeetConfirmation } from "../components/PublicProfile/MeetConfirmation";
 import { visitUserProfile } from "../store/middlewares/user";
 import { visitUserAvailabilities } from "../store/middlewares/availability";
 import { createMeeting } from "../store/middlewares/meeting";
-import { data } from "autoprefixer";
 
 const ProfileHighlightItem = ({ icon, value }) => {
   return (
