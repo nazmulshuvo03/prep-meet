@@ -1,6 +1,5 @@
 // Function to get formatted date with weekday (DD-MM-YYYY, Weekday)
 export function getFormattedDateWithWeekday(date) {
-  // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!", date);
   date.setHours(0, 0, 0, 0); // Set time to 00:00:00 (midnight)
   const options = {
     weekday: "long",
@@ -29,7 +28,10 @@ export function generateDateArray() {
 
   for (let i = 0; i < 3; i++) {
     const formattedDate = getFormattedDateWithWeekday(currentDate);
-    dateArray.push({ key: currentDate.getTime(), label: formattedDate });
+    dateArray.push({
+      key: currentDate.setHours(0, 0, 0, 0),
+      label: formattedDate,
+    });
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
@@ -86,16 +88,13 @@ export function convertUnixUTCToLocal(utcTime) {
 
 export const convertLocalDayTimeToUTCDayTime = (originalDate, hour) => {
   let dateWithOriginalTime = new Date(originalDate);
-  dateWithOriginalTime.setHours(hour, 0, 0, 0);
-  const updatedTime =
-    dateWithOriginalTime.getTime() +
-    dateWithOriginalTime.getTimezoneOffset() * 60000;
-  return updatedTime;
+  const updatedTime = dateWithOriginalTime.setHours(hour, 0, 0, 0);
+  const updatedTimeToUTC = new Date(updatedTime).toISOString();
+  return updatedTimeToUTC;
 };
 
 export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
-  const localTime =
-    unixDayTime - new Date(parseInt(unixDayTime)).getTimezoneOffset() * 60000;
+  const localTime = new Date(unixDayTime);
   const dateOptions = {
     weekday: "long",
     day: "2-digit",

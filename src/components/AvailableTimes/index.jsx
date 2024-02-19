@@ -25,7 +25,7 @@ export const AvailableTimes = () => {
       userId: profile.id,
       day: day.key,
       hour: time.key,
-      dayHour: convertLocalDayTimeToUTCDayTime(day.key, time.key),
+      dayHourUTC: convertLocalDayTimeToUTCDayTime(day.key, time.key),
     };
     dispatch(createUserAvailability(data));
   };
@@ -56,7 +56,7 @@ export const AvailableTimes = () => {
                         typeof userAvailabilities !== "string" &&
                         userAvailabilities.find(
                           (avl) =>
-                            parseInt(avl.dayHour) ===
+                            avl.dayHourUTC ===
                             convertLocalDayTimeToUTCDayTime(item.key, hour.key)
                         );
                       return (
