@@ -1,2 +1,2 @@
-export const all_professions_url = () => `/profession/all`;
-export const profession_url = () => `/profession`;
+export const all_professions_url = () => `/profession`;
+export const single_profession_url = (id) => `/profession/${id}`;

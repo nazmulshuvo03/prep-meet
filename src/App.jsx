@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+  // Redirect,
 } from "react-router-dom";
 import Dashboard from "./routes/Dashboard";
 import { useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
 import Profile from "./routes/Profile";
+import Admin from "./routes/Admin";
 import CircularProgress from "./components/Progress";
 import Toast from "./components/Toast";
 
@@ -36,6 +37,7 @@ function App() {
               <Route exact path="/dashboard/:userId" component={Home} />
               <Route exact path="/account" component={Account} />
               <Route exact path="/profile/:userId" component={Profile} />
+              <Route exact path="/admin" component={Admin} />
             </Switch>
           </div>
         </Router>
