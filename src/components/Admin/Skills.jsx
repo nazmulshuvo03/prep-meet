@@ -11,7 +11,7 @@ export const Skills = ({ professionId = "", data = null }) => {
   const [filteredData, setFilteredData] = useState();
 
   useEffect(() => {
-    if (query && query.length) {
+    if (query && query.length && data && data.length) {
       setFilteredData(() =>
         data.filter((item) =>
           item.name.toLowerCase().includes(query.toLowerCase())

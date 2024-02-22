@@ -15,7 +15,8 @@ const ProfessionSlice = createSlice({
     },
     updateProfessions: (state, action) => {
       const data = action.payload;
-      const alreadyExists = state.items.some((s) => s.id === data.id);
+      const alreadyExists =
+        state.items.length && state.items.some((s) => s.id === data.id);
       if (!alreadyExists) state.items.push(data);
     },
     removeProfession: (state, action) => {
@@ -28,9 +29,10 @@ const ProfessionSlice = createSlice({
         (item) => item.id === data.profession_id
       );
       if (professionToUpdate) {
-        const alreadyExists = professionToUpdate.skills.some(
-          (s) => s.id === data.id
-        );
+        const alreadyExists =
+          professionToUpdate.skills &&
+          professionToUpdate.skills.length &&
+          professionToUpdate.skills.some((s) => s.id === data.id);
         if (!alreadyExists) professionToUpdate.skills.push(data);
       }
     },
@@ -51,9 +53,10 @@ const ProfessionSlice = createSlice({
         (item) => item.id === data.profession_id
       );
       if (professionToUpdate) {
-        const alreadyExists = professionToUpdate.experienceTypes.some(
-          (s) => s.id === data.id
-        );
+        const alreadyExists =
+          professionToUpdate.experienceTypes &&
+          professionToUpdate.experienceTypes.length &&
+          professionToUpdate.experienceTypes.some((s) => s.id === data.id);
         if (!alreadyExists) professionToUpdate.experienceTypes.push(data);
       }
     },
