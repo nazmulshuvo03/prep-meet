@@ -36,6 +36,8 @@ const ProfessionAdmin = () => {
         name: query,
       })
     );
+    setQuery("");
+    setFilteredData(professions);
   };
 
   return (

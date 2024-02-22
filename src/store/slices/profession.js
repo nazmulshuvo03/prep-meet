@@ -13,12 +13,20 @@ const ProfessionSlice = createSlice({
     setKeyLabelPairs: (state, data) => {
       state.keyLabelPairs = data.payload;
     },
-    updateProfessions: (state, data) => {
-      state.items = [...state.items, data.payload];
+    updateProfessions: (state, action) => {
+      state.items.push(action.payload);
+    },
+    removeProfession: (state, action) => {
+      const id = action.payload;
+      state.items = state.items.filter((item) => item.id !== id);
     },
   },
 });
 
-export const { setProfessions, setKeyLabelPairs, updateProfessions } =
-  ProfessionSlice.actions;
+export const {
+  setProfessions,
+  setKeyLabelPairs,
+  updateProfessions,
+  removeProfession,
+} = ProfessionSlice.actions;
 export default ProfessionSlice.reducer;
