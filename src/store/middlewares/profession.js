@@ -1,12 +1,13 @@
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
-import { fetchContent, postContent } from "../../services/api";
+import { deleteContent, fetchContent, postContent } from "../../services/api";
 import {
   all_professions_url,
   single_profession_url,
 } from "../../services/urls/profession";
-import { setLoading } from "../slices/global";
+import { setLoading, setToastMessage } from "../slices/global";
 import { setProfessions } from "../slices/profession";
+import { TOAST_TYPES } from "../../constants/Toast";
 
 export const fetchProfessions = () =>
   asyncWrapper(async (dispatch) => {
@@ -18,8 +19,47 @@ export const fetchProfessions = () =>
   });
 
 export const addProfession = (data) =>
-  asyncWrapper(async (_dispatch) => {
-    const res = await postContent(single_profession_url(), data);
+  asyncWrapper(async (dispatch) => {
+    const res = await postContent(all_professions_url(), data);
     console.log("Profession doc: ", res);
-    responseHandler(res, () => console.log("Profession added: ", res.data));
+    responseHandler(
+      res,
+      () =>
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[0],
+            message: `${res.data.name} added`,
+          })
+        ),
+      () =>
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: res.data,
+          })
+        )
+    );
+  });
+
+export const deleteProfession = (id) =>
+  asyncWrapper(async (dispatch) => {
+    const res = await deleteContent(single_profession_url(id));
+    console.log("Profession doc: ", res);
+    responseHandler(
+      res,
+      () =>
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[0],
+            message: res.data,
+          })
+        ),
+      () =>
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: res.data,
+          })
+        )
+    );
   });
