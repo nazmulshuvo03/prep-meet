@@ -35,7 +35,9 @@ export const ExperienceTypes = ({ professionId = "", data = null }) => {
           return (
             <Chip
               key={et.id}
-              deleteHandler={() => dispatch(deleteExperienceType(et.id))}
+              deleteHandler={() =>
+                dispatch(deleteExperienceType(et.id, professionId))
+              }
             >
               {et.name}
             </Chip>

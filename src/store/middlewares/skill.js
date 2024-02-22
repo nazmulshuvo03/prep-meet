@@ -9,6 +9,12 @@ import {
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { setToastMessage } from "../slices/global";
+import {
+  removeExperienceTypes,
+  removeSkill,
+  updateExperienceTypes,
+  updateSkills,
+} from "../slices/profession";
 
 export const addSkill = (data) =>
   asyncWrapper(async (dispatch) => {
@@ -16,13 +22,15 @@ export const addSkill = (data) =>
     console.log("Skill adding response: ", res);
     responseHandler(
       res,
-      () =>
+      () => {
+        dispatch(updateSkills(res.data));
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[0],
             message: `${res.data.name} added`,
           })
-        ),
+        );
+      },
       () =>
         dispatch(
           setToastMessage({
@@ -33,18 +41,21 @@ export const addSkill = (data) =>
     );
   });
 
-export const deleteSkill = (id) =>
+export const deleteSkill = (id, profession) =>
   asyncWrapper(async (dispatch) => {
     const res = await deleteContent(single_skill_url(id));
+    console.log("Skill delete response: ", res);
     responseHandler(
       res,
-      () =>
+      () => {
+        dispatch(removeSkill({ id, profession }));
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[0],
             message: res.data,
           })
-        ),
+        );
+      },
       () =>
         dispatch(
           setToastMessage({
@@ -61,13 +72,15 @@ export const addExperienceType = (data) =>
     console.log("Experience type adding response: ", res);
     responseHandler(
       res,
-      () =>
+      () => {
+        dispatch(updateExperienceTypes(res.data));
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[0],
             message: `${res.data.name} added`,
           })
-        ),
+        );
+      },
       () =>
         dispatch(
           setToastMessage({
@@ -78,18 +91,20 @@ export const addExperienceType = (data) =>
     );
   });
 
-export const deleteExperienceType = (id) =>
+export const deleteExperienceType = (id, profession) =>
   asyncWrapper(async (dispatch) => {
     const res = await deleteContent(single_experience_type_url(id));
     responseHandler(
       res,
-      () =>
+      () => {
+        dispatch(removeExperienceTypes({ id, profession }));
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[0],
             message: res.data,
           })
-        ),
+        );
+      },
       () =>
         dispatch(
           setToastMessage({

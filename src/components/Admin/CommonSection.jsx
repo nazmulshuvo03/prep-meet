@@ -23,8 +23,10 @@ export const Section = ({
           profession_id: profession,
         })
       );
+      setQuery("");
     }
   };
+
   return (
     <div className="flex flex-col border rounded-md m-1 w-full h-full overflow-y-auto">
       <div className="bg-gray-700 text-white text-center py-1">{title}</div>

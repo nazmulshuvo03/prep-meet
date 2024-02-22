@@ -33,7 +33,9 @@ export const Skills = ({ professionId = "", data = null }) => {
           return (
             <Chip
               key={skill.id}
-              deleteHandler={() => dispatch(deleteSkill(skill.id))}
+              deleteHandler={() =>
+                dispatch(deleteSkill(skill.id, professionId))
+              }
             >
               {skill.name}
             </Chip>
