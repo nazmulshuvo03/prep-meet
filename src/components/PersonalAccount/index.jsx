@@ -12,6 +12,7 @@ import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
 import { fetchProfessions } from "../../store/middlewares/profession";
+import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
 
 export const PersonalAccount = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ export const PersonalAccount = () => {
   const professionDropdownOptions = useSelector(
     (state) => state.profession.professionKeyPairs
   );
+  const [skillOptions, setSkillOptions] = useState();
+  const [expTypsOptions, setExpTypsOptions] = useState();
 
   const [state, setState] = useState({
     email: "",
@@ -34,7 +37,8 @@ export const PersonalAccount = () => {
     timezone: "",
     targetProfessionId: "",
     targetProfession: "",
-    focusAreas: null,
+    focusAreas: [],
+    typesOfExperience: [],
     rolesOfInterest: null,
     stageOfInterviewPrep: null,
     workExperiences: null,
@@ -84,6 +88,22 @@ export const PersonalAccount = () => {
   useEffect(() => {
     dispatch(fetchProfessions());
   }, []);
+
+  useEffect(() => {
+    if (
+      professionDropdownOptions &&
+      professionDropdownOptions.length &&
+      state.targetProfessionId
+    ) {
+      const selectedProfession = professionDropdownOptions.filter(
+        (option) => option.key === state.targetProfessionId
+      )[0];
+      if (selectedProfession) {
+        setSkillOptions(selectedProfession.skills);
+        setExpTypsOptions(selectedProfession.experienceTypes);
+      }
+    }
+  }, [professionDropdownOptions, state.targetProfessionId]);
 
   return (
     <div className="h-ful w-full px-4 py-2">
@@ -135,6 +155,24 @@ export const PersonalAccount = () => {
               options={professionDropdownOptions}
               onSelect={handleChange}
               defaultText="Select an option"
+            />
+          </div>
+          <div className="flex gap-4 justify-between">
+            <MultiInputDropdown
+              label="Focus Areas"
+              name="focusAreas"
+              value={state.focusAreas}
+              options={skillOptions}
+              onSelect={handleChange}
+              defaultText={"Select upto 5"}
+            />
+            <MultiInputDropdown
+              label="Types of Experience"
+              name="typesOfExperience"
+              value={state.typesOfExperience}
+              options={expTypsOptions}
+              onSelect={handleChange}
+              defaultText={"Select upto 5"}
             />
           </div>
           <div>

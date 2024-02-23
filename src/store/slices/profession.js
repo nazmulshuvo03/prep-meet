@@ -5,8 +5,6 @@ const ProfessionSlice = createSlice({
   initialState: {
     items: [],
     professionKeyPairs: [],
-    skillKeyPairs: [],
-    experienceTypeKeyPairs: [],
   },
   reducers: {
     setProfessions: (state, action) => {
@@ -15,29 +13,29 @@ const ProfessionSlice = createSlice({
     setProfessionKeyPair: (state, action) => {
       const data = action.payload;
       const keypairs = [];
-      const skillKeyPairs = [];
-      const expTypesKeyPairs = [];
-
       data.forEach((item) => {
-        keypairs.push({ key: item.id, label: item.name });
+        const skillKeyPairs = [];
+        const expTypesKeyPairs = [];
         item.skills.forEach((skill) =>
           skillKeyPairs.push({
-            id: skill.id,
+            key: skill.id,
             label: skill.name,
-            profession_id: skill.profession_id,
           })
         );
         item.experienceTypes.forEach((et) =>
           expTypesKeyPairs.push({
-            id: et.id,
+            key: et.id,
             label: et.name,
-            profession_id: et.profession_id,
           })
         );
+        keypairs.push({
+          key: item.id,
+          label: item.name,
+          skills: skillKeyPairs,
+          experienceTypes: expTypesKeyPairs,
+        });
       });
       state.professionKeyPairs = keypairs;
-      state.skillKeyPairs = skillKeyPairs;
-      state.experienceTypeKeyPairs = expTypesKeyPairs;
     },
     updateProfessions: (state, action) => {
       const data = action.payload;
