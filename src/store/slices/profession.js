@@ -4,14 +4,40 @@ const ProfessionSlice = createSlice({
   name: "profession",
   initialState: {
     items: [],
-    keyLabelPairs: [],
+    professionKeyPairs: [],
+    skillKeyPairs: [],
+    experienceTypeKeyPairs: [],
   },
   reducers: {
-    setProfessions: (state, data) => {
-      state.items = data.payload;
+    setProfessions: (state, action) => {
+      state.items = action.payload;
     },
-    setKeyLabelPairs: (state, data) => {
-      state.keyLabelPairs = data.payload;
+    setProfessionKeyPair: (state, action) => {
+      const data = action.payload;
+      const keypairs = [];
+      const skillKeyPairs = [];
+      const expTypesKeyPairs = [];
+
+      data.forEach((item) => {
+        keypairs.push({ key: item.id, label: item.name });
+        item.skills.forEach((skill) =>
+          skillKeyPairs.push({
+            id: skill.id,
+            label: skill.name,
+            profession_id: skill.profession_id,
+          })
+        );
+        item.experienceTypes.forEach((et) =>
+          expTypesKeyPairs.push({
+            id: et.id,
+            label: et.name,
+            profession_id: et.profession_id,
+          })
+        );
+      });
+      state.professionKeyPairs = keypairs;
+      state.skillKeyPairs = skillKeyPairs;
+      state.experienceTypeKeyPairs = expTypesKeyPairs;
     },
     updateProfessions: (state, action) => {
       const data = action.payload;
@@ -75,7 +101,7 @@ const ProfessionSlice = createSlice({
 
 export const {
   setProfessions,
-  setKeyLabelPairs,
+  setProfessionKeyPair,
   updateProfessions,
   removeProfession,
   updateSkills,

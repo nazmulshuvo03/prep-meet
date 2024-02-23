@@ -8,6 +8,7 @@ import {
 import { setLoading, setToastMessage } from "../slices/global";
 import {
   removeProfession,
+  setProfessionKeyPair,
   setProfessions,
   updateProfessions,
 } from "../slices/profession";
@@ -18,7 +19,10 @@ export const fetchProfessions = () =>
     dispatch(setLoading());
     const res = await fetchContent(all_professions_url());
     console.log("Profession docs: ", res);
-    responseHandler(res, dispatch(setProfessions(res.data)));
+    responseHandler(res, () => {
+      dispatch(setProfessions(res.data));
+      dispatch(setProfessionKeyPair(res.data));
+    });
     dispatch(setLoading(false));
   });
 

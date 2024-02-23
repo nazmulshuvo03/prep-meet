@@ -17,27 +17,30 @@ export const PersonalAccount = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const professionDropdownOptions = useSelector(
-    (state) => state.profession.keyLabelPairs
+    (state) => state.profession.professionKeyPairs
   );
 
   const [state, setState] = useState({
+    email: "",
+    userName: "",
     firstName: "",
     lastName: "",
-    email: "",
-    role: "",
-    profession: "",
-    fieldOfInterest: "",
-    currentCompany: "",
-    yearsOfExperience: 0,
-    photoURL: "",
     gender: "",
-    country: "",
-    timezone: "",
+    photoURL: "",
+    linkedInProfile: "",
     profileHeadline: "",
-    university: "",
-    fieldOfStudy: "",
-    degree: "",
+    country: "",
     language: "",
+    timezone: "",
+    targetProfessionId: "",
+    targetProfession: "",
+    focusAreas: null,
+    rolesOfInterest: null,
+    stageOfInterviewPrep: null,
+    workExperiences: null,
+    education: null,
+    companiesOfInterest: null,
+    interviewExperience: null,
   });
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -103,51 +106,35 @@ export const PersonalAccount = () => {
                   onChange={handleChange}
                 />
               </div>
-              <Dropdown
-                label={"Language"}
-                name={"language"}
-                value={state.language}
-                options={LANGUAGE_DATA}
-                onSelect={handleChange}
-                defaultText="Select an option"
-              />
-              <div className="flex justify-between">
+              <div className="py-2">
+                <Input
+                  placeholder={"User Name"}
+                  name={"userName"}
+                  value={state.userName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex justify-between gap-4">
                 <div>{state.email}</div>
-                <div>Role: {state.role}</div>
+                <Dropdown
+                  // label={"Language"}
+                  name={"language"}
+                  value={state.language}
+                  options={LANGUAGE_DATA}
+                  onSelect={handleChange}
+                  defaultText="Language"
+                />
               </div>
             </div>
           </div>
           <div className="flex gap-4 justify-between items-center">
             <Dropdown
-              label={"Current Profession"}
-              name={"profession"}
-              value={state.profession}
+              label={"Target Profession"}
+              name={"targetProfessionId"}
+              value={state.targetProfessionId}
               options={professionDropdownOptions}
               onSelect={handleChange}
               defaultText="Select an option"
-            />
-            <Dropdown
-              label={"Field of interest"}
-              name={"fieldOfInterest"}
-              value={state.fieldOfInterest}
-              options={professionDropdownOptions}
-              onSelect={handleChange}
-              defaultText="Select an option"
-            />
-          </div>
-          <div className="flex items-center justify-between gap-4">
-            <Input
-              label={"Current Company"}
-              name={"currentCompany"}
-              value={state.currentCompany}
-              onChange={handleChange}
-            />
-            <Input
-              type={"number"}
-              label={"Years of experience"}
-              name={"yearsOfExperience"}
-              value={state.yearsOfExperience}
-              onChange={handleChange}
             />
           </div>
           <div>
@@ -184,26 +171,6 @@ export const PersonalAccount = () => {
             value={state.profileHeadline}
             setValue={handleChange}
           />
-          <div className="flex justify-between items-center gap-2">
-            <Input
-              label={"University"}
-              name={"university"}
-              value={state.university}
-              onChange={handleChange}
-            />
-            <Input
-              label={"Field of study"}
-              name={"fieldOfStudy"}
-              value={state.fieldOfStudy}
-              onChange={handleChange}
-            />
-            <Input
-              label={"Degree"}
-              name={"degree"}
-              value={state.degree}
-              onChange={handleChange}
-            />
-          </div>
           <div className="flex justify-center items-center">
             <Button onClick={handleSave}>Save</Button>
           </div>
