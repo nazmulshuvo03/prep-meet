@@ -137,3 +137,14 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
   );
   return { date: formattedDate, time: formattedHour };
 };
+
+export const formatPostgresDate = (date) => {
+  const parsedDate = new Date(date);
+  return parsedDate.toISOString();
+};
+
+export const htmlDateInputFormat = (isoString) => {
+  const isoDate = new Date(isoString);
+  const formattedDate = isoDate.toISOString().split("T")[0];
+  return formattedDate;
+};

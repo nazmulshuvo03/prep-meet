@@ -1,5 +1,5 @@
 import { TOAST_TYPES } from "../../constants/Toast";
-import { deleteContent, postContent } from "../../services/api";
+import { deleteContent, postContent, putContent } from "../../services/api";
 import {
   all_workexperience_url,
   single_workexperience_url,
@@ -44,6 +44,31 @@ export const deleteWorkExperience = (id) =>
       () => {
         dispatch(removeWorkExperience(id));
         dispatch(setLoading(false));
+      },
+      () => {
+        dispatch(setLoading(false));
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: res.data,
+          })
+        );
+      }
+    );
+  });
+
+export const editWorkExperience = (id, data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await putContent(single_workexperience_url(id), data);
+    console.log("Work experience update response: ", res);
+
+    responseHandler(
+      res,
+      () => {
+        dispatch(setLoading(false));
+        dispatch(removeWorkExperience(id));
+        dispatch(updateWorkExperience(res.data));
       },
       () => {
         dispatch(setLoading(false));

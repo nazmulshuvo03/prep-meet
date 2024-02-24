@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addWorkExperience } from "../../../store/middlewares/userInfo";
 import { setToastMessage } from "../../../store/slices/global";
 import { TOAST_TYPES } from "../../../constants/Toast";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
-import { AddWorkExperience } from "./AddNew";
+import { AddNew } from "./AddNew";
 import { Display } from "./Display";
+import { formatPostgresDate } from "../../../utils/timeDate";
 
 const DEFAULT_DATA = {
   jobTitle: null,
@@ -19,9 +19,6 @@ const DEFAULT_DATA = {
 export const WorkExperience = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  const professionDropdownOptions = useSelector(
-    (state) => state.profession.professionKeyPairs
-  );
   const [showInput, setShowInput] = useState(false);
   const [formData, setFormData] = useState(DEFAULT_DATA);
   const { jobTitle, companyName, country, startDate, endDate } = formData;
@@ -34,35 +31,29 @@ export const WorkExperience = () => {
     });
   };
 
-  const formatPostgresDate = (date) => {
+  const handleSubmit = () => {
     try {
-      const parsedDate = new Date(date);
-      return parsedDate.toISOString();
+      const formattedStartDate = formatPostgresDate(startDate);
+      const formattedEndDate = formatPostgresDate(endDate);
+
+      if (formattedStartDate && formattedEndDate) {
+        const fullData = {
+          user_id: profile.id,
+          profession_id: jobTitle,
+          company_name: companyName,
+          country: country,
+          start_date: formattedStartDate,
+          end_date: formattedEndDate,
+        };
+        dispatch(addWorkExperience(fullData));
+        setShowInput(false);
+        setFormData(DEFAULT_DATA);
+      }
     } catch (err) {
       dispatch(setToastMessage({ type: TOAST_TYPES[1], message: err.message }));
     }
   };
 
-  const handleSubmit = () => {
-    const formattedStartDate = formatPostgresDate(startDate);
-    const formattedEndDate = formatPostgresDate(endDate);
-
-    if (formattedStartDate && formattedEndDate) {
-      const fullData = {
-        user_id: profile.id,
-        profession_id: jobTitle,
-        company_name: companyName,
-        country: country,
-        start_date: formattedStartDate,
-        end_date: formattedEndDate,
-      };
-      dispatch(addWorkExperience(fullData));
-      setShowInput(false);
-      setFormData(DEFAULT_DATA);
-    }
-  };
-
-  console.log("Work experience data: ", profile, formData);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
@@ -80,14 +71,14 @@ export const WorkExperience = () => {
           return <Display data={wp} key={wp.id} />;
         })
       ) : (
-        <AddWorkExperience
+        <AddNew
           data={formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
       )}
       {showInput && (
-        <AddWorkExperience
+        <AddNew
           data={formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}

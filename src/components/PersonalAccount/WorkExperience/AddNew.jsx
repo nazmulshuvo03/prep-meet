@@ -3,7 +3,7 @@ import { Button } from "../../Button";
 import { Dropdown } from "../../Dropdown";
 import { Input } from "../../Input";
 
-export const AddWorkExperience = ({
+export const AddNew = ({
   data,
   handleChange = () => {},
   handleSubmit = () => {},
@@ -51,7 +51,7 @@ export const AddWorkExperience = ({
         />
       </div>
       <Button className={"!bg-accent"} onClick={handleSubmit}>
-        Add
+        Save
       </Button>
     </div>
   );
