@@ -14,6 +14,7 @@ import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
 import { fetchProfessions } from "../../store/middlewares/profession";
+import { Education } from "./Education";
 
 export const PersonalAccount = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,6 @@ export const PersonalAccount = () => {
     typesOfExperience: [],
     rolesOfInterest: null,
     stageOfInterviewPrep: null,
-    workExperiences: null,
-    education: null,
     companiesOfInterest: null,
     interviewExperience: null,
   });
@@ -213,6 +212,7 @@ export const PersonalAccount = () => {
             setValue={handleChange}
           />
           <WorkExperience />
+          <Education />
           <div className="flex justify-center items-center">
             <Button onClick={handleSave}>Save</Button>
           </div>
