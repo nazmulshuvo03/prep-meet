@@ -6,13 +6,14 @@ import { Dropdown } from "../Dropdown";
 import { ProfileImage } from "../ProfileImage";
 import { RadioButtonGroup } from "../RadioButtonGroup";
 import { TextInput } from "../TextInput";
+import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
+import { WorkExperience } from "./WorkExperience";
 import COUNTRY_DATA from "../../assets/data/countries.json";
 import TIMEZONE_DATA from "../../assets/data/timezones.json";
 import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
 import { fetchProfessions } from "../../store/middlewares/profession";
-import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
 
 export const PersonalAccount = () => {
   const dispatch = useDispatch();
@@ -104,6 +105,8 @@ export const PersonalAccount = () => {
       }
     }
   }, [professionDropdownOptions, state.targetProfessionId]);
+
+  // console.log("@@@@@ profile: ", profile);
 
   return (
     <div className="h-ful w-full px-4 py-2">
@@ -209,6 +212,7 @@ export const PersonalAccount = () => {
             value={state.profileHeadline}
             setValue={handleChange}
           />
+          <WorkExperience />
           <div className="flex justify-center items-center">
             <Button onClick={handleSave}>Save</Button>
           </div>
