@@ -24,11 +24,22 @@ const userSlice = createSlice({
       state.people = data.payload;
     },
     updatePeople: (state, data) => {
-      state.people = [...state.people, data.payload];
+      state.people = [...state.people, { ...data.payload }];
+    },
+    updateWorkExperience: (state, action) => {
+      const data = action.payload;
+      let oldData = state.profile;
+      oldData.workExperiences = [...oldData.workExperiences, data];
+      state.profile = oldData;
     },
   },
 });
 
-export const { setProfile, updateProfile, setPeople, updatePeople } =
-  userSlice.actions;
+export const {
+  setProfile,
+  updateProfile,
+  setPeople,
+  updatePeople,
+  updateWorkExperience,
+} = userSlice.actions;
 export default userSlice.reducer;
