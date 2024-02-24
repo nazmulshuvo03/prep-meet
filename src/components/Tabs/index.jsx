@@ -24,7 +24,7 @@ export const Tabs = ({
           );
         })}
       </div>
-      <div className="flex-1 h-full border border-accent rounded-md p-2">
+      <div className="flex-1 h-full overflow-y-auto border border-accent rounded-md p-2">
         {data[currentTab].component}
       </div>
     </div>

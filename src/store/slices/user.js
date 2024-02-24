@@ -28,9 +28,17 @@ const userSlice = createSlice({
     },
     updateWorkExperience: (state, action) => {
       const data = action.payload;
-      let oldData = state.profile;
-      oldData.workExperiences = [...oldData.workExperiences, data];
-      state.profile = oldData;
+      let newData = state.profile;
+      newData.workExperiences = [...newData.workExperiences, data];
+      state.profile = newData;
+    },
+    removeWorkExperience: (state, action) => {
+      const id = action.payload;
+      let newData = state.profile;
+      newData.workExperiences = newData.workExperiences.filter(
+        (work) => work.id !== id
+      );
+      state.profile = newData;
     },
   },
 });
@@ -41,5 +49,6 @@ export const {
   setPeople,
   updatePeople,
   updateWorkExperience,
+  removeWorkExperience,
 } = userSlice.actions;
 export default userSlice.reducer;

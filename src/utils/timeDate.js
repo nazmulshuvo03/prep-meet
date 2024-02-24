@@ -115,3 +115,25 @@ export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
   );
   return { date: formattedDate, time: formattedHour };
 };
+
+export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
+  const localTime = new Date(isoTIme);
+  const dateOptions = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  };
+  const formattedDate = new Intl.DateTimeFormat("en-IN", dateOptions).format(
+    localTime
+  );
+  const hourOptions = {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  };
+  const formattedHour = new Intl.DateTimeFormat("en-IN", hourOptions).format(
+    localTime
+  );
+  return { date: formattedDate, time: formattedHour };
+};
