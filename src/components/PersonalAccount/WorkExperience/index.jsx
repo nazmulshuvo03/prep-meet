@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../Button";
 import { useDispatch, useSelector } from "react-redux";
-import { addWorkExperience } from "../../../store/middlewares/userInfo";
+import { addWorkExperience } from "../../../store/middlewares/workExperience";
 import { setToastMessage } from "../../../store/slices/global";
 import { TOAST_TYPES } from "../../../constants/Toast";
 import { AddNew } from "./AddNew";

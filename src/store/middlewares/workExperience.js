@@ -3,7 +3,7 @@ import { deleteContent, postContent, putContent } from "../../services/api";
 import {
   all_workexperience_url,
   single_workexperience_url,
-} from "../../services/urls/userInfo";
+} from "../../services/urls/workExperience";
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { setLoading, setToastMessage } from "../slices/global";

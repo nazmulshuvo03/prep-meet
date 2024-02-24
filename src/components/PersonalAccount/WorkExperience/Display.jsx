@@ -10,7 +10,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import {
   deleteWorkExperience,
   editWorkExperience,
-} from "../../../store/middlewares/userInfo";
+} from "../../../store/middlewares/workExperience";
 import { AddNew } from "./AddNew";
 import { setToastMessage } from "../../../store/slices/global";
 import { TOAST_TYPES } from "../../../constants/Toast";
