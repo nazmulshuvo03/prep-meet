@@ -5,7 +5,7 @@ import {
   // Redirect,
 } from "react-router-dom";
 import Dashboard from "./routes/Dashboard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
@@ -13,9 +13,22 @@ import Profile from "./routes/Profile";
 import Admin from "./routes/Admin";
 import CircularProgress from "./components/Progress";
 import Toast from "./components/Toast";
+import { useEffect } from "react";
+import {
+  fetchCompanies,
+  fetchExperienceLevels,
+  fetchPreparationStages,
+} from "./store/middlewares/static";
 
 function App() {
+  const dispatch = useDispatch();
   const global = useSelector((state) => state.global);
+
+  useEffect(() => {
+    dispatch(fetchExperienceLevels());
+    dispatch(fetchPreparationStages());
+    dispatch(fetchCompanies());
+  }, []);
 
   return (
     <div
