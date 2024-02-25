@@ -23,9 +23,7 @@ const Dashboard = () => {
   const profile = useSelector((state) => state.user.profile);
   const people = useSelector((state) => state.user.people);
   const oldQuery = useSelector((state) => state.global.dashboardQuery);
-  const professionDropdownOptions = useSelector(
-    (state) => state.profession.keyLabelPairs
-  );
+  const professions = useSelector((state) => state.profession.items);
 
   const [queries, setQueries] = useState({});
   const [minExp, setMinExp] = useState(EXPERIENCE_MIN_VALUE);
@@ -84,7 +82,7 @@ const Dashboard = () => {
           <Dropdown
             name={"profession"}
             value={queries["profession"] || ""}
-            options={professionDropdownOptions}
+            options={professions}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Profession"}
           />

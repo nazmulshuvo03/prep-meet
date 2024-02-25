@@ -8,9 +8,7 @@ export const AddNew = ({
   handleChange = () => {},
   handleSubmit = () => {},
 }) => {
-  const professionDropdownOptions = useSelector(
-    (state) => state.profession.professionKeyPairs
-  );
+  const professions = useSelector((state) => state.profession.items);
   const { jobTitle, companyName, country, startDate, endDate } = data;
 
   return (
@@ -18,7 +16,7 @@ export const AddNew = ({
       <Dropdown
         name={"jobTitle"}
         value={jobTitle || ""}
-        options={professionDropdownOptions}
+        options={professions}
         onSelect={handleChange}
         defaultText="Job Title"
       />

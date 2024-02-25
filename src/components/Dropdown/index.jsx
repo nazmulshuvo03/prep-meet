@@ -2,9 +2,9 @@ export const Dropdown = ({
   label = "",
   options = [],
   onSelect = () => {},
-  defaultText,
-  defaultKey = "key",
-  defaultLabel = "label",
+  defaultText = "",
+  defaultKey = "id",
+  defaultLabel = "name",
   ...rest
 }) => {
   return (

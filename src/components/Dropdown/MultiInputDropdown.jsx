@@ -6,6 +6,9 @@ export const MultiInputDropdown = ({
   options = [],
   value = [],
   onSelect = () => {},
+  defaultText = "",
+  defaultKey = "id",
+  defaultLabel = "name",
 }) => {
   const dropdownRef = useRef(null);
   const [selectedOptions, setSelectedOptions] = useState(value);
@@ -65,7 +68,11 @@ export const MultiInputDropdown = ({
           selectedOptions.length &&
           selectedOptions.map((seleted) => (
             <div key={seleted}>
-              {options.find((option) => option.key === seleted).label}
+              {
+                options.find((option) => option[defaultKey] === seleted)[
+                  defaultLabel
+                ]
+              }
             </div>
           ))}
         {dropdownOpen && (
@@ -79,17 +86,17 @@ export const MultiInputDropdown = ({
               {options &&
                 options.length &&
                 options.map((option) => (
-                  <label key={option.key} className="flex items-center">
+                  <label key={option[defaultKey]} className="flex items-center">
                     <input
                       type="checkbox"
                       className="h-4 w-4  border-gray-300 rounded"
                       onChange={() => {
-                        handleCheckboxChange(option.key);
+                        handleCheckboxChange(option[defaultKey]);
                       }}
-                      checked={selectedOptions.includes(option.key)}
+                      checked={selectedOptions.includes(option[defaultKey])}
                     />
                     <span className="ml-2 text-sm text-gray-700">
-                      {option.label}
+                      {option[defaultLabel]}
                     </span>
                   </label>
                 ))}

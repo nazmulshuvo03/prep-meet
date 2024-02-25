@@ -19,9 +19,7 @@ import { Education } from "./Education";
 export const PersonalAccount = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  const professionDropdownOptions = useSelector(
-    (state) => state.profession.professionKeyPairs
-  );
+  const professions = useSelector((state) => state.profession.items);
   const [skillOptions, setSkillOptions] = useState();
   const [expTypsOptions, setExpTypsOptions] = useState();
 
@@ -90,20 +88,16 @@ export const PersonalAccount = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      professionDropdownOptions &&
-      professionDropdownOptions.length &&
-      state.targetProfessionId
-    ) {
-      const selectedProfession = professionDropdownOptions.filter(
-        (option) => option.key === state.targetProfessionId
+    if (professions && professions.length && state.targetProfessionId) {
+      const selectedProfession = professions.filter(
+        (option) => option.id === state.targetProfessionId
       )[0];
       if (selectedProfession) {
         setSkillOptions(selectedProfession.skills);
         setExpTypsOptions(selectedProfession.experienceTypes);
       }
     }
-  }, [professionDropdownOptions, state.targetProfessionId]);
+  }, [professions, state.targetProfessionId]);
 
   // console.log("@@@@@ profile: ", profile);
 
@@ -154,7 +148,7 @@ export const PersonalAccount = () => {
               label={"Target Profession"}
               name={"targetProfessionId"}
               value={state.targetProfessionId}
-              options={professionDropdownOptions}
+              options={professions}
               onSelect={handleChange}
               defaultText="Select an option"
             />
@@ -193,14 +187,6 @@ export const PersonalAccount = () => {
               value={state.country}
               options={COUNTRY_DATA}
               onSelect={handleCountryChange}
-              defaultText="Select an option"
-            />
-            <Dropdown
-              label={"Timezone"}
-              name={"timezone"}
-              value={state.timezone}
-              options={TIMEZONE_DATA}
-              onSelect={handleChange}
               defaultText="Select an option"
             />
           </div>

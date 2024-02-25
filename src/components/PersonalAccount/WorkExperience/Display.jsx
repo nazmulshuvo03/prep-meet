@@ -18,9 +18,7 @@ import { TOAST_TYPES } from "../../../constants/Toast";
 export const Display = ({ data }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  const professionDropdownOptions = useSelector(
-    (state) => state.profession.professionKeyPairs
-  );
+  const professions = useSelector((state) => state.profession.items);
   const [editMode, setEditMode] = useState(false);
   const [editProperties, setEditProperties] = useState({
     jobTitle: data.profession_id,
@@ -70,11 +68,7 @@ export const Display = ({ data }) => {
         <div className="border rounded-md px-2 py-3">
           <div className="flex items-center justify-between">
             <div>
-              {
-                professionDropdownOptions.find(
-                  (prf) => prf.key === data.profession_id
-                ).label
-              }
+              {professions.find((prf) => prf.id === data.profession_id).name}
             </div>
             <div className="flex gap-2">
               <div className="cursor-pointer" onClick={() => setEditMode(true)}>
