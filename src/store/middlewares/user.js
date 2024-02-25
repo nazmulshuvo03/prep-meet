@@ -8,7 +8,7 @@ import {
   user_url,
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
-import { setPeople, setProfile } from "../slices/user";
+import { setPeople, setProfile, updateProfile } from "../slices/user";
 
 export const fetchPeople = (userId = null, query = "") =>
   asyncWrapper(async (dispatch) => {
@@ -53,7 +53,7 @@ export const updateUserData = (userId, updatedData) =>
     const res = await putContent(user_url(userId), updatedData);
     console.log("user data updated: ", res);
     const handleSuccess = () => {
-      dispatch(setProfile(res.data));
+      dispatch(updateProfile(res.data));
       dispatch(
         setToastMessage({
           type: TOAST_TYPES[0],

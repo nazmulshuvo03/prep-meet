@@ -10,12 +10,13 @@ const userSlice = createSlice({
     setProfile: (state, data) => {
       state.profile = data.payload;
     },
-    updateProfile: (state, data) => {
+    updateProfile: (state, action) => {
+      const data = action.payload;
       const updatedProfile = { ...state.profile };
 
       Object.keys(data).forEach((key) => {
-        if (state.profile[key] !== data.payload[key]) {
-          updatedProfile[key] = data.payload[key];
+        if (state.profile[key] !== data[key]) {
+          updatedProfile[key] = data[key];
         }
       });
       state.profile = updatedProfile;
