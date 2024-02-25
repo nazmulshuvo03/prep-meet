@@ -19,12 +19,14 @@ import {
   fetchExperienceLevels,
   fetchPreparationStages,
 } from "./store/middlewares/static";
+import { fetchProfessions } from "./store/middlewares/profession";
 
 function App() {
   const dispatch = useDispatch();
   const global = useSelector((state) => state.global);
 
   useEffect(() => {
+    dispatch(fetchProfessions());
     dispatch(fetchExperienceLevels());
     dispatch(fetchPreparationStages());
     dispatch(fetchCompanies());

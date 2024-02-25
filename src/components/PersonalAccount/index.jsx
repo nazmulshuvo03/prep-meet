@@ -9,7 +9,7 @@ import { TextInput } from "../TextInput";
 import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
 import { WorkExperience } from "./WorkExperience";
 import COUNTRY_DATA from "../../assets/data/countries.json";
-import TIMEZONE_DATA from "../../assets/data/timezones.json";
+// import TIMEZONE_DATA from "../../assets/data/timezones.json";
 import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
@@ -20,6 +20,13 @@ export const PersonalAccount = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const professions = useSelector((state) => state.profession.items);
+  const experienceLevels = useSelector(
+    (state) => state.static.experienceLevels
+  );
+  const preparationStages = useSelector(
+    (state) => state.static.preparationStages
+  );
+  const companies = useSelector((state) => state.static.companies);
   const [skillOptions, setSkillOptions] = useState();
   const [expTypsOptions, setExpTypsOptions] = useState();
 
@@ -39,8 +46,8 @@ export const PersonalAccount = () => {
     targetProfession: "",
     focusAreas: [],
     typesOfExperience: [],
-    rolesOfInterest: null,
-    stageOfInterviewPrep: null,
+    experienceLevel: "",
+    preparationStage: "",
     companiesOfInterest: null,
     interviewExperience: null,
   });
@@ -60,18 +67,6 @@ export const PersonalAccount = () => {
     }));
   };
 
-  const handleCountryChange = (event) => {
-    const selectedValue = event.target.value;
-    const selectedOption = COUNTRY_DATA.find(
-      (option) => option["key"] === selectedValue
-    );
-    setState((prev) => ({
-      ...prev,
-      country: selectedOption.key,
-      timezone: selectedOption.timezone,
-    }));
-  };
-
   const handleSave = () => {
     dispatch(updateUserData(profile.id, state));
   };
@@ -84,10 +79,6 @@ export const PersonalAccount = () => {
   }, [profile]);
 
   useEffect(() => {
-    dispatch(fetchProfessions());
-  }, []);
-
-  useEffect(() => {
     if (professions && professions.length && state.targetProfessionId) {
       const selectedProfession = professions.filter(
         (option) => option.id === state.targetProfessionId
@@ -98,8 +89,6 @@ export const PersonalAccount = () => {
       }
     }
   }, [professions, state.targetProfessionId]);
-
-  // console.log("@@@@@ profile: ", profile);
 
   return (
     <div className="h-ful w-full px-4 py-2">
@@ -186,7 +175,7 @@ export const PersonalAccount = () => {
               name={"country"}
               value={state.country}
               options={COUNTRY_DATA}
-              onSelect={handleCountryChange}
+              onSelect={handleChange}
               defaultText="Select an option"
             />
           </div>
@@ -197,6 +186,24 @@ export const PersonalAccount = () => {
             value={state.profileHeadline}
             setValue={handleChange}
           />
+          <div className="flex gap-4 justify-between">
+            <Dropdown
+              label={"Experience Level"}
+              name={"experienceLevel"}
+              value={state.experienceLevel}
+              options={experienceLevels}
+              onSelect={handleChange}
+              defaultText="Select an option"
+            />
+            <Dropdown
+              label={"Preparation Stage"}
+              name={"preparationStage"}
+              value={state.preparationStage}
+              options={preparationStages}
+              onSelect={handleChange}
+              defaultText="Select an option"
+            />
+          </div>
           <WorkExperience />
           <Education />
           <div className="flex justify-center items-center">
