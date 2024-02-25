@@ -41,12 +41,12 @@ export const PersonalAccount = () => {
     country: "",
     language: "",
     timezone: "",
-    targetProfessionId: "",
+    targetProfessionId: null,
     targetProfession: "",
     focusAreas: [],
     typesOfExperience: [],
-    experienceLevel: "",
-    preparationStage: "",
+    experienceLevel: null,
+    preparationStage: null,
     companiesOfInterest: [],
     interviewExperience: null,
   });
@@ -135,7 +135,7 @@ export const PersonalAccount = () => {
             <Dropdown
               label={"Target Profession"}
               name={"targetProfessionId"}
-              value={state.targetProfessionId}
+              value={state.targetProfessionId || ""}
               options={professions}
               onSelect={handleChange}
               defaultText="Select an option"
@@ -189,7 +189,7 @@ export const PersonalAccount = () => {
             <Dropdown
               label={"Experience Level"}
               name={"experienceLevel"}
-              value={state.experienceLevel}
+              value={state.experienceLevel || ""}
               options={experienceLevels}
               onSelect={handleChange}
               defaultText="Select an option"
@@ -197,7 +197,7 @@ export const PersonalAccount = () => {
             <Dropdown
               label={"Preparation Stage"}
               name={"preparationStage"}
-              value={state.preparationStage}
+              value={state.preparationStage || ""}
               options={preparationStages}
               onSelect={handleChange}
               defaultText="Select an option"

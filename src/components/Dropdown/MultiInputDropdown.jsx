@@ -64,8 +64,7 @@ export const MultiInputDropdown = ({
         onClick={handleInputClick}
         className="relative w-full flex-1 flex gap-2 rounded-md border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700"
       >
-        {selectedOptions &&
-          selectedOptions.length &&
+        {selectedOptions && selectedOptions.length ? (
           selectedOptions.map((seleted) => (
             <div key={seleted}>
               {
@@ -74,7 +73,10 @@ export const MultiInputDropdown = ({
                 ]
               }
             </div>
-          ))}
+          ))
+        ) : (
+          <div>{defaultText}</div>
+        )}
         {dropdownOpen && (
           <div
             className="absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
@@ -83,8 +85,7 @@ export const MultiInputDropdown = ({
             aria-labelledby="options-menu"
           >
             <div className="py-2 px-2" role="none">
-              {options &&
-                options.length &&
+              {options && options.length ? (
                 options.map((option) => (
                   <label key={option[defaultKey]} className="flex items-center">
                     <input
@@ -99,7 +100,10 @@ export const MultiInputDropdown = ({
                       {option[defaultLabel]}
                     </span>
                   </label>
-                ))}
+                ))
+              ) : (
+                <div>Empty</div>
+              )}
             </div>
           </div>
         )}
