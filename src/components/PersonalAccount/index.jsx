@@ -13,7 +13,6 @@ import COUNTRY_DATA from "../../assets/data/countries.json";
 import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
-import { fetchProfessions } from "../../store/middlewares/profession";
 import { Education } from "./Education";
 
 export const PersonalAccount = () => {
@@ -48,7 +47,7 @@ export const PersonalAccount = () => {
     typesOfExperience: [],
     experienceLevel: "",
     preparationStage: "",
-    companiesOfInterest: null,
+    companiesOfInterest: [],
     interviewExperience: null,
   });
 
@@ -208,6 +207,14 @@ export const PersonalAccount = () => {
           </div>
           <WorkExperience />
           <Education />
+          <MultiInputDropdown
+            label="Companies of Interest"
+            name="companiesOfInterest"
+            value={state.companiesOfInterest}
+            options={companies}
+            onSelect={handleChange}
+            defaultText={"Select upto 5"}
+          />
           <div className="flex justify-center items-center">
             <Button onClick={handleSave}>Save</Button>
           </div>
