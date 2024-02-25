@@ -89,8 +89,6 @@ export const PersonalAccount = () => {
     }
   }, [professions, state.targetProfessionId]);
 
-  console.log("@@@@@ profile: ", state);
-
   return (
     <div className="h-ful w-full px-4 py-2">
       {profile ? (

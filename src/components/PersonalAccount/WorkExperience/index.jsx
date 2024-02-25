@@ -10,7 +10,7 @@ import { formatPostgresDate } from "../../../utils/timeDate";
 
 const DEFAULT_DATA = {
   jobTitle: null,
-  companyName: null,
+  companyId: null,
   country: "",
   startDate: "",
   endDate: "",
@@ -21,7 +21,7 @@ export const WorkExperience = () => {
   const profile = useSelector((state) => state.user.profile);
   const [showInput, setShowInput] = useState(false);
   const [formData, setFormData] = useState(DEFAULT_DATA);
-  const { jobTitle, companyName, country, startDate, endDate } = formData;
+  const { jobTitle, companyId, country, startDate, endDate } = formData;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,11 +39,11 @@ export const WorkExperience = () => {
       if (formattedStartDate && formattedEndDate) {
         const fullData = {
           user_id: profile.id,
-          profession_id: jobTitle,
-          company_name: companyName,
+          professionId: jobTitle,
+          companyId: companyId,
           country: country,
-          start_date: formattedStartDate,
-          end_date: formattedEndDate,
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
         };
         dispatch(addWorkExperience(fullData));
         setShowInput(false);

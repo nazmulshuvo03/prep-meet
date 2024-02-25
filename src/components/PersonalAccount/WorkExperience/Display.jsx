@@ -17,15 +17,18 @@ import { TOAST_TYPES } from "../../../constants/Toast";
 
 export const Display = ({ data }) => {
   const dispatch = useDispatch();
+
   const profile = useSelector((state) => state.user.profile);
   const professions = useSelector((state) => state.profession.items);
+  const companies = useSelector((state) => state.static.companies);
+
   const [editMode, setEditMode] = useState(false);
   const [editProperties, setEditProperties] = useState({
-    jobTitle: data.profession_id,
-    companyName: data.company_name,
+    jobTitle: data.professionId,
+    companyId: data.companyId,
     country: data.country,
-    startDate: htmlDateInputFormat(data.start_date),
-    endDate: htmlDateInputFormat(data.end_date),
+    startDate: htmlDateInputFormat(data.startDate),
+    endDate: htmlDateInputFormat(data.endDate),
   });
 
   const handleChange = (event) => {
@@ -44,11 +47,11 @@ export const Display = ({ data }) => {
       if (formattedStartDate && formattedEndDate) {
         const fullData = {
           user_id: profile.id,
-          profession_id: editProperties.jobTitle,
-          company_name: editProperties.companyName,
+          professionId: editProperties.jobTitle,
+          companyId: editProperties.companyId,
           country: editProperties.country,
-          start_date: formattedStartDate,
-          end_date: formattedEndDate,
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
         };
         dispatch(editWorkExperience(data.id, fullData));
         setEditMode(false);
@@ -68,7 +71,7 @@ export const Display = ({ data }) => {
         <div className="border rounded-md px-2 py-3">
           <div className="flex items-center justify-between">
             <div>
-              {professions.find((prf) => prf.id === data.profession_id).name}
+              {professions.find((prf) => prf.id === data.professionId).name}
             </div>
             <div className="flex gap-2">
               <div className="cursor-pointer" onClick={() => setEditMode(true)}>
@@ -80,14 +83,18 @@ export const Display = ({ data }) => {
             </div>
           </div>
           <div>
-            {data.company_name}
+            {
+              companies.filter(
+                (company) => company.id === parseInt(data.companyId)
+              )[0].name
+            }
             {", "}
             {data.country}
           </div>
           <div>
-            {convertISOUTCDayTimeToLocalDayTime(data.start_date).date}
+            {convertISOUTCDayTimeToLocalDayTime(data.startDate).date}
             {" - "}
-            {convertISOUTCDayTimeToLocalDayTime(data.end_date).date}
+            {convertISOUTCDayTimeToLocalDayTime(data.endDate).date}
           </div>
         </div>
       ) : (

@@ -9,7 +9,8 @@ export const AddNew = ({
   handleSubmit = () => {},
 }) => {
   const professions = useSelector((state) => state.profession.items);
-  const { jobTitle, companyName, country, startDate, endDate } = data;
+  const companies = useSelector((state) => state.static.companies);
+  const { jobTitle, companyId, country, startDate, endDate } = data;
 
   return (
     <div className="flex flex-col gap-2">
@@ -21,11 +22,19 @@ export const AddNew = ({
         defaultText="Job Title"
       />
       <div className="grid grid-cols-2 gap-4">
-        <Input
+        {/* <Input
           placeholder="Company Name"
-          name="companyName"
-          value={companyName || ""}
+          name="companyId"
+          value={companyId || ""}
           onChange={handleChange}
+        /> */}
+        <Dropdown
+          // label={"Experience Level"}
+          name={"companyId"}
+          value={companyId || ""}
+          options={companies}
+          onSelect={handleChange}
+          defaultText="Company"
         />
         <Input
           placeholder="Country"
