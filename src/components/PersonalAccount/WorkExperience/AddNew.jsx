@@ -1,16 +1,22 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../Button";
 import { Dropdown } from "../../Dropdown";
 import { Input } from "../../Input";
+import { addCompany } from "../../../store/middlewares/static";
 
 export const AddNew = ({
   data,
   handleChange = () => {},
   handleSubmit = () => {},
 }) => {
+  const dispatch = useDispatch();
   const professions = useSelector((state) => state.profession.items);
   const companies = useSelector((state) => state.static.companies);
   const { jobTitle, companyId, country, startDate, endDate } = data;
+
+  const handleAddNewCompany = (data) => {
+    dispatch(addCompany(data));
+  };
 
   return (
     <div className="flex flex-col gap-2">
@@ -24,12 +30,6 @@ export const AddNew = ({
         addNewAction={() => {}}
       />
       <div className="grid grid-cols-2 gap-4">
-        {/* <Input
-          placeholder="Company Name"
-          name="companyId"
-          value={companyId || ""}
-          onChange={handleChange}
-        /> */}
         <Dropdown
           // label={"Experience Level"}
           name={"companyId"}
@@ -38,7 +38,7 @@ export const AddNew = ({
           onSelect={handleChange}
           defaultText="Company"
           allowAddNew={true}
-          addNewAction={() => {}}
+          addNewAction={handleAddNewCompany}
         />
         <Input
           placeholder="Country"

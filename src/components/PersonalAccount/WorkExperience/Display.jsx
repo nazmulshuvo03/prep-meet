@@ -12,8 +12,6 @@ import {
   editWorkExperience,
 } from "../../../store/middlewares/workExperience";
 import { AddNew } from "./AddNew";
-import { setToastMessage } from "../../../store/slices/global";
-import { TOAST_TYPES } from "../../../constants/Toast";
 
 export const Display = ({ data }) => {
   const dispatch = useDispatch();
