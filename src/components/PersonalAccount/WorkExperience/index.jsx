@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Button } from "../../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addWorkExperience } from "../../../store/middlewares/workExperience";
-import { setToastMessage } from "../../../store/slices/global";
-import { TOAST_TYPES } from "../../../constants/Toast";
 import { AddNew } from "./AddNew";
 import { Display } from "./Display";
 import { formatPostgresDate } from "../../../utils/timeDate";
@@ -12,8 +10,8 @@ const DEFAULT_DATA = {
   jobTitle: null,
   companyId: null,
   country: "",
-  startDate: "",
-  endDate: "",
+  startDate: null,
+  endDate: null,
 };
 
 export const WorkExperience = () => {
@@ -32,26 +30,20 @@ export const WorkExperience = () => {
   };
 
   const handleSubmit = () => {
-    try {
-      const formattedStartDate = formatPostgresDate(startDate);
-      const formattedEndDate = formatPostgresDate(endDate);
+    const formattedStartDate = formatPostgresDate(startDate);
+    const formattedEndDate = formatPostgresDate(endDate);
 
-      if (formattedStartDate && formattedEndDate) {
-        const fullData = {
-          user_id: profile.id,
-          professionId: jobTitle,
-          companyId: companyId,
-          country: country,
-          startDate: formattedStartDate,
-          endDate: formattedEndDate,
-        };
-        dispatch(addWorkExperience(fullData));
-        setShowInput(false);
-        setFormData(DEFAULT_DATA);
-      }
-    } catch (err) {
-      dispatch(setToastMessage({ type: TOAST_TYPES[1], message: err.message }));
-    }
+    const fullData = {
+      user_id: profile.id,
+      professionId: jobTitle,
+      companyId: companyId,
+      country: country,
+      startDate: formattedStartDate,
+      endDate: formattedEndDate,
+    };
+    dispatch(addWorkExperience(fullData));
+    setShowInput(false);
+    setFormData(DEFAULT_DATA);
   };
 
   return (

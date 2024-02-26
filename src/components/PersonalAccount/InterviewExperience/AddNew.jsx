@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { Button } from "../../Button";
 import { Dropdown } from "../../Dropdown";
-import { Input } from "../../Input";
 
 export const AddNew = ({
   data,

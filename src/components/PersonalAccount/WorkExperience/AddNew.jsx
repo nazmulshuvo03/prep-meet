@@ -46,14 +46,14 @@ export const AddNew = ({
           type="date"
           placeholder="Start Date"
           name="startDate"
-          value={startDate}
+          value={startDate || ""}
           onChange={handleChange}
         />
         <Input
           type="date"
           placeholder="End Date"
           name="endDate"
-          value={endDate}
+          value={endDate || ""}
           onChange={handleChange}
         />
       </div>

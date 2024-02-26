@@ -139,8 +139,10 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
 };
 
 export const formatPostgresDate = (date) => {
-  const parsedDate = new Date(date);
-  return parsedDate.toISOString();
+  if (date) {
+    const parsedDate = new Date(date);
+    return parsedDate.toISOString();
+  } else return null;
 };
 
 export const htmlDateInputFormat = (isoString) => {

@@ -1,19 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  convertISOUTCDayTimeToLocalDayTime,
-  formatPostgresDate,
-  htmlDateInputFormat,
-} from "../../../utils/timeDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import {
-  deleteWorkExperience,
-  editWorkExperience,
-} from "../../../store/middlewares/workExperience";
 import { AddNew } from "./AddNew";
-import { setToastMessage } from "../../../store/slices/global";
-import { TOAST_TYPES } from "../../../constants/Toast";
 import {
   deleteInterviewExperience,
   editInterviewExperience,

@@ -94,7 +94,9 @@ export const Display = ({ data }) => {
           <div>
             {convertISOUTCDayTimeToLocalDayTime(data.startDate).date}
             {" - "}
-            {convertISOUTCDayTimeToLocalDayTime(data.endDate).date}
+            {data.endDate
+              ? convertISOUTCDayTimeToLocalDayTime(data.endDate).date
+              : "Present"}
           </div>
         </div>
       ) : (
