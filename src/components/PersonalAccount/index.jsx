@@ -151,15 +151,6 @@ export const PersonalAccount = () => {
               defaultText={"Select upto 5"}
             />
           </div>
-          <div>
-            <RadioButtonGroup
-              label="Gender"
-              name={"gender"}
-              options={GENDER_DATA}
-              selectedOption={state.gender}
-              onChange={handleChange}
-            />
-          </div>
           <div className="flex items-center justify-between gap-4">
             <Dropdown
               label={"Country"}
