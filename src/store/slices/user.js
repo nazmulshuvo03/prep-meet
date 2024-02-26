@@ -53,6 +53,20 @@ const userSlice = createSlice({
       newData.education = newData.education.filter((work) => work.id !== id);
       state.profile = newData;
     },
+    updateInterviewExperience: (state, action) => {
+      const data = action.payload;
+      let newData = state.profile;
+      newData.interviewExperiences = [...newData.interviewExperiences, data];
+      state.profile = newData;
+    },
+    removeInterviewExperience: (state, action) => {
+      const id = action.payload;
+      let newData = state.profile;
+      newData.interviewExperiences = newData.interviewExperiences.filter(
+        (interview) => interview.id !== id
+      );
+      state.profile = newData;
+    },
   },
 });
 
@@ -65,5 +79,7 @@ export const {
   removeWorkExperience,
   updateEducation,
   removeEducation,
+  updateInterviewExperience,
+  removeInterviewExperience,
 } = userSlice.actions;
 export default userSlice.reducer;

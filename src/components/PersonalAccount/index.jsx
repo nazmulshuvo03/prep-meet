@@ -14,6 +14,7 @@ import GENDER_DATA from "../../assets/data/genders.json";
 import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
 import { Education } from "./Education";
+import { InterviewExperience } from "./InterviewExperience";
 
 export const PersonalAccount = () => {
   const dispatch = useDispatch();
@@ -120,8 +121,41 @@ export const PersonalAccount = () => {
               </div>
               <div className="flex justify-between gap-4">
                 <div>{state.email}</div>
+                <Dropdown
+                  // label={"Country"}
+                  name={"country"}
+                  value={state.country}
+                  options={COUNTRY_DATA}
+                  onSelect={handleChange}
+                  defaultText="Select an option"
+                />
               </div>
             </div>
+          </div>
+          <TextInput
+            label="Profile Headline (Optional)"
+            name={"profileHeadline"}
+            placeholder={"Write the headline of your profile"}
+            value={state.profileHeadline}
+            setValue={handleChange}
+          />
+          <div className="flex gap-4 justify-between">
+            <Dropdown
+              label={"Experience Level"}
+              name={"experienceLevel"}
+              value={state.experienceLevel || ""}
+              options={experienceLevels}
+              onSelect={handleChange}
+              defaultText="Select an option"
+            />
+            <Dropdown
+              label={"Preparation Stage"}
+              name={"preparationStage"}
+              value={state.preparationStage || ""}
+              options={preparationStages}
+              onSelect={handleChange}
+              defaultText="Select an option"
+            />
           </div>
           <div className="flex gap-4 justify-between items-center">
             <Dropdown
@@ -151,43 +185,6 @@ export const PersonalAccount = () => {
               defaultText={"Select upto 5"}
             />
           </div>
-          <div className="flex items-center justify-between gap-4">
-            <Dropdown
-              label={"Country"}
-              name={"country"}
-              value={state.country}
-              options={COUNTRY_DATA}
-              onSelect={handleChange}
-              defaultText="Select an option"
-            />
-          </div>
-          <TextInput
-            label="Profile Headline (Optional)"
-            name={"profileHeadline"}
-            placeholder={"Write the headline of your profile"}
-            value={state.profileHeadline}
-            setValue={handleChange}
-          />
-          <div className="flex gap-4 justify-between">
-            <Dropdown
-              label={"Experience Level"}
-              name={"experienceLevel"}
-              value={state.experienceLevel || ""}
-              options={experienceLevels}
-              onSelect={handleChange}
-              defaultText="Select an option"
-            />
-            <Dropdown
-              label={"Preparation Stage"}
-              name={"preparationStage"}
-              value={state.preparationStage || ""}
-              options={preparationStages}
-              onSelect={handleChange}
-              defaultText="Select an option"
-            />
-          </div>
-          <WorkExperience />
-          <Education />
           <MultiInputDropdown
             label="Companies of Interest"
             name="companiesOfInterest"
@@ -196,6 +193,9 @@ export const PersonalAccount = () => {
             onSelect={handleChange}
             defaultText={"Select upto 5"}
           />
+          <WorkExperience />
+          <Education />
+          <InterviewExperience />
           <div className="flex justify-center items-center">
             <Button onClick={handleSave}>Save</Button>
           </div>
