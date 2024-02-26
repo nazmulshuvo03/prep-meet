@@ -57,7 +57,10 @@ const ProfessionSlice = createSlice({
           professionToUpdate.skills &&
           professionToUpdate.skills.length &&
           professionToUpdate.skills.some((s) => s.id === data.id);
-        if (!alreadyExists) professionToUpdate.skills.push(data);
+        if (!alreadyExists)
+          professionToUpdate.skills && professionToUpdate.skills.length
+            ? professionToUpdate.skills.push(data)
+            : (professionToUpdate.skills = [data]);
       }
     },
     removeSkill: (state, action) => {
@@ -81,7 +84,11 @@ const ProfessionSlice = createSlice({
           professionToUpdate.experienceTypes &&
           professionToUpdate.experienceTypes.length &&
           professionToUpdate.experienceTypes.some((s) => s.id === data.id);
-        if (!alreadyExists) professionToUpdate.experienceTypes.push(data);
+        if (!alreadyExists)
+          professionToUpdate.experienceTypes &&
+          professionToUpdate.experienceTypes.length
+            ? professionToUpdate.experienceTypes.push(data)
+            : (professionToUpdate.experienceTypes = [data]);
       }
     },
     removeExperienceTypes: (state, action) => {

@@ -67,11 +67,9 @@ export const MultiInputDropdown = ({
         {selectedOptions && selectedOptions.length ? (
           selectedOptions.map((seleted) => (
             <div key={seleted}>
-              {
-                options.find((option) => option[defaultKey] === seleted)[
-                  defaultLabel
-                ]
-              }
+              {options.find((option) => option[defaultKey] === seleted)?.[
+                defaultLabel
+              ] || "Not Found"}
             </div>
           ))
         ) : (

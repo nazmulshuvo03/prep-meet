@@ -120,14 +120,6 @@ export const PersonalAccount = () => {
               </div>
               <div className="flex justify-between gap-4">
                 <div>{state.email}</div>
-                <Dropdown
-                  // label={"Language"}
-                  name={"language"}
-                  value={state.language}
-                  options={LANGUAGE_DATA}
-                  onSelect={handleChange}
-                  defaultText="Language"
-                />
               </div>
             </div>
           </div>
