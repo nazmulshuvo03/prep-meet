@@ -15,6 +15,7 @@ import LANGUAGE_DATA from "../../assets/data/languages.json";
 import { updateUserData } from "../../store/middlewares/user";
 import { Education } from "./Education";
 import { InterviewExperience } from "./InterviewExperience";
+import { addCompany } from "../../store/middlewares/static";
 
 export const PersonalAccount = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,10 @@ export const PersonalAccount = () => {
 
   const handleSave = () => {
     dispatch(updateUserData(profile.id, state));
+  };
+
+  const handleAddNewCompany = (data) => {
+    dispatch(addCompany(data));
   };
 
   useEffect(() => {
@@ -192,6 +197,8 @@ export const PersonalAccount = () => {
             options={companies}
             onSelect={handleChange}
             defaultText={"Select upto 5"}
+            allowAddNew={true}
+            addNewAction={handleAddNewCompany}
           />
           <WorkExperience />
           <Education />
