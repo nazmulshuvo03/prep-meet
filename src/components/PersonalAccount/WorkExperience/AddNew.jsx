@@ -20,6 +20,8 @@ export const AddNew = ({
         options={professions}
         onSelect={handleChange}
         defaultText="Job Title"
+        allowAddNew={true}
+        addNewAction={() => {}}
       />
       <div className="grid grid-cols-2 gap-4">
         {/* <Input
@@ -35,6 +37,8 @@ export const AddNew = ({
           options={companies}
           onSelect={handleChange}
           defaultText="Company"
+          allowAddNew={true}
+          addNewAction={() => {}}
         />
         <Input
           placeholder="Country"

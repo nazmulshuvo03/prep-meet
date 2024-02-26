@@ -28,7 +28,7 @@ export const Display = ({ data }) => {
     companyId: data.companyId,
     country: data.country,
     startDate: htmlDateInputFormat(data.startDate),
-    endDate: htmlDateInputFormat(data.endDate),
+    endDate: data.endDate ? htmlDateInputFormat(data.endDate) : null,
   });
 
   const handleChange = (event) => {
@@ -40,25 +40,19 @@ export const Display = ({ data }) => {
   };
 
   const handleSubmit = () => {
-    try {
-      const formattedStartDate = formatPostgresDate(editProperties.startDate);
-      const formattedEndDate = formatPostgresDate(editProperties.endDate);
+    const formattedStartDate = formatPostgresDate(editProperties.startDate);
+    const formattedEndDate = formatPostgresDate(editProperties.endDate);
 
-      if (formattedStartDate && formattedEndDate) {
-        const fullData = {
-          user_id: profile.id,
-          professionId: editProperties.jobTitle,
-          companyId: editProperties.companyId,
-          country: editProperties.country,
-          startDate: formattedStartDate,
-          endDate: formattedEndDate,
-        };
-        dispatch(editWorkExperience(data.id, fullData));
-        setEditMode(false);
-      }
-    } catch (err) {
-      dispatch(setToastMessage({ type: TOAST_TYPES[1], message: err.message }));
-    }
+    const fullData = {
+      user_id: profile.id,
+      professionId: editProperties.jobTitle,
+      companyId: editProperties.companyId,
+      country: editProperties.country,
+      startDate: formattedStartDate,
+      endDate: formattedEndDate,
+    };
+    dispatch(editWorkExperience(data.id, fullData));
+    setEditMode(false);
   };
 
   const handleDelete = () => {
