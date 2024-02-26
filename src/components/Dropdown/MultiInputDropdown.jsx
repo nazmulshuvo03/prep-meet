@@ -65,13 +65,16 @@ export const MultiInputDropdown = ({
         className="relative w-full flex-1 flex gap-2 rounded-md border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700"
       >
         {selectedOptions && selectedOptions.length ? (
-          selectedOptions.map((seleted) => (
-            <div key={seleted}>
-              {options.find((option) => option[defaultKey] === seleted)?.[
-                defaultLabel
-              ] || "Not Found"}
-            </div>
-          ))
+          selectedOptions.map((seleted) => {
+            const selectedOption = options.find(
+              (option) => option[defaultKey] === seleted
+            );
+            return (
+              <div key={seleted}>
+                {selectedOption ? selectedOption[defaultLabel] : "Not Found"}
+              </div>
+            );
+          })
         ) : (
           <div>{defaultText}</div>
         )}
