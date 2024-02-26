@@ -27,7 +27,7 @@ export const MultiInputDropdown = ({
   };
 
   const handleInputClick = () => {
-    setDropdownOpen(true);
+    setDropdownOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -36,9 +36,7 @@ export const MultiInputDropdown = ({
         setDropdownOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -60,30 +58,35 @@ export const MultiInputDropdown = ({
   return (
     <div ref={dropdownRef} className="w-full h-26 flex flex-col">
       <label>{label}</label>
-      <div
-        onClick={handleInputClick}
-        className="relative w-full flex-1 flex gap-2 rounded-md border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700"
-      >
-        {selectedOptions && selectedOptions.length ? (
-          selectedOptions.map((seleted) => {
-            const selectedOption = options.find(
-              (option) => option[defaultKey] === seleted
-            );
-            return (
-              <div key={seleted}>
-                {selectedOption ? selectedOption[defaultLabel] : "Not Found"}
-              </div>
-            );
-          })
-        ) : (
-          <div>{defaultText}</div>
-        )}
+      <div className="relative">
+        <div
+          onClick={handleInputClick}
+          className="w-full flex-1 flex gap-2 rounded-md border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700"
+        >
+          {selectedOptions && selectedOptions.length ? (
+            selectedOptions.map((seleted) => {
+              const selectedOption = options.find(
+                (option) => option[defaultKey] === seleted
+              );
+              return (
+                <div
+                  key={seleted}
+                  className="bg-gray-400 text-white rounded-md py-1 px-2"
+                >
+                  {selectedOption ? selectedOption[defaultLabel] : "Not Found"}
+                </div>
+              );
+            })
+          ) : (
+            <div>{defaultText}</div>
+          )}
+        </div>
         {dropdownOpen && (
           <div
-            className="absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+            className="z-10 absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
             role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
+            // aria-orientation="vertical"
+            // aria-labelledby="options-menu"
           >
             <div className="py-2 px-2" role="none">
               {options && options.length ? (

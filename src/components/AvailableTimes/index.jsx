@@ -47,7 +47,7 @@ export const AvailableTimes = () => {
                 <div className="py-2 text-text font-semibold text-xl">
                   {item.label}
                 </div>
-                <div className="flex gap-2 flex-wrap border border-primary rounded-md px-2 py-2 transform duration-300 ease-in-out">
+                <div className="flex gap-2 flex-wrap border border-primary rounded-md px-2 py-2">
                   {hourArray &&
                     hourArray.length &&
                     hourArray.map((hour) => {
