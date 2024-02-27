@@ -14,8 +14,8 @@ export const Profile = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center w-full h-full overflow-hidden">
-      {profile && <Tabs data={TABS} />}
+    <div className="">
+      <PersonalAccount />
     </div>
   );
 };

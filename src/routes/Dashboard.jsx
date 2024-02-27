@@ -4,6 +4,7 @@ import { Profile } from "../components/Profile";
 import { People } from "../components/People";
 import { Progress } from "../components/Progress";
 import { Interviews } from "../components/Interviews";
+import { AvailableTimes } from "../components/AvailableTimes";
 
 const Dashboard = () => {
   const profile = useSelector((state) => state.user.profile);
@@ -13,6 +14,7 @@ const Dashboard = () => {
     { id: 2, name: "Search and Schedule", component: <People /> },
     { id: 3, name: "My Progress", component: <Progress /> },
     { id: 4, name: "My Interviews", component: <Interviews /> },
+    { id: 5, name: "My Availability", component: <AvailableTimes /> },
   ];
 
   return (

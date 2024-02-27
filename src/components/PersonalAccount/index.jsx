@@ -96,7 +96,7 @@ export const PersonalAccount = () => {
   }, [professions, state.targetProfessionId]);
 
   return (
-    <div className="h-ful w-full px-4 py-2">
+    <div className="h-ful w-full px-4 py-4">
       {profile ? (
         <div className="w-full flex flex-col gap-4">
           <div className="flex gap-4">

@@ -28,7 +28,7 @@ export const Tabs = ({
           <div />
         )}
       </div>
-      <div className="flex-1 h-full overflow-y-auto p-2">
+      <div className="flex-1 h-full overflow-y-auto">
         {data[currentTab] ? data[currentTab].component : ""}
       </div>
     </div>
