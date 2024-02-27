@@ -13,6 +13,7 @@ import { RangeSlider } from "../../components/Slider/RangeSlider";
 import { setDashboardQuery } from "../../store/slices/global";
 import { queryObjectToString } from "../../utils/query";
 import { deepEqual, isEmptyObject } from "../../utils/object";
+import { HorizontalTabs } from "../Tabs/HorizontalTabs";
 
 const EXPERIENCE_MIN_VALUE = 0;
 const EXPERIENCE_MAX_VALUE = 20;
@@ -75,58 +76,83 @@ export const People = () => {
     dispatch(setDashboardQuery(""));
   };
 
-  return (
-    <div>
-      <div className="flex justify-between items-center pb-4">
-        <div className="flex gap-2">
-          <Dropdown
-            name={"profession"}
-            value={queries["profession"] || ""}
-            options={professions}
-            onSelect={handleQuerySelect}
-            defaultText={"Filter by Profession"}
-          />
-          <Dropdown
-            name={"language"}
-            value={queries["language"] || ""}
-            options={LANGUAGE_DATA}
-            onSelect={handleQuerySelect}
-            defaultText={"Filter by Language"}
-          />
-          <Dropdown
-            name={"country"}
-            value={queries["country"] || ""}
-            options={COUNTRY_DATA}
-            onSelect={handleQuerySelect}
-            defaultText={"Filter by Country"}
-          />
-        </div>
+  const TABS = [
+    {
+      id: 1,
+      name: "All",
+      component: (
         <div>
-          <Button onClick={handleResetQuery}>Reset</Button>
+          <h1>All</h1>
         </div>
-      </div>
-      <div className="w-60">
-        <RangeSlider
-          label="Filter by years of experience"
-          lowerValue={minExp}
-          upperValue={maxExp}
-          handleChange={handleExperienceSelect}
-          min={EXPERIENCE_MIN_VALUE}
-          max={EXPERIENCE_MAX_VALUE}
-        />
-      </div>
-      <div className="grid grid-cols-3 gap-4">
-        {people && people.length
-          ? people.map((person) => (
-              <Link
-                key={person.id}
-                className="flex gap-2"
-                to={`/profile/${person.id}`}
-              >
-                <PersonCard data={person} />
-              </Link>
-            ))
-          : null}
+      ),
+    },
+    {
+      id: 2,
+      name: "Favourites",
+      component: (
+        <div>
+          <h1>Favourites</h1>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <div className="p-6">
+      <div className="text-4xl font-bold">People</div>
+      <div className="pt-6">
+        <HorizontalTabs data={TABS} allowSearch />
+        <div className="flex justify-between items-center pb-4">
+          <div className="flex gap-2">
+            <Dropdown
+              name={"profession"}
+              value={queries["profession"] || ""}
+              options={professions}
+              onSelect={handleQuerySelect}
+              defaultText={"Filter by Profession"}
+            />
+            <Dropdown
+              name={"language"}
+              value={queries["language"] || ""}
+              options={LANGUAGE_DATA}
+              onSelect={handleQuerySelect}
+              defaultText={"Filter by Language"}
+            />
+            <Dropdown
+              name={"country"}
+              value={queries["country"] || ""}
+              options={COUNTRY_DATA}
+              onSelect={handleQuerySelect}
+              defaultText={"Filter by Country"}
+            />
+          </div>
+          <div>
+            <Button onClick={handleResetQuery}>Reset</Button>
+          </div>
+        </div>
+        <div className="w-60">
+          <RangeSlider
+            label="Filter by years of experience"
+            lowerValue={minExp}
+            upperValue={maxExp}
+            handleChange={handleExperienceSelect}
+            min={EXPERIENCE_MIN_VALUE}
+            max={EXPERIENCE_MAX_VALUE}
+          />
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          {people && people.length
+            ? people.map((person) => (
+                <Link
+                  key={person.id}
+                  className="flex gap-2"
+                  to={`/profile/${person.id}`}
+                >
+                  <PersonCard data={person} />
+                </Link>
+              ))
+            : null}
+        </div>
       </div>
     </div>
   );
