@@ -7,25 +7,29 @@ export const Tabs = ({
 
   return (
     <div className="flex h-full w-full">
-      <div className="py-10">
-        {data.map((item) => {
-          return (
-            <div
-              key={item.id}
-              onClick={() => setCurrentTab(item.id - 1)}
-              className={`${
-                currentTab === item.id - 1
-                  ? "bg-accent text-white"
-                  : "bg-background text-text"
-              } w-36 h-10 flex justify-center items-center cursor-pointer rounded-l-md`}
-            >
-              {item.name}
-            </div>
-          );
-        })}
+      <div className="bg-primary pt-20" style={{ width: "17vw" }}>
+        {data && data.length ? (
+          data.map((item) => {
+            return (
+              <div
+                key={item.id}
+                onClick={() => setCurrentTab(item.id - 1)}
+                className={`${
+                  currentTab === item.id - 1
+                    ? "bg-background text-gray-700"
+                    : "text-text"
+                } w-full h-8 flex justify-start items-center cursor-pointer text-sm font-semibold ml-10 pl-2`}
+              >
+                {item.name}
+              </div>
+            );
+          })
+        ) : (
+          <div />
+        )}
       </div>
-      <div className="flex-1 h-full overflow-y-auto border border-accent rounded-md p-2">
-        {data[currentTab].component}
+      <div className="flex-1 h-full overflow-y-auto p-2">
+        {data[currentTab] ? data[currentTab].component : ""}
       </div>
     </div>
   );

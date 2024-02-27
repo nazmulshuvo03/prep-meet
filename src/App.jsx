@@ -11,7 +11,7 @@ import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
 import Profile from "./routes/Profile";
 import Admin from "./routes/Admin";
-import CircularProgress from "./components/Progress";
+import CircularProgress from "./components/ProgressBar";
 import Toast from "./components/Toast";
 import { useEffect } from "react";
 import {
@@ -43,10 +43,7 @@ function App() {
           <div className="fixed top-0 left-0 w-full h-16">
             <Navigation />
           </div>
-          <div
-            className="mt-24 p-4"
-            style={{ height: "-webkit-fill-available" }}
-          >
+          <div className="mt-16" style={{ height: "-webkit-fill-available" }}>
             <Switch>
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/dashboard/:userId" component={Home} />

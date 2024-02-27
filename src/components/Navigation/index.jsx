@@ -29,7 +29,7 @@ export const Navigation = () => {
   };
 
   return (
-    <div className="bg-primary flex justify-between border-b w-full h-full items-center px-5">
+    <div className="bg-primary flex justify-between w-full h-full items-center px-5">
       <div className="text-3xl font-semibold opacity-75 ">
         <NavLink to={"/dashboard"} className="text-gray-900">
           Candidace
