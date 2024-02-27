@@ -40,7 +40,7 @@ function App() {
     >
       <div className={`bg-background text-text h-full w-full overflow-y-auto`}>
         <Router>
-          <div className="fixed top-0 left-0 w-full h-24">
+          <div className="fixed top-0 left-0 w-full h-16">
             <Navigation />
           </div>
           <div

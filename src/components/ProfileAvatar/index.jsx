@@ -2,6 +2,10 @@ import { useState } from "react";
 import { ProfileMenu } from "./ProfileMenu";
 import { useSelector } from "react-redux";
 
+/**
+ * example usage: {user && <ProfileAvatar url={user.profileImage} />}
+ */
+
 export const ProfileAvatar = () => {
   const user = useSelector((state) => state.user.profile);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
