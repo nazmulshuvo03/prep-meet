@@ -20,6 +20,7 @@ export const AllPeople = ({
 }) => {
   const people = useSelector((state) => state.user.people);
   const professions = useSelector((state) => state.profession.items);
+  const companies = useSelector((state) => state.static.companies);
 
   console.log("@@@@@@@@ people", people);
 
@@ -28,11 +29,20 @@ export const AllPeople = ({
       <div className="flex justify-between items-center pb-4">
         <div className="flex gap-2">
           <Dropdown
+            name={"companiesOfInterest"}
+            value={queries["companiesOfInterest"] || ""}
+            options={companies}
+            onSelect={handleQuerySelect}
+            defaultText={"Filter by Company of Interest"}
+            allowSearch={false}
+          />
+          <Dropdown
             name={"profession"}
             value={queries["profession"] || ""}
             options={professions}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Profession"}
+            allowSearch={false}
           />
           <Dropdown
             name={"language"}
@@ -40,6 +50,7 @@ export const AllPeople = ({
             options={LANGUAGE_DATA}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Language"}
+            allowSearch={false}
           />
           <Dropdown
             name={"country"}
@@ -47,6 +58,7 @@ export const AllPeople = ({
             options={COUNTRY_DATA}
             onSelect={handleQuerySelect}
             defaultText={"Filter by Country"}
+            allowSearch={false}
           />
         </div>
         <div>
