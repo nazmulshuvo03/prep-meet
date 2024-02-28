@@ -21,6 +21,9 @@ export const People = () => {
   const [queries, setQueries] = useState({});
   const [minExp, setMinExp] = useState(EXPERIENCE_MIN_VALUE);
   const [maxExp, setMaxExp] = useState(EXPERIENCE_MAX_VALUE);
+  const [searchValue, setSearchValue] = useState();
+
+  console.log("@@@@@@@", searchValue, queries);
 
   useEffect(() => {
     if (oldQuery) {
@@ -42,6 +45,14 @@ export const People = () => {
       }
     }
   }, [queries, oldQuery, profile]);
+
+  useEffect(() => {
+    if (searchValue && searchValue.length >= 3) {
+      setQueries((prev) => ({ ...prev, name: searchValue }));
+    } else if (searchValue && searchValue.length == 2) {
+      setQueries((prev) => ({ ...prev, name: "" }));
+    }
+  }, [searchValue]);
 
   const handleQuerySelect = (e) => {
     const { name, value } = e.target;
@@ -96,7 +107,12 @@ export const People = () => {
     <div className="p-6">
       <div className="text-4xl font-bold">People</div>
       <div className="pt-6">
-        <HorizontalTabs data={TABS} allowSearch />
+        <HorizontalTabs
+          data={TABS}
+          allowSearch
+          searchValue={searchValue}
+          handleSearch={(e) => setSearchValue(e.target.value)}
+        />
       </div>
     </div>
   );

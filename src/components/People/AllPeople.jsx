@@ -21,7 +21,7 @@ export const AllPeople = ({
   const people = useSelector((state) => state.user.people);
   const professions = useSelector((state) => state.profession.items);
 
-  console.log("@@@@@@@@", typeof people);
+  console.log("@@@@@@@@ people", people);
 
   return (
     <div className="py-2">
