@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import LANGUAGE_DATA from "../../assets/data/languages.json";
 import COUNTRY_DATA from "../../assets/data/countries.json";
 import { PersonCard } from "../../components/Cards/PersonCard";
 import { Button } from "../../components/Button";
@@ -19,7 +18,9 @@ export const AllPeople = ({
   handleExperienceSelect = () => {},
 }) => {
   const people = useSelector((state) => state.user.people);
-  const professions = useSelector((state) => state.profession.items);
+  const targetProfession = useSelector(
+    (state) => state.profession.targetProfession
+  );
   const companies = useSelector((state) => state.static.companies);
 
   console.log("@@@@@@@@ people", people);
@@ -33,31 +34,23 @@ export const AllPeople = ({
             value={queries["companiesOfInterest"] || ""}
             options={companies}
             onSelect={handleQuerySelect}
-            defaultText={"Filter by Company of Interest"}
+            defaultText={"Company of Interest"}
             allowSearch={false}
           />
           <Dropdown
-            name={"profession"}
-            value={queries["profession"] || ""}
-            options={professions}
+            name={"focusAreas"}
+            value={queries["focusAreas"] || ""}
+            options={targetProfession ? targetProfession.skills : null}
             onSelect={handleQuerySelect}
-            defaultText={"Filter by Profession"}
+            defaultText={"Focus Areas"}
             allowSearch={false}
           />
           <Dropdown
-            name={"language"}
-            value={queries["language"] || ""}
-            options={LANGUAGE_DATA}
+            name={"typesOfExperience"}
+            value={queries["typesOfExperience"] || ""}
+            options={targetProfession ? targetProfession.experienceTypes : null}
             onSelect={handleQuerySelect}
-            defaultText={"Filter by Language"}
-            allowSearch={false}
-          />
-          <Dropdown
-            name={"country"}
-            value={queries["country"] || ""}
-            options={COUNTRY_DATA}
-            onSelect={handleQuerySelect}
-            defaultText={"Filter by Country"}
+            defaultText={"Types of Experience"}
             allowSearch={false}
           />
         </div>
@@ -65,7 +58,7 @@ export const AllPeople = ({
           <Button onClick={handleResetQuery}>Reset</Button>
         </div>
       </div>
-      <div className="w-60">
+      {/* <div className="w-60">
         <RangeSlider
           label="Filter by years of experience"
           lowerValue={minExp}
@@ -74,7 +67,7 @@ export const AllPeople = ({
           min={EXPERIENCE_MIN_VALUE}
           max={EXPERIENCE_MAX_VALUE}
         />
-      </div>
+      </div> */}
       <div className="grid grid-cols-3 gap-4">
         {people && people.length && typeof people !== "string"
           ? people.map((person) => (

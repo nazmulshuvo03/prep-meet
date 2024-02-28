@@ -9,6 +9,7 @@ import {
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
 import { setPeople, setProfile, updateProfile } from "../slices/user";
+import { setTargetProfession } from "../slices/profession";
 
 export const fetchPeople = (userId = null, query = "") =>
   asyncWrapper(async (dispatch) => {
@@ -36,6 +37,7 @@ export const fetchUserProfile = (
     console.log("user doc: ", response);
     const handleSuccess = () => {
       dispatch(setProfile(response.data));
+      dispatch(setTargetProfession(response.data.targetProfessionId));
       successHandler();
     };
     responseHandler(response, handleSuccess, errorHandler);
@@ -54,6 +56,9 @@ export const updateUserData = (userId, updatedData) =>
     console.log("user data updated: ", res);
     const handleSuccess = () => {
       dispatch(updateProfile(res.data));
+      if (res.data.targetProfessionId) {
+        dispatch(setTargetProfession(res.data.targetProfessionId));
+      }
       dispatch(
         setToastMessage({
           type: TOAST_TYPES[0],

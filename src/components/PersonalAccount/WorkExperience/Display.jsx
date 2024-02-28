@@ -75,11 +75,11 @@ export const Display = ({ data }) => {
             </div>
           </div>
           <div>
-            {
+            {companies &&
+              companies.length &&
               companies.filter(
                 (company) => company.id === parseInt(data.companyId)
-              )[0].name
-            }
+              )[0].name}
             {", "}
             {data.country}
           </div>
