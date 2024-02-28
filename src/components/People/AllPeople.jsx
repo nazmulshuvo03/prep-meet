@@ -65,7 +65,7 @@ export const AllPeople = ({
           max={EXPERIENCE_MAX_VALUE}
         />
       </div> */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {people && people.length && typeof people !== "string"
           ? people.map((person) => (
               <Link
