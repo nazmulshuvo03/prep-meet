@@ -11,6 +11,7 @@ export const Dropdown = ({
   defaultText = "",
   defaultKey = "id",
   defaultLabel = "name",
+  allowSearch = true,
   allowAddNew = false,
   addNewAction = () => {},
   ...rest
@@ -103,24 +104,28 @@ export const Dropdown = ({
                 <div>Empty</div>
               )}
             </div>
-            <div className="flex gap-0">
-              <Input
-                type="text"
-                placeholder="Search..."
-                name=""
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              {allowAddNew &&
-              query &&
-              query.length &&
-              filteredOptions &&
-              !filteredOptions.length ? (
-                <Button onClick={handleAddNewClick}>Add New</Button>
-              ) : (
-                <div />
-              )}
-            </div>
+            {allowSearch ? (
+              <div className="flex gap-0">
+                <Input
+                  type="text"
+                  placeholder="Search..."
+                  name=""
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                {allowAddNew &&
+                query &&
+                query.length &&
+                filteredOptions &&
+                !filteredOptions.length ? (
+                  <Button onClick={handleAddNewClick}>Add New</Button>
+                ) : (
+                  <div />
+                )}
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
         )}
       </div>
