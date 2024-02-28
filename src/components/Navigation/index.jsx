@@ -51,7 +51,7 @@ export const Navigation = () => {
         </nav>
         <Button
           className={
-            "border border-gray-700 bg-transparent rounded-none !font-light !text-gray-700"
+            "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
           }
           onClick={handleLogout}
         >
