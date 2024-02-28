@@ -1,29 +1,26 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import COUNTRY_DATA from "../../assets/data/countries.json";
 import { PersonCard } from "../../components/Cards/PersonCard";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
-import { RangeSlider } from "../../components/Slider/RangeSlider";
+// import { RangeSlider } from "../../components/Slider/RangeSlider";
 
-const EXPERIENCE_MIN_VALUE = 0;
-const EXPERIENCE_MAX_VALUE = 20;
+// const EXPERIENCE_MIN_VALUE = 0;
+// const EXPERIENCE_MAX_VALUE = 20;
 
 export const AllPeople = ({
   queries = {},
   handleQuerySelect = () => {},
   handleResetQuery = () => {},
-  minExp = EXPERIENCE_MIN_VALUE,
-  maxExp = EXPERIENCE_MAX_VALUE,
-  handleExperienceSelect = () => {},
+  // minExp = EXPERIENCE_MIN_VALUE,
+  // maxExp = EXPERIENCE_MAX_VALUE,
+  // handleExperienceSelect = () => {},
 }) => {
   const people = useSelector((state) => state.user.people);
   const targetProfession = useSelector(
     (state) => state.profession.targetProfession
   );
   const companies = useSelector((state) => state.static.companies);
-
-  console.log("@@@@@@@@ people", people);
 
   return (
     <div className="py-2">

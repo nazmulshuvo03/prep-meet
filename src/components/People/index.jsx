@@ -23,8 +23,6 @@ export const People = () => {
   const [maxExp, setMaxExp] = useState(EXPERIENCE_MAX_VALUE);
   const [searchValue, setSearchValue] = useState();
 
-  console.log("@@@@@@@", searchValue, queries);
-
   useEffect(() => {
     if (oldQuery) {
       setQueries(oldQuery);
