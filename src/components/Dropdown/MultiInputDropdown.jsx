@@ -78,7 +78,7 @@ export const MultiInputDropdown = ({
         )
       );
     } else setFilteredOptions(options);
-  }, [query, options]);
+  }, [query]);
 
   return (
     <div ref={dropdownRef} className="w-full flex flex-col">
