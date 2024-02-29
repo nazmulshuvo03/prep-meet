@@ -43,7 +43,7 @@ function App() {
           <div className="fixed top-0 left-0 w-full h-16">
             <Navigation />
           </div>
-          <div className="mt-16" style={{ height: "-webkit-fill-available" }}>
+          <div className="mt-20" style={{ height: "-webkit-fill-available" }}>
             <Switch>
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/dashboard/:userId" component={Home} />
