@@ -10,8 +10,8 @@ const Dashboard = () => {
   const profile = useSelector((state) => state.user.profile);
 
   const TABS = [
-    { id: 1, name: "Search and Schedule", component: <People /> },
-    { id: 2, name: "Profile", component: <Profile /> },
+    { id: 1, name: "Profile", component: <Profile /> },
+    { id: 2, name: "Search and Schedule", component: <People /> },
     { id: 3, name: "My Progress", component: <Progress /> },
     { id: 4, name: "My Interviews", component: <Interviews /> },
     { id: 5, name: "My Availability", component: <AvailableTimes /> },

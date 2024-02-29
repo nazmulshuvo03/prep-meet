@@ -151,25 +151,35 @@ export const htmlDateInputFormat = (isoString) => {
   return formattedDate;
 };
 
-const getDateObject = (date) => {
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth(),
-    day: date.getDate(),
-  };
-};
+export const timeDistance = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
 
-export const timeDistance = (start, end) => {
-  const startProp = getDateObject(new Date(start));
-  const endProp = getDateObject(new Date(end));
-  if (endProp.year - startProp.year > 0) {
-    return `${endProp.year - startProp.year} years`;
+  let yearDiff = end.getFullYear() - start.getFullYear();
+  let monthDiff = end.getMonth() - start.getMonth();
+  let dayDiff = end.getDate() - start.getDate();
+
+  if (dayDiff < 0) {
+    monthDiff--;
+    let prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+    dayDiff += prevMonth.getDate();
   }
-  if (endProp.month - startProp.month > 0) {
-    return `${endProp.month - startProp.month} months`;
+  if (monthDiff < 0) {
+    yearDiff--;
+    monthDiff += 12;
   }
-  if (endProp.day - startProp.day > 0) {
-    return `${endProp.day - startProp.day} days`;
+
+  if (yearDiff > 0 || monthDiff > 0) {
+    if (yearDiff === 0) {
+      return `${monthDiff} month${monthDiff > 1 ? "s" : ""}`;
+    }
+    if (monthDiff === 0) {
+      return `${yearDiff} year${yearDiff > 1 ? "s" : ""}`;
+    }
+    return `${yearDiff} year${yearDiff > 1 ? "s" : ""} ${monthDiff} month${
+      monthDiff > 1 ? "s" : ""
+    }`;
+  } else {
+    return `${dayDiff} day${dayDiff > 1 ? "s" : ""}`;
   }
-  return `year`;
 };

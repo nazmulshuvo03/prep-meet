@@ -67,15 +67,7 @@ export const AllPeople = ({
       </div> */}
       <div className="grid grid-cols-1 gap-4">
         {people && people.length && typeof people !== "string"
-          ? people.map((person) => (
-              <Link
-                key={person.id}
-                className="flex gap-2"
-                to={`/profile/${person.id}`}
-              >
-                <PersonCard data={person} />
-              </Link>
-            ))
+          ? people.map((person) => <PersonCard key={person.id} data={person} />)
           : null}
       </div>
     </div>
