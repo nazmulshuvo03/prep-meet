@@ -150,3 +150,26 @@ export const htmlDateInputFormat = (isoString) => {
   const formattedDate = isoDate.toISOString().split("T")[0];
   return formattedDate;
 };
+
+const getDateObject = (date) => {
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    day: date.getDate(),
+  };
+};
+
+export const timeDistance = (start, end) => {
+  const startProp = getDateObject(new Date(start));
+  const endProp = getDateObject(new Date(end));
+  if (endProp.year - startProp.year > 0) {
+    return `${endProp.year - startProp.year} years`;
+  }
+  if (endProp.month - startProp.month > 0) {
+    return `${endProp.month - startProp.month} months`;
+  }
+  if (endProp.day - startProp.day > 0) {
+    return `${endProp.day - startProp.day} days`;
+  }
+  return `year`;
+};

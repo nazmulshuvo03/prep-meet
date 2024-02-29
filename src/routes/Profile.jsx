@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDataLabelFromKey } from "../utils/data";
 import LANGUAGE_DATA from "../assets/data/languages.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -58,19 +57,6 @@ const Profile = () => {
     setAvailabilities(res);
   };
 
-  const formattedProfession = (profile) => {
-    return profile.profession
-      ? `${getDataLabelFromKey({
-          data: professionList,
-          key: profile.profession,
-        })}${
-          profile.yearsOfExperience
-            ? ` for ${profile.yearsOfExperience} years`
-            : ""
-        }`
-      : "";
-  };
-
   const formattedDegree = (profile) => {
     return profile.university
       ? `${profile.university} ${
@@ -113,25 +99,11 @@ const Profile = () => {
                   <div className="font-semibold text-4xl text-text">
                     {profile.firstName} {profile.lastName}
                   </div>
-                  <div className="font-extralight text-sm">
-                    {formattedProfession(profile)}
-                  </div>
                 </div>
                 <div className="font-normal text-base text-text">
                   <ProfileHighlightItem
                     icon={<FontAwesomeIcon icon={faBuildingColumns} />}
                     value={formattedDegree(profile)}
-                  />
-                  <ProfileHighlightItem
-                    icon={<FontAwesomeIcon icon={faLanguage} />}
-                    value={
-                      profile.language
-                        ? getDataLabelFromKey({
-                            data: LANGUAGE_DATA,
-                            key: profile.language,
-                          })
-                        : ""
-                    }
                   />
                   <ProfileHighlightItem
                     icon={<FontAwesomeIcon icon={faFlag} />}
