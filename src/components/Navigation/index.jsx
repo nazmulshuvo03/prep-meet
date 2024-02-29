@@ -36,7 +36,7 @@ export const Navigation = () => {
           "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
         }
       />
-      <div className="bg-primary flex justify-between w-full h-full items-center px-5">
+      <div className="bg-primary flex justify-between w-full h-full items-center px-5 py-2">
         <div className="text-3xl font-semibold opacity-75 ">
           <NavLink to={"/dashboard"} className="text-gray-900">
             Candidace

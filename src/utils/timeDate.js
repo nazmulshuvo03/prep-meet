@@ -183,3 +183,47 @@ export const timeDistance = (startDate, endDate) => {
     return `${dayDiff} day${dayDiff > 1 ? "s" : ""}`;
   }
 };
+
+export const getDateDescription = (timestamp) => {
+  const today = new Date();
+  const targetDate = new Date(parseInt(timestamp));
+
+  // Get the start of today
+  const startOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+
+  // Get the start of tomorrow and the day after
+  const startOfTomorrow = new Date(startOfToday);
+  startOfTomorrow.setDate(startOfTomorrow.getDate() + 1);
+  const startOfDayAfter = new Date(startOfTomorrow);
+  startOfDayAfter.setDate(startOfDayAfter.getDate() + 1);
+
+  // Remove time from the target date
+  const targetDateWithoutTime = new Date(
+    targetDate.getFullYear(),
+    targetDate.getMonth(),
+    targetDate.getDate()
+  );
+
+  // Check if the target date matches today, tomorrow, or the day after
+  if (targetDateWithoutTime.getTime() === startOfToday.getTime()) {
+    return "Today";
+  } else if (targetDateWithoutTime.getTime() === startOfTomorrow.getTime()) {
+    return "Tomorrow";
+  } else {
+    // For future dates, return the day of the week
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return days[targetDate.getDay()];
+  }
+};

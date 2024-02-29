@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
+import { getDateDescription } from "../../utils/timeDate";
 
 export const ActionArea = ({ data = null }) => {
   const history = useHistory();
@@ -33,7 +34,7 @@ export const ActionArea = ({ data = null }) => {
           Learn More
         </Button>
         <Button className="bg-blue-500 border border-blue-500 text-xs !py-1 !px-4">
-          Next Available Tomorrow
+          Next Available {getDateDescription(data.availabilities[0].dayHour)}
         </Button>
       </div>
     </div>
