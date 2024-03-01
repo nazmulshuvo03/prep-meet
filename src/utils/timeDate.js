@@ -117,6 +117,7 @@ export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
 };
 
 export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
+  if (!isoTIme) return "";
   const localTime = new Date(isoTIme);
   const dateOptions = {
     day: "2-digit",
