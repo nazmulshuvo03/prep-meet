@@ -22,7 +22,7 @@ export const Info = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="bg-white p-3">
+    <div className="bg-white p-3 h-full w-full">
       <div className="flex gap-5">
         <div className="flex flex-col items-center">
           <img
@@ -85,7 +85,7 @@ export const Info = ({ data }) => {
           />
         </div>
       </div>
-      <div className="flex justify-end text-xs font-bold mt-4">
+      <div className="flex gap-2 justify-end text-xs font-bold mt-4">
         <div>cancelation: N/A</div>
         <div>depth of feedback: N/A</div>
         <div>product sense: N/A</div>

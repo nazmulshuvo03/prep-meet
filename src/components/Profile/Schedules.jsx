@@ -2,7 +2,7 @@ import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 
 export const Schedules = ({ data }) => {
   return (
-    <div className="bg-white p-3">
+    <div className="bg-white p-3 h-full w-full">
       <div className="font-semibold text-center pt-2 pb-3">
         Current Schedule
       </div>

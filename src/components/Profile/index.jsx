@@ -13,14 +13,14 @@ export const Profile = () => {
   return (
     <>
       {profile ? (
-        <div className="px-6 py-10 grid grid-cols-4 gap-3">
+        <div className="px-6 py-10 grid grid-cols-4 gap-3 h-full overflow-hidden">
           <div className="col-span-3">
             <Info data={profile} />
           </div>
           <div className="">
             <AddAvailability data={profile} />
           </div>
-          <div className="col-span-3">
+          <div className="col-span-3 overflow-y-auto">
             <Details data={profile} />
           </div>
           <div className="">
