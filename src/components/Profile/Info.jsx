@@ -23,7 +23,7 @@ export const Info = ({ data }) => {
 
   return (
     <div className="bg-white p-3">
-      <div className="flex gap-3">
+      <div className="flex gap-5">
         <div className="flex flex-col items-center">
           <img
             src={data.photoURL}
@@ -36,7 +36,7 @@ export const Info = ({ data }) => {
           </div>
           <div className="text-sm font-light text-gray-500">{data.country}</div>
         </div>
-        <div>
+        <div className="flex-1 flex flex-col gap-2">
           {currentCompany ? (
             <div className="text-text">
               <div className="text-md font-semibold">
@@ -85,7 +85,7 @@ export const Info = ({ data }) => {
           />
         </div>
       </div>
-      <div className="flex text-xs font-bold">
+      <div className="flex justify-end text-xs font-bold mt-4">
         <div>cancelation: N/A</div>
         <div>depth of feedback: N/A</div>
         <div>product sense: N/A</div>
