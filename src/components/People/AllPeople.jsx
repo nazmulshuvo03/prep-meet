@@ -25,7 +25,7 @@ export const AllPeople = ({
   return (
     <div className="py-2">
       <div className="flex justify-between items-center pb-4">
-        <div className="flex gap-2">
+        <div className="flex w-full gap-2">
           <Dropdown
             name={"companiesOfInterest"}
             value={queries["companiesOfInterest"] || ""}
@@ -50,9 +50,9 @@ export const AllPeople = ({
             defaultText={"Types of Experience"}
             allowSearch={false}
           />
-        </div>
-        <div>
-          <Button onClick={handleResetQuery}>Reset</Button>
+          <div>
+            <Button onClick={handleResetQuery}>Reset</Button>
+          </div>
         </div>
       </div>
       {/* <div className="w-60">
