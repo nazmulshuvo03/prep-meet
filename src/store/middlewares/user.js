@@ -10,6 +10,7 @@ import {
 import { setLoading, setToastMessage } from "../slices/global";
 import { setPeople, setProfile, updateProfile } from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
+import { setUserAvailabilities } from "../slices/availability";
 
 export const fetchPeople = (userId = null, query = "") =>
   asyncWrapper(async (dispatch) => {
@@ -38,6 +39,7 @@ export const fetchUserProfile = (
     const handleSuccess = () => {
       dispatch(setProfile(response.data));
       dispatch(setTargetProfession(response.data.targetProfessionId));
+      dispatch(setUserAvailabilities(response.data.availabilities));
       successHandler();
     };
     responseHandler(response, handleSuccess, errorHandler);

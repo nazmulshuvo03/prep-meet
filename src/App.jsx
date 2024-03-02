@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div
-      className={`${
+      className={`font-sans ${
         global.dark ? "dark" : ""
       } h-screen w-screen overflow-hidden`}
     >

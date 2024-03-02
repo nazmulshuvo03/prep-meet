@@ -24,7 +24,7 @@ export const AvailableTimes = () => {
     const data = {
       userId: profile.id,
       day: day.key,
-      hour: time.key,
+      hour: time.id,
       dayHourUTC: convertLocalDayTimeToUTCDayTime(day.key, time.key),
     };
     dispatch(createUserAvailability(data));
@@ -61,7 +61,7 @@ export const AvailableTimes = () => {
                         );
                       return (
                         <div
-                          key={hour.key}
+                          key={hour.id}
                           className={`cursor-pointer border border-primary rounded-md py-1 px-2 
                         ${
                           found && found.state === "OPEN"
@@ -77,7 +77,7 @@ export const AvailableTimes = () => {
                               : () => {}
                           }
                         >
-                          {hour.label}
+                          {hour.name}
                         </div>
                       );
                     })}

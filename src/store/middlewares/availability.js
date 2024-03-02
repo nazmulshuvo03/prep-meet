@@ -1,10 +1,11 @@
 import { TOAST_TYPES } from "../../constants/Toast";
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
-import { fetchContent, postContent } from "../../services/api";
+import { deleteContent, fetchContent, postContent } from "../../services/api";
 import {
   user_availability_url,
   availability_url,
+  single_availability_url,
 } from "../../services/urls/availability";
 import { formatHourWithAMPM } from "../../utils/timeDate";
 import {
@@ -36,14 +37,14 @@ export const createUserAvailability = (data) =>
         res,
         () => {
           dispatch(removeAvailability(data));
-          dispatch(
-            setToastMessage({
-              type: TOAST_TYPES[0],
-              message: `${new Date(data.day)} ${formatHourWithAMPM(
-                data.hour
-              )} removed`,
-            })
-          );
+          // dispatch(
+          //   setToastMessage({
+          //     type: TOAST_TYPES[0],
+          //     message: `${new Date(data.day)} ${formatHourWithAMPM(
+          //       data.hour
+          //     )} removed`,
+          //   })
+          // );
         },
         () => {
           dispatch(
@@ -59,14 +60,14 @@ export const createUserAvailability = (data) =>
         res,
         () => {
           dispatch(updateUserAvailabilities(res.data));
-          dispatch(
-            setToastMessage({
-              type: TOAST_TYPES[0],
-              message: `${new Date(data.day)} ${formatHourWithAMPM(
-                data.hour
-              )} added`,
-            })
-          );
+          // dispatch(
+          //   setToastMessage({
+          //     type: TOAST_TYPES[0],
+          //     message: `${new Date(data.day)} ${formatHourWithAMPM(
+          //       data.hour
+          //     )} added`,
+          //   })
+          // );
         },
         () => {
           dispatch(
@@ -78,4 +79,25 @@ export const createUserAvailability = (data) =>
         }
       );
     }
+  });
+
+export const deleteAvailability = (data) =>
+  asyncWrapper(async (dispatch) => {
+    console.log("!!!!!!!!!!!!!!!!!!!!!", data);
+    const res = await deleteContent(single_availability_url(data.id));
+    console.log("availability deleted", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(removeAvailability(data));
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: `Error removing availability data`,
+          })
+        );
+      }
+    );
   });

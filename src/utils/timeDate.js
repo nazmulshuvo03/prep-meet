@@ -51,7 +51,7 @@ export function generateHourArray() {
 
   for (let hour = 0; hour < 24; hour++) {
     const formattedHour = formatHourWithAMPM(hour);
-    hourArray.push({ key: hour, label: formattedHour });
+    hourArray.push({ id: hour, name: formattedHour });
   }
 
   return hourArray;
@@ -87,6 +87,7 @@ export function convertUnixUTCToLocal(utcTime) {
 }
 
 export const convertLocalDayTimeToUTCDayTime = (originalDate, hour) => {
+  if (!originalDate || !hour) return "";
   let dateWithOriginalTime = new Date(originalDate);
   const updatedTime = dateWithOriginalTime.setHours(hour, 0, 0, 0);
   const updatedTimeToUTC = new Date(updatedTime).toISOString();
@@ -127,16 +128,31 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
   const formattedDate = new Intl.DateTimeFormat("en-IN", dateOptions).format(
     localTime
   );
+
+  const dateOptionsMonthView = {
+    day: "2-digit",
+    month: "short",
+    weekday: "short",
+  };
+  const formatter = new Intl.DateTimeFormat("en-US", dateOptionsMonthView);
+  const [{ value: weekday }, , { value: month }, , { value: day }] =
+    formatter.formatToParts(localTime);
+  const formattedDateMonthView = `${month} ${day}, ${weekday}`;
+
   const hourOptions = {
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
+    // second: "numeric",
     hour12: true,
   };
   const formattedHour = new Intl.DateTimeFormat("en-IN", hourOptions).format(
     localTime
   );
-  return { date: formattedDate, time: formattedHour };
+  return {
+    date: formattedDate,
+    dateMonthView: formattedDateMonthView,
+    time: formattedHour,
+  };
 };
 
 export const formatPostgresDate = (date) => {
