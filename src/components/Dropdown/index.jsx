@@ -76,9 +76,11 @@ export const Dropdown = ({
           onClick={handleInputClick}
           className="w-full flex-1 flex gap-2 rounded-md border border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
         >
-          {value && options && options.length
-            ? options.find((option) => option.id === value)[defaultLabel]
-            : defaultText}
+          {value && options && options.length ? (
+            options.find((option) => option.id === value)[defaultLabel]
+          ) : (
+            <span className="text-gray-400">{defaultText}</span>
+          )}
         </div>
         {dropdownOpen && (
           <div

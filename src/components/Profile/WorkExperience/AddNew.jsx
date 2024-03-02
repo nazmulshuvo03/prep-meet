@@ -61,9 +61,11 @@ export const AddNew = ({
           onChange={handleChange}
         />
       </div>
-      <Button className={"!bg-accent"} onClick={handleSubmit}>
-        Save
-      </Button>
+      <div className="flex justify-end">
+        <Button size="small" onClick={handleSubmit}>
+          Save
+        </Button>
+      </div>
     </div>
   );
 };

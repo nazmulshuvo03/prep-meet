@@ -16,7 +16,7 @@ export const TextInput = ({
         placeholder={placeholder}
         value={value}
         onChange={setValue}
-        className="border px-4 py-2 w-full bg-white"
+        className="border px-4 py-2 w-full text-sm text-gray-500 bg-white"
         {...rest}
       ></textarea>
     </label>

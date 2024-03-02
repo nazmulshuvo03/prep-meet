@@ -50,46 +50,56 @@ export const Info = () => {
             </div>
           </div>
           <div className="pt-5">
-            <div className="flex gap-2 items-center">
-              <FontAwesomeIcon
-                className="text-xs text-gray-500"
-                icon={faEnvelope}
-              />
-              <div className="text-md text-gray-500">{profile.email}</div>
-              <Button className={"!bg-transparent !text-gray-500 !p-0"}>
-                <FontAwesomeIcon className="text-xs" icon={faPen} />
-              </Button>
-            </div>
-            <div className="flex gap-2 items-center">
-              <FontAwesomeIcon
-                className="text-xs text-gray-500"
-                icon={faUser}
-              />
-              <div className="text-md text-gray-500">{profile.userName}</div>
-              <Button className={"!bg-transparent !text-gray-500 !p-0"}>
+            {profile.email ? (
+              <div className="flex gap-2 items-center">
                 <FontAwesomeIcon
                   className="text-xs text-gray-500"
-                  icon={faPen}
+                  icon={faEnvelope}
                 />
-              </Button>
-            </div>
-            <div className="flex gap-2 items-center">
-              <FontAwesomeIcon
-                className="text-xs text-gray-500"
-                icon={faBriefcase}
-              />
-              <div className="text-md text-gray-500">
-                {profile && profile.targetProfession
-                  ? profile.targetProfession.name || ""
-                  : ""}
+                <div className="text-md text-gray-500">{profile.email}</div>
+                <Button className={"!bg-transparent !text-gray-500 !p-0"}>
+                  <FontAwesomeIcon className="text-xs" icon={faPen} />
+                </Button>
               </div>
-              <Button className={"!bg-transparent !text-gray-500 !p-0"}>
+            ) : (
+              ""
+            )}
+            {profile.userName ? (
+              <div className="flex gap-2 items-center">
                 <FontAwesomeIcon
                   className="text-xs text-gray-500"
-                  icon={faPen}
+                  icon={faUser}
                 />
-              </Button>
-            </div>
+                <div className="text-md text-gray-500">{profile.userName}</div>
+                <Button className={"!bg-transparent !text-gray-500 !p-0"}>
+                  <FontAwesomeIcon
+                    className="text-xs text-gray-500"
+                    icon={faPen}
+                  />
+                </Button>
+              </div>
+            ) : (
+              ""
+            )}
+            {profile.targetProfession && profile.targetProfession.name ? (
+              <div className="flex gap-2 items-center">
+                <FontAwesomeIcon
+                  className="text-xs text-gray-500"
+                  icon={faBriefcase}
+                />
+                <div className="text-md text-gray-500">
+                  {profile.targetProfession.name}
+                </div>
+                <Button className={"!bg-transparent !text-gray-500 !p-0"}>
+                  <FontAwesomeIcon
+                    className="text-xs text-gray-500"
+                    icon={faPen}
+                  />
+                </Button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="col-span-8 flex flex-col gap-2">
