@@ -9,64 +9,136 @@ import { useEffect, useState } from "react";
 import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
 import { TextInput } from "../TextInput";
 
-export const Info = ({ data }) => {
+export const Info = () => {
+  const profile = useSelector((state) => state.user.profile);
   const professions = useSelector((state) => state.profession.items);
   const companies = useSelector((state) => state.static.companies);
-  const [currentCompany, setCurrentCompany] = useState();
-
-  useEffect(() => {
-    if (data && data.workExperiences && data.workExperiences.length) {
-      const current = data.workExperiences.find((we) => we.currentCompany);
-      setCurrentCompany(current);
-    }
-  }, [data]);
+  const experienceLevels = useSelector(
+    (state) => state.static.experienceLevels
+  );
+  const preparationStages = useSelector(
+    (state) => state.static.preparationStages
+  );
 
   return (
     <div className="bg-white p-3 h-full w-full">
       <div className="flex gap-5">
         <div className="flex flex-col items-center">
           <img
-            src={data.photoURL}
+            src={profile.photoURL}
             alt={"Person Profile Image"}
             className="h-32 w-32 rounded-md"
           />
           <div className="flex gap-2 font-semibold text-md">
-            <span>{data.firstName}</span>
-            <span>{data.lastName}</span>
+            <span>{profile.firstName}</span>
+            <span>{profile.lastName}</span>
           </div>
-          <div className="text-sm font-light text-gray-500">{data.country}</div>
+          <div className="text-sm font-light text-gray-500">
+            {profile.country}
+          </div>
         </div>
         <div className="flex-1 flex flex-col gap-2">
-          {currentCompany ? (
-            <div className="text-text">
-              <div className="text-md font-semibold">
-                {companyNameShortner(
-                  getDataLabelFromKey(companies, currentCompany.companyId)
-                )}
-              </div>
-              <div className="text-sm font-light">
-                {getDataLabelFromKey(professions, currentCompany.professionId)}
-              </div>
-              <div className="flex gap-1 text-gray-600 text-xs">
-                <div>
-                  {
-                    convertISOUTCDayTimeToLocalDayTime(currentCompany.startDate)
-                      .date
-                  }{" "}
-                  - Present
-                </div>
-                <div style={{ fontSize: 30 }}>&middot;</div>
-                <div>
-                  {timeDistance(
-                    currentCompany.startDate,
-                    currentCompany.endDate
-                  )}
-                </div>
+          <div>
+            <div className="flex flex-wrap items-baseline gap-1 break-words">
+              <div className="text-sm font-semibold">Target Company:</div>
+              <div className="flex gap-1 flex-wrap break-words text-xs font-semibold">
+                {profile.companiesOfInterest &&
+                  profile.companiesOfInterest.length &&
+                  profile.companiesOfInterest.map((comp, i) => {
+                    return (
+                      <div key={comp}>
+                        <span>
+                          {companyNameShortner(
+                            getDataLabelFromKey(companies, comp),
+                            2
+                          )}
+                        </span>
+                        {i < profile.companiesOfInterest.length - 1 ? (
+                          <span>,</span>
+                        ) : (
+                          <span />
+                        )}
+                      </div>
+                    );
+                  })}
               </div>
             </div>
-          ) : (
-            <div>Current Company: N/A</div>
-          )}
+
+            <div className="flex gap-1 items-baseline">
+              <div className="text-xs font-semibold">Target Role:</div>
+              <div className="text-xs font-medium">
+                {profile && profile.targetProfession
+                  ? profile.targetProfession.name || ""
+                  : ""}
+              </div>
+            </div>
+
+            <div className="flex gap-1 items-baseline">
+              <div className="text-xs font-semibold">Target Level:</div>
+              <div className="text-xs font-medium">
+                {profile && profile.experienceLevel
+                  ? getDataLabelFromKey(
+                      experienceLevels,
+                      profile.experienceLevel
+                    ) || ""
+                  : ""}
+              </div>
+            </div>
+
+            <div className="flex gap-1 items-baseline">
+              <div className="text-xs font-semibold">
+                Stage of Interviewing:
+              </div>
+              <div className="text-xs font-medium">
+                {profile && profile.preparationStage
+                  ? getDataLabelFromKey(
+                      preparationStages,
+                      profile.preparationStage
+                    ) || ""
+                  : ""}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-baseline gap-1 break-words">
+              <div className="text-xs font-semibold">Focus Areas:</div>
+              <div className="flex gap-1 flex-wrap break-words text-xs font-semibold">
+                {profile.focusAreas &&
+                  profile.focusAreas.length &&
+                  profile.focusAreas.map((focus, i) => {
+                    return (
+                      <div key={focus}>
+                        <span>{getDataLabelFromKey(companies, focus)}</span>
+                        {i < profile.focusAreas.length - 1 ? (
+                          <span>,</span>
+                        ) : (
+                          <span />
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-baseline gap-1 break-words">
+              <div className="text-xs font-semibold">Experience Types:</div>
+              <div className="flex gap-1 flex-wrap break-words text-xs font-semibold">
+                {profile.typesOfExperience &&
+                  profile.typesOfExperience.length &&
+                  profile.typesOfExperience.map((types, i) => {
+                    return (
+                      <div key={types}>
+                        <span>{getDataLabelFromKey(companies, types)}</span>
+                        {i < profile.typesOfExperience.length - 1 ? (
+                          <span>,</span>
+                        ) : (
+                          <span />
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
           <div className="flex gap-1 border p-1">
             <ProfileCardCapsul className="bg-purple-200 text-purple-800">
               Chip 1

@@ -9,7 +9,7 @@ import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createUserAvailability } from "../../store/middlewares/availability";
 
-export const AddAvailability = ({ data }) => {
+export const AddAvailability = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
 
@@ -24,6 +24,8 @@ export const AddAvailability = ({ data }) => {
       dayHourUTC: convertLocalDayTimeToUTCDayTime(date, time),
     };
     dispatch(createUserAvailability(data));
+    setDate();
+    setTime();
   };
 
   return (

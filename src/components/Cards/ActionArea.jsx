@@ -34,7 +34,7 @@ export const ActionArea = ({ data = null }) => {
           Learn More
         </Button>
         <Button className="!bg-blue-500 border border-blue-500 text-xs !py-1 !px-4">
-          Next Available {getDateDescription(data.availabilities[0].dayHour)}
+          Next Available {getDateDescription(data.availabilities[0]?.dayHour)}
         </Button>
       </div>
     </div>

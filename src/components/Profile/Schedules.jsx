@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteAvailability } from "../../store/middlewares/availability";
 
-export const Schedules = ({ data }) => {
+export const Schedules = () => {
   const dispatch = useDispatch();
   const availabilities = useSelector(
     (state) => state.availability.userAvailabilities

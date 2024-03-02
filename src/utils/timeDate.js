@@ -137,7 +137,7 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
   const formatter = new Intl.DateTimeFormat("en-US", dateOptionsMonthView);
   const [{ value: weekday }, , { value: month }, , { value: day }] =
     formatter.formatToParts(localTime);
-  const formattedDateMonthView = `${month} ${day}, ${weekday}`;
+  const formattedDateMonthView = `${weekday}, ${day} ${month}`;
 
   const hourOptions = {
     hour: "numeric",
