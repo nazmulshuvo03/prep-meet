@@ -74,7 +74,7 @@ export const Dropdown = ({
       <div className="relative">
         <div
           onClick={handleInputClick}
-          className="w-full flex-1 flex gap-2 rounded-md border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+          className="w-full flex-1 flex gap-2 rounded-md border border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
         >
           {value && options && options.length
             ? options.find((option) => option.id === value)[defaultLabel]
@@ -87,7 +87,7 @@ export const Dropdown = ({
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            <div className="h-40 overflow-y-auto py-2 px-2">
+            <div className="h-56 overflow-y-auto py-2 px-2">
               {filteredOptions && filteredOptions.length ? (
                 filteredOptions.map((option) => (
                   <div

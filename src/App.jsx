@@ -20,6 +20,10 @@ import {
   fetchPreparationStages,
 } from "./store/middlewares/static";
 import { fetchProfessions } from "./store/middlewares/profession";
+import {
+  fetchAllExperienceType,
+  fetchAllSkill,
+} from "./store/middlewares/skill";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +34,8 @@ function App() {
     dispatch(fetchExperienceLevels());
     dispatch(fetchPreparationStages());
     dispatch(fetchCompanies());
+    dispatch(fetchAllSkill());
+    dispatch(fetchAllExperienceType());
   }, []);
 
   return (

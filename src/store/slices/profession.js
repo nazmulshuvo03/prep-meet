@@ -5,6 +5,8 @@ const ProfessionSlice = createSlice({
   initialState: {
     items: [],
     targetProfession: null,
+    allSkill: null,
+    allExperienceType: null,
   },
   reducers: {
     setProfessions: (state, action) => {
@@ -24,6 +26,10 @@ const ProfessionSlice = createSlice({
     removeProfession: (state, action) => {
       const id = action.payload;
       state.items = state.items.filter((item) => item.id !== id);
+    },
+    setAllSkill: (state, action) => {
+      const data = action.payload;
+      state.allSkill = data;
     },
     updateSkills: (state, action) => {
       const data = action.payload;
@@ -51,6 +57,10 @@ const ProfessionSlice = createSlice({
           (skill) => skill.id !== id
         );
       }
+    },
+    setAllExperienceType: (state, action) => {
+      const data = action.payload;
+      state.allExperienceType = data;
     },
     updateExperienceTypes: (state, action) => {
       const data = action.payload;
@@ -87,8 +97,10 @@ export const {
   setTargetProfession,
   updateProfessions,
   removeProfession,
+  setAllSkill,
   updateSkills,
   removeSkill,
+  setAllExperienceType,
   updateExperienceTypes,
   removeExperienceTypes,
 } = ProfessionSlice.actions;

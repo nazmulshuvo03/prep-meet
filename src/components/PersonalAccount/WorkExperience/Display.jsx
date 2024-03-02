@@ -63,7 +63,7 @@ export const Display = ({ data }) => {
         <div className="border rounded-md px-2 py-3">
           <div className="flex items-center justify-between">
             <div>
-              {professions.find((prf) => prf.id === data.professionId).name}
+              {professions.find((prf) => prf.id === data.professionId)?.name}
             </div>
             <div className="flex gap-2">
               <div className="cursor-pointer" onClick={() => setEditMode(true)}>
@@ -79,7 +79,7 @@ export const Display = ({ data }) => {
               companies.length &&
               companies.filter(
                 (company) => company.id === parseInt(data.companyId)
-              )[0].name}
+              )[0]?.name}
             {", "}
             {data.country}
           </div>

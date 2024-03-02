@@ -59,22 +59,14 @@ export const Display = ({ data }) => {
               &middot;
             </div>
             <div className="flex items-center justify-between text-sm font-semibold">
-              <div>
-                {professions.find((prf) => prf.id === data.role)
-                  ? professions.find((prf) => prf.id === data.role).name
-                  : ""}
-              </div>
+              <div>{professions.find((prf) => prf.id === data.role)?.name}</div>
             </div>
             <div className="text-sm font-medium">
               {companies &&
-              companies.length &&
-              companies.filter(
-                (company) => company.id === parseInt(data.companyId)
-              )[0]
-                ? companies.filter(
-                    (company) => company.id === parseInt(data.companyId)
-                  )[0].name
-                : ""}
+                companies.length &&
+                companies.filter(
+                  (company) => company.id === parseInt(data.companyId)
+                )[0]?.name}
               {", "}
               {data.country}
             </div>

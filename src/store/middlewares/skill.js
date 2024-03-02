@@ -1,5 +1,5 @@
 import { TOAST_TYPES } from "../../constants/Toast";
-import { deleteContent, postContent } from "../../services/api";
+import { deleteContent, fetchContent, postContent } from "../../services/api";
 import {
   all_experience_type_url,
   all_skills_url,
@@ -12,9 +12,18 @@ import { setToastMessage } from "../slices/global";
 import {
   removeExperienceTypes,
   removeSkill,
+  setAllExperienceType,
+  setAllSkill,
   updateExperienceTypes,
   updateSkills,
 } from "../slices/profession";
+
+export const fetchAllSkill = () =>
+  asyncWrapper(async (dispatch) => {
+    const res = await fetchContent(all_skills_url());
+    console.log("all skills fetched", res);
+    responseHandler(res, () => dispatch(setAllSkill(res.data)));
+  });
 
 export const addSkill = (data) =>
   asyncWrapper(async (dispatch) => {
@@ -64,6 +73,13 @@ export const deleteSkill = (id, profession) =>
           })
         )
     );
+  });
+
+export const fetchAllExperienceType = () =>
+  asyncWrapper(async (dispatch) => {
+    const res = await fetchContent(all_experience_type_url());
+    console.log("all experience type fetched", res);
+    responseHandler(res, () => dispatch(setAllExperienceType(res.data)));
   });
 
 export const addExperienceType = (data) =>
