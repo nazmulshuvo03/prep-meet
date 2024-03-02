@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Input } from "../Input";
 import { Button } from "../Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown,
+  faSortDown,
+  faSortUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const Dropdown = ({
   label = "",
@@ -74,13 +80,26 @@ export const Dropdown = ({
       <div className="relative">
         <div
           onClick={handleInputClick}
-          className="w-full flex-1 flex gap-2 rounded-md border border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+          className="relative w-full flex-1 flex gap-2 rounded-md border border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
         >
           {value && options && options.length ? (
             options.find((option) => option.id === value)[defaultLabel]
           ) : (
             <span className="text-gray-400">{defaultText}</span>
           )}
+          <span className="text-gray-500 text-sm">
+            {dropdownOpen ? (
+              <FontAwesomeIcon
+                className="absolute top-4 right-3"
+                icon={faSortUp}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="absolute top-2 right-3"
+                icon={faSortDown}
+              />
+            )}
+          </span>
         </div>
         {dropdownOpen && (
           <div

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Input } from "../Input";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export const HorizontalTabs = ({
   data = [{ id: 1, name: "First Tab", component: <div>Empty Content</div> }],
@@ -32,11 +34,18 @@ export const HorizontalTabs = ({
           )}
         </div>
         {allowSearch ? (
-          <div>
+          <div className="w-1/4">
             <Input
               placeholder="Search by Name"
               value={searchValue}
               onChange={handleSearch}
+              style={{ backgroundColor: "#eceef8" }}
+              icon={
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="text-sm text-gray-500"
+                />
+              }
             />
           </div>
         ) : (

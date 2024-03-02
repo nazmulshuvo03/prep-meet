@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { PersonCard } from "../../components/Cards/PersonCard";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 // import { RangeSlider } from "../../components/Slider/RangeSlider";
 
 // const EXPERIENCE_MIN_VALUE = 0;
@@ -22,37 +23,52 @@ export const AllPeople = ({
   );
   const companies = useSelector((state) => state.static.companies);
 
+  console.log("!!!!!!!!!!!", queries);
+
   return (
     <div className="py-2">
       <div className="flex justify-between items-center pb-4">
         <div className="flex w-full gap-2">
-          <Dropdown
-            name={"companiesOfInterest"}
-            value={queries["companiesOfInterest"] || ""}
-            options={companies}
-            onSelect={handleQuerySelect}
-            defaultText={"Company of Interest"}
-            allowSearch={false}
-          />
-          <Dropdown
-            name={"focusAreas"}
-            value={queries["focusAreas"] || ""}
-            options={targetProfession ? targetProfession.skills : null}
-            onSelect={handleQuerySelect}
-            defaultText={"Focus Areas"}
-            allowSearch={false}
-          />
-          <Dropdown
-            name={"typesOfExperience"}
-            value={queries["typesOfExperience"] || ""}
-            options={targetProfession ? targetProfession.experienceTypes : null}
-            onSelect={handleQuerySelect}
-            defaultText={"Types of Experience"}
-            allowSearch={false}
-          />
-          <div>
-            <Button onClick={handleResetQuery}>Reset</Button>
+          <div className="flex-1 grid grid-cols-5 gap-2">
+            <Dropdown
+              name={"companiesOfInterest"}
+              value={queries["companiesOfInterest"] || ""}
+              options={companies}
+              onSelect={handleQuerySelect}
+              defaultText={"Company of Interest"}
+              allowSearch={false}
+            />
+            <Dropdown
+              name={"focusAreas"}
+              value={queries["focusAreas"] || ""}
+              options={targetProfession ? targetProfession.skills : null}
+              onSelect={handleQuerySelect}
+              defaultText={"Focus Areas"}
+              allowSearch={false}
+            />
+            <Dropdown
+              name={"typesOfExperience"}
+              value={queries["typesOfExperience"] || ""}
+              options={
+                targetProfession ? targetProfession.experienceTypes : null
+              }
+              onSelect={handleQuerySelect}
+              defaultText={"Types of Experience"}
+              allowSearch={false}
+            />
           </div>
+          {Object.keys(queries).length ? (
+            <div>
+              <Button
+                onClick={handleResetQuery}
+                className={"!bg-transparent !text-gray-500 text-2xl"}
+              >
+                <FontAwesomeIcon icon={faRotateLeft} />
+              </Button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       {/* <div className="w-60">

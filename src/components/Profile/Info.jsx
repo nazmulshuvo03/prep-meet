@@ -194,7 +194,7 @@ export const Info = () => {
             name={"profileHeadline"}
             placeholder={"Write the headline of your profile"}
             rows="3"
-            value={profile.profileHeadline}
+            value={profile.profileHeadline || ""}
             // setValue={handleChange}
           />
         </div>
