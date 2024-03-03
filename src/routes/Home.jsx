@@ -15,16 +15,14 @@ const Home = () => {
       dispatch(
         fetchUserProfile(
           userId,
-          () => history.push("/dashboard"),
+          () => history.push("/profile"),
           () => (window.location.href = loginPageUrl)
         )
       );
     }
   }, [userId]);
 
-  console.log("params: ", profile);
-
-  return <div>Loading...</div>;
+  return <div />;
 };
 
 export default Home;

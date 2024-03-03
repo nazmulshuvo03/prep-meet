@@ -1,11 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
-import { logoutUser } from "../../store/middlewares/auth";
 
 export const TabNavigation = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state.user.profile);
 
   const navLinks = [
@@ -21,11 +18,6 @@ export const TabNavigation = () => {
 
   const isRouteActive = (routePath) => {
     return location.pathname === routePath;
-  };
-
-  const handleLogout = async () => {
-    await dispatch(logoutUser());
-    history.push("/");
   };
 
   return (

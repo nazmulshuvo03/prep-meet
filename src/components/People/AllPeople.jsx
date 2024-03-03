@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { PersonCard } from "../../components/Cards/PersonCard";
+import { PersonCard } from "../../components/PersonCard";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

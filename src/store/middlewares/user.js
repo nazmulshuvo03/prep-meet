@@ -35,6 +35,7 @@ export const fetchUserProfile = (
   errorHandler = () => {}
 ) =>
   asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
     const response = await fetchContent(user_url(userId));
     console.log("user doc: ", response);
     const handleSuccess = () => {
@@ -44,6 +45,7 @@ export const fetchUserProfile = (
       successHandler();
     };
     responseHandler(response, handleSuccess, errorHandler);
+    dispatch(setLoading(false));
   });
 
 export const visitUserProfile = (userId) => async (dispatch) => {

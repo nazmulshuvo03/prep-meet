@@ -13,9 +13,9 @@ export const Navigation = () => {
   const navLinks = [
     ...(user
       ? [
-          { to: "/dashboard", name: "About Us" },
-          { to: "/dashboard", name: "How it works" },
-          { to: "/dashboard", name: "FAQs" },
+          { to: "/profile", name: "About Us" },
+          { to: "/profile", name: "How it works" },
+          { to: "/profile", name: "FAQs" },
         ]
       : []),
   ];
@@ -38,7 +38,7 @@ export const Navigation = () => {
       />
       <div className="bg-primary flex justify-between w-full h-full items-center px-5">
         <div className="text-3xl font-semibold opacity-75 ">
-          <NavLink to={"/dashboard"} className="text-gray-900">
+          <NavLink to={"/profile"} className="text-gray-900">
             Candidace
           </NavLink>
         </div>

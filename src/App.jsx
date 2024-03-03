@@ -1,14 +1,7 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  // Redirect,
-} from "react-router-dom";
-import Dashboard from "./routes/Dashboard";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
-import Account from "./routes/Account";
 import Admin from "./routes/Admin";
 import CircularProgress from "./components/ProgressBar";
 import Toast from "./components/Toast";
@@ -32,15 +25,18 @@ import { Interviews } from "./components/Interviews";
 function App() {
   const dispatch = useDispatch();
   const global = useSelector((state) => state.global);
+  const profile = useSelector((state) => state.user.profile);
 
   useEffect(() => {
-    dispatch(fetchProfessions());
-    dispatch(fetchExperienceLevels());
-    dispatch(fetchPreparationStages());
-    dispatch(fetchCompanies());
-    dispatch(fetchAllSkill());
-    dispatch(fetchAllExperienceType());
-  }, []);
+    if (profile) {
+      dispatch(fetchProfessions());
+      dispatch(fetchExperienceLevels());
+      dispatch(fetchPreparationStages());
+      dispatch(fetchCompanies());
+      dispatch(fetchAllSkill());
+      dispatch(fetchAllExperienceType());
+    }
+  }, [profile]);
 
   return (
     <div
@@ -60,8 +56,7 @@ function App() {
             <TabNavigation />
             <div className="flex-1">
               <Switch>
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/dashboard/:userId" component={Home} />
+                <Route exact path="/profile/:userId" component={Home} />
                 <Route exact path="/admin" component={Admin} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/people" component={People} />
