@@ -1,21 +1,10 @@
 import { useSelector } from "react-redux";
-import { companyNameShortner } from "../../utils/string";
-import { getDataLabelFromKey } from "../../utils/data";
-import {
-  convertISOUTCDayTimeToLocalDayTime,
-  timeDistance,
-} from "../../utils/timeDate";
-import { useEffect, useState } from "react";
-import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
-import { TextInput } from "../TextInput";
+import { companyNameShortner } from "../../../utils/string";
+import { getDataLabelFromKey } from "../../../utils/data";
+import { TextInput } from "../../TextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faUser,
-  faBriefcase,
-  faPen,
-} from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../Button";
+import { faEnvelope, faBriefcase } from "@fortawesome/free-solid-svg-icons";
+import { UserName } from "./UserName";
 
 export const Info = () => {
   const profile = useSelector((state) => state.user.profile);
@@ -57,26 +46,6 @@ export const Info = () => {
                   icon={faEnvelope}
                 />
                 <div className="text-md text-gray-500">{profile.email}</div>
-                <Button className={"!bg-transparent !text-gray-500 !p-0"}>
-                  <FontAwesomeIcon className="text-xs" icon={faPen} />
-                </Button>
-              </div>
-            ) : (
-              ""
-            )}
-            {profile.userName ? (
-              <div className="flex gap-2 items-center">
-                <FontAwesomeIcon
-                  className="text-xs text-gray-500"
-                  icon={faUser}
-                />
-                <div className="text-md text-gray-500">{profile.userName}</div>
-                <Button className={"!bg-transparent !text-gray-500 !p-0"}>
-                  <FontAwesomeIcon
-                    className="text-xs text-gray-500"
-                    icon={faPen}
-                  />
-                </Button>
               </div>
             ) : (
               ""
@@ -90,16 +59,11 @@ export const Info = () => {
                 <div className="text-md text-gray-500">
                   {profile.targetProfession.name}
                 </div>
-                <Button className={"!bg-transparent !text-gray-500 !p-0"}>
-                  <FontAwesomeIcon
-                    className="text-xs text-gray-500"
-                    icon={faPen}
-                  />
-                </Button>
               </div>
             ) : (
               ""
             )}
+            <UserName />
           </div>
         </div>
         <div className="col-span-8 flex flex-col gap-2">

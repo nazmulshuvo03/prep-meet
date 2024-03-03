@@ -1,11 +1,12 @@
 import { TOAST_TYPES } from "../../constants/Toast";
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
-import { fetchContent, putContent } from "../../services/api";
+import { fetchContent, postContent, putContent } from "../../services/api";
 import {
   all_profile_url,
   all_users_url,
   user_url,
+  users_check_prop_url,
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
 import { setPeople, setProfile, updateProfile } from "../slices/user";
@@ -74,3 +75,9 @@ export const updateUserData = (userId, updatedData) =>
     responseHandler(res, handleSuccess, handleError);
     dispatch(setLoading(false));
   });
+
+export const checkUserProperty = (obj) => async (dispatch) => {
+  const res = await postContent(users_check_prop_url(), obj);
+  console.log("Check user prop response: ", res);
+  return res.data?.exists;
+};

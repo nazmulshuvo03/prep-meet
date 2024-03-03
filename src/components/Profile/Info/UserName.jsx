@@ -1,0 +1,95 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "../../Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faPen,
+  faSave,
+  faClose,
+} from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import {
+  checkUserProperty,
+  updateUserData,
+} from "../../../store/middlewares/user";
+import { UnderlineInput } from "../../Input/UnderlineInput";
+
+export const UserName = () => {
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.profile);
+
+  const [editMode, setEditMode] = useState(false);
+  const [userName, setUserName] = useState();
+  const [alreadyExists, setAlreadyExists] = useState(false);
+
+  const handleUserNameEditCancel = () => {
+    setEditMode(false);
+    setUserName(profile.userName);
+  };
+
+  const handleUserNameEditSave = () => {
+    dispatch(updateUserData(profile.id, { userName }));
+    setEditMode(false);
+    setUserName(profile.userName);
+  };
+
+  const checkIfUserExists = async () => {
+    const exists = await dispatch(checkUserProperty({ userName }));
+    setAlreadyExists(exists);
+  };
+
+  useEffect(() => {
+    setUserName(profile.userName);
+  }, [profile]);
+
+  useEffect(() => {
+    if (userName && userName.length > 3) {
+      checkIfUserExists();
+    }
+  }, [userName]);
+
+  return (
+    <div className="flex gap-2 items-center">
+      <FontAwesomeIcon className="text-xs text-gray-500" icon={faUser} />
+      {editMode ? (
+        <UnderlineInput
+          value={userName || ""}
+          onChange={(e) => setUserName(e.target.value)}
+          className={alreadyExists ? "border-red-500 !text-red-500" : ""}
+        />
+      ) : (
+        <div className="text-md text-gray-500 w-32">
+          {userName ? userName : "User Name"}
+        </div>
+      )}
+      {editMode ? (
+        <div className="flex items-center gap-1">
+          {!alreadyExists && (
+            <Button
+              onClick={handleUserNameEditSave}
+              className={"!bg-transparent !text-gray-500 !p-0"}
+            >
+              <FontAwesomeIcon
+                className="text-xs text-gray-500"
+                icon={faSave}
+              />
+            </Button>
+          )}
+          <Button
+            onClick={handleUserNameEditCancel}
+            className={"!bg-transparent !text-gray-500 !p-0"}
+          >
+            <FontAwesomeIcon className="text-sm text-gray-500" icon={faClose} />
+          </Button>
+        </div>
+      ) : (
+        <Button
+          onClick={() => setEditMode(true)}
+          className={"!bg-transparent !text-gray-500 !p-0"}
+        >
+          <FontAwesomeIcon className="text-xs text-gray-500" icon={faPen} />
+        </Button>
+      )}
+    </div>
+  );
+};
