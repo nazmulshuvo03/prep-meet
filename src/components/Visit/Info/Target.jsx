@@ -2,8 +2,7 @@ import { useSelector } from "react-redux";
 import { companyNameShortner } from "../../../utils/string";
 import { getDataLabelFromKey } from "../../../utils/data";
 
-export const Target = () => {
-  const profile = useSelector((state) => state.user.profile);
+export const Target = ({ profile }) => {
   const companies = useSelector((state) => state.static.companies);
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels

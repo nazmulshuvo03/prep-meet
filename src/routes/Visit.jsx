@@ -28,13 +28,13 @@ const Visit = () => {
       {profile ? (
         <div className="px-10 py-10 grid grid-cols-1 md:grid-cols-4 gap-3 h-full overflow-hidden">
           <div className="col-span-3">
-            <Info />
+            <Info profile={profile} />
           </div>
           <div className="">
             <div>Availabilities</div>
           </div>
           <div className="col-span-3 overflow-y-auto">
-            <Details />
+            <Details profile={profile} />
           </div>
           <div className="">
             <div>Reviews</div>

@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { Target } from "./Target";
 
-export const Info = () => {
-  const profile = useSelector((state) => state.user.profile);
-
+export const Info = ({ profile }) => {
   return (
     <div className="bg-white p-5 h-full w-full">
       <div className="grid grid-cols-12 gap-5">
@@ -62,7 +59,7 @@ export const Info = () => {
             )}
           </div>
         </div>
-        <Target />
+        <Target profile={profile} />
       </div>
       <div className="flex gap-2 justify-end text-xs font-bold mt-4">
         <div>cancelation: N/A</div>

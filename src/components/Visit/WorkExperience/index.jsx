@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 import { Display } from "./Display";
 
-export const WorkExperience = () => {
-  const profile = useSelector((state) => state.user.profile);
-
+export const WorkExperience = ({ profile }) => {
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between">
