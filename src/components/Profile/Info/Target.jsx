@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { companyNameShortner } from "../../../utils/string";
 import { getDataLabelFromKey } from "../../../utils/data";
-import { TextInput } from "../../TextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "../../Button/IconButton";
@@ -22,7 +21,7 @@ export const Target = () => {
   const allExperienceType = useSelector(
     (state) => state.profession.allExperienceType
   );
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
 
   return (
     <div className="relative col-span-8 flex flex-col gap-2">

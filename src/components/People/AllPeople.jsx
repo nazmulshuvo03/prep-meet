@@ -23,10 +23,8 @@ export const AllPeople = ({
   );
   const companies = useSelector((state) => state.static.companies);
 
-  console.log("!!!!!!!!!!!", queries);
-
   return (
-    <div className="py-2">
+    <div className="py-2 flex flex-col h-full">
       <div className="flex justify-between items-center pb-4">
         <div className="flex w-full gap-2">
           <div className="flex-1 grid grid-cols-5 gap-2">
@@ -81,7 +79,7 @@ export const AllPeople = ({
           max={EXPERIENCE_MAX_VALUE}
         />
       </div> */}
-      <div className="grid grid-cols-1 gap-4">
+      <div className="flex-1 grid grid-cols-1 gap-4 overflow-y-auto">
         {people && people.length && typeof people !== "string"
           ? people.map((person) => <PersonCard key={person.id} data={person} />)
           : null}

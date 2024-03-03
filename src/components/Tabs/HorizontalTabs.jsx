@@ -12,7 +12,7 @@ export const HorizontalTabs = ({
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="h-full w-full">
       <div className="bg-background flex justify-between items-baseline border-b border-gray-700 py-1 px-2">
         <div className="flex gap-8">
           {data && data.length ? (
@@ -52,7 +52,7 @@ export const HorizontalTabs = ({
           <div />
         )}
       </div>
-      <div className="flex-1 h-full overflow-y-auto">
+      <div className="h-full overflow-hidden">
         {data[currentTab] ? data[currentTab].component : ""}
       </div>
     </div>

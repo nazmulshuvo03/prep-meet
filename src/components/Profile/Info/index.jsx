@@ -1,7 +1,4 @@
 import { useSelector } from "react-redux";
-import { companyNameShortner } from "../../../utils/string";
-import { getDataLabelFromKey } from "../../../utils/data";
-import { TextInput } from "../../TextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { UserName } from "./UserName";
@@ -9,17 +6,6 @@ import { Target } from "./Target";
 
 export const Info = () => {
   const profile = useSelector((state) => state.user.profile);
-  const companies = useSelector((state) => state.static.companies);
-  const experienceLevels = useSelector(
-    (state) => state.static.experienceLevels
-  );
-  const preparationStages = useSelector(
-    (state) => state.static.preparationStages
-  );
-  const allSkill = useSelector((state) => state.profession.allSkill);
-  const allExperienceType = useSelector(
-    (state) => state.profession.allExperienceType
-  );
 
   return (
     <div className="bg-white p-5 h-full w-full">

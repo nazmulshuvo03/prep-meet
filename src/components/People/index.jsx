@@ -39,7 +39,7 @@ export const People = () => {
       const queryString = queryObjectToString(queries);
       if (profile) {
         dispatch(fetchPeople(profile.id, queryString));
-        history.push(`/dashboard?${queryString}`);
+        history.push(`/people?${queryString}`);
       }
     }
   }, [queries, oldQuery, profile]);
@@ -102,9 +102,9 @@ export const People = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div className="p-6 h-full">
       <div className="text-4xl font-bold">People</div>
-      <div className="pt-6">
+      <div className="pt-6 pb-16 h-full">
         <HorizontalTabs
           data={TABS}
           allowSearch

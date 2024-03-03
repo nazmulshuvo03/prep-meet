@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
 import Account from "./routes/Account";
-import Profile from "./routes/Profile";
 import Admin from "./routes/Admin";
 import CircularProgress from "./components/ProgressBar";
 import Toast from "./components/Toast";
@@ -24,6 +23,11 @@ import {
   fetchAllExperienceType,
   fetchAllSkill,
 } from "./store/middlewares/skill";
+import { TabNavigation } from "./components/Navigation/TabNavigation";
+import { Profile } from "./components/Profile";
+import { People } from "./components/People";
+import { Progress } from "./components/Progress";
+import { Interviews } from "./components/Interviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,14 +53,22 @@ function App() {
           <div className="fixed top-0 left-0 w-full h-16">
             <Navigation />
           </div>
-          <div className="mt-20" style={{ height: "-webkit-fill-available" }}>
-            <Switch>
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/dashboard/:userId" component={Home} />
-              <Route exact path="/account" component={Account} />
-              <Route exact path="/profile/:userId" component={Profile} />
-              <Route exact path="/admin" component={Admin} />
-            </Switch>
+          <div
+            className="mt-20 flex overflow-hidden"
+            style={{ height: "-webkit-fill-available" }}
+          >
+            <TabNavigation />
+            <div className="flex-1">
+              <Switch>
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard/:userId" component={Home} />
+                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/people" component={People} />
+                <Route exact path="/progress" component={Progress} />
+                <Route exact path="/interviews" component={Interviews} />
+              </Switch>
+            </div>
           </div>
         </Router>
       </div>
