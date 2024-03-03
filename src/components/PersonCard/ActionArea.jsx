@@ -6,7 +6,7 @@ export const ActionArea = ({ data = null }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/profile/${data.id}`);
+    history.push(`/user/${data.id}`);
   };
 
   return (

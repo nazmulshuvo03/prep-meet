@@ -21,6 +21,7 @@ import { Profile } from "./components/Profile";
 import { People } from "./components/People";
 import { Progress } from "./components/Progress";
 import { Interviews } from "./components/Interviews";
+import Visit from "./routes/Visit";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,11 +58,12 @@ function App() {
             <div className="flex-1">
               <Switch>
                 <Route exact path="/profile/:userId" component={Home} />
-                <Route exact path="/admin" component={Admin} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/people" component={People} />
                 <Route exact path="/progress" component={Progress} />
                 <Route exact path="/interviews" component={Interviews} />
+                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/user/:userId" component={Visit} />
               </Switch>
             </div>
           </div>

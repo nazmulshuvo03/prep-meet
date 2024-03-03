@@ -7,7 +7,6 @@ import { loginPageUrl } from "../services/api";
 const Home = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.profile);
   const history = useHistory();
 
   useEffect(() => {
