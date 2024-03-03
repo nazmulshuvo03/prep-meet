@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { PersonalAccount } from "../../components/PersonalAccount";
 import { Info } from "./Info";
 import { AddAvailability } from "./AddAvailability";
 import { Details } from "./Details";
 import { Schedules } from "./Schedules";
+// import { PersonalAccount } from "../../components/PersonalAccount";
 
 export const Profile = () => {
   const profile = useSelector((state) => state.user.profile);
@@ -28,7 +28,7 @@ export const Profile = () => {
       ) : (
         <div />
       )}
-      <PersonalAccount />
+      {/* <PersonalAccount /> */}
     </>
   );
 };

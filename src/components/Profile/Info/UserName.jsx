@@ -13,6 +13,7 @@ import {
   updateUserData,
 } from "../../../store/middlewares/user";
 import { UnderlineInput } from "../../Input/UnderlineInput";
+import { IconButton } from "../../Button/IconButton";
 
 export const UserName = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ export const UserName = () => {
       {editMode ? (
         <div className="flex items-center gap-1">
           {!alreadyExists && (
-            <Button
+            <IconButton
               onClick={handleUserNameEditSave}
               className={"!bg-transparent !text-gray-500 !p-0"}
             >
@@ -73,22 +74,22 @@ export const UserName = () => {
                 className="text-xs text-gray-500"
                 icon={faSave}
               />
-            </Button>
+            </IconButton>
           )}
-          <Button
+          <IconButton
             onClick={handleUserNameEditCancel}
             className={"!bg-transparent !text-gray-500 !p-0"}
           >
             <FontAwesomeIcon className="text-sm text-gray-500" icon={faClose} />
-          </Button>
+          </IconButton>
         </div>
       ) : (
-        <Button
+        <IconButton
           onClick={() => setEditMode(true)}
           className={"!bg-transparent !text-gray-500 !p-0"}
         >
           <FontAwesomeIcon className="text-xs text-gray-500" icon={faPen} />
-        </Button>
+        </IconButton>
       )}
     </div>
   );
