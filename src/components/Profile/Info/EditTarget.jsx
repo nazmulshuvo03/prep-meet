@@ -82,7 +82,7 @@ export const EditTarget = ({ handleDone = () => {} }) => {
   }, [professions, state.targetProfessionId]);
 
   return (
-    <div className="px-6 py-10 grid grid-cols-2 gap-2">
+    <div className="px-6 py-10 grid grid-cols-2 gap-4">
       <Input
         placeholder={"First Name"}
         name={"firstName"}

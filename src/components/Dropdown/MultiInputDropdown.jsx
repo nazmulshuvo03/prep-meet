@@ -83,7 +83,7 @@ export const MultiInputDropdown = ({
 
   return (
     <div ref={dropdownRef} className="w-full flex flex-col">
-      <label>{label}</label>
+      <label className="text-xs">{label}</label>
       <div className="relative">
         <div
           onClick={handleInputClick}
