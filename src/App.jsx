@@ -23,6 +23,7 @@ import { Progress } from "./components/Progress";
 import { Interviews } from "./components/Interviews";
 import Visit from "./routes/Visit";
 import Onboard from "./routes/Onboard";
+import Landing from "./routes/Landing";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,24 +52,30 @@ function App() {
           <div className="fixed top-0 left-0 w-full h-16">
             <Navigation />
           </div>
-          <div
-            className="mt-20 flex overflow-hidden"
-            style={{ height: "-webkit-fill-available" }}
-          >
-            <TabNavigation />
-            <div className="flex-1">
-              <Switch>
-                <Route exact path="/profile/:userId" component={Home} />
-                <Route exact path="/onboard" component={Onboard} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/people" component={People} />
-                <Route exact path="/progress" component={Progress} />
-                <Route exact path="/interviews" component={Interviews} />
-                <Route exact path="/admin" component={Admin} />
-                <Route exact path="/user/:userId" component={Visit} />
-              </Switch>
-            </div>
-          </div>
+          {false ? (
+            <Switch>
+              <div
+                className="mt-20 flex overflow-hidden"
+                style={{ height: "-webkit-fill-available" }}
+              >
+                <TabNavigation />
+                <div className="flex-1">
+                  <Route exact path="/profile/:userId" component={Home} />
+                  <Route exact path="/profile" component={Profile} />
+                  <Route exact path="/people" component={People} />
+                  <Route exact path="/progress" component={Progress} />
+                  <Route exact path="/interviews" component={Interviews} />
+                  <Route exact path="/admin" component={Admin} />
+                  <Route exact path="/user/:userId" component={Visit} />
+                </div>
+              </div>
+            </Switch>
+          ) : (
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/onboard" component={Onboard} />
+            </Switch>
+          )}
         </Router>
       </div>
       {global?.loading && <CircularProgress />}
