@@ -65,7 +65,7 @@ export const Dropdown = ({
   }, []);
 
   useEffect(() => {
-    if (query && query.length) {
+    if (query && query.length && options && options.length) {
       setFilteredOptions(() =>
         options.filter((item) =>
           item.name.toLowerCase().includes(query.toLowerCase())
@@ -80,7 +80,8 @@ export const Dropdown = ({
       <div className="relative">
         <div
           onClick={handleInputClick}
-          className="relative w-full flex-1 flex gap-2 rounded-md border border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+          className="relative w-full flex-1 flex gap-2 rounded-lg border border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+          style={{ minHeight: 38 }}
         >
           {value && options && options.length ? (
             options.find((option) => option.id === value)[defaultLabel]

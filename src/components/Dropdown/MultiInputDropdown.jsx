@@ -59,7 +59,7 @@ export const MultiInputDropdown = ({
   }, []);
 
   useEffect(() => {
-    if (value) setSelectedOptions(value);
+    if (value && value.length) setSelectedOptions(value);
   }, [value]);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export const MultiInputDropdown = ({
       <div className="relative">
         <div
           onClick={handleInputClick}
-          className="w-full flex-1 flex gap-2 rounded-md border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+          className="w-full flex-1 flex gap-2 rounded-lg border border-gray-300  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer"
         >
           {selectedOptions && selectedOptions.length ? (
             selectedOptions.map((seleted) => {

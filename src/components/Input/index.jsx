@@ -10,7 +10,7 @@ export const Input = ({
       <label className="text-xs">{label}</label>
       <input
         {...rest}
-        className={`border rounded-md text-sm px-4 py-2 w-full bg-white ${className}`}
+        className={`border rounded-lg text-sm px-4 py-2 w-full bg-white ${className}`}
       />
       <span
         onClick={iconClick}
