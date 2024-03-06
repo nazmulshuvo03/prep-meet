@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserMeetings } from "../../store/middlewares/meeting";
 import { Button } from "../Button";
 
-export const Interviews = () => {
+export const Meetings = () => {
   const profile = useSelector((state) => state.user.profile);
   const meetings = useSelector((state) => state.meeting.userMeetings);
   const dispatch = useDispatch();

@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
@@ -17,14 +22,13 @@ import {
   fetchAllSkill,
 } from "./store/middlewares/skill";
 import { TabNavigation } from "./components/Navigation/TabNavigation";
-import { Profile } from "./components/Profile";
-import { People } from "./components/People";
-import { Progress } from "./components/Progress";
-import { Interviews } from "./components/Interviews";
 import Visit from "./routes/Visit";
 import Onboard from "./routes/Onboard";
 import Landing from "./routes/Landing";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import Profile from "./routes/Profile";
+import People from "./routes/People";
+import Interviews from "./routes/Interviews";
+import Progress from "./routes/Progress";
 
 function App() {
   const dispatch = useDispatch();

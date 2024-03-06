@@ -5,7 +5,7 @@ import { Details } from "./Details";
 import { Schedules } from "./Schedules";
 // import { PersonalAccount } from "../../components/PersonalAccount";
 
-export const Profile = () => {
+export const UserProfile = () => {
   const profile = useSelector((state) => state.user.profile);
 
   return (

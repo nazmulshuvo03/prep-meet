@@ -12,7 +12,7 @@ import { FavouritePeople } from "./FavouritePeople";
 const EXPERIENCE_MIN_VALUE = 0;
 const EXPERIENCE_MAX_VALUE = 20;
 
-export const People = () => {
+export const PeoplePage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
