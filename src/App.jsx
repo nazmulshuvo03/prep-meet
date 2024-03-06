@@ -64,6 +64,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/onboard" component={Onboard} />
+              <Route exact path="/admin" component={Admin} />
               <Route>
                 {global.isAuthenticated ? (
                   <>
@@ -74,7 +75,6 @@ function App() {
                       <Route exact path="/people" component={People} />
                       <Route exact path="/progress" component={Progress} />
                       <Route exact path="/interviews" component={Interviews} />
-                      <Route exact path="/admin" component={Admin} />
                       <Route exact path="/user/:userId" component={Visit} />
                     </div>
                   </>

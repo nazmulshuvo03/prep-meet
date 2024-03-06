@@ -2,14 +2,34 @@ import { useSelector } from "react-redux";
 import { Dropdown } from "../Dropdown";
 import { Input } from "../Input";
 import { Button } from "../Button";
+import { useState } from "react";
 
-export const Experience = ({}) => {
+export const Experience = ({
+  educationData,
+  setEducationData,
+  workData,
+  setWorkData,
+  targetState,
+  setTargetState,
+}) => {
   const professions = useSelector((state) => state.profession.items);
   const companies = useSelector((state) => state.static.companies);
 
-  const handleChange = () => {};
+  const handleEducationChange = (event) => {
+    const { name, value } = event.target;
+    setEducationData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  const handleAddNewCompany = () => {};
+  const handleWorkChange = (event) => {
+    const { name, value } = event.target;
+    setWorkData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <div>
@@ -20,27 +40,27 @@ export const Experience = ({}) => {
             <Input
               label="Degree"
               name="degree"
-              // value={data.degree}
-              onChange={handleChange}
+              value={educationData.degree}
+              onChange={handleEducationChange}
             />
             <Input
               label="Major"
               name="major"
-              // value={data.major}
-              onChange={handleChange}
+              value={educationData.major}
+              onChange={handleEducationChange}
             />
           </div>
           <Input
             label="Institution"
             name="institution"
-            // value={data.institution}
-            onChange={handleChange}
+            value={educationData.institution}
+            onChange={handleEducationChange}
           />
           <Input
             label="Year of Graduation"
             name="year_of_graduation"
-            // value={data.year_of_graduation}
-            onChange={handleChange}
+            value={educationData.year_of_graduation}
+            onChange={handleEducationChange}
           />
         </div>
       </div>
@@ -49,43 +69,40 @@ export const Experience = ({}) => {
         <div className="flex flex-col gap-2">
           <Dropdown
             name={"jobTitle"}
-            // value={jobTitle || ""}
+            value={workData.jobTitle || ""}
             options={professions}
-            onSelect={handleChange}
+            onSelect={handleWorkChange}
             label="Job Title"
-            allowAddNew={true}
-            addNewAction={() => {}}
+            allowAddNew={false}
           />
           <div className="grid grid-cols-2 gap-4">
             <Dropdown
-              // label={"Experience Level"}
               name={"companyId"}
-              // value={companyId || ""}
+              value={workData.companyId || ""}
               options={companies}
-              onSelect={handleChange}
+              onSelect={handleWorkChange}
               label="Company"
-              allowAddNew={true}
-              addNewAction={handleAddNewCompany}
+              allowAddNew={false}
             />
             <Input
               label="Country"
               name="country"
-              // value={country}
-              onChange={handleChange}
+              value={workData.country}
+              onChange={handleWorkChange}
             />
             <Input
               type="date"
               label="Start Date"
               name="startDate"
-              // value={startDate || ""}
-              onChange={handleChange}
+              value={workData.startDate || ""}
+              onChange={handleWorkChange}
             />
             <Input
               type="date"
               label="End Date"
               name="endDate"
-              // value={endDate || ""}
-              onChange={handleChange}
+              value={workData.endDate || ""}
+              onChange={handleWorkChange}
             />
           </div>
         </div>
@@ -94,12 +111,15 @@ export const Experience = ({}) => {
         <div>Additional Information</div>
         <Dropdown
           name={"targetProfessionId"}
-          // value={targetProfessionId || ""}
+          value={targetState.targetProfessionId || ""}
           options={professions}
-          onSelect={handleChange}
+          onSelect={(e) =>
+            setTargetState((prev) => ({
+              ...prev,
+              [e.target.name]: e.target.value,
+            }))
+          }
           label="Role of Interest"
-          allowAddNew={true}
-          addNewAction={() => {}}
         />
       </div>
     </div>

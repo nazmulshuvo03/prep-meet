@@ -15,7 +15,7 @@ const Landing = () => {
   }, [location.search]);
 
   return (
-    <div className="w-full">
+    <div className="w-full -mt-12">
       {authMode && <Auth authMode={authMode} />}
       <img src="/landingPage.svg" className="w-full" />
     </div>

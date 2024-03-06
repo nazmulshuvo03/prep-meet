@@ -41,7 +41,7 @@ const ProfessionAdmin = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div className="flex items-center gap-2">
         <Input
           className=""

@@ -6,6 +6,9 @@ import { Target } from "./Target";
 
 export const Info = () => {
   const profile = useSelector((state) => state.user.profile);
+  const targetProfession = useSelector(
+    (state) => state.profession.targetProfession
+  );
 
   return (
     <div className="bg-white p-5 h-full w-full">
@@ -37,14 +40,14 @@ export const Info = () => {
             ) : (
               ""
             )}
-            {profile.targetProfession && profile.targetProfession.name ? (
+            {targetProfession && targetProfession.name ? (
               <div className="flex gap-2 items-center">
                 <FontAwesomeIcon
                   className="text-xs text-gray-500"
                   icon={faBriefcase}
                 />
                 <div className="text-md text-gray-500">
-                  {profile.targetProfession.name}
+                  {targetProfession.name}
                 </div>
               </div>
             ) : (

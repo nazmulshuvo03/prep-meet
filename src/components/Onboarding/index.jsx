@@ -1,12 +1,44 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Experience } from "./Experience";
 import { Target } from "./Target";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../Button";
+import { addEducation } from "../../store/middlewares/education";
+import { addWorkExperience } from "../../store/middlewares/workExperience";
+import { updateUserData } from "../../store/middlewares/user";
+import { formatPostgresDate } from "../../utils/timeDate";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 export const Onboarding = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.profile);
+
   const [currentStep, setCurrentStep] = useState(0);
+  const [educationData, setEducationData] = useState({
+    degree: "",
+    major: "",
+    institution: "",
+    year_of_graduation: "",
+  });
+  const [workData, setWorkData] = useState({
+    jobTitle: null,
+    companyId: null,
+    country: "",
+    startDate: null,
+    endDate: null,
+  });
+
+  const [targetState, setTargetState] = useState({
+    targetProfessionId: null,
+    focusAreas: [],
+    typesOfExperience: [],
+    experienceLevel: null,
+    preparationStage: null,
+    companiesOfInterest: [],
+  });
 
   const onBackClick = () =>
     setCurrentStep((prev) => (prev > 0 ? prev - 1 : prev));
@@ -15,20 +47,48 @@ export const Onboarding = () => {
     setCurrentStep((prev) => (prev < STEPS.length - 1 ? prev + 1 : prev));
   };
 
+  const onSubmitClick = async () => {
+    const fullEducation = {
+      ...educationData,
+      user_id: profile.id,
+    };
+    const fullWorkExp = {
+      user_id: profile.id,
+      professionId: workData.jobTitle,
+      companyId: workData.companyId,
+      country: workData.country,
+      startDate: formatPostgresDate(workData.startDate),
+      endDate: formatPostgresDate(workData.endDate),
+    };
+    await dispatch(addEducation(fullEducation));
+    await dispatch(addWorkExperience(fullWorkExp));
+    await dispatch(updateUserData(profile.id, targetState));
+    history.push("/profile");
+  };
+
+  console.log("@@@@@@", educationData, workData, targetState);
+
   const STEPS = [
     {
       id: 1,
       name: "Education & Work Experience",
       component: (
-        <Experience handleBack={onBackClick} handleContinue={onContinueClick} />
+        <Experience
+          {...{
+            educationData,
+            setEducationData,
+            workData,
+            setWorkData,
+            targetState,
+            setTargetState,
+          }}
+        />
       ),
     },
     {
       id: 2,
       name: "Job Preference",
-      component: (
-        <Target handleBack={onBackClick} handleContinue={onContinueClick} />
-      ),
+      component: <Target state={targetState} setState={setTargetState} />,
     },
   ];
 
@@ -79,13 +139,23 @@ export const Onboarding = () => {
             >
               Go back
             </Button>
-            <Button
-              size="small"
-              className={"!bg-secondary"}
-              onClick={onContinueClick}
-            >
-              Continue
-            </Button>
+            {currentStep === STEPS.length - 1 ? (
+              <Button
+                size="small"
+                className={"!bg-secondary"}
+                onClick={onSubmitClick}
+              >
+                Submit
+              </Button>
+            ) : (
+              <Button
+                size="small"
+                className={"!bg-secondary"}
+                onClick={onContinueClick}
+              >
+                Continue
+              </Button>
+            )}
           </div>
         </div>
       </div>
