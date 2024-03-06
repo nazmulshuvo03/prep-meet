@@ -2,27 +2,30 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { logoutUser } from "../../store/middlewares/auth";
-import { Banner } from "../Banner";
+// import { Banner } from "../Banner";
 
 export const Navigation = () => {
   // const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.user.profile);
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
   const navLinks = [
-    ...(user
-      ? [
-          { to: "/profile", name: "About Us" },
-          { to: "/profile", name: "How it works" },
-          { to: "/profile", name: "FAQs" },
-        ]
-      : []),
+    { to: "/", name: "About Us" },
+    { to: "/", name: "How it works" },
+    { to: "/", name: "FAQs" },
+    ...(isAuthenticated ? [] : []),
   ];
 
   // const isRouteActive = (routePath) => {
   //   return location.pathname === routePath;
   // };
+
+  const handleLoginClick = () => {
+    history.push({
+      search: "?auth=login",
+    });
+  };
 
   const handleLogout = async () => {
     await dispatch(logoutUser());
@@ -31,11 +34,11 @@ export const Navigation = () => {
 
   return (
     <>
-      <Banner
+      {/* <Banner
         text={
           "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
         }
-      />
+      /> */}
       <div className="bg-primary flex justify-between w-full h-full items-center px-5">
         <div className="text-3xl font-semibold opacity-75 ">
           <NavLink to={"/profile"} className="text-gray-900">
@@ -56,14 +59,25 @@ export const Navigation = () => {
               </NavLink>
             ))}
           </nav>
-          <Button
-            className={
-              "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
-            }
-            onClick={handleLogout}
-          >
-            Sign Out
-          </Button>
+          {isAuthenticated ? (
+            <Button
+              className={
+                "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
+              }
+              onClick={handleLogout}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              className={
+                "border border-gray-700 !bg-secondary rounded-none !font-normal !text-white"
+              }
+              onClick={handleLoginClick}
+            >
+              Login
+            </Button>
+          )}
         </div>
       </div>
     </>

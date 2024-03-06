@@ -1,9 +1,21 @@
-import { useState } from "react";
 import { Login } from "./Login";
 import { Signup } from "./Signup";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-export const Auth = () => {
-  const [loginMode, setLoginMode] = useState(true);
+export const Auth = ({ authMode = "" }) => {
+  const history = useHistory();
+
+  const changeAuthMode = () => {
+    if (authMode && authMode === "login") {
+      history.push({
+        search: "?auth=signup",
+      });
+    } else {
+      history.push({
+        search: "?auth=login",
+      });
+    }
+  };
 
   return (
     <div
@@ -12,14 +24,18 @@ export const Auth = () => {
     >
       <div
         className="fixed top-0 left-0 w-full h-full z-10"
-        onClick={() => console.log("Landing bg clicked")}
+        onClick={() =>
+          history.push({
+            search: "",
+          })
+        }
       />
       <div className="absolute right-0 w-3/4 lg:w-1/2 xl:w-1/3 h-full bg-white z-50">
         <div className="h-full">
-          {loginMode ? (
-            <Login switchMode={() => setLoginMode((prev) => !prev)} />
+          {authMode === "login" ? (
+            <Login switchMode={changeAuthMode} />
           ) : (
-            <Signup switchMode={() => setLoginMode((prev) => !prev)} />
+            <Signup switchMode={changeAuthMode} />
           )}
         </div>
       </div>

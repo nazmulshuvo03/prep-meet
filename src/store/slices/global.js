@@ -7,6 +7,7 @@ const globalSlice = createSlice({
     dark: false,
     loading: false,
     toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
+    isAuthenticated: false,
     dashboardQuery: {},
   },
   reducers: {
