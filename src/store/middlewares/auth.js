@@ -30,6 +30,7 @@ export const signupUser = (data) =>
         dispatch(setAuthenticated(true));
         dispatch(setTargetProfession(response.data.targetProfessionId));
         dispatch(setUserAvailabilities(response.data.availabilities));
+        window.location.href = "/onboard";
       },
       () => {
         dispatch(

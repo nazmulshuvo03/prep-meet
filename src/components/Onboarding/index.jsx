@@ -33,7 +33,7 @@ export const Onboarding = () => {
   ];
 
   return (
-    <div className="px-10 py-10 h-full flex justify-center overflow-hidden">
+    <div className="px-10 py-2 h-full flex justify-center overflow-hidden">
       <div className="w-fit px-4 bg-white h-full overflow-y-auto">
         <div className="flex gap-3 items-center text-xs text-gray-400 font-light">
           <span>Sign Up</span>

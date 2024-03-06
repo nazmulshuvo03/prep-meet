@@ -53,31 +53,33 @@ function App() {
           <div className="fixed top-0 left-0 w-full h-16">
             <Navigation />
           </div>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/onboard" component={Onboard} />
-            <Route>
-              {global.isAuthenticated ? (
-                <div
-                  className="mt-16 flex overflow-hidden"
-                  style={{ height: "-webkit-fill-available" }}
-                >
-                  <TabNavigation />
-                  <div className="flex-1">
-                    <Route exact path="/profile/:userId" component={Home} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/people" component={People} />
-                    <Route exact path="/progress" component={Progress} />
-                    <Route exact path="/interviews" component={Interviews} />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/user/:userId" component={Visit} />
-                  </div>
-                </div>
-              ) : (
-                <Redirect to="/?auth=login" />
-              )}
-            </Route>
-          </Switch>
+          <div
+            className="mt-16 flex overflow-hidden"
+            style={{ height: "-webkit-fill-available" }}
+          >
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/onboard" component={Onboard} />
+              <Route>
+                {global.isAuthenticated ? (
+                  <>
+                    <TabNavigation />
+                    <div className="flex-1">
+                      <Route exact path="/profile/:userId" component={Home} />
+                      <Route exact path="/profile" component={Profile} />
+                      <Route exact path="/people" component={People} />
+                      <Route exact path="/progress" component={Progress} />
+                      <Route exact path="/interviews" component={Interviews} />
+                      <Route exact path="/admin" component={Admin} />
+                      <Route exact path="/user/:userId" component={Visit} />
+                    </div>
+                  </>
+                ) : (
+                  <Redirect to="/?auth=login" />
+                )}
+              </Route>
+            </Switch>
+          </div>
         </Router>
       </div>
       {global?.loading && <CircularProgress />}

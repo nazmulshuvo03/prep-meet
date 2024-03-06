@@ -16,18 +16,20 @@ export const Experience = ({}) => {
       <div className="py-4">
         <div>Most Recent Educational Degree</div>
         <div className="flex flex-col gap-2">
-          <Input
-            label="Degree"
-            name="degree"
-            // value={data.degree}
-            onChange={handleChange}
-          />
-          <Input
-            label="Major"
-            name="major"
-            // value={data.major}
-            onChange={handleChange}
-          />
+          <div className="flex justify-between gap-2">
+            <Input
+              label="Degree"
+              name="degree"
+              // value={data.degree}
+              onChange={handleChange}
+            />
+            <Input
+              label="Major"
+              name="major"
+              // value={data.major}
+              onChange={handleChange}
+            />
+          </div>
           <Input
             label="Institution"
             name="institution"
