@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { fetchUserProfile } from "../store/middlewares/user";
-import { loginPageUrl } from "../services/api";
 
 const Home = () => {
   const { userId } = useParams();
@@ -15,7 +14,7 @@ const Home = () => {
         fetchUserProfile(
           userId,
           () => history.push("/profile"),
-          () => (window.location.href = loginPageUrl)
+          () => history.push("/?auth=login")
         )
       );
     }

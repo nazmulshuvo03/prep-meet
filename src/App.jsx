@@ -24,6 +24,7 @@ import { Interviews } from "./components/Interviews";
 import Visit from "./routes/Visit";
 import Onboard from "./routes/Onboard";
 import Landing from "./routes/Landing";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,21 +56,25 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/onboard" component={Onboard} />
-            <div
-              className="mt-16 flex overflow-hidden"
-              style={{ height: "-webkit-fill-available" }}
-            >
-              <TabNavigation />
-              <div className="flex-1">
-                <Route exact path="/profile/:userId" component={Home} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/people" component={People} />
-                <Route exact path="/progress" component={Progress} />
-                <Route exact path="/interviews" component={Interviews} />
-                <Route exact path="/admin" component={Admin} />
-                <Route exact path="/user/:userId" component={Visit} />
+            {global.isAuthenticated ? (
+              <div
+                className="mt-16 flex overflow-hidden"
+                style={{ height: "-webkit-fill-available" }}
+              >
+                <TabNavigation />
+                <div className="flex-1">
+                  <Route exact path="/profile/:userId" component={Home} />
+                  <Route exact path="/profile" component={Profile} />
+                  <Route exact path="/people" component={People} />
+                  <Route exact path="/progress" component={Progress} />
+                  <Route exact path="/interviews" component={Interviews} />
+                  <Route exact path="/admin" component={Admin} />
+                  <Route exact path="/user/:userId" component={Visit} />
+                </div>
               </div>
-            </div>
+            ) : (
+              <Redirect to="/?auth=login" />
+            )}
           </Switch>
         </Router>
       </div>

@@ -4,13 +4,16 @@ const globalSlice = createSlice({
   name: "global",
   initialState: {
     // dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    isAuthenticated: false,
     dark: false,
     loading: false,
     toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
-    isAuthenticated: false,
     dashboardQuery: {},
   },
   reducers: {
+    setAuthenticated: (state, action) => {
+      state.isAuthenticated = action.payload;
+    },
     setLoading: (state, { payload = true } = {}) => {
       state.loading = payload;
     },
@@ -26,8 +29,13 @@ const globalSlice = createSlice({
   },
 });
 
-export const { setLoading, setTheme, setDashboardQuery, setToastMessage } =
-  globalSlice.actions;
+export const {
+  setAuthenticated,
+  setLoading,
+  setTheme,
+  setDashboardQuery,
+  setToastMessage,
+} = globalSlice.actions;
 export const selectTheme = (state) => state.global.dark;
 export const switchLoading = (state) => !state.global.switchLoading;
 

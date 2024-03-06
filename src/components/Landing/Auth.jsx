@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { Login } from "./Login";
 import { Signup } from "./Signup";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
 
 export const Auth = ({ authMode = "" }) => {
   const history = useHistory();
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
   const changeAuthMode = () => {
     if (authMode && authMode === "login") {
@@ -16,6 +19,12 @@ export const Auth = ({ authMode = "" }) => {
       });
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/profile");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div
