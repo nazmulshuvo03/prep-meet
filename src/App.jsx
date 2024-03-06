@@ -56,25 +56,27 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/onboard" component={Onboard} />
-            {global.isAuthenticated ? (
-              <div
-                className="mt-16 flex overflow-hidden"
-                style={{ height: "-webkit-fill-available" }}
-              >
-                <TabNavigation />
-                <div className="flex-1">
-                  <Route exact path="/profile/:userId" component={Home} />
-                  <Route exact path="/profile" component={Profile} />
-                  <Route exact path="/people" component={People} />
-                  <Route exact path="/progress" component={Progress} />
-                  <Route exact path="/interviews" component={Interviews} />
-                  <Route exact path="/admin" component={Admin} />
-                  <Route exact path="/user/:userId" component={Visit} />
+            <Route>
+              {global.isAuthenticated ? (
+                <div
+                  className="mt-16 flex overflow-hidden"
+                  style={{ height: "-webkit-fill-available" }}
+                >
+                  <TabNavigation />
+                  <div className="flex-1">
+                    <Route exact path="/profile/:userId" component={Home} />
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/people" component={People} />
+                    <Route exact path="/progress" component={Progress} />
+                    <Route exact path="/interviews" component={Interviews} />
+                    <Route exact path="/admin" component={Admin} />
+                    <Route exact path="/user/:userId" component={Visit} />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <Redirect to="/?auth=login" />
-            )}
+              ) : (
+                <Redirect to="/?auth=login" />
+              )}
+            </Route>
           </Switch>
         </Router>
       </div>

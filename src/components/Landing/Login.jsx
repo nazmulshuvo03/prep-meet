@@ -23,7 +23,6 @@ export const Login = ({ switchMode = () => {} }) => {
       return;
     }
     dispatch(loginUser(state));
-    console.log("@@@@@@@@@@ submited: ", state);
   };
 
   useEffect(() => {
@@ -37,10 +36,7 @@ export const Login = ({ switchMode = () => {} }) => {
   }, [errorMessage]);
 
   return (
-    <div
-      className="w-full h-full flex justify-center"
-      style={{ paddingTop: "15%" }}
-    >
+    <div className="w-full h-full flex justify-center p-4">
       <div>
         <div className="text-center py-4">
           <div className="text-xl font-bold">Welcome back!</div>
