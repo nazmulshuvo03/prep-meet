@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { generateDateArray, generateHourArray } from "../../utils/TimeDate";
+import {
+  convertLocalDayTimeToUTCDayTime,
+  generateDateArray,
+  generateHourArray,
+} from "../../utils/timeDate";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createUserAvailability,
@@ -20,7 +24,8 @@ export const AvailableTimes = () => {
     const data = {
       userId: profile.id,
       day: day.key,
-      hour: time.key,
+      hour: time.id,
+      dayHourUTC: convertLocalDayTimeToUTCDayTime(day.key, time.key),
     };
     dispatch(createUserAvailability(data));
   };
@@ -42,18 +47,21 @@ export const AvailableTimes = () => {
                 <div className="py-2 text-text font-semibold text-xl">
                   {item.label}
                 </div>
-                <div className="flex gap-2 flex-wrap border border-primary rounded-md px-2 py-2 transform duration-300 ease-in-out">
+                <div className="flex gap-2 flex-wrap border border-primary rounded-md px-2 py-2">
                   {hourArray &&
                     hourArray.length &&
                     hourArray.map((hour) => {
-                      const found = userAvailabilities.find(
-                        (avl) =>
-                          parseInt(avl.day) === item.key &&
-                          avl.hour === hour.key
-                      );
+                      const found =
+                        userAvailabilities &&
+                        typeof userAvailabilities !== "string" &&
+                        userAvailabilities.find(
+                          (avl) =>
+                            avl.dayHourUTC ===
+                            convertLocalDayTimeToUTCDayTime(item.key, hour.key)
+                        );
                       return (
                         <div
-                          key={hour.key}
+                          key={hour.id}
                           className={`cursor-pointer border border-primary rounded-md py-1 px-2 
                         ${
                           found && found.state === "OPEN"
@@ -69,7 +77,7 @@ export const AvailableTimes = () => {
                               : () => {}
                           }
                         >
-                          {hour.label}
+                          {hour.name}
                         </div>
                       );
                     })}

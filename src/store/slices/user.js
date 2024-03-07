@@ -10,12 +10,13 @@ const userSlice = createSlice({
     setProfile: (state, data) => {
       state.profile = data.payload;
     },
-    updateProfile: (state, data) => {
+    updateProfile: (state, action) => {
+      const data = action.payload;
       const updatedProfile = { ...state.profile };
 
       Object.keys(data).forEach((key) => {
-        if (state.profile[key] !== data.payload[key]) {
-          updatedProfile[key] = data.payload[key];
+        if (state.profile[key] !== data[key]) {
+          updatedProfile[key] = data[key];
         }
       });
       state.profile = updatedProfile;
@@ -24,11 +25,61 @@ const userSlice = createSlice({
       state.people = data.payload;
     },
     updatePeople: (state, data) => {
-      state.people = [...state.people, data.payload];
+      state.people = [...state.people, { ...data.payload }];
+    },
+    updateWorkExperience: (state, action) => {
+      const data = action.payload;
+      let newData = state.profile;
+      newData.workExperiences = [...newData.workExperiences, data];
+      state.profile = newData;
+    },
+    removeWorkExperience: (state, action) => {
+      const id = action.payload;
+      let newData = state.profile;
+      newData.workExperiences = newData.workExperiences.filter(
+        (work) => work.id !== id
+      );
+      state.profile = newData;
+    },
+    updateEducation: (state, action) => {
+      const data = action.payload;
+      let newData = state.profile;
+      newData.education = [...newData.education, data];
+      state.profile = newData;
+    },
+    removeEducation: (state, action) => {
+      const id = action.payload;
+      let newData = state.profile;
+      newData.education = newData.education.filter((work) => work.id !== id);
+      state.profile = newData;
+    },
+    updateInterviewExperience: (state, action) => {
+      const data = action.payload;
+      let newData = state.profile;
+      newData.interviewExperiences = [...newData.interviewExperiences, data];
+      state.profile = newData;
+    },
+    removeInterviewExperience: (state, action) => {
+      const id = action.payload;
+      let newData = state.profile;
+      newData.interviewExperiences = newData.interviewExperiences.filter(
+        (interview) => interview.id !== id
+      );
+      state.profile = newData;
     },
   },
 });
 
-export const { setProfile, updateProfile, setPeople, updatePeople } =
-  userSlice.actions;
+export const {
+  setProfile,
+  updateProfile,
+  setPeople,
+  updatePeople,
+  updateWorkExperience,
+  removeWorkExperience,
+  updateEducation,
+  removeEducation,
+  updateInterviewExperience,
+  removeInterviewExperience,
+} = userSlice.actions;
 export default userSlice.reducer;

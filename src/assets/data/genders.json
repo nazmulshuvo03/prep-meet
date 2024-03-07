@@ -1,5 +1,5 @@
 [
-  { "key": "male", "label": "Male" },
-  { "key": "female", "label": "Female" },
-  { "key": "not-disclose", "label": "Do not want to disclose" }
+  { "id": "male", "name": "Male" },
+  { "id": "female", "name": "Female" },
+  { "id": "not-disclose", "name": "Do not want to disclose" }
 ]

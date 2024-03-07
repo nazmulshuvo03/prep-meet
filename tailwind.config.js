@@ -11,6 +11,11 @@ export default {
         secondary: "var(--secondary)",
         accent: "var(--accent)",
       },
+      fontFamily: {
+        sans: ["Open Sans", "sans-serif"],
+        serif: ["Poppins", "serif"],
+        mono: ["Menlo", "monospace"],
+      },
     },
   },
   plugins: [],

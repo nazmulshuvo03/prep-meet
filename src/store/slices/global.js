@@ -3,11 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const globalSlice = createSlice({
   name: "global",
   initialState: {
+    // dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    isAuthenticated: false,
+    dark: false,
     loading: false,
-    dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+    toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
     dashboardQuery: {},
   },
   reducers: {
+    setAuthenticated: (state, action) => {
+      state.isAuthenticated = action.payload;
+    },
     setLoading: (state, { payload = true } = {}) => {
       state.loading = payload;
     },
@@ -17,10 +23,19 @@ const globalSlice = createSlice({
     setDashboardQuery: (state, data) => {
       state.dashboardQuery = data.payload;
     },
+    setToastMessage: (state, data) => {
+      state.toastMessage = data.payload;
+    },
   },
 });
 
-export const { setLoading, setTheme, setDashboardQuery } = globalSlice.actions;
+export const {
+  setAuthenticated,
+  setLoading,
+  setTheme,
+  setDashboardQuery,
+  setToastMessage,
+} = globalSlice.actions;
 export const selectTheme = (state) => state.global.dark;
 export const switchLoading = (state) => !state.global.switchLoading;
 

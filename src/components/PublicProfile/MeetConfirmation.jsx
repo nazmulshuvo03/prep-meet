@@ -2,16 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "../Button";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import {
+  convertUTCDayTimeToLocalDayTime,
   formatHourWithAMPM,
-  getFormattedDateWithWeekday,
-} from "../../utils/TimeDate";
+} from "../../utils/timeDate";
 
 export const MeetConfirmation = ({
   data,
   handleClose = () => {},
   handleConfirm = () => {},
 }) => {
-  console.log("!!!!!!", data);
   return (
     <div className="p-4">
       <div className="mb-2">
@@ -28,9 +27,18 @@ export const MeetConfirmation = ({
           <FontAwesomeIcon icon={faCalendarDay} />{" "}
           <span>{formatHourWithAMPM(data.availability.time)}</span>{" "}
           <span>
-            {getFormattedDateWithWeekday(
-              new Date(parseInt(data.availability.day))
-            )}
+            {
+              convertUTCDayTimeToLocalDayTime(
+                parseInt(data.availability.dayHour)
+              ).date
+            }
+          </span>{" "}
+          <span>
+            {
+              convertUTCDayTimeToLocalDayTime(
+                parseInt(data.availability.dayHour)
+              ).time
+            }
           </span>
         </div>
       </div>

@@ -1,51 +1,85 @@
-import { useSelector } from "react-redux";
-// import { NavLink, useLocation } from "react-router-dom";
-import { ProfileAvatar } from "../ProfileAvatar";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { Button } from "../Button";
+import { logoutUser } from "../../store/middlewares/auth";
+// import { Banner } from "../Banner";
 
 export const Navigation = () => {
   // const location = useLocation();
-  const user = useSelector((state) => state.user.profile);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
-  // const navLinks = [
-  //   { to: "/", name: "Home" },
-  //   { to: "/signup", name: "Sign Up" },
-  //   { to: "/login", name: "Login" },
-  //   { to: "/professions", name: "Professions" },
-  //   ...(user
-  //     ? [
-  //         { to: "/dashboard", name: "Dashboard" },
-  //         // { to: "/account", name: "Account" },
-  //       ]
-  //     : []),
-  // ];
+  const navLinks = [
+    { to: "/", name: "About Us" },
+    { to: "/", name: "How it works" },
+    { to: "/", name: "FAQs" },
+    ...(isAuthenticated ? [] : []),
+  ];
 
   // const isRouteActive = (routePath) => {
   //   return location.pathname === routePath;
   // };
 
+  const handleLoginClick = () => {
+    history.push({
+      search: "?auth=login",
+    });
+  };
+
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    history.push("/");
+  };
+
   return (
-    <div className="flex justify-between border-b w-full h-full items-center px-5 bg-background">
-      <div className="text-4xl font-bold opacity-75 ">
-        <span className="text-secondary">prep</span>
-        <span> </span>
-        <span className="text-primary">meet</span>
-      </div>
-      <div className="flex gap-4 items-center">
-        {/* <nav className="flex items-center">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              isActive={() => isRouteActive(link.to)}
-              className="h-fit px-6 py-2 rounded-lg text-slate-950 dark:text-slate-50"
-              activeClassName="bg-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
+    <>
+      {/* <Banner
+        text={
+          "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
+        }
+      /> */}
+      <div className="bg-primary flex justify-between w-full h-full items-center px-5">
+        <div className="text-3xl font-semibold opacity-75 ">
+          <NavLink to={"/"} className="text-gray-900">
+            Candidace
+          </NavLink>
+        </div>
+        <div className="flex gap-8 items-center">
+          <nav className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.name}
+                to={link.to}
+                // isActive={() => isRouteActive(link.to)}
+                className="h-fit rounded-lg text-slate-950 dark:text-slate-50"
+                // activeClassName="bg-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </nav>
+          {isAuthenticated ? (
+            <Button
+              className={
+                "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
+              }
+              onClick={handleLogout}
             >
-              {link.name}
-            </NavLink>
-          ))}
-        </nav> */}
-        {user && <ProfileAvatar url={user.profileImage} />}
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              className={
+                "border border-gray-700 !bg-secondary rounded-none !font-normal !text-white"
+              }
+              onClick={handleLoginClick}
+            >
+              Login
+            </Button>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

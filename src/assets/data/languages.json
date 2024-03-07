@@ -1,5 +1,5 @@
 [
-  { "key": "english", "label": "English" },
-  { "key": "french", "label": "French" },
-  { "key": "spanish", "label": "Spanish" }
+  { "id": "english", "name": "English" },
+  { "id": "french", "name": "French" },
+  { "id": "spanish", "name": "Spanish" }
 ]

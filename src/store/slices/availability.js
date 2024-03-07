@@ -16,8 +16,7 @@ const availabilitySlice = createSlice({
       const payload = data.payload;
       const filterValues = {
         userId: payload.userId,
-        day: payload.day.toString(),
-        hour: payload.hour,
+        id: payload.id,
       };
       state.userAvailabilities = state.userAvailabilities.filter((obj) => {
         return !Object.entries(filterValues).every(

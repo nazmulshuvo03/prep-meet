@@ -1,9 +1,9 @@
-export const getDataLabelFromKey = ({
+export const getDataLabelFromKey = (
   data,
   key,
-  defaultKey = "key",
-  defaultLabel = "label",
-}) => {
+  defaultKey = "id",
+  defaultLabel = "name"
+) => {
   if (data && data.length) {
     const found = data.find((item) => item[defaultKey] === key);
     return found ? found[defaultLabel] : "";
