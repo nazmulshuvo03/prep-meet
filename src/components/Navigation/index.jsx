@@ -41,7 +41,7 @@ export const Navigation = () => {
       /> */}
       <div className="bg-primary flex justify-between w-full h-full items-center px-5">
         <div className="text-3xl font-semibold opacity-75 ">
-          <NavLink to={"/profile"} className="text-gray-900">
+          <NavLink to={"/"} className="text-gray-900">
             Candidace
           </NavLink>
         </div>

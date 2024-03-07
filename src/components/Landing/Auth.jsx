@@ -39,19 +39,13 @@ export const Auth = ({ authMode = "" }) => {
           })
         }
       />
-      <div className="absolute right-0 w-3/4 lg:w-1/2 xl:w-1/3 h-full bg-white z-50">
+      <div className="absolute right-0 w-3/4 lg:w-1/2 xl:w-1/3 h-full bg-white z-50 shadow-lg transform translate-x-0 transition-transform duration-300 ease-in-out">
         <div className="h-full" style={{ paddingTop: "20%" }}>
           {authMode === "login" ? (
             <Login switchMode={changeAuthMode} />
           ) : (
             <Signup switchMode={changeAuthMode} />
           )}
-        </div>
-      </div>
-      <div className="absolute bottom-0 w-full h-1/6 bg-white z-50">
-        <div className="flex justify-between">
-          <h1>Footer 1</h1>
-          <h1>Footer 2</h1>
         </div>
       </div>
     </div>

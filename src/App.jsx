@@ -54,11 +54,11 @@ function App() {
     >
       <div className={`bg-background text-text h-full w-full overflow-y-auto`}>
         <Router>
-          <div className="fixed top-0 left-0 w-full h-16">
+          <div className="fixed top-0 left-0 w-full h-16 overflow-hidden">
             <Navigation />
           </div>
           <div
-            className="mt-16 flex overflow-hidden"
+            className="mt-16 flex overflow-y-auto"
             style={{ height: "-webkit-fill-available" }}
           >
             <Switch>
@@ -67,7 +67,7 @@ function App() {
               <Route exact path="/admin" component={Admin} />
               <Route>
                 {global.isAuthenticated ? (
-                  <>
+                  <div className="flex w-full overflow-hidden">
                     <TabNavigation />
                     <div className="flex-1">
                       <Route exact path="/profile/:userId" component={Home} />
@@ -77,7 +77,7 @@ function App() {
                       <Route exact path="/interviews" component={Interviews} />
                       <Route exact path="/user/:userId" component={Visit} />
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <Redirect to="/?auth=login" />
                 )}

@@ -12,8 +12,8 @@ export const Signup = ({ switchMode = () => {} }) => {
     email: "",
     password: "",
     confirmPassword: "",
-    firstName: "",
-    lastName: "",
+    // firstName: "",
+    // lastName: "",
   });
   const [agree, setAgree] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -28,14 +28,14 @@ export const Signup = ({ switchMode = () => {} }) => {
       );
       return;
     }
-    if (!state.firstName) {
-      setErrorMessage("First Name can not be empty");
-      return;
-    }
-    if (!state.lastName) {
-      setErrorMessage("Last Name can not be empty");
-      return;
-    }
+    // if (!state.firstName) {
+    //   setErrorMessage("First Name can not be empty");
+    //   return;
+    // }
+    // if (!state.lastName) {
+    //   setErrorMessage("Last Name can not be empty");
+    //   return;
+    // }
     if (!state.email) {
       setErrorMessage("Email can not be empty");
       return;
@@ -68,7 +68,7 @@ export const Signup = ({ switchMode = () => {} }) => {
           <div className="text-xl font-bold">Create your account</div>
         </div>
         <div className="grid grid-cols-1 gap-1">
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <Input
               type="text"
               label={"First Name"}
@@ -93,7 +93,7 @@ export const Signup = ({ switchMode = () => {} }) => {
                 }))
               }
             />
-          </div>
+          </div> */}
           <Input
             type="email"
             label={"Email Address"}
