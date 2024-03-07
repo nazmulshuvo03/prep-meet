@@ -36,8 +36,8 @@ function App() {
   const profile = useSelector((state) => state.user.profile);
 
   useEffect(() => {
+    dispatch(fetchProfessions());
     if (profile) {
-      dispatch(fetchProfessions());
       dispatch(fetchExperienceLevels());
       dispatch(fetchPreparationStages());
       dispatch(fetchCompanies());

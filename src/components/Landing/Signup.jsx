@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { setToastMessage } from "../../store/slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
 import { signupUser } from "../../store/middlewares/auth";
+import { Dropdown } from "../Dropdown";
 
 export const Signup = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
+  const professions = useSelector((state) => state.profession.items);
   const [state, setState] = useState({
     email: "",
     password: "",
     confirmPassword: "",
     // firstName: "",
     // lastName: "",
+    targetProfessionId: "",
   });
   const [agree, setAgree] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -46,6 +49,10 @@ export const Signup = ({ switchMode = () => {} }) => {
     }
     if (!state.confirmPassword) {
       setErrorMessage("Please confirm your password");
+      return;
+    }
+    if (!state.targetProfessionId) {
+      setErrorMessage("Please choose a career path");
       return;
     }
     dispatch(signupUser(state));
@@ -129,6 +136,19 @@ export const Signup = ({ switchMode = () => {} }) => {
                 [e.target.name]: e.target.value,
               }))
             }
+          />
+          <Dropdown
+            name={"targetProfessionId"}
+            value={state.targetProfessionId || ""}
+            options={professions}
+            onSelect={(e) =>
+              setState((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
+            label="Career Path"
+            allowSearch={false}
           />
           <div className="py-2 flex items-center justify-start gap-1 text-xs text-secondary">
             <input
