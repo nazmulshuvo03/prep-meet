@@ -22,8 +22,6 @@ const Visit = () => {
     }
   }, [userId]);
 
-  console.log("!!!!!!!!!!", profile);
-
   return (
     <>
       {profile ? (

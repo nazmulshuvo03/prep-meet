@@ -1,12 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserMeetings } from "../../store/middlewares/meeting";
-import { Button } from "../Button";
+import { Past } from "./Past";
+import { Upcoming } from "./Upcoming";
+import { MostRecent } from "./MostRecent";
 
 export const Meetings = () => {
   const profile = useSelector((state) => state.user.profile);
   const meetings = useSelector((state) => state.meeting.userMeetings);
   const dispatch = useDispatch();
+  const [mostRecent, setMostRecent] = useState();
+  const [upcoming, setUpcoming] = useState();
+  const [past, setPast] = useState();
+
+  const splitByTime = (arr) => {
+    const past = [];
+    const nowAndFuture = [];
+    const currentTime = new Date().getTime();
+    arr.forEach((obj) => {
+      const timeValue = obj.dayHour;
+      if (timeValue <= currentTime) {
+        past.push(obj);
+      } else {
+        nowAndFuture.push(obj);
+      }
+    });
+    nowAndFuture.sort((a, b) => a.dayHour - b.dayHour);
+    const mostRecent = nowAndFuture.shift();
+    return { past, nowAndFuture, mostRecent };
+  };
 
   useEffect(() => {
     if (profile) {
@@ -14,56 +36,25 @@ export const Meetings = () => {
     }
   }, [profile]);
 
-  const formatedDay = (timestamp) => {
-    timestamp = parseInt(timestamp);
-    const dateObject = new Date(timestamp);
-    const day = dateObject.toLocaleDateString("en-US", { weekday: "long" });
-    const date = dateObject.getDate();
-    const month = dateObject.toLocaleDateString("en-US", { month: "long" });
-    const year = dateObject.getFullYear();
-    const timeInAmPm = dateObject.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    });
-    return `${date} ${month} ${year} ${day} ${timeInAmPm}`;
-  };
+  useEffect(() => {
+    if (meetings && meetings.length) {
+      const { past, nowAndFuture, mostRecent } = splitByTime(meetings);
+      setPast(past);
+      setUpcoming(nowAndFuture);
+      setMostRecent(mostRecent);
+    }
+  }, [meetings]);
 
-  const handleJoin = (url) => {
-    window.open(url, "_blank");
-  };
+  console.log("@@@@@@@@@@", meetings, past, upcoming, mostRecent);
 
   return (
-    <div>
+    <div className="p-6">
       {meetings && meetings.length ? (
-        <>
-          {meetings.map((meeting) => {
-            return (
-              <div
-                key={meeting.id}
-                className="flex items-center justify-between px-4 py-1 my-2 rounded-md border "
-              >
-                <div>{formatedDay(meeting.dayHour)}</div>
-                <div>
-                  {profile.id === meeting.acceptor ? (
-                    <div>
-                      Initiated By: {meeting.initiatorProfile.firstName}{" "}
-                      {meeting.initiatorProfile.lastName}
-                    </div>
-                  ) : (
-                    <div>
-                      Accepted by: {meeting.acceptorProfile.firstName}{" "}
-                      {meeting.acceptorProfile.lastName}
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <Button onClick={() => handleJoin(meeting.meet)}>Join</Button>
-                </div>
-              </div>
-            );
-          })}
-        </>
+        <div className="grid grid-cols-1 gap-4">
+          <MostRecent data={mostRecent} />
+          <Upcoming data={upcoming} />
+          <Past data={past} />
+        </div>
       ) : (
         <div className="text-center mt-20">You have no upcoming interviews</div>
       )}
