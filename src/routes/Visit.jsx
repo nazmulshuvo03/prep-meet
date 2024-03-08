@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { visitUserProfile } from "../store/middlewares/user";
 import { Info } from "../components/Visit/Info";
 import { Details } from "../components/Visit/Details";
+import { Availability } from "../components/Visit/Availability";
 
 const Visit = () => {
   const { userId } = useParams();
@@ -31,14 +32,12 @@ const Visit = () => {
             <Info profile={profile} />
           </div>
           <div className="">
-            <div>Availabilities</div>
+            <Availability profile={profile} />
           </div>
           <div className="col-span-3 overflow-y-auto">
             <Details profile={profile} />
           </div>
-          <div className="">
-            <div>Reviews</div>
-          </div>
+          <div className="">{/* <div>Reviews</div> */}</div>
         </div>
       ) : (
         <div />

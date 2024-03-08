@@ -7,8 +7,8 @@ export const ImageArea = ({ data = null }) => {
         className="h-32 w-32 rounded-md"
       />
       <div className="flex gap-2 font-semibold text-md">
-        <span>{data.firstName}</span>
-        <span>{data.lastName}</span>
+        <span>{data.userName}</span>
+        {/* <span>{data.lastName}</span> */}
       </div>
       <div className="text-sm font-light text-gray-500">{data.country}</div>
     </div>

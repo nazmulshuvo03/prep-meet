@@ -145,7 +145,7 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
     // second: "numeric",
     hour12: true,
   };
-  const formattedHour = new Intl.DateTimeFormat("en-IN", hourOptions).format(
+  const formattedHour = new Intl.DateTimeFormat("en-US", hourOptions).format(
     localTime
   );
   return {
