@@ -94,6 +94,17 @@ export const convertLocalDayTimeToUTCDayTime = (originalDate, hour) => {
   return updatedTimeToUTC;
 };
 
+export const convertLocalDayTimeStringToUTCDayTime = (originalDate, hour) => {
+  if (!originalDate || !hour) return "";
+  let dateComponents = originalDate.split("-");
+  let year = parseInt(dateComponents[0]);
+  let month = parseInt(dateComponents[1]) - 1;
+  let day = parseInt(dateComponents[2]);
+  let localDate = new Date(year, month, day, hour);
+  const updatedTimeToUTC = new Date(localDate).toISOString();
+  return updatedTimeToUTC;
+};
+
 export const convertUTCDayTimeToLocalDayTime = (unixDayTime) => {
   const localTime = new Date(unixDayTime);
   const dateOptions = {

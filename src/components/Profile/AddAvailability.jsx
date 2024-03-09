@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../Input";
 import {
-  convertLocalDayTimeToUTCDayTime,
+  convertLocalDayTimeStringToUTCDayTime,
   generateHourArray,
 } from "../../utils/timeDate";
 import { Dropdown } from "../Dropdown";
@@ -21,7 +21,7 @@ export const AddAvailability = () => {
   const handleSubmit = () => {
     const data = {
       userId: profile.id,
-      dayHourUTC: convertLocalDayTimeToUTCDayTime(date, time),
+      dayHourUTC: convertLocalDayTimeStringToUTCDayTime(date, time),
     };
     dispatch(createUserAvailability(data));
     setDate();
