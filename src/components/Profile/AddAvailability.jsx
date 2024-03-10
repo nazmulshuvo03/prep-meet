@@ -8,6 +8,7 @@ import { Dropdown } from "../Dropdown";
 import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createUserAvailability } from "../../store/middlewares/availability";
+import { DateInput } from "../Input/DateInput";
 
 export const AddAvailability = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export const AddAvailability = () => {
         Add Availability
       </div>
       <div className="flex flex-col gap-2">
-        <Input
+        {/* <Input
           label={"Date"}
           type="date"
           value={date || ""}
@@ -42,6 +43,15 @@ export const AddAvailability = () => {
             setDate(e.target.value);
           }}
           placeholder={"Add Date"}
+        /> */}
+        <DateInput
+          label={"Date"}
+          minDate={new Date()}
+          placeholder={"Select a day"}
+          value={date || ""}
+          onChange={(value) => {
+            setDate(value);
+          }}
         />
         <div>
           <Dropdown
