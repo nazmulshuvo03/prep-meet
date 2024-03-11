@@ -24,7 +24,7 @@ export const DateInput = ({
 
   return (
     <div className="flex flex-col">
-      <label className="text-xs">{label}</label>
+      <label className="!text-xs mb-px">{label}</label>
       <DatePicker
         renderCustomHeader={({
           date,
@@ -60,7 +60,7 @@ export const DateInput = ({
         // }
         // isClearable
         placeholderText={placeholder}
-        className="border rounded-lg text-sm !pl-4 !pr-5 !py-2 w-full bg-white text-start"
+        className="border border-gray-300 rounded-lg text-sm !pl-4 !pr-5 !py-2 w-full bg-white text-start"
         calendarClassName="border-0 bg-white shadow-lg"
         dayClassName={(date) => "font-sans"}
         // customInput={
@@ -80,7 +80,7 @@ export const DateInput = ({
             className="text-gray-500 text-sm"
           />
         }
-        calendarIconClassname={"right-0"}
+        calendarIconClassname={"right-0 top-1"}
       />
     </div>
   );

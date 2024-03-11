@@ -24,21 +24,7 @@ export const AddNew = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="grid grid-cols-2 gap-2">
-        <Input
-          label="Role"
-          name="jobTitle"
-          value={jobTitle || ""}
-          onChange={handleChange}
-        />
-        <Dropdown
-          label="Experience Level"
-          name={"experienceId"}
-          value={experienceId || ""}
-          options={experienceLevels}
-          onSelect={handleChange}
-          defaultText="Experience Level"
-        />
+      <div className="grid grid-cols-3 items-baseline justify-between gap-4">
         <Dropdown
           label="Company"
           name={"companyId"}
@@ -48,12 +34,6 @@ export const AddNew = ({
           defaultText="Company"
           allowAddNew={true}
           addNewAction={handleAddNewCompany}
-        />
-        <Input
-          label="Country"
-          name="country"
-          value={country}
-          onChange={handleChange}
         />
         <DateInput
           label={"From"}
@@ -83,7 +63,29 @@ export const AddNew = ({
           minDate={startDate}
         />
       </div>
-      <div className="flex justify-end">
+      <div className="grid grid-cols-3 gap-4">
+        <Input
+          label="Role"
+          name="jobTitle"
+          value={jobTitle || ""}
+          onChange={handleChange}
+        />
+        <Dropdown
+          label="Experience Level"
+          name={"experienceId"}
+          value={experienceId || ""}
+          options={experienceLevels}
+          onSelect={handleChange}
+          defaultText="Experience Level"
+        />
+        <Input
+          label="Country"
+          name="country"
+          value={country}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="flex justify-center mt-4">
         <Button size="small" onClick={handleSubmit}>
           Save
         </Button>

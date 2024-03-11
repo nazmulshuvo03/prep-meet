@@ -3,6 +3,7 @@ import { EmptyModal } from "./EmptyModal";
 export const Modal = ({
   children = <EmptyModal />,
   handleClose = () => {},
+  className = "",
 }) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-10">
@@ -13,7 +14,7 @@ export const Modal = ({
       />
       <div
         style={{ maxHeight: "80%", maxWidth: "90%" }}
-        className="w-fit min-w-96 h-fit min-h-36 bg-white shadow-lg rounded-md overflow-y-auto overflow-x-hidden z-50"
+        className={`w-fit min-w-96 h-fit min-h-36 bg-white shadow-lg rounded-md overflow-y-auto overflow-x-hidden z-50 ${className}`}
       >
         {children}
       </div>
