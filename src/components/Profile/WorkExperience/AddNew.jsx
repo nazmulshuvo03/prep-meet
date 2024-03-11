@@ -11,9 +11,12 @@ export const AddNew = ({
   handleSubmit = () => {},
 }) => {
   const dispatch = useDispatch();
-  const professions = useSelector((state) => state.profession.items);
+  const experienceLevels = useSelector(
+    (state) => state.static.experienceLevels
+  );
   const companies = useSelector((state) => state.static.companies);
-  const { jobTitle, companyId, country, startDate, endDate } = data;
+  const { jobTitle, experienceId, companyId, country, startDate, endDate } =
+    data;
 
   const handleAddNewCompany = (data) => {
     dispatch(addCompany(data));
@@ -21,18 +24,21 @@ export const AddNew = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <Dropdown
-        name={"jobTitle"}
-        value={jobTitle || ""}
-        options={professions}
-        onSelect={handleChange}
-        defaultText="Job Title"
-        allowAddNew={true}
-        addNewAction={() => {}}
-      />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
+        <Input
+          placeholder="Role"
+          name="jobTitle"
+          value={jobTitle || ""}
+          onChange={handleChange}
+        />
         <Dropdown
-          // label={"Experience Level"}
+          name={"experienceId"}
+          value={experienceId || ""}
+          options={experienceLevels}
+          onSelect={handleChange}
+          defaultText="Experience Level"
+        />
+        <Dropdown
           name={"companyId"}
           value={companyId || ""}
           options={companies}

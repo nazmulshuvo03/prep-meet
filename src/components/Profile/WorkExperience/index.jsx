@@ -21,7 +21,8 @@ export const WorkExperience = () => {
   const profile = useSelector((state) => state.user.profile);
   const [showInput, setShowInput] = useState(false);
   const [formData, setFormData] = useState(DEFAULT_DATA);
-  const { jobTitle, companyId, country, startDate, endDate } = formData;
+  const { jobTitle, experienceId, companyId, country, startDate, endDate } =
+    formData;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,7 +38,8 @@ export const WorkExperience = () => {
 
     const fullData = {
       user_id: profile.id,
-      professionId: jobTitle,
+      jobTitle: jobTitle,
+      experienceId: experienceId,
       companyId: companyId,
       country: country,
       startDate: formattedStartDate,

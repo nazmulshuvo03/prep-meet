@@ -19,12 +19,15 @@ export const Display = ({ data }) => {
   const dispatch = useDispatch();
 
   const profile = useSelector((state) => state.user.profile);
-  const professions = useSelector((state) => state.profession.items);
+  const experienceLevels = useSelector(
+    (state) => state.static.experienceLevels
+  );
   const companies = useSelector((state) => state.static.companies);
 
   const [editMode, setEditMode] = useState(false);
   const [editProperties, setEditProperties] = useState({
-    jobTitle: data.professionId,
+    jobTitle: data.jobTitle,
+    experienceId: data.experienceId,
     companyId: data.companyId,
     country: data.country,
     startDate: htmlDateInputFormat(data.startDate),
@@ -45,7 +48,8 @@ export const Display = ({ data }) => {
 
     const fullData = {
       user_id: profile.id,
-      professionId: editProperties.jobTitle,
+      jobTitle: editProperties.jobTitle,
+      experienceId: editProperties.experienceId,
       companyId: editProperties.companyId,
       country: editProperties.country,
       startDate: formattedStartDate,
@@ -74,13 +78,19 @@ export const Display = ({ data }) => {
             >
               &middot;
             </div>
-            <div className="flex items-center justify-between text-sm font-semibold">
+            <div className="flex items-center justify-between text-md font-semibold">
               {getDataLabelFromKey(companies, data.companyId)}
             </div>
-            <div className="text-sm font-medium">
-              {getDataLabelFromKey(professions, data.professionId)}
+            <div className="flex gap-1 items-center text-sm font-medium">
+              <span>{data.jobTitle}</span>
+              <span style={{ fontSize: 20 }}>&middot;</span>
+              <span className="italic">
+                {getDataLabelFromKey(experienceLevels, data.experienceId)}
+              </span>
             </div>
-            <div className="text-sm font-medium">{data.country}</div>
+            <div className="text-sm font-medium text-gray-500">
+              {data.country}
+            </div>
             <div className="flex gap-1 items-center text-xs font-normal text-gray-500">
               <span>
                 {convertISOUTCDayTimeToLocalDayTime(data.startDate).date}
@@ -89,7 +99,7 @@ export const Display = ({ data }) => {
                   ? convertISOUTCDayTimeToLocalDayTime(data.endDate).date
                   : "Present"}
               </span>
-              <span style={{ fontSize: 30 }}>&middot;</span>
+              <span style={{ fontSize: 20 }}>&middot;</span>
               <span>{timeDistance(data.startDate, data.endDate)}</span>
             </div>
           </div>
