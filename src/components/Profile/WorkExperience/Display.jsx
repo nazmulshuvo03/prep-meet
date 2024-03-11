@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   convertISOUTCDayTimeToLocalDayTime,
-  htmlDateInputFormat,
   timeDistance,
 } from "../../../utils/timeDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,25 +8,12 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteWorkExperience } from "../../../store/middlewares/workExperience";
 import { getDataLabelFromKey } from "../../../utils/data";
 
-export const Display = ({ data, setFormData, setShowInput, setEditItem }) => {
+export const Display = ({ data, handleEditClick }) => {
   const dispatch = useDispatch();
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels
   );
   const companies = useSelector((state) => state.static.companies);
-
-  const handleEdit = () => {
-    setFormData({
-      jobTitle: data.jobTitle,
-      experienceId: data.experienceId,
-      companyId: data.companyId,
-      country: data.country,
-      startDate: htmlDateInputFormat(data.startDate),
-      endDate: data.endDate ? htmlDateInputFormat(data.endDate) : null,
-    });
-    setEditItem(data.id);
-    setShowInput(true);
-  };
 
   const handleDelete = () => {
     dispatch(deleteWorkExperience(data.id));
@@ -70,7 +56,10 @@ export const Display = ({ data, setFormData, setShowInput, setEditItem }) => {
         </div>
       </div>
       <div className="flex gap-2 text-xs">
-        <div className="cursor-pointer" onClick={handleEdit}>
+        <div
+          className="cursor-pointer"
+          onClick={() => handleEditClick(data.id)}
+        >
           <FontAwesomeIcon icon={faEdit} className="text-gray-400" />
         </div>
         <div className="cursor-pointer" onClick={handleDelete}>

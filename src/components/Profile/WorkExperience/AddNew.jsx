@@ -23,7 +23,7 @@ export const AddNew = ({
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex-1 flex flex-col gap-2">
       <div className="grid grid-cols-3 items-baseline justify-between gap-4">
         <Dropdown
           label="Company"
@@ -85,7 +85,7 @@ export const AddNew = ({
           onChange={handleChange}
         />
       </div>
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-auto">
         <Button size="small" onClick={handleSubmit}>
           Save
         </Button>
