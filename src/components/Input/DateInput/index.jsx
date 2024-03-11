@@ -1,6 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import { getDate } from "date-fns";
+// import { getDate } from "date-fns";
 import { CustomInput } from "./CustomInput";
 import { CustomHeader } from "./CustomHeader";
 
@@ -49,9 +49,9 @@ export const DateInput = ({
         // onChange={(date) => setDateValue(date)}
         // calendarClassName="rasta-stripes red-border"
         // withPortal // this opens modal for calender
-        dayClassName={(date) =>
-          getDate(date) < Math.random() * 31 ? "random" : undefined
-        }
+        // dayClassName={(date) =>
+        //   getDate(date) < Math.random() * 31 ? "random" : undefined
+        // }
         placeholderText={placeholder}
         customInput={<CustomInput placeholder={placeholder} />}
       />

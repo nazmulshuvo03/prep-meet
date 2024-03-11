@@ -11,7 +11,8 @@ function range(start, end, step = 1) {
   return result;
 }
 
-const years = range(1990, getYear(new Date()) + 1, 1);
+// const years = range(1990, getYear(new Date()) + 1, 1);
+const years = range(1900, 2900, 1);
 const months = [
   "January",
   "February",

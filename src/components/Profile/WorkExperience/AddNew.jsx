@@ -3,6 +3,7 @@ import { Button } from "../../Button";
 import { Dropdown } from "../../Dropdown";
 import { Input } from "../../Input";
 import { addCompany } from "../../../store/middlewares/static";
+import { DateInput } from "../../Input/DateInput";
 
 export const AddNew = ({
   data,
@@ -46,19 +47,30 @@ export const AddNew = ({
           value={country}
           onChange={handleChange}
         />
-        <Input
-          type="date"
-          placeholder="Start Date"
-          name="startDate"
+        <DateInput
+          label={"From"}
           value={startDate || ""}
-          onChange={handleChange}
+          onChange={(value) => {
+            handleChange({
+              target: {
+                name: "startDate",
+                value,
+              },
+            });
+          }}
         />
-        <Input
-          type="date"
-          placeholder="End Date"
-          name="endDate"
+        <DateInput
+          label={"To"}
+          placeholder={"Present"}
           value={endDate || ""}
-          onChange={handleChange}
+          onChange={(value) => {
+            handleChange({
+              target: {
+                name: "endDate",
+                value,
+              },
+            });
+          }}
         />
       </div>
       <div className="flex justify-end">
