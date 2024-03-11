@@ -26,12 +26,13 @@ export const AddNew = ({
     <div className="flex flex-col gap-2">
       <div className="grid grid-cols-2 gap-2">
         <Input
-          placeholder="Role"
+          label="Role"
           name="jobTitle"
           value={jobTitle || ""}
           onChange={handleChange}
         />
         <Dropdown
+          label="Experience Level"
           name={"experienceId"}
           value={experienceId || ""}
           options={experienceLevels}
@@ -39,6 +40,7 @@ export const AddNew = ({
           defaultText="Experience Level"
         />
         <Dropdown
+          label="Company"
           name={"companyId"}
           value={companyId || ""}
           options={companies}
@@ -48,7 +50,7 @@ export const AddNew = ({
           addNewAction={handleAddNewCompany}
         />
         <Input
-          placeholder="Country"
+          label="Country"
           name="country"
           value={country}
           onChange={handleChange}
@@ -64,6 +66,7 @@ export const AddNew = ({
               },
             });
           }}
+          maxDate={new Date()}
         />
         <DateInput
           label={"To"}
@@ -77,6 +80,7 @@ export const AddNew = ({
               },
             });
           }}
+          minDate={startDate}
         />
       </div>
       <div className="flex justify-end">
