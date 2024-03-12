@@ -1,27 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   convertISOUTCDayTimeToLocalDayTime,
   timeDistance,
 } from "../../../utils/timeDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { deleteWorkExperience } from "../../../store/middlewares/workExperience";
 import { getDataLabelFromKey } from "../../../utils/data";
 
 export const Display = ({
   data,
   handleEditClick = () => {},
+  handleDeleteClick = () => {},
   visitMode = false,
 }) => {
-  const dispatch = useDispatch();
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels
   );
   const companies = useSelector((state) => state.static.companies);
-
-  const handleDelete = () => {
-    dispatch(deleteWorkExperience(data.id));
-  };
 
   return (
     <div className="px-2 relative pb-3 flex justify-between items-start">
@@ -67,7 +62,10 @@ export const Display = ({
           >
             <FontAwesomeIcon icon={faEdit} className="text-gray-400" />
           </div>
-          <div className="cursor-pointer" onClick={handleDelete}>
+          <div
+            className="cursor-pointer"
+            onClick={() => handleDeleteClick(data.id)}
+          >
             <FontAwesomeIcon icon={faTrash} className="text-gray-400" />
           </div>
         </div>

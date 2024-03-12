@@ -7,34 +7,34 @@ export const AddNew = ({
   handleSubmit = () => {},
 }) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex-1 flex flex-col gap-2">
       <div className="grid grid-cols-2 gap-4">
         <Input
-          placeholder="Degree"
+          label="Degree"
           name="degree"
           value={data.degree}
           onChange={handleChange}
         />
         <Input
-          placeholder="Major"
+          label="Major"
           name="major"
           value={data.major}
           onChange={handleChange}
         />
         <Input
-          placeholder="Institution"
+          label="Institution"
           name="institution"
           value={data.institution}
           onChange={handleChange}
         />
         <Input
-          placeholder="Year of Graduation"
+          label="Year of Graduation"
           name="year_of_graduation"
           value={data.year_of_graduation}
           onChange={handleChange}
         />
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-center mt-auto">
         <Button size="small" onClick={handleSubmit}>
           Save
         </Button>

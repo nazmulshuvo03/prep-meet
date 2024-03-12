@@ -3,6 +3,7 @@ import { Button } from "../../Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addWorkExperience,
+  deleteWorkExperience,
   editWorkExperience,
 } from "../../../store/middlewares/workExperience";
 import { AddNew } from "./AddNew";
@@ -12,7 +13,7 @@ import {
   htmlDateInputFormat,
 } from "../../../utils/timeDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
 
@@ -84,6 +85,10 @@ export const WorkExperience = () => {
     setFormData(DEFAULT_DATA);
   };
 
+  const handleDeleteClick = (id) => {
+    dispatch(deleteWorkExperience(id));
+  };
+
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
@@ -109,6 +114,7 @@ export const WorkExperience = () => {
                 key={wp.id}
                 data={wp}
                 handleEditClick={handleEditClick}
+                handleDeleteClick={handleDeleteClick}
               />
             );
           })

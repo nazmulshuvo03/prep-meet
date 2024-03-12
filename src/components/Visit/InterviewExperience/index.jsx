@@ -1,4 +1,4 @@
-import { Display } from "./Display";
+import { Display } from "../../Profile/InterviewExperience/Display";
 
 export const InterviewExperience = ({ profile }) => {
   return (
@@ -11,7 +11,7 @@ export const InterviewExperience = ({ profile }) => {
         profile.interviewExperiences &&
         profile.interviewExperiences.length ? (
           profile.interviewExperiences.map((ie) => {
-            return <Display data={ie} key={ie.id} />;
+            return <Display data={ie} key={ie.id} visitMode={true} />;
           })
         ) : (
           <div>Not available</div>

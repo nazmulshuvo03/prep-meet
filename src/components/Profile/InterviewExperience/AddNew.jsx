@@ -12,7 +12,7 @@ export const AddNew = ({
   const { role, companyId } = data;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex-1 flex flex-col gap-2">
       <Dropdown
         name={"role"}
         value={role || ""}
@@ -29,7 +29,7 @@ export const AddNew = ({
           defaultText="Company"
         />
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-center mt-auto">
         <Button size="small" onClick={handleSubmit}>
           Save
         </Button>

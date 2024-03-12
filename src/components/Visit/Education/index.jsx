@@ -1,4 +1,4 @@
-import { Display } from "./Display";
+import { Display } from "../../Profile/Education/Display";
 
 export const Education = ({ profile }) => {
   return (
@@ -9,7 +9,7 @@ export const Education = ({ profile }) => {
       <div className="pt-4 pb-2">
         {profile && profile.education && profile.education.length ? (
           profile.education.map((ed) => {
-            return <Display data={ed} key={ed.id} />;
+            return <Display data={ed} key={ed.id} visitMode={true} />;
           })
         ) : (
           <div>Not available</div>
