@@ -27,13 +27,13 @@ export const AllPeople = ({
     <div className="py-2 flex flex-col h-full">
       <div className="flex justify-between items-center pb-4">
         <div className="flex w-full gap-2">
-          <div className="flex-1 grid grid-cols-5 gap-2">
+          <div className="flex-1 grid grid-cols-8 gap-2">
             <Dropdown
               name={"companiesOfInterest"}
               value={queries["companiesOfInterest"] || ""}
               options={companies}
               onSelect={handleQuerySelect}
-              defaultText={"Company of Interest"}
+              defaultText={"Company"}
               allowSearch={false}
             />
             <Dropdown
@@ -51,7 +51,7 @@ export const AllPeople = ({
                 targetProfession ? targetProfession.experienceTypes : null
               }
               onSelect={handleQuerySelect}
-              defaultText={"Types of Experience"}
+              defaultText={"Interview Type"}
               allowSearch={false}
             />
           </div>
