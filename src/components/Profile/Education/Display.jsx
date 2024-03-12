@@ -25,13 +25,14 @@ export const Display = ({
             <div className="flex items-center justify-between text-sm font-semibold">
               {data.institution}
             </div>
-            <div className="text-sm font-medium">
-              {data.degree}
-              {" in "}
-              {data.major}
-            </div>
-            <div className="text-xs font-normal text-gray-500">
-              {data.year_of_graduation}
+            <div className="flex gap-2 items-center text-sm">
+              <div className="font-medium">
+                {data.degree}
+                {" in "}
+                {data.major}
+              </div>
+              <div style={{ fontSize: 20 }}>&middot;</div>
+              <div className="font-normal">{data.year_of_graduation}</div>
             </div>
           </div>
         </div>
