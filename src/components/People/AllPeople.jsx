@@ -79,10 +79,14 @@ export const AllPeople = ({
           max={EXPERIENCE_MAX_VALUE}
         />
       </div> */}
-      <div className="flex-1 grid grid-cols-1 gap-4 overflow-y-auto">
-        {people && people.length && typeof people !== "string"
-          ? people.map((person) => <PersonCard key={person.id} data={person} />)
-          : null}
+      <div className="flex-1 overflow-y-auto">
+        <div className="grid grid-cols-1 gap-4">
+          {people && people.length && typeof people !== "string"
+            ? people.map((person) => (
+                <PersonCard key={person.id} data={person} />
+              ))
+            : null}
+        </div>
       </div>
     </div>
   );
