@@ -8,7 +8,11 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteWorkExperience } from "../../../store/middlewares/workExperience";
 import { getDataLabelFromKey } from "../../../utils/data";
 
-export const Display = ({ data, handleEditClick }) => {
+export const Display = ({
+  data,
+  handleEditClick = () => {},
+  visitMode = false,
+}) => {
   const dispatch = useDispatch();
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels
@@ -55,17 +59,21 @@ export const Display = ({ data, handleEditClick }) => {
           <span>{timeDistance(data.startDate, data.endDate)}</span>
         </div>
       </div>
-      <div className="flex gap-2 text-xs">
-        <div
-          className="cursor-pointer"
-          onClick={() => handleEditClick(data.id)}
-        >
-          <FontAwesomeIcon icon={faEdit} className="text-gray-400" />
+      {!visitMode ? (
+        <div className="flex gap-2 text-xs">
+          <div
+            className="cursor-pointer"
+            onClick={() => handleEditClick(data.id)}
+          >
+            <FontAwesomeIcon icon={faEdit} className="text-gray-400" />
+          </div>
+          <div className="cursor-pointer" onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrash} className="text-gray-400" />
+          </div>
         </div>
-        <div className="cursor-pointer" onClick={handleDelete}>
-          <FontAwesomeIcon icon={faTrash} className="text-gray-400" />
-        </div>
-      </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };

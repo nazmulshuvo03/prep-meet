@@ -1,4 +1,4 @@
-import { Display } from "./Display";
+import { Display } from "../../Profile/WorkExperience/Display";
 
 export const WorkExperience = ({ profile }) => {
   return (
@@ -11,7 +11,7 @@ export const WorkExperience = ({ profile }) => {
         profile.workExperiences &&
         profile.workExperiences.length ? (
           profile.workExperiences.map((wp) => {
-            return <Display data={wp} key={wp.id} />;
+            return <Display data={wp} key={wp.id} visitMode={true} />;
           })
         ) : (
           <div>Not available</div>

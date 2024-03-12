@@ -104,7 +104,7 @@ export const Dropdown = ({
         </div>
         {dropdownOpen && (
           <div
-            className="z-10 absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+            className="z-30 absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu"

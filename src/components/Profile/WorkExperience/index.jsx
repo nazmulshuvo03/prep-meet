@@ -121,7 +121,7 @@ export const WorkExperience = () => {
         )}
       </div>
       {showInput && (
-        <Modal className="w-2/3 h-1/3">
+        <Modal className="w-2/3 h-1/2">
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between pb-4">
               <div className="text-lg font-semibold uppercase">
