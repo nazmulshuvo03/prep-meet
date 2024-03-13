@@ -5,7 +5,7 @@ export const Display = ({
   data,
   handleEditClick = () => {},
   handleDeleteClick = () => {},
-  visitMode = false,
+  visit = false,
 }) => {
   return (
     <div className="px-2 relative pb-3 flex justify-between items-start">
@@ -37,7 +37,7 @@ export const Display = ({
           </div>
         </div>
       </div>
-      {!visitMode ? (
+      {!visit ? (
         <div className="flex gap-2 text-xs">
           <div
             className="cursor-pointer"

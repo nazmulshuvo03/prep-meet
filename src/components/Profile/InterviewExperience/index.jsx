@@ -18,7 +18,7 @@ const DEFAULT_DATA = {
   companyId: null,
 };
 
-export const InterviewExperience = () => {
+export const InterviewExperience = ({ visit = false }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const [editItem, setEditItem] = useState();
@@ -72,7 +72,8 @@ export const InterviewExperience = () => {
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
         <div className="font-semibold uppercase">Interview Experiences</div>
-        {profile.interviewExperiences &&
+        {!visit &&
+        profile.interviewExperiences &&
         profile.interviewExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
@@ -95,15 +96,22 @@ export const InterviewExperience = () => {
                 key={ie.id}
                 handleEditClick={handleEditClick}
                 handleDeleteClick={handleDeleteClick}
+                visit={visit}
               />
             );
           })
         ) : (
-          <AddNew
-            data={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
+          <>
+            {!visit ? (
+              <AddNew
+                data={formData}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
+            ) : (
+              <div className="text-sm text-gray-400">No Data</div>
+            )}
+          </>
         )}
       </div>
       {showInput && (

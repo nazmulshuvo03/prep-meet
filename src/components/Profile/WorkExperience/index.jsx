@@ -26,7 +26,7 @@ const DEFAULT_DATA = {
   endDate: null,
 };
 
-export const WorkExperience = () => {
+export const WorkExperience = ({ visit = false }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const [editItem, setEditItem] = useState();
@@ -93,7 +93,9 @@ export const WorkExperience = () => {
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
         <div className="text-lg font-semibold uppercase">Experience</div>
-        {profile.workExperiences && profile.workExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default
+        {!visit &&
+        profile.workExperiences &&
+        profile.workExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
             onClick={() => setShowInput(true)}
@@ -115,15 +117,22 @@ export const WorkExperience = () => {
                 data={wp}
                 handleEditClick={handleEditClick}
                 handleDeleteClick={handleDeleteClick}
+                visit={visit}
               />
             );
           })
         ) : (
-          <AddNew
-            data={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
+          <>
+            {!visit ? (
+              <AddNew
+                data={formData}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
+            ) : (
+              <div className="text-sm text-gray-400">No Data</div>
+            )}
+          </>
         )}
       </div>
       {showInput && (

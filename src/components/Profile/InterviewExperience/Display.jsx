@@ -6,7 +6,7 @@ export const Display = ({
   data,
   handleEditClick = () => {},
   handleDeleteClick = () => {},
-  visitMode = false,
+  visit = false,
 }) => {
   const professions = useSelector((state) => state.profession.items);
   const companies = useSelector((state) => state.static.companies);
@@ -37,7 +37,7 @@ export const Display = ({
           {data.country}
         </div>
       </div>
-      {!visitMode ? (
+      {!visit ? (
         <div className="flex gap-2 text-xs">
           <div
             className="cursor-pointer"

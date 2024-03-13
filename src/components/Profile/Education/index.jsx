@@ -20,7 +20,7 @@ const DEFAULT_DATA = {
   year_of_graduation: "",
 };
 
-export const Education = () => {
+export const Education = ({ visit = false }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const [editItem, setEditItem] = useState();
@@ -72,7 +72,7 @@ export const Education = () => {
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
         <div className="text-lg font-semibold uppercase">Education</div>
-        {profile.education && profile.education.length > 0 ? ( // If there is no data added, input fields will be open by default
+        {!visit && profile.education && profile.education.length > 0 ? ( // If there is no data added, input fields will be open by default
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
             onClick={() => setShowInput(true)}
@@ -92,15 +92,22 @@ export const Education = () => {
                 key={ed.id}
                 handleEditClick={handleEditClick}
                 handleDeleteClick={handleDeleteClick}
+                visit={visit}
               />
             );
           })
         ) : (
-          <AddNew
-            data={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
+          <>
+            {!visit ? (
+              <AddNew
+                data={formData}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
+            ) : (
+              <div className="text-sm text-gray-400">No Data</div>
+            )}
+          </>
         )}
       </div>
       {showInput && (

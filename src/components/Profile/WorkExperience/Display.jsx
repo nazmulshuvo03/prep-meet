@@ -11,7 +11,7 @@ export const Display = ({
   data,
   handleEditClick = () => {},
   handleDeleteClick = () => {},
-  visitMode = false,
+  visit = false,
 }) => {
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels
@@ -54,7 +54,7 @@ export const Display = ({
           <span>{timeDistance(data.startDate, data.endDate)}</span>
         </div>
       </div>
-      {!visitMode ? (
+      {!visit ? (
         <div className="flex gap-2 text-xs">
           <div
             className="cursor-pointer"

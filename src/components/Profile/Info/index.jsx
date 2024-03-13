@@ -5,10 +5,9 @@ import { UserName } from "./UserName";
 import { Target } from "./Target";
 import { AdditionalInfo } from "../../PersonCard/AdditionalInfo";
 
-export const Info = () => {
-  const profile = useSelector((state) => state.user.profile);
-  const targetProfession = useSelector(
-    (state) => state.profession.targetProfession
+export const Info = ({ visit = false }) => {
+  const profile = useSelector((state) =>
+    visit ? state.user.visitingProfile : state.user.profile
   );
 
   return (
@@ -33,7 +32,7 @@ export const Info = () => {
               </div>
             </div>
             <div className="pt-5">
-              {profile.email ? (
+              {!visit && profile.email ? (
                 <div className="flex gap-2 items-center">
                   <FontAwesomeIcon
                     className="text-xs text-gray-500"
@@ -44,14 +43,14 @@ export const Info = () => {
               ) : (
                 ""
               )}
-              <UserName />
+              <UserName visit={visit} />
             </div>
           </div>
-          <Target />
+          <Target visit={visit} />
         </div>
       </div>
       <div className="flex justify-end items-center mt-4">
-        <AdditionalInfo />
+        <AdditionalInfo visit={visit} />
       </div>
     </div>
   );

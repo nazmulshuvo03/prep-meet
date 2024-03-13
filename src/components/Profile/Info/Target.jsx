@@ -8,7 +8,7 @@ import { Modal } from "../../Modal";
 import { useState } from "react";
 import { EditTarget } from "./EditTarget";
 
-export const Target = () => {
+export const Target = ({ visit = false }) => {
   const profile = useSelector((state) => state.user.profile);
   const companies = useSelector((state) => state.static.companies);
   const experienceLevels = useSelector(
@@ -125,11 +125,15 @@ export const Target = () => {
           </div>
         </div>
       )}
-      <div className="absolute top-0 right-0">
-        <IconButton onClick={() => setEditMode(true)}>
-          <FontAwesomeIcon icon={faPen} className="text-gray-600 text-xl" />
-        </IconButton>
-      </div>
+      {!visit ? (
+        <div className="absolute top-0 right-0">
+          <IconButton onClick={() => setEditMode(true)}>
+            <FontAwesomeIcon icon={faPen} className="text-gray-600 text-xl" />
+          </IconButton>
+        </div>
+      ) : (
+        <></>
+      )}
       {editMode && (
         <Modal handleClose={() => setEditMode(false)}>
           <EditTarget handleDone={() => setEditMode(false)} />

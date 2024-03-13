@@ -15,7 +15,7 @@ import {
 import { UnderlineInput } from "../../Input/UnderlineInput";
 import { IconButton } from "../../Button/IconButton";
 
-export const UserName = () => {
+export const UserName = ({ visit = false }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
 
@@ -63,33 +63,42 @@ export const UserName = () => {
           {userName ? userName : "User Name"}
         </div>
       )}
-      {editMode ? (
-        <div className="flex items-center gap-1">
-          {!alreadyExists && (
+      {!visit ? (
+        <>
+          {editMode ? (
+            <div className="flex items-center gap-1">
+              {!alreadyExists && (
+                <IconButton
+                  onClick={handleUserNameEditSave}
+                  className={"!bg-transparent !text-gray-500 !p-0"}
+                >
+                  <FontAwesomeIcon
+                    className="text-xs text-gray-500"
+                    icon={faSave}
+                  />
+                </IconButton>
+              )}
+              <IconButton
+                onClick={handleUserNameEditCancel}
+                className={"!bg-transparent !text-gray-500 !p-0"}
+              >
+                <FontAwesomeIcon
+                  className="text-sm text-gray-500"
+                  icon={faClose}
+                />
+              </IconButton>
+            </div>
+          ) : (
             <IconButton
-              onClick={handleUserNameEditSave}
+              onClick={() => setEditMode(true)}
               className={"!bg-transparent !text-gray-500 !p-0"}
             >
-              <FontAwesomeIcon
-                className="text-xs text-gray-500"
-                icon={faSave}
-              />
+              <FontAwesomeIcon className="text-xs text-gray-500" icon={faPen} />
             </IconButton>
           )}
-          <IconButton
-            onClick={handleUserNameEditCancel}
-            className={"!bg-transparent !text-gray-500 !p-0"}
-          >
-            <FontAwesomeIcon className="text-sm text-gray-500" icon={faClose} />
-          </IconButton>
-        </div>
+        </>
       ) : (
-        <IconButton
-          onClick={() => setEditMode(true)}
-          className={"!bg-transparent !text-gray-500 !p-0"}
-        >
-          <FontAwesomeIcon className="text-xs text-gray-500" icon={faPen} />
-        </IconButton>
+        <></>
       )}
     </div>
   );
