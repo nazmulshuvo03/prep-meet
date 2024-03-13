@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { visitUserProfile } from "../store/middlewares/user";
 import { Info } from "../components/Visit/Info";
 import { Details } from "../components/Visit/Details";
 import { Availability } from "../components/Visit/Availability";
+import { clearVisitingProfile } from "../store/slices/user";
 
 const Visit = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
-  const [profile, setProfile] = useState();
-
-  const fetchProfile = async () => {
-    const data = await dispatch(visitUserProfile(userId));
-    setProfile(data);
-  };
+  const profile = useSelector((state) => state.user.visitingProfile);
 
   useEffect(() => {
     if (userId) {
-      fetchProfile();
+      dispatch(visitUserProfile(userId));
     }
+    return () => {
+      dispatch(clearVisitingProfile());
+    };
   }, [userId]);
 
   return (

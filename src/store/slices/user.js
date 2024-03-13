@@ -4,6 +4,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     profile: null,
+    visitingProfile: null,
     people: [],
   },
   reducers: {
@@ -67,6 +68,12 @@ const userSlice = createSlice({
       );
       state.profile = newData;
     },
+    setVisitingProfile: (state, action) => {
+      state.visitingProfile = action.payload;
+    },
+    clearVisitingProfile: (state, action) => {
+      state.visitingProfile = null;
+    },
   },
 });
 
@@ -81,5 +88,7 @@ export const {
   removeEducation,
   updateInterviewExperience,
   removeInterviewExperience,
+  setVisitingProfile,
+  clearVisitingProfile,
 } = userSlice.actions;
 export default userSlice.reducer;

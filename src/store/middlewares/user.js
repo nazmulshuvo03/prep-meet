@@ -9,7 +9,12 @@ import {
   users_check_prop_url,
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
-import { setPeople, setProfile, updateProfile } from "../slices/user";
+import {
+  setPeople,
+  setProfile,
+  setVisitingProfile,
+  updateProfile,
+} from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
 
@@ -48,11 +53,16 @@ export const fetchUserProfile = (
     dispatch(setLoading(false));
   });
 
-export const visitUserProfile = (userId) => async (dispatch) => {
-  const response = await fetchContent(user_url(userId));
-  console.log("user doc: ", response);
-  return response.data;
-};
+export const visitUserProfile = (userId) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const response = await fetchContent(user_url(userId));
+    console.log("user doc: ", response);
+    responseHandler(response, () => {
+      dispatch(setVisitingProfile(response.data));
+    });
+    dispatch(setLoading(false));
+  });
 
 export const updateUserData = (userId, updatedData) =>
   asyncWrapper(async (dispatch) => {
