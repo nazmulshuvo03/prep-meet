@@ -3,6 +3,7 @@ import { Button } from "../Button";
 import {
   convertISOUTCDayTimeToLocalDayTime,
   getDateDescription,
+  timeDistance,
 } from "../../utils/timeDate";
 import { useEffect, useState } from "react";
 
@@ -30,9 +31,15 @@ export const ActionArea = ({
 
   return (
     <div className="flex items-center justify-end gap-3">
-      <Button className="bg-transparent !text-green-600 text-xs !font-semibold uppercase !py-1 !px-0">
-        Last Practiced X days age
-      </Button>
+      {data.lastMeeting ? (
+        <div className="bg-transparent !text-green-600 text-xs !font-semibold uppercase !py-1 !px-0">
+          Last Practiced{" "}
+          {timeDistance(new Date().toISOString(), data.lastMeeting.dayHourUTC)}{" "}
+          ago
+        </div>
+      ) : (
+        <div />
+      )}
       <Button
         onClick={handleClick}
         className="bg-white !text-gray-700 !font-bold border border-gray-700 text-xs !py-1 !px-2"
