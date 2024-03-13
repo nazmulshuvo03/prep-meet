@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Input } from "../Input";
 import {
   convertLocalDayTimeStringToUTCDayTime,
   generateHourArray,
@@ -17,7 +16,11 @@ export const AddAvailability = () => {
   const [date, setDate] = useState();
   const [time, setTime] = useState();
 
-  const hourArray = generateHourArray();
+  const isTodaySelected = () => {
+    if (date) {
+      return date.setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
+    } else return false;
+  };
 
   const handleSubmit = () => {
     const data = {
@@ -35,15 +38,6 @@ export const AddAvailability = () => {
         Add Availability
       </div>
       <div className="flex flex-col gap-2">
-        {/* <Input
-          label={"Date"}
-          type="date"
-          value={date || ""}
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-          placeholder={"Add Date"}
-        /> */}
         <DateInput
           label={"Date"}
           minDate={new Date()}
@@ -58,7 +52,7 @@ export const AddAvailability = () => {
             label={"Time"}
             name={"time"}
             value={time || ""}
-            options={hourArray}
+            options={generateHourArray({ untilNow: isTodaySelected() })}
             onSelect={(e) => {
               setTime(e.target.value);
             }}

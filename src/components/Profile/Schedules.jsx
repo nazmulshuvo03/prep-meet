@@ -27,9 +27,9 @@ export const Schedules = () => {
               return (
                 <div
                   key={avl.id}
-                  className="flex items-center justify-between py-1"
+                  className="grid grid-cols-12 items-center justify-between py-1"
                 >
-                  <div className="text-sm font-normal text-gray-500">
+                  <div className="col-span-7 text-sm font-normal text-gray-500">
                     {
                       convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
                         .dateMonthView
@@ -38,7 +38,7 @@ export const Schedules = () => {
                     {convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC).time}
                   </div>
                   <div
-                    className={`px-5 py-1 font-semibold text-xs ${
+                    className={`col-span-4 px-5 py-1 font-semibold text-xs ${
                       avl.state === "COMPLETED"
                         ? "text-red-400"
                         : avl.state === "BOOKED"
@@ -48,12 +48,14 @@ export const Schedules = () => {
                   >
                     {avl.state}
                   </div>
-                  <Button
-                    onClick={() => handleDelete(avl)}
-                    className={"!bg-transparent !text-red-500 !p-0"}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </Button>
+                  <div className="col-span-1">
+                    <Button
+                      onClick={() => handleDelete(avl)}
+                      className={"!bg-transparent !text-red-500 !p-0"}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </Button>
+                  </div>
                 </div>
               );
             })}

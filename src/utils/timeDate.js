@@ -46,12 +46,17 @@ export function formatHourWithAMPM(hour) {
 }
 
 // Function to generate an array of hour objects with key-label pairs
-export function generateHourArray() {
+export function generateHourArray({ untilNow = false }) {
   const hourArray = [];
+  const currentHour = new Date().getHours();
 
   for (let hour = 0; hour < 24; hour++) {
-    const formattedHour = formatHourWithAMPM(hour);
-    hourArray.push({ id: hour, name: formattedHour });
+    if (untilNow && hour <= currentHour) {
+      continue;
+    } else {
+      const formattedHour = formatHourWithAMPM(hour);
+      hourArray.push({ id: hour, name: formattedHour });
+    }
   }
 
   return hourArray;

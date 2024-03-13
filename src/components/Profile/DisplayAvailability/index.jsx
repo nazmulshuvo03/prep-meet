@@ -27,9 +27,9 @@ export const DisplayAvailability = () => {
                   return (
                     <div
                       key={avl.id}
-                      className="flex items-center justify-between py-1"
+                      className="grid grid-cols-12 items-center justify-between py-1"
                     >
-                      <div className="text-sm font-normal text-gray-500">
+                      <div className="col-span-7 text-sm font-normal text-gray-500">
                         {
                           convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
                             .dateMonthView
@@ -41,7 +41,7 @@ export const DisplayAvailability = () => {
                         }
                       </div>
                       <div
-                        className={`px-5 py-1 font-semibold text-xs ${
+                        className={`col-span-4 px-5 py-1 font-semibold text-xs ${
                           avl.state === "COMPLETED"
                             ? "text-red-400"
                             : avl.state === "BOOKED"
@@ -51,18 +51,20 @@ export const DisplayAvailability = () => {
                       >
                         {avl.state}
                       </div>
-                      {avl.state === "OPEN" ? (
-                        <IconButton
-                          onClick={() => setSelectedAvailability(avl)}
-                        >
-                          <FontAwesomeIcon
-                            icon={faCalendarPlus}
-                            className="text-secondary"
-                          />
-                        </IconButton>
-                      ) : (
-                        <div />
-                      )}
+                      <div className="col-span-1">
+                        {avl.state === "OPEN" ? (
+                          <IconButton
+                            onClick={() => setSelectedAvailability(avl)}
+                          >
+                            <FontAwesomeIcon
+                              icon={faCalendarPlus}
+                              className="text-secondary"
+                            />
+                          </IconButton>
+                        ) : (
+                          <div />
+                        )}
+                      </div>
                     </div>
                   );
                 })}

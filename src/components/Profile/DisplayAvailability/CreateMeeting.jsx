@@ -16,8 +16,6 @@ export const CreateMeeting = ({ profile, data, handleCancel = () => {} }) => {
     handleCancel();
   };
 
-  console.log("Data: ", profile, data);
-
   return (
     <div className="text-center p-6">
       <div className="text-lg text-gray-500 pb-4">Are you sure?</div>
