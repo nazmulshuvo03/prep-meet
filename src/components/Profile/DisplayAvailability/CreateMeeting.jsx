@@ -11,8 +11,9 @@ export const CreateMeeting = ({ profile, data, handleCancel = () => {} }) => {
     const payload = {
       availabilityId: data.id,
       acceptorId: user.id,
+      initiatorId: profile.id,
     };
-    await dispatch(createMeeting(payload));
+    await dispatch(createMeeting(payload, "visit"));
     handleCancel();
   };
 

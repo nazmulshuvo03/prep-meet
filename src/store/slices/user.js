@@ -82,6 +82,18 @@ const userSlice = createSlice({
         }
       });
     },
+    updatePeopleAvailability: (state, action) => {
+      const data = action.payload;
+      state.people.map((person) => {
+        if (person.id === data.initiatorId) {
+          person.availabilities.map((avl) => {
+            if (avl.id === data.availabilityId) {
+              avl.state = "BOOKED";
+            }
+          });
+        }
+      });
+    },
   },
 });
 
@@ -99,5 +111,6 @@ export const {
   setVisitingProfile,
   clearVisitingProfile,
   updateVisitorProfileAvailability,
+  updatePeopleAvailability,
 } = userSlice.actions;
 export default userSlice.reducer;

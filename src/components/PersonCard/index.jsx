@@ -1,16 +1,31 @@
 import { ImageArea } from "./ImageArea";
 import { WorkInfo } from "./WorkInfo";
 import { ActionArea } from "./ActionArea";
-import { IconButton } from "../Button/IconButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDataLabelFromKey } from "../../utils/data";
+import { BookSlot } from "./BookSlot";
+import { useState } from "react";
+import { Modal } from "../Modal";
+import { createMeeting } from "../../store/middlewares/meeting";
 
 export const PersonCard = ({ data }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.profile);
   const preparationStages = useSelector(
     (state) => state.static.preparationStages
   );
+
+  const [selectedBook, setSelectedBook] = useState(false);
+
+  const handleBook = async () => {
+    const payload = {
+      availabilityId: selectedBook.id,
+      acceptorId: user.id,
+      initiatorId: data.id,
+    };
+    await dispatch(createMeeting(payload, "people"));
+    setSelectedBook();
+  };
 
   return (
     <div className="w-full h-fit bg-white rounded-md px-4 py-2">
@@ -36,8 +51,20 @@ export const PersonCard = ({ data }) => {
         </div>
       </div>
       <div className="pt-2">
-        <ActionArea data={data} />
+        <ActionArea data={data} onNextAvailableClick={setSelectedBook} />
       </div>
+      {selectedBook ? (
+        <Modal handleClose={() => setSelectedBook()}>
+          <BookSlot
+            data={data}
+            selected={selectedBook}
+            handleClose={() => setSelectedBook()}
+            handleBook={handleBook}
+          />
+        </Modal>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
