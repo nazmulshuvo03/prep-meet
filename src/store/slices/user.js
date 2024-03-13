@@ -74,6 +74,14 @@ const userSlice = createSlice({
     clearVisitingProfile: (state, action) => {
       state.visitingProfile = null;
     },
+    updateVisitorProfileAvailability: (state, action) => {
+      const data = action.payload;
+      state.visitingProfile.availabilities.map((avl) => {
+        if (avl.id === data.availabilityId) {
+          avl.state = "BOOKED";
+        }
+      });
+    },
   },
 });
 
@@ -90,5 +98,6 @@ export const {
   removeInterviewExperience,
   setVisitingProfile,
   clearVisitingProfile,
+  updateVisitorProfileAvailability,
 } = userSlice.actions;
 export default userSlice.reducer;

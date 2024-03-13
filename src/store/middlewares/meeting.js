@@ -6,6 +6,7 @@ import { updateAvailabilityState } from "../slices/availability";
 import { setUserMeetings } from "../slices/meeting";
 import { setLoading, setToastMessage } from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
+import { updateVisitorProfileAvailability } from "../slices/user";
 
 export const getUserMeetings = (userId) =>
   asyncWrapper(async (dispatch) => {
@@ -23,6 +24,7 @@ export const createMeeting = (data) =>
       res,
       () => {
         dispatch(updateAvailabilityState(res.data));
+        dispatch(updateVisitorProfileAvailability(data));
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[0],
