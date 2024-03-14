@@ -32,7 +32,7 @@ export const Target = ({ visit = false }) => {
           <div className="text-base font-semibold">Target Company:</div>
           <div className="flex gap-1 flex-wrap break-words text-base font-semibold">
             {profile.companiesOfInterest &&
-              profile.companiesOfInterest.length &&
+            profile.companiesOfInterest.length ? (
               profile.companiesOfInterest.map((comp, i) => {
                 return (
                   <div key={comp}>
@@ -49,7 +49,10 @@ export const Target = ({ visit = false }) => {
                     )}
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div />
+            )}
           </div>
         </div>
 
@@ -89,8 +92,7 @@ export const Target = ({ visit = false }) => {
         <div className="flex flex-wrap items-baseline gap-1 break-words py-1">
           <div className="text-xs font-semibold">Practice Areas:</div>
           <div className="flex gap-1 flex-wrap break-words text-xs font-normal">
-            {profile.focusAreas &&
-              profile.focusAreas.length &&
+            {profile.focusAreas && profile.focusAreas.length ? (
               profile.focusAreas.map((focus, i) => {
                 return (
                   <div key={focus}>
@@ -99,15 +101,17 @@ export const Target = ({ visit = false }) => {
                     </span>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div />
+            )}
           </div>
         </div>
 
         <div className="flex flex-wrap items-baseline gap-1 break-words py-1">
           <div className="text-xs font-semibold">Experience Types:</div>
           <div className="flex gap-1 flex-wrap break-words text-xs font-normal">
-            {profile.typesOfExperience &&
-              profile.typesOfExperience.length &&
+            {profile.typesOfExperience && profile.typesOfExperience.length ? (
               profile.typesOfExperience.map((types, i) => {
                 return (
                   <div key={types}>
@@ -116,17 +120,24 @@ export const Target = ({ visit = false }) => {
                     </span>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div />
+            )}
           </div>
         </div>
       </div>
-      {profile.profileHeadline && profile.profileHeadline.length && (
+
+      {profile.profileHeadline && profile.profileHeadline.length ? (
         <div className="h-full">
           <div className="text-xs font-normal text-text py-2 h-full">
             {profile.profileHeadline}
           </div>
         </div>
+      ) : (
+        <div />
       )}
+
       {!visit ? (
         <div className="absolute top-0 right-0">
           <IconButton onClick={() => setEditMode(true)}>
