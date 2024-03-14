@@ -114,7 +114,7 @@ export const MultiInputDropdown = ({
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            <div className="h-40 overflow-y-auto">
+            <div className="max-h-56 overflow-y-auto">
               <div className="py-2 px-2" role="none">
                 {filteredOptions && filteredOptions.length ? (
                   filteredOptions.map((option) => (

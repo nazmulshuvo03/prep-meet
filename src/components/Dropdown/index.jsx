@@ -115,7 +115,7 @@ export const Dropdown = ({
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            <div className="h-56 overflow-y-auto py-2 px-2">
+            <div className="max-h-56 overflow-y-auto py-2 px-2">
               {filteredOptions && filteredOptions.length ? (
                 filteredOptions.map((option) => (
                   <div
