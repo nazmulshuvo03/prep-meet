@@ -18,7 +18,7 @@ export const AddNew = ({
         value={role || ""}
         options={professions}
         onSelect={handleChange}
-        defaultText="Job Title"
+        label="Role"
       />
       <div className="grid grid-cols-2 gap-4">
         <Dropdown
@@ -26,7 +26,7 @@ export const AddNew = ({
           value={companyId || ""}
           options={companies}
           onSelect={handleChange}
-          defaultText="Company"
+          label="Company"
         />
       </div>
       <div className="flex justify-center mt-auto">

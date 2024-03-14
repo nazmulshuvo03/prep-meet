@@ -94,7 +94,7 @@ export const WorkExperience = ({ visit = false }) => {
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
-        <div className="text-lg font-semibold uppercase">Experience</div>
+        <div className="text-lg font-semibold uppercase">Work Experiences</div>
         {!visit &&
         profile.workExperiences &&
         profile.workExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default
@@ -138,11 +138,11 @@ export const WorkExperience = ({ visit = false }) => {
         )}
       </div>
       {showInput && (
-        <Modal className="w-2/3 h-1/2">
+        <Modal className="!w-2/3 !h-1/2">
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between pb-4">
               <div className="text-lg font-semibold uppercase">
-                {!editItem ? "Add" : "Edit"} Experience
+                {!editItem ? "Add" : "Edit"} Work Experience
               </div>
               <IconButton onClick={handleEditClose}>
                 <FontAwesomeIcon

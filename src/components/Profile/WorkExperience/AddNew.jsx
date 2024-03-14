@@ -4,6 +4,8 @@ import { Dropdown } from "../../Dropdown";
 import { Input } from "../../Input";
 import { addCompany } from "../../../store/middlewares/static";
 import { DateInput } from "../../Input/DateInput";
+import { Checkbox } from "../../Checkbox";
+import { useState } from "react";
 
 export const AddNew = ({
   data,
@@ -17,6 +19,8 @@ export const AddNew = ({
   const companies = useSelector((state) => state.static.companies);
   const { jobTitle, experienceId, companyId, country, startDate, endDate } =
     data;
+
+  const [current, setCurrent] = useState(false);
 
   const handleAddNewCompany = (data) => {
     dispatch(addCompany(data));
@@ -48,20 +52,31 @@ export const AddNew = ({
           }}
           maxDate={new Date()}
         />
-        <DateInput
-          label={"To"}
-          placeholder={"Present"}
-          value={endDate || ""}
-          onChange={(value) => {
-            handleChange({
-              target: {
-                name: "endDate",
-                value,
-              },
-            });
-          }}
-          minDate={startDate}
-        />
+        <div className="flex justify-center items-center gap-3">
+          <div className="w-full">
+            <DateInput
+              label={"To"}
+              value={endDate || ""}
+              onChange={(value) => {
+                handleChange({
+                  target: {
+                    name: "endDate",
+                    value,
+                  },
+                });
+              }}
+              minDate={startDate}
+              maxDate={new Date()}
+              disabled={current}
+            />
+          </div>
+          <Checkbox
+            label="Present"
+            checked={current}
+            setChecked={() => setCurrent((prev) => !prev)}
+            className="w-auto"
+          />
+        </div>
       </div>
       <div className="grid grid-cols-3 gap-4">
         <Input
