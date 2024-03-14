@@ -76,6 +76,9 @@ export const Login = ({ switchMode = () => {} }) => {
               Remember me
             </a>
           </div>
+          <div className="text-xs text-red-500 font-medium min-h-4 text-center">
+            {errorMessage}
+          </div>
           <Button
             onClick={handleLogin}
             className={"!w-full !bg-secondary !py-1"}

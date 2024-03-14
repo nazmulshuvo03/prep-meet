@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   convertLocalDayTimeStringToUTCDayTime,
   generateHourArray,
@@ -15,6 +15,7 @@ export const AddAvailability = () => {
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
   const isTodaySelected = () => {
     if (date) {
@@ -22,7 +23,24 @@ export const AddAvailability = () => {
     } else return false;
   };
 
+  const maxSelectabaleAvailability = () => {
+    const currentDate = new Date();
+    const sevenDaysLaterTimestamp =
+      currentDate.getTime() + 7 * 24 * 60 * 60 * 1000;
+    const sevenDaysLaterDate = new Date(sevenDaysLaterTimestamp);
+    const formattedDate = sevenDaysLaterDate.toLocaleString();
+    return formattedDate;
+  };
+
   const handleSubmit = () => {
+    if (!date) {
+      setErrorMessage("Please provide date");
+      return;
+    }
+    if (!time) {
+      setErrorMessage("Please select time");
+      return;
+    }
     const data = {
       userId: profile.id,
       dayHourUTC: convertLocalDayTimeStringToUTCDayTime(date, time),
@@ -31,6 +49,16 @@ export const AddAvailability = () => {
     setDate();
     setTime();
   };
+
+  useEffect(() => {
+    let timer;
+    if (errorMessage) {
+      timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [errorMessage]);
 
   return (
     <div className="bg-white p-3 h-full w-ful">
@@ -41,11 +69,12 @@ export const AddAvailability = () => {
         <DateInput
           label={"Date"}
           minDate={new Date()}
-          placeholder={"Select a day"}
+          placeholder={"Select a date"}
           value={date || ""}
           onChange={(value) => {
             setDate(value);
           }}
+          maxDate={maxSelectabaleAvailability()}
         />
         <div>
           <Dropdown
@@ -59,6 +88,9 @@ export const AddAvailability = () => {
             defaultText="Time"
             allowSearch={false}
           />
+        </div>
+        <div className="text-xs text-red-500 font-medium min-h-4 text-center">
+          {errorMessage}
         </div>
         <div className="flex justify-end">
           <Button
