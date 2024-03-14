@@ -1,14 +1,32 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faClose,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import { UserName } from "./UserName";
 import { Target } from "./Target";
 import { AdditionalInfo } from "../../PersonCard/AdditionalInfo";
+import { useState } from "react";
+import { IconButton } from "../../Button/IconButton";
+import { uploadFile } from "../../../store/middlewares/file";
+import { updateUserData } from "../../../store/middlewares/user";
 
 export const Info = ({ visit = false }) => {
+  const dispatch = useDispatch();
+  const [newPP, setNewPP] = useState();
   const profile = useSelector((state) =>
     visit ? state.user.visitingProfile : state.user.profile
   );
+
+  const handlePPSubmit = async () => {
+    const formData = new FormData();
+    formData.append("file", newPP);
+    const imageData = await dispatch(uploadFile(formData));
+    dispatch(updateUserData(profile.id, { photoURL: imageData.Location }));
+    setNewPP();
+  };
 
   return (
     <div className="bg-white p-2 h-full w-full flex flex-col">
@@ -17,11 +35,41 @@ export const Info = ({ visit = false }) => {
           <div className="col-span-4 px-4">
             <div className="flex items-center justify-start">
               <div className="flex flex-col items-center">
-                <img
-                  src={profile.photoURL}
-                  alt={"Person Profile Image"}
-                  className="h-32 w-32 rounded-md my-2"
-                />
+                <label>
+                  <img
+                    src={newPP ? URL.createObjectURL(newPP) : profile.photoURL}
+                    alt={"Person Profile Image"}
+                    className="h-32 w-32 rounded-md my-2"
+                  />
+                  <input
+                    className="hidden"
+                    type="file"
+                    accept="image/*"
+                    name="photoURL"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      setNewPP(file);
+                    }}
+                  />
+                </label>
+                {newPP ? (
+                  <div className="flex items-center gap-4">
+                    <IconButton
+                      onClick={handlePPSubmit}
+                      className="!bg-green-400 !px-2 !py-1 rounded-full"
+                    >
+                      <FontAwesomeIcon icon={faCheck} />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => setNewPP()}
+                      className="!bg-gray-400 !px-2.5 !py-1 rounded-full"
+                    >
+                      <FontAwesomeIcon icon={faClose} />
+                    </IconButton>
+                  </div>
+                ) : (
+                  <div />
+                )}
                 <div className="flex gap-2 font-semibold text-lg">
                   <span>{profile.firstName}</span>
                   <span>{profile.lastName}</span>
