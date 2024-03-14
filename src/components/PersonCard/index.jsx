@@ -37,7 +37,7 @@ export const PersonCard = ({ data }) => {
           <WorkInfo data={data} />
         </div>
         <div className={"absolute right-0 top-0 flex items-center gap-2"}>
-          <div className="text-gray-400 text-xs">
+          <div className="text-gray-600 text-xs">
             {data.preparationStage
               ? getDataLabelFromKey(preparationStages, data.preparationStage)
               : ""}

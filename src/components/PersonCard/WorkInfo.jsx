@@ -26,7 +26,7 @@ const Current = ({ data, companies, experienceLevels }) => (
         <div />
       )}
     </div>
-    <div className="flex gap-1 text-gray-400 text-xs">
+    <div className="flex gap-1 text-gray-600 text-xs">
       <div>
         {convertISOUTCDayTimeToLocalDayTime(data.startDate).dateMonthView} -
         Present
@@ -38,7 +38,7 @@ const Current = ({ data, companies, experienceLevels }) => (
 );
 
 const Other = ({ data, companies, experienceLevels }) => (
-  <div className="flex items-center gap-1 py-1 text-gray-400">
+  <div className="flex items-center gap-1 py-1 text-gray-600">
     <div className="text-sm">
       {companyNameShortner(getDataLabelFromKey(companies, data.companyId))}
     </div>

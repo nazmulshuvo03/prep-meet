@@ -10,7 +10,7 @@ export const ImageArea = ({ data = null }) => {
         <span>{data.userName}</span>
         {/* <span>{data.lastName}</span> */}
       </div>
-      <div className="text-xs font-light text-gray-500">{data.country}</div>
+      <div className="text-xs font-light text-gray-600">{data.country}</div>
     </div>
   );
 };
