@@ -14,14 +14,14 @@ export const UserProfile = ({ visit = false }) => {
   return (
     <>
       {profile ? (
-        <div className="px-10 py-10 grid grid-cols-1 md:grid-cols-4 gap-3 h-full overflow-hidden">
+        <div className="px-10 pt-6 pb-2 grid grid-cols-1 md:grid-cols-4 gap-3 h-full overflow-y-auto">
           <div className="col-span-3">
             <Info visit={visit} />
           </div>
           <div className="">
             {visit ? <DisplayAvailability /> : <AddAvailability />}
           </div>
-          <div className="col-span-3 overflow-y-auto">
+          <div className="col-span-3">
             <Details visit={visit} />
           </div>
           <div className="">{!visit ? <Schedules /> : <div />}</div>
