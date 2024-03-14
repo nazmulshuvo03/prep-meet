@@ -9,7 +9,9 @@ import { useState } from "react";
 import { EditTarget } from "./EditTarget";
 
 export const Target = ({ visit = false }) => {
-  const profile = useSelector((state) => state.user.profile);
+  const profile = useSelector((state) =>
+    visit ? state.user.visitingProfile : state.user.profile
+  );
   const companies = useSelector((state) => state.static.companies);
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels

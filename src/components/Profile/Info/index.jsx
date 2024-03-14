@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faBriefcase } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { UserName } from "./UserName";
 import { Target } from "./Target";
 import { AdditionalInfo } from "../../PersonCard/AdditionalInfo";

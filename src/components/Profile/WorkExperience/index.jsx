@@ -28,7 +28,9 @@ const DEFAULT_DATA = {
 
 export const WorkExperience = ({ visit = false }) => {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.profile);
+  const profile = useSelector((state) =>
+    visit ? state.user.visitingProfile : state.user.profile
+  );
   const [editItem, setEditItem] = useState();
   const [showInput, setShowInput] = useState(false);
   const [formData, setFormData] = useState(DEFAULT_DATA);

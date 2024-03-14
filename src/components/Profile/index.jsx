@@ -7,7 +7,9 @@ import { DisplayAvailability } from "./DisplayAvailability";
 // import { PersonalAccount } from "../../components/PersonalAccount";
 
 export const UserProfile = ({ visit = false }) => {
-  const profile = useSelector((state) => state.user.profile);
+  const profile = useSelector((state) =>
+    visit ? state.user.visitingProfile : state.user.profile
+  );
 
   return (
     <>

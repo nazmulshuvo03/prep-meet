@@ -17,8 +17,9 @@ import { IconButton } from "../../Button/IconButton";
 
 export const UserName = ({ visit = false }) => {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.profile);
-
+  const profile = useSelector((state) =>
+    visit ? state.user.visitingProfile : state.user.profile
+  );
   const [editMode, setEditMode] = useState(false);
   const [userName, setUserName] = useState();
   const [alreadyExists, setAlreadyExists] = useState(false);
