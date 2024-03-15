@@ -22,7 +22,7 @@ export const Auth = ({ authMode = "" }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/profile");
+      history.push("/people");
     }
   }, [isAuthenticated]);
 

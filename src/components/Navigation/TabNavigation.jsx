@@ -8,8 +8,8 @@ export const TabNavigation = () => {
   const navLinks = [
     ...(user
       ? [
-          { to: "/profile", name: "Profile" },
           { to: "/people", name: "Search and Schedule" },
+          { to: "/profile", name: "Profile" },
           { to: "/progress", name: "My Progress" },
           { to: "/interviews", name: "My Interviews" },
         ]
