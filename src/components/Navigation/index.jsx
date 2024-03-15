@@ -5,16 +5,32 @@ import { logoutUser } from "../../store/middlewares/auth";
 // import { Banner } from "../Banner";
 
 export const Navigation = () => {
-  // const location = useLocation();
+  const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
+  const isDashboard = () => {
+    const dashboardRoutes = ["/people", "/profile", "/progress", "/interviews"];
+    return dashboardRoutes.includes(location.pathname);
+  };
+
   const navLinks = [
-    { to: "/", name: "About Us" },
-    { to: "/", name: "How it works" },
-    { to: "/", name: "FAQs" },
-    ...(isAuthenticated ? [] : []),
+    ...(isDashboard()
+      ? []
+      : [
+          { to: "/", name: "About Us" },
+          { to: "/", name: "How it works" },
+          { to: "/", name: "FAQs" },
+          ...(isAuthenticated
+            ? [
+                {
+                  to: "/people",
+                  name: "Search & Schedule",
+                },
+              ]
+            : []),
+        ]),
   ];
 
   // const isRouteActive = (routePath) => {
