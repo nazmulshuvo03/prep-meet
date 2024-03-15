@@ -45,8 +45,6 @@ export const Meetings = () => {
     }
   }, [meetings]);
 
-  console.log("@@@@@@@@@@", meetings, past, upcoming, mostRecent);
-
   return (
     <div className="p-6">
       {meetings && meetings.length ? (

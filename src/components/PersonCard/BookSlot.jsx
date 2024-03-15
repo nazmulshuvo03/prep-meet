@@ -8,6 +8,7 @@ import { Button } from "../Button";
 export const BookSlot = ({
   data,
   selected,
+  setSelected = () => {},
   handleClose = () => {},
   handleBook = () => {},
 }) => {
@@ -59,12 +60,13 @@ export const BookSlot = ({
                           key={hour.id}
                           className={`${
                             hour.id === selected.id
-                              ? "bg-green-100"
-                              : // : hour.state === "BOOKED"
-                                // ? "bg-gray-300"
-                                "bg-slate-100"
+                              ? "bg-green-100 border-green-200"
+                              : hour.state === "BOOKED"
+                              ? "bg-gray-300 text-gray-300"
+                              : "cursor-pointer bg-transparent border-green-200"
                           } border border-slate-200 text-text 
-                          text-sm font-medium rounded-lg px-4 py-2`}
+                          text-sm font-normal rounded-lg px-4 py-2`}
+                          onClick={() => setSelected(hour)}
                         >
                           {
                             convertISOUTCDayTimeToLocalDayTime(hour.dayHourUTC)

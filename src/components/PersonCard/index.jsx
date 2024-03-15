@@ -58,6 +58,7 @@ export const PersonCard = ({ data }) => {
           <BookSlot
             data={data}
             selected={selectedBook}
+            setSelected={setSelectedBook}
             handleClose={() => setSelectedBook()}
             handleBook={handleBook}
           />

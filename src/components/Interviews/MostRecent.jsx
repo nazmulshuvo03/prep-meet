@@ -4,8 +4,11 @@ import { IconButton } from "../Button/IconButton";
 import { getDataLabelFromKey } from "../../utils/data";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { Button } from "../Button";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MostRecent = ({ data }) => {
+  const history = useHistory();
+
   const profile = useSelector((state) => state.user.profile);
   const allSkill = useSelector((state) => state.profession.allSkill);
   const companies = useSelector((state) => state.static.companies);
@@ -90,7 +93,10 @@ export const MostRecent = ({ data }) => {
                 <span>{meetingUser.userName}</span>
                 <IconButton
                   className={`!text-secondary !font-light`}
-                  style={{ fontSize: 8 }}
+                  style={{ fontSize: 10 }}
+                  onClick={() => {
+                    history.push(`/user/${meetingUser.id}`);
+                  }}
                 >
                   Learn More
                 </IconButton>
