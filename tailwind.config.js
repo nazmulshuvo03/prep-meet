@@ -13,7 +13,7 @@ export default {
       },
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
-        serif: ["Poppins", "serif"],
+        serif: ["Roboto", "serif"],
         mono: ["Menlo", "monospace"],
       },
     },
