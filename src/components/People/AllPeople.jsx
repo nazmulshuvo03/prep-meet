@@ -22,6 +22,12 @@ export const AllPeople = ({
     (state) => state.profession.targetProfession
   );
   const companies = useSelector((state) => state.static.companies);
+  const experienceLevels = useSelector(
+    (state) => state.static.experienceLevels
+  );
+  const preparationStages = useSelector(
+    (state) => state.static.preparationStages
+  );
 
   return (
     <div className="py-2 flex flex-col h-full">
@@ -52,6 +58,22 @@ export const AllPeople = ({
               }
               onSelect={handleQuerySelect}
               defaultText={"Interview Type"}
+              allowSearch={false}
+            />
+            <Dropdown
+              name={"experienceLevel"}
+              value={queries["experienceLevel"] || ""}
+              options={experienceLevels}
+              onSelect={handleQuerySelect}
+              defaultText={"Target Level"}
+              allowSearch={false}
+            />
+            <Dropdown
+              name={"preparationStage"}
+              value={queries["preparationStage"] || ""}
+              options={preparationStages}
+              onSelect={handleQuerySelect}
+              defaultText={"Stage of Interviewing"}
               allowSearch={false}
             />
           </div>
