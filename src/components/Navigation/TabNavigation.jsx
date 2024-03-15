@@ -1,3 +1,7 @@
+import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faChartLine, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 
@@ -8,10 +12,26 @@ export const TabNavigation = () => {
   const navLinks = [
     ...(user
       ? [
-          { to: "/people", name: "Search and Schedule" },
-          { to: "/profile", name: "Profile" },
-          { to: "/progress", name: "My Progress" },
-          { to: "/interviews", name: "My Interviews" },
+          {
+            to: "/people",
+            name: "Search and Schedule",
+            icon: <FontAwesomeIcon icon={faSearchengin} />,
+          },
+          {
+            to: "/profile",
+            name: "Profile",
+            icon: <FontAwesomeIcon icon={faUser} />,
+          },
+          {
+            to: "/progress",
+            name: "Progress",
+            icon: <FontAwesomeIcon icon={faChartLine} />,
+          },
+          {
+            to: "/interviews",
+            name: "Interviews",
+            icon: <FontAwesomeIcon icon={faHeadset} />,
+          },
         ]
       : []),
   ];
@@ -27,10 +47,11 @@ export const TabNavigation = () => {
           key={link.name}
           to={link.to}
           isActive={() => isRouteActive(link.to)}
-          className="text-text w-full h-8 flex justify-start items-center cursor-pointer text-sm font-semibold ml-10 pl-2"
+          className="text-text w-full h-8 flex justify-start items-center gap-2 cursor-pointer text-sm font-medium ml-10 pl-2 !text-gray-700"
           activeClassName="bg-background text-gray-700 w-full h-8 flex justify-start items-center cursor-pointer text-sm font-semibold ml-10 pl-2"
         >
-          {link.name}
+          <div className="text-base">{link.icon}</div>
+          <div>{link.name}</div>
         </NavLink>
       ))}
     </nav>
