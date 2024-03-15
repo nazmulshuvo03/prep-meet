@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { logoutUser } from "../../store/middlewares/auth";
+import { ProfileAvatar } from "../ProfileAvatar";
 // import { Banner } from "../Banner";
 
 export const Navigation = () => {
@@ -55,7 +56,7 @@ export const Navigation = () => {
           "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
         }
       /> */}
-      <div className="bg-primary flex justify-between w-full h-full items-center px-5">
+      <div className="bg-primary flex justify-between w-full h-full items-center px-5 z-10">
         <div className="text-3xl font-semibold opacity-75 ">
           <NavLink to={"/"} className="text-gray-900">
             Candidace
@@ -76,15 +77,16 @@ export const Navigation = () => {
             ))}
           </nav>
           {isAuthenticated ? (
-            <Button
-              className={
-                "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
-              }
-              onClick={handleLogout}
-            >
-              Sign Out
-            </Button>
+            <ProfileAvatar />
           ) : (
+            // <Button
+            //   className={
+            //     "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
+            //   }
+            //   onClick={handleLogout}
+            // >
+            //   Sign Out
+            // </Button>
             <Button
               className={
                 "border border-gray-700 !bg-secondary rounded-none !font-normal !text-white"

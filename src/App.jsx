@@ -55,13 +55,15 @@ function App() {
         global.dark ? "dark" : ""
       } h-screen w-screen overflow-hidden`}
     >
-      <div className={`bg-background text-text h-full w-full overflow-y-auto`}>
-        <Router>
-          <div className="fixed top-0 left-0 w-full h-16 overflow-hidden">
+      <Router>
+        <div
+          className={`bg-background text-text h-full w-full flex flex-col overflow-y-auto`}
+        >
+          <div className="w-full h-16">
             <Navigation />
           </div>
           <div
-            className="mt-16 flex overflow-y-auto"
+            className="flex-1 flex overflow-y-auto"
             style={{ height: "-webkit-fill-available" }}
           >
             <Switch>
@@ -90,8 +92,8 @@ function App() {
               </Route>
             </Switch>
           </div>
-        </Router>
-      </div>
+        </div>
+      </Router>
       {global?.loading && <CircularProgress />}
       {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
     </div>

@@ -2,10 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/middlewares/auth";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { ThemeProvider } from "../ThemeProvider";
+// import { ThemeProvider } from "../ThemeProvider";
 
-const MenuLink = ({ children }) => (
-  <div className="border-t py-3 px-3 font-light text-sm text-gray-600 hover:text-gray-800 flex items-center justify-center">
+const MenuLink = ({ children, ...props }) => (
+  <div
+    className="border-t py-2 px-3 font-light text-xs text-gray-600 hover:text-gray-800 flex items-center justify-center"
+    {...props}
+  >
     {children}
   </div>
 );
@@ -21,10 +24,10 @@ export const ProfileMenu = () => {
   };
 
   return (
-    <div className="absolute top-12 right-1 bg-background text-text border border-text shadow-lg min-w-48 rounded-md">
+    <div className="absolute top-12 right-0 bg-white text-text rounded-sm drop-shadow-lg min-w-36">
       {user && (
-        <div className="px-3 py-3">
-          <div className="font-semibold text-lg">
+        <div className="px-3 py-2 text-right">
+          <div className="font-semibold text-base">
             <span>{user.firstName}</span>
             <span> </span>
             <span>{user.lastName}</span>
@@ -33,23 +36,18 @@ export const ProfileMenu = () => {
         </div>
       )}
       <MenuLink>
-        <Link to="/account">Account Settings</Link>
+        <Link to="/about-us">About Us</Link>
       </MenuLink>
       <MenuLink>
-        <Link to="/terms">Terms & Conditions</Link>
+        <Link to="/how-it-works">How It Works</Link>
       </MenuLink>
       <MenuLink>
-        <Link to="/privacy">Privacy Policy</Link>
+        <Link to="/faqs">FAQs</Link>
       </MenuLink>
-      <div className="border-t py-3">
+      {/* <div className="border-t py-3">
         <ThemeProvider />
-      </div>
-      <div
-        className="bg-red-600 dark:bg-red-800 text-slate-50 dark:text-slate-100 rounded-t-md h-10 flex justify-center items-center font-semibold text-base shadow-md"
-        onClick={handleLogout}
-      >
-        Logout
-      </div>
+      </div> */}
+      <MenuLink onClick={handleLogout}>Log Out</MenuLink>
     </div>
   );
 };
