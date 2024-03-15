@@ -29,6 +29,9 @@ import Profile from "./routes/Profile";
 import People from "./routes/People";
 import Interviews from "./routes/Interviews";
 import Progress from "./routes/Progress";
+import AboutUs from "./routes/AboutUs";
+import HowItWorks from "./routes/HowItWorks";
+import Faqs from "./routes/Faqs";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +68,9 @@ function App() {
               <Route exact path="/" component={Landing} />
               <Route exact path="/onboard" component={Onboard} />
               <Route exact path="/admin" component={Admin} />
+              <Route exact path="/about-us" component={AboutUs} />
+              <Route exact path="/how-it-works" component={HowItWorks} />
+              <Route exact path="/faqs" component={Faqs} />
               <Route>
                 {global.isAuthenticated ? (
                   <div className="flex w-full overflow-hidden">

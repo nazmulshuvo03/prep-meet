@@ -19,9 +19,9 @@ export const Navigation = () => {
     ...(isDashboard()
       ? []
       : [
-          { to: "/", name: "About Us" },
-          { to: "/", name: "How it works" },
-          { to: "/", name: "FAQs" },
+          { to: "/about-us", name: "About Us" },
+          { to: "/how-it-works", name: "How it works" },
+          { to: "/faqs", name: "FAQs" },
           ...(isAuthenticated
             ? [
                 {
