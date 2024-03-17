@@ -101,7 +101,7 @@ export const AddNew = ({
         />
       </div>
       <div className="flex justify-center mt-auto">
-        <Button size="small" onClick={handleSubmit}>
+        <Button size="small" className={"!bg-secondary"} onClick={handleSubmit}>
           Save
         </Button>
       </div>

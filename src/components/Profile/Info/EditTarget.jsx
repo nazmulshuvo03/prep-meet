@@ -8,8 +8,14 @@ import COUNTRY_DATA from "../../../assets/data/countries.json";
 import { updateUserData } from "../../../store/middlewares/user";
 import { addCompany } from "../../../store/middlewares/static";
 import { Input } from "../../Input";
+import { IconButton } from "../../Button/IconButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-export const EditTarget = ({ handleDone = () => {} }) => {
+export const EditTarget = ({
+  handleDone = () => {},
+  handleClose = () => {},
+}) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const professions = useSelector((state) => state.profession.items);
@@ -82,88 +88,98 @@ export const EditTarget = ({ handleDone = () => {} }) => {
   }, [professions, state.targetProfessionId]);
 
   return (
-    <div className="px-6 py-10 grid grid-cols-2 gap-4">
-      <Input
-        placeholder={"First Name"}
-        name={"firstName"}
-        value={state.firstName}
-        onChange={handleChange}
-      />
-      <Input
-        placeholder={"Last Name"}
-        name={"lastName"}
-        value={state.lastName}
-        onChange={handleChange}
-      />
-      <div className="col-span-2">
+    <div className="px-6 py-4 ">
+      <div className="flex items-center justify-between pb-4">
+        <div className="text-lg font-semibold uppercase">Edit Profile</div>
+        <IconButton onClick={handleClose}>
+          <FontAwesomeIcon icon={faClose} className="text-gray-500 text-2xl" />
+        </IconButton>
+      </div>
+      <div className="py-6 grid grid-cols-2 gap-4">
+        <Input
+          placeholder={"First Name"}
+          name={"firstName"}
+          value={state.firstName}
+          onChange={handleChange}
+        />
+        <Input
+          placeholder={"Last Name"}
+          name={"lastName"}
+          value={state.lastName}
+          onChange={handleChange}
+        />
+        <div className="col-span-2">
+          <MultiInputDropdown
+            label="Target Companies"
+            name="companiesOfInterest"
+            value={state.companiesOfInterest}
+            options={companies}
+            onSelect={handleChange}
+            defaultText={"Select upto 5"}
+            allowAddNew={true}
+            addNewAction={handleAddNewCompany}
+          />
+        </div>
         <MultiInputDropdown
-          label="Target Companies"
-          name="companiesOfInterest"
-          value={state.companiesOfInterest}
-          options={companies}
+          label="Focus Areas"
+          name="focusAreas"
+          value={state.focusAreas}
+          options={skillOptions}
           onSelect={handleChange}
           defaultText={"Select upto 5"}
-          allowAddNew={true}
-          addNewAction={handleAddNewCompany}
         />
-      </div>
-      <MultiInputDropdown
-        label="Focus Areas"
-        name="focusAreas"
-        value={state.focusAreas}
-        options={skillOptions}
-        onSelect={handleChange}
-        defaultText={"Select upto 5"}
-      />
-      <MultiInputDropdown
-        label="Types of Experience"
-        name="typesOfExperience"
-        value={state.typesOfExperience}
-        options={expTypsOptions}
-        onSelect={handleChange}
-        defaultText={"Select upto 5"}
-      />
-      <Dropdown
-        label={"Target Level"}
-        name={"experienceLevel"}
-        value={state.experienceLevel || ""}
-        options={experienceLevels}
-        onSelect={handleChange}
-        defaultText="Select an option"
-      />
-      <Dropdown
-        label={"Stage of Interviewing"}
-        name={"preparationStage"}
-        value={state.preparationStage || ""}
-        options={preparationStages}
-        onSelect={handleChange}
-        defaultText="Select an option"
-      />
-      <Dropdown
-        name={"country"}
-        value={state.country}
-        options={COUNTRY_DATA}
-        onSelect={handleChange}
-        defaultText="Select an option"
-      />
-      <Input
-        placeholder={"LinkedIn Profile"}
-        name={"linkedInProfile"}
-        value={state.linkedInProfile}
-        onChange={handleChange}
-      />
-      <div className="col-span-2">
-        <TextInput
-          label="Profile Headline"
-          name={"profileHeadline"}
-          placeholder={"Write the headline of your profile"}
-          rows="4"
-          value={state.profileHeadline}
-          setValue={handleChange}
+        <MultiInputDropdown
+          label="Types of Experience"
+          name="typesOfExperience"
+          value={state.typesOfExperience}
+          options={expTypsOptions}
+          onSelect={handleChange}
+          defaultText={"Select upto 5"}
         />
-      </div>
-      <div className="col-span-2 flex justify-center items-center">
-        <Button onClick={handleSave}>Save</Button>
+        <Dropdown
+          label={"Target Level"}
+          name={"experienceLevel"}
+          value={state.experienceLevel || ""}
+          options={experienceLevels}
+          onSelect={handleChange}
+          defaultText="Select an option"
+        />
+        <Dropdown
+          label={"Stage of Interviewing"}
+          name={"preparationStage"}
+          value={state.preparationStage || ""}
+          options={preparationStages}
+          onSelect={handleChange}
+          defaultText="Select an option"
+        />
+        <Dropdown
+          name={"country"}
+          value={state.country}
+          options={COUNTRY_DATA}
+          onSelect={handleChange}
+          defaultText="Select an option"
+        />
+        <Input
+          placeholder={"LinkedIn Profile"}
+          name={"linkedInProfile"}
+          value={state.linkedInProfile}
+          onChange={handleChange}
+        />
+        <div className="col-span-2">
+          <TextInput
+            label="Profile Headline"
+            name={"profileHeadline"}
+            placeholder={"Write the headline of your profile"}
+            rows="4"
+            value={state.profileHeadline}
+            setValue={handleChange}
+          />
+        </div>
+        <div className="col-span-2 flex justify-center items-center">
+          <Button size="small" className={"!bg-secondary"} onClick={handleSave}>
+            Save
+          </Button>
+        </div>
       </div>
     </div>
   );

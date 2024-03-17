@@ -161,8 +161,11 @@ export const Target = ({ visit = false }) => {
         <></>
       )}
       {editMode && (
-        <Modal handleClose={() => setEditMode(false)} className="!w-2/3">
-          <EditTarget handleDone={() => setEditMode(false)} />
+        <Modal className="!w-2/3">
+          <EditTarget
+            handleDone={() => setEditMode(false)}
+            handleClose={() => setEditMode(false)}
+          />
         </Modal>
       )}
     </div>
