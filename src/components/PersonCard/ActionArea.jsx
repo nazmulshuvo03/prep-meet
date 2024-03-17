@@ -63,7 +63,13 @@ export const ActionArea = ({
               : "!bg-gray-300 border-gray-700 !text-gray-700 !cursor-default"
           } border text-xs !w-1/3 !py-1`}
         >
-          <Tooltip text={"Complete your profile to start scheduling!"}>
+          <Tooltip
+            text={
+              isAllTrue(completionStatus)
+                ? ""
+                : "Complete your profile to start scheduling!"
+            }
+          >
             Next Available {getDateDescription(latest.dayHour)}{" "}
             {convertISOUTCDayTimeToLocalDayTime(latest.dayHourUTC).time}
           </Tooltip>

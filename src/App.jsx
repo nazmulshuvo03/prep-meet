@@ -63,7 +63,7 @@ function App() {
             <Navigation />
           </div>
           <div
-            className="flex-1 flex overflow-y-auto"
+            className="flex-1 flex overflow-x-hidden overflow-y-auto"
             style={{ height: "-webkit-fill-available" }}
           >
             <Switch>

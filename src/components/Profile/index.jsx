@@ -14,7 +14,7 @@ export const UserProfile = ({ visit = false }) => {
   return (
     <>
       {profile ? (
-        <div className="px-10 pt-6 pb-2 grid grid-cols-1 md:grid-cols-4 gap-3 h-full overflow-y-auto">
+        <div className="px-10 pt-6 pb-2 grid grid-cols-1 md:grid-cols-4 gap-3 h-full overflow-y-auto overflow-x-hidden">
           <div className="col-span-3">
             <Info visit={visit} />
           </div>

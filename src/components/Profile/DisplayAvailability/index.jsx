@@ -6,9 +6,11 @@ import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
 import { Modal } from "../../Modal";
 import { CreateMeeting } from "./CreateMeeting";
 import { useSelector } from "react-redux";
+import { isAllTrue } from "../../../utils/object";
 
 export const DisplayAvailability = () => {
   const profile = useSelector((state) => state.user.visitingProfile);
+  const completionStatus = useSelector((state) => state.user.completionStatus);
   const [selectedAvailability, setSelectedAvailability] = useState(false);
 
   const handleCancel = () => {
@@ -52,17 +54,21 @@ export const DisplayAvailability = () => {
                         {avl.state}
                       </div>
                       <div className="col-span-1">
-                        {avl.state === "OPEN" ? (
-                          <IconButton
-                            onClick={() => setSelectedAvailability(avl)}
-                          >
-                            <FontAwesomeIcon
-                              icon={faCalendarPlus}
-                              className="text-secondary"
-                            />
-                          </IconButton>
-                        ) : (
-                          <div />
+                        {isAllTrue(completionStatus) && (
+                          <>
+                            {avl.state === "OPEN" ? (
+                              <IconButton
+                                onClick={() => setSelectedAvailability(avl)}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faCalendarPlus}
+                                  className="text-secondary"
+                                />
+                              </IconButton>
+                            ) : (
+                              <div />
+                            )}
+                          </>
                         )}
                       </div>
                     </div>

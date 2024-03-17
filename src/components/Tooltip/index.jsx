@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export const Tooltip = ({ text, children }) => {
+export const Tooltip = ({ text = "", children }) => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const handleMouseEnter = () => {
@@ -13,7 +13,7 @@ export const Tooltip = ({ text, children }) => {
 
   return (
     <div className="relative inline-block">
-      {isTooltipVisible && (
+      {isTooltipVisible && text && (
         <div className="absolute z-10 px-2 py-2 text-xs font-light text-white bg-gray-600 rounded-md whitespace-nowrap bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2">
           {text}
           <svg
