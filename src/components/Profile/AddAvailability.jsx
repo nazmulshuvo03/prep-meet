@@ -8,10 +8,12 @@ import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createUserAvailability } from "../../store/middlewares/availability";
 import { DateInput } from "../Input/DateInput";
+import { MandatoryStar } from "../MandatoryStar";
 
 export const AddAvailability = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
+  const completionStatus = useSelector((state) => state.user.completionStatus);
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
@@ -63,7 +65,7 @@ export const AddAvailability = () => {
   return (
     <div className="bg-white p-3 h-full w-ful">
       <div className="font-semibold text-center pt-2 pb-3">
-        Add Availability
+        Add Availability {!completionStatus.availabilities && <MandatoryStar />}
       </div>
       <div className="flex flex-col gap-2">
         <DateInput

@@ -26,3 +26,7 @@ export const deepEqual = (obj1, obj2) => {
 export const isEmptyObject = (obj) => {
   return Object.keys(obj).length === 0;
 };
+
+export const isAllTrue = (obj) => {
+  return Object.values(obj).every((value) => value === true);
+};

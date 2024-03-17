@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
+import { MandatoryStar } from "../../MandatoryStar";
 
 const DEFAULT_DATA = {
   jobTitle: "",
@@ -31,6 +32,8 @@ export const WorkExperience = ({ visit = false }) => {
   const profile = useSelector((state) =>
     visit ? state.user.visitingProfile : state.user.profile
   );
+  const completionStatus = useSelector((state) => state.user.completionStatus);
+
   const [editItem, setEditItem] = useState();
   const [showInput, setShowInput] = useState(false);
   const [formData, setFormData] = useState(DEFAULT_DATA);
@@ -94,7 +97,10 @@ export const WorkExperience = ({ visit = false }) => {
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
-        <div className="text-lg font-semibold uppercase">Work Experiences</div>
+        <div className="text-lg font-semibold uppercase">
+          Work Experiences{" "}
+          {!completionStatus.workExperiences && <MandatoryStar />}
+        </div>
         {!visit &&
         profile.workExperiences &&
         profile.workExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default

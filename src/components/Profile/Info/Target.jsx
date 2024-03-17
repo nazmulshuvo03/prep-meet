@@ -7,6 +7,7 @@ import { IconButton } from "../../Button/IconButton";
 import { Modal } from "../../Modal";
 import { useState } from "react";
 import { EditTarget } from "./EditTarget";
+import { MandatoryStar } from "../../MandatoryStar";
 
 export const Target = ({ visit = false }) => {
   const profile = useSelector((state) =>
@@ -23,13 +24,17 @@ export const Target = ({ visit = false }) => {
   const allExperienceType = useSelector(
     (state) => state.profession.allExperienceType
   );
+  const completionStatus = useSelector((state) => state.user.completionStatus);
   const [editMode, setEditMode] = useState(false);
 
   return (
     <div className="relative col-span-8 flex flex-col gap-2 pt-4">
       <div className="flex flex-col gap-2 mb-4">
         <div className="flex flex-wrap items-baseline gap-1 break-words">
-          <div className="text-base font-semibold">Target Company:</div>
+          <div className="text-base font-semibold">
+            Target Company{" "}
+            {!completionStatus.companiesOfInterest && <MandatoryStar />}:
+          </div>
           <div className="flex gap-1 flex-wrap break-words text-base font-semibold">
             {profile.companiesOfInterest &&
             profile.companiesOfInterest.length ? (
@@ -66,7 +71,10 @@ export const Target = ({ visit = false }) => {
         </div>
 
         <div className="flex gap-1 items-baseline">
-          <div className="text-xs font-semibold">Target Level:</div>
+          <div className="text-xs font-semibold">
+            Target Level{" "}
+            {!completionStatus.experienceLevel && <MandatoryStar />}:
+          </div>
           <div className="text-xs font-medium">
             {profile && profile.experienceLevel
               ? getDataLabelFromKey(
@@ -78,7 +86,10 @@ export const Target = ({ visit = false }) => {
         </div>
 
         <div className="flex gap-1 items-baseline">
-          <div className="text-xs font-semibold">Stage of Interviewing:</div>
+          <div className="text-xs font-semibold">
+            Stage of Interviewing{" "}
+            {!completionStatus.preparationStage && <MandatoryStar />}:
+          </div>
           <div className="text-xs font-medium">
             {profile && profile.preparationStage
               ? getDataLabelFromKey(
@@ -90,7 +101,9 @@ export const Target = ({ visit = false }) => {
         </div>
 
         <div className="flex flex-wrap items-baseline gap-1 break-words py-1">
-          <div className="text-xs font-semibold">Practice Areas:</div>
+          <div className="text-xs font-semibold">
+            Practice Areas {!completionStatus.focusAreas && <MandatoryStar />}:
+          </div>
           <div className="flex gap-1 flex-wrap break-words text-xs font-normal">
             {profile.focusAreas && profile.focusAreas.length ? (
               profile.focusAreas.map((focus, i) => {

@@ -6,12 +6,15 @@ import {
   timeDistance,
 } from "../../utils/timeDate";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { isAllTrue } from "../../utils/object";
 
 export const ActionArea = ({
   data = null,
   onNextAvailableClick = () => {},
 }) => {
   const history = useHistory();
+  const completionStatus = useSelector((state) => state.user.completionStatus);
   const [latest, setLatest] = useState();
 
   useEffect(() => {
@@ -48,8 +51,16 @@ export const ActionArea = ({
       </Button>
       {latest ? (
         <Button
-          onClick={() => onNextAvailableClick(latest)}
-          className="!bg-secondary border border-secondary text-xs !w-1/3 !py-1"
+          onClick={
+            isAllTrue(completionStatus)
+              ? () => onNextAvailableClick(latest)
+              : () => {}
+          }
+          className={`${
+            isAllTrue(completionStatus)
+              ? "!bg-secondary border-secondary"
+              : "!bg-gray-300 border-gray-700 !text-gray-700 !cursor-default"
+          } border text-xs !w-1/3 !py-1`}
         >
           Next Available {getDateDescription(latest.dayHour)}{" "}
           {convertISOUTCDayTimeToLocalDayTime(latest.dayHourUTC).time}
