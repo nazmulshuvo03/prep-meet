@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { isAllTrue } from "../../utils/object";
+import { Tooltip } from "../Tooltip";
 
 export const ActionArea = ({
   data = null,
@@ -62,8 +63,10 @@ export const ActionArea = ({
               : "!bg-gray-300 border-gray-700 !text-gray-700 !cursor-default"
           } border text-xs !w-1/3 !py-1`}
         >
-          Next Available {getDateDescription(latest.dayHour)}{" "}
-          {convertISOUTCDayTimeToLocalDayTime(latest.dayHourUTC).time}
+          <Tooltip text={"Complete your profile to start scheduling!"}>
+            Next Available {getDateDescription(latest.dayHour)}{" "}
+            {convertISOUTCDayTimeToLocalDayTime(latest.dayHourUTC).time}
+          </Tooltip>
         </Button>
       ) : (
         <div />
