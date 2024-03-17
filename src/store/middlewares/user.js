@@ -10,6 +10,7 @@ import {
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
 import {
+  setCompletionStatus,
   setPeople,
   setProfile,
   setVisitingProfile,
@@ -74,6 +75,8 @@ export const updateUserData = (userId, updatedData) =>
       if (res.data.targetProfessionId) {
         dispatch(setTargetProfession(res.data.targetProfessionId));
       }
+      if (res.data.completionStatus)
+        dispatch(setCompletionStatus(res.data.completionStatus));
       dispatch(
         setToastMessage({
           type: TOAST_TYPES[0],

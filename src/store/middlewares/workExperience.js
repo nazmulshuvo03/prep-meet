@@ -7,7 +7,11 @@ import {
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { setLoading, setToastMessage } from "../slices/global";
-import { removeWorkExperience, updateWorkExperience } from "../slices/user";
+import {
+  removeWorkExperience,
+  setCompletionStatus,
+  updateWorkExperience,
+} from "../slices/user";
 
 export const addWorkExperience = (data) =>
   asyncWrapper(async (dispatch) => {
@@ -20,6 +24,7 @@ export const addWorkExperience = (data) =>
       () => {
         dispatch(setLoading(false));
         dispatch(updateWorkExperience(res.data));
+        dispatch(setCompletionStatus(res.data.completionStatus));
       },
       () => {
         dispatch(setLoading(false));
@@ -44,6 +49,7 @@ export const deleteWorkExperience = (id) =>
       () => {
         dispatch(removeWorkExperience(id));
         dispatch(setLoading(false));
+        dispatch(setCompletionStatus(res.data));
       },
       () => {
         dispatch(setLoading(false));

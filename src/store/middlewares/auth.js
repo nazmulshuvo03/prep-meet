@@ -5,7 +5,7 @@ import { login_url, logout_url, signup_url } from "../../services/urls/auth";
 import { persistor } from "../index";
 import { setAuthenticated, setToastMessage } from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
-import { setProfile } from "../slices/user";
+import { setCompletionStatus, setProfile } from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
 
@@ -30,6 +30,7 @@ export const signupUser = (data) =>
         dispatch(setAuthenticated(true));
         dispatch(setTargetProfession(response.data.targetProfessionId));
         dispatch(setUserAvailabilities(response.data.availabilities));
+        dispatch(setCompletionStatus(response.data.completionStatus));
         // window.location.href = "/onboard";
       },
       () => {
@@ -51,6 +52,7 @@ export const loginUser = (data) =>
         dispatch(setAuthenticated(true));
         dispatch(setTargetProfession(response.data.targetProfessionId));
         dispatch(setUserAvailabilities(response.data.availabilities));
+        dispatch(setCompletionStatus(response.data.completionStatus));
       },
       () => {
         dispatch(

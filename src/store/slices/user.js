@@ -6,6 +6,7 @@ const userSlice = createSlice({
     profile: null,
     visitingProfile: null,
     people: [],
+    completionStatus: null,
   },
   reducers: {
     setProfile: (state, data) => {
@@ -94,6 +95,10 @@ const userSlice = createSlice({
         }
       });
     },
+    setCompletionStatus: (state, action) => {
+      const data = action.payload;
+      state.completionStatus = data;
+    },
   },
 });
 
@@ -112,5 +117,6 @@ export const {
   clearVisitingProfile,
   updateVisitorProfileAvailability,
   updatePeopleAvailability,
+  setCompletionStatus,
 } = userSlice.actions;
 export default userSlice.reducer;

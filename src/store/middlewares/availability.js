@@ -14,6 +14,7 @@ import {
   updateUserAvailabilities,
 } from "../slices/availability";
 import { setToastMessage } from "../slices/global";
+import { setCompletionStatus } from "../slices/user";
 
 export const fetchUserAvailabilities = (userId) =>
   asyncWrapper(async (dispatch) => {
@@ -32,64 +33,32 @@ export const createUserAvailability = (data) =>
   asyncWrapper(async (dispatch) => {
     const res = await postContent(availability_url(), data);
     console.log("availability create", data, res);
-    if (res.data === "Deleted") {
-      responseHandler(
-        res,
-        () => {
-          dispatch(removeAvailability(data));
-          // dispatch(
-          //   setToastMessage({
-          //     type: TOAST_TYPES[0],
-          //     message: `${new Date(data.day)} ${formatHourWithAMPM(
-          //       data.hour
-          //     )} removed`,
-          //   })
-          // );
-        },
-        () => {
-          dispatch(
-            setToastMessage({
-              type: TOAST_TYPES[1],
-              message: `Error removing ${formatHourWithAMPM(data.hour)}`,
-            })
-          );
-        }
-      );
-    } else {
-      responseHandler(
-        res,
-        () => {
-          dispatch(updateUserAvailabilities(res.data));
-          // dispatch(
-          //   setToastMessage({
-          //     type: TOAST_TYPES[0],
-          //     message: `${new Date(data.day)} ${formatHourWithAMPM(
-          //       data.hour
-          //     )} added`,
-          //   })
-          // );
-        },
-        () => {
-          dispatch(
-            setToastMessage({
-              type: TOAST_TYPES[1],
-              message: `Error adding ${formatHourWithAMPM(data.hour)}`,
-            })
-          );
-        }
-      );
-    }
+    responseHandler(
+      res,
+      () => {
+        dispatch(updateUserAvailabilities(res.data));
+        dispatch(setCompletionStatus(res.data.completionStatus));
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: `Error adding ${formatHourWithAMPM(data.hour)}`,
+          })
+        );
+      }
+    );
   });
 
 export const deleteAvailability = (data) =>
   asyncWrapper(async (dispatch) => {
-    console.log("!!!!!!!!!!!!!!!!!!!!!", data);
     const res = await deleteContent(single_availability_url(data.id));
     console.log("availability deleted", res);
     responseHandler(
       res,
       () => {
         dispatch(removeAvailability(data));
+        dispatch(setCompletionStatus(res.data));
       },
       () => {
         dispatch(
