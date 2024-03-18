@@ -7,7 +7,7 @@ export const Header = () => {
       style={{ backgroundImage: 'url("/images/landingPage/image1.png")' }}
     >
       <div className="grid grid-cols-12">
-        <div className="col-span-8">
+        <div className="col-span-12 md:col-span-8">
           <div className="text-6xl font-bold py-4">
             Ace Your Next Job Interview
           </div>

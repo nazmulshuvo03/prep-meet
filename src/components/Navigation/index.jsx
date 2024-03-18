@@ -44,11 +44,6 @@ export const Navigation = () => {
     });
   };
 
-  const handleLogout = async () => {
-    await dispatch(logoutUser());
-    history.push("/");
-  };
-
   return (
     <>
       {/* <Banner
@@ -63,7 +58,7 @@ export const Navigation = () => {
           </NavLink>
         </div>
         <div className="flex gap-8 items-center">
-          <nav className="flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
@@ -79,14 +74,6 @@ export const Navigation = () => {
           {isAuthenticated ? (
             <ProfileAvatar />
           ) : (
-            // <Button
-            //   className={
-            //     "border border-gray-700 !bg-white rounded-none !font-light !text-gray-700"
-            //   }
-            //   onClick={handleLogout}
-            // >
-            //   Sign Out
-            // </Button>
             <Button
               className={
                 "border border-gray-700 !bg-secondary rounded-none !font-normal !text-white"
