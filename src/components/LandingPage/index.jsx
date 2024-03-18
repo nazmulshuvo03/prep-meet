@@ -1,4 +1,5 @@
 import { BrowseNetwork } from "./BrowseNetwork";
+import { Companies } from "./Companies";
 import { Faqs } from "./Faqs";
 import { Header } from "./Header";
 import { InsideTrack } from "./InsideTrack";
@@ -15,6 +16,7 @@ export const LandingPage = () => {
       <StepsOverview />
       <Quote />
       <Testimonials />
+      <Companies />
       <Faqs />
     </div>
   );
