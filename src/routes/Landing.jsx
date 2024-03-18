@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Auth } from "../components/Landing/Auth";
 import { useLocation } from "react-router-dom";
+import { LandingPage } from "../components/LandingPage";
 
 const Landing = () => {
   const location = useLocation();
@@ -17,7 +18,7 @@ const Landing = () => {
   return (
     <div className="w-full -mt-20">
       {authMode && <Auth authMode={authMode} />}
-      <img src="/landingPage.svg" className="w-full" />
+      <LandingPage />
     </div>
   );
 };
