@@ -15,10 +15,10 @@
 
 @layer base {
   :root {
-    --text: #0a1a17;
-    --background: #f5f5f5;
-    --primary: #cacbdf;
-    --secondary: #2563eb;
+    --text: #3e3f3f;
+    --background: #f6f5fb;
+    --primary: #cbcade;
+    --secondary: #6a68f0;
     --accent: #7289c7;
   }
 

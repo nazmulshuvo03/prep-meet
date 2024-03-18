@@ -16,7 +16,7 @@ const Landing = () => {
   }, [location.search]);
 
   return (
-    <div className="w-full -mt-20">
+    <div className="w-full h-full">
       {authMode && <Auth authMode={authMode} />}
       <LandingPage />
     </div>

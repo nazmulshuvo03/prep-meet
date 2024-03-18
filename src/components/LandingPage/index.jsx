@@ -8,7 +8,7 @@ import { Testimonials } from "./Testimonials";
 
 export const LandingPage = () => {
   return (
-    <div>
+    <div className="h-full">
       <Header />
       <InsideTrack />
       <BrowseNetwork />
