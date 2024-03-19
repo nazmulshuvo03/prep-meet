@@ -3,7 +3,7 @@ import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { ProfileAvatar } from "../ProfileAvatar";
 
-export const Navigation = () => {
+export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
@@ -18,8 +18,12 @@ export const Navigation = () => {
       ? []
       : [
           { to: "/about-us", name: "About Us" },
-          { to: "/how-it-works", name: "How it works" },
-          { to: "/faqs", name: "FAQs" },
+          {
+            name: "How it works",
+            type: "button",
+            clickHandler: scrollToHowItWorks,
+          },
+          { name: "FAQs", type: "button", clickHandler: scrollToFaqs },
           ...(isAuthenticated
             ? [
                 {
@@ -56,17 +60,31 @@ export const Navigation = () => {
         </div>
         <div className="flex gap-8 items-center">
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.to}
-                // isActive={() => isRouteActive(link.to)}
-                className="h-fit rounded-lg text-slate-950 dark:text-slate-50"
-                // activeClassName="bg-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
-              >
-                {link.name}
-              </NavLink>
-            ))}
+            {navLinks.map((link) => {
+              if (link.type && link.type === "button") {
+                return (
+                  <Button
+                    className="h-fit rounded-lg !text-slate-950 dark:text-slate-50 !font-normal !p-0 !bg-transparent"
+                    key={link.name}
+                    onClick={link.clickHandler}
+                  >
+                    {link.name}
+                  </Button>
+                );
+              } else {
+                return (
+                  <NavLink
+                    key={link.name}
+                    to={link.to}
+                    // isActive={() => isRouteActive(link.to)}
+                    className="h-fit rounded-lg !text-slate-950 dark:text-slate-50"
+                    // activeClassName="bg-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
+                  >
+                    {link.name}
+                  </NavLink>
+                );
+              }
+            })}
           </nav>
           {isAuthenticated ? (
             <ProfileAvatar />

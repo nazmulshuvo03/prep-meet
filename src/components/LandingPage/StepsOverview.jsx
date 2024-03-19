@@ -1,8 +1,9 @@
-export const StepsOverview = () => {
+export const StepsOverview = ({ reference }) => {
   return (
     <div
       className="flex flex-col-reverse md:flex-row items-center py-14 bg-white"
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
+      ref={reference}
     >
       <div className="flex-1 flex flex-col items-start justify-start gap-6">
         <div>

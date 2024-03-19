@@ -1,8 +1,9 @@
-export const InsideTrack = () => {
+export const InsideTrack = ({ reference }) => {
   return (
-    <div
+    <section
       className="flex flex-col md:flex-row py-14 bg-white"
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
+      ref={reference}
     >
       <div className="flex-1 flex items-center justify-start">
         <div>
@@ -52,6 +53,6 @@ export const InsideTrack = () => {
           alt="Landing Your Dream Job"
         />
       </div>
-    </div>
+    </section>
   );
 };

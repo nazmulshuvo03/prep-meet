@@ -1,6 +1,6 @@
 import { FaqCard } from "./FaqCard";
 
-export const Faqs = () => {
+export const Faqs = ({ reference }) => {
   const FAQS = [
     {
       id: 1,
@@ -40,7 +40,11 @@ export const Faqs = () => {
   ];
 
   return (
-    <div className="py-16" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+    <div
+      className="py-16"
+      style={{ paddingLeft: "5%", paddingRight: "5%" }}
+      ref={reference}
+    >
       <div className="pb-6">
         <div className="text-4xl font-bold pb-4">FAQs</div>
         <div className="text-base font-medium">

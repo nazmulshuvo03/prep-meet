@@ -10,7 +10,7 @@ import { Navigation } from "./components/Navigation";
 import Admin from "./routes/Admin";
 import CircularProgress from "./components/ProgressBar";
 import Toast from "./components/Toast";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   fetchCompanies,
   fetchExperienceLevels,
@@ -38,6 +38,21 @@ function App() {
   const global = useSelector((state) => state.global);
   const profile = useSelector((state) => state.user.profile);
 
+  const landingHowItWorksRef = useRef(null);
+  const landingFaqsRef = useRef(null);
+
+  const scrollToHowItWorks = () => {
+    landingHowItWorksRef &&
+      landingHowItWorksRef.current &&
+      landingHowItWorksRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToFaqs = () => {
+    landingFaqsRef &&
+      landingFaqsRef.current &&
+      landingFaqsRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     dispatch(fetchProfessions());
     if (profile) {
@@ -60,14 +75,16 @@ function App() {
           className={`bg-background text-text h-full w-full flex flex-col overflow-y-auto`}
         >
           <div className="w-full h-16">
-            <Navigation />
+            <Navigation {...{ scrollToHowItWorks, scrollToFaqs }} />
           </div>
           <div
             className="flex-1 flex overflow-x-hidden overflow-y-auto"
             style={{ height: "-webkit-fill-available" }}
           >
             <Switch>
-              <Route exact path="/" component={Landing} />
+              <Route exact path="/">
+                <Landing {...{ landingHowItWorksRef, landingFaqsRef }} />
+              </Route>
               <Route exact path="/onboard" component={Onboard} />
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/about-us" component={AboutUs} />

@@ -3,7 +3,7 @@ import { Auth } from "../components/Landing/Auth";
 import { useLocation } from "react-router-dom";
 import { LandingPage } from "../components/LandingPage";
 
-const Landing = () => {
+const Landing = ({ landingHowItWorksRef, landingFaqsRef }) => {
   const location = useLocation();
   const [authMode, setAuthMode] = useState("");
 
@@ -18,7 +18,7 @@ const Landing = () => {
   return (
     <div className="w-full h-full">
       {authMode && <Auth authMode={authMode} />}
-      <LandingPage />
+      <LandingPage {...{ landingHowItWorksRef, landingFaqsRef }} />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Footer } from "../Footer";
 import { BrowseNetwork } from "./BrowseNetwork";
 import { Companies } from "./Companies";
@@ -9,17 +10,25 @@ import { Quote } from "./Quote";
 import { StepsOverview } from "./StepsOverview";
 import { Testimonials } from "./Testimonials";
 
-export const LandingPage = () => {
+export const LandingPage = ({ landingHowItWorksRef, landingFaqsRef }) => {
+  const learnMoreRef = useRef(null);
+
+  const scrollToLearnMore = () => {
+    learnMoreRef &&
+      learnMoreRef.current &&
+      learnMoreRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="h-full">
-      <Header />
-      <InsideTrack />
+      <Header scrollToLearnMore={scrollToLearnMore} />
+      <InsideTrack reference={learnMoreRef} />
       <BrowseNetwork />
-      <StepsOverview />
+      <StepsOverview reference={landingHowItWorksRef} />
       <Quote />
       <Testimonials />
       <Companies />
-      <Faqs />
+      <Faqs reference={landingFaqsRef} />
       <Join />
       <Footer />
     </div>

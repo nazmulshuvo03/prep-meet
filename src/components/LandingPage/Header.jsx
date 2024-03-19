@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "../Button";
 import { useSelector } from "react-redux";
 
-export const Header = () => {
+export const Header = ({ scrollToLearnMore }) => {
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
@@ -47,6 +47,7 @@ export const Header = () => {
             <Button
               size="large"
               className={"border !border-white !bg-transparent !text-white"}
+              onClick={scrollToLearnMore}
             >
               Learn More
             </Button>
