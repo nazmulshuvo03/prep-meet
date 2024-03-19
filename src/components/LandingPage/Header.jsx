@@ -1,6 +1,21 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "../Button";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+  const history = useHistory();
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
+
+  const handleCTC = () => {
+    if (!isAuthenticated) {
+      history.push({
+        search: "?auth=signup",
+      });
+    } else {
+      history.push("/profile");
+    }
+  };
+
   return (
     <div
       className="h-2/3 flex flex-col justify-center bg-cover bg-center"
@@ -22,8 +37,12 @@ export const Header = () => {
             walk into real interviews fully prepared.
           </div>
           <div className="flex gap-6 py-4">
-            <Button size="large" className={"border !border-text"}>
-              Get started for free!
+            <Button
+              size="large"
+              className={"border !border-text"}
+              onClick={handleCTC}
+            >
+              {!isAuthenticated ? " Get started for free!" : "Go to profile"}
             </Button>
             <Button
               size="large"

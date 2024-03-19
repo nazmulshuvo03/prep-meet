@@ -1,6 +1,21 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "../Button";
+import { useSelector } from "react-redux";
 
 export const BrowseNetwork = () => {
+  const history = useHistory();
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
+
+  const handleAction = () => {
+    if (!isAuthenticated) {
+      history.push({
+        search: "?auth=signup",
+      });
+    } else {
+      history.push("/people");
+    }
+  };
+
   return (
     <div className="py-16" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 py-6 gap-4">
@@ -36,7 +51,11 @@ export const BrowseNetwork = () => {
         </div>
       </div>
       <div className="flex justify-center py-6">
-        <Button size="large" className={"border border-text"}>
+        <Button
+          size="large"
+          className={"border border-text"}
+          onClick={handleAction}
+        >
           Browse the Candidace Network
         </Button>
       </div>

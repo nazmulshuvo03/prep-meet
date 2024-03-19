@@ -1,13 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { ProfileAvatar } from "../ProfileAvatar";
-// import { logoutUser } from "../../store/middlewares/auth";
-// import { Banner } from "../Banner";
 
 export const Navigation = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
