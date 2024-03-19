@@ -1,3 +1,4 @@
+import { Footer } from "../Footer";
 import { BrowseNetwork } from "./BrowseNetwork";
 import { Companies } from "./Companies";
 import { Faqs } from "./Faqs";
@@ -20,6 +21,7 @@ export const LandingPage = () => {
       <Companies />
       <Faqs />
       <Join />
+      <Footer />
     </div>
   );
 };

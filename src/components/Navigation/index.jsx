@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
-import { logoutUser } from "../../store/middlewares/auth";
 import { ProfileAvatar } from "../ProfileAvatar";
+// import { logoutUser } from "../../store/middlewares/auth";
 // import { Banner } from "../Banner";
 
 export const Navigation = () => {
