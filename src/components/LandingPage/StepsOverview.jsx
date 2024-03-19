@@ -1,6 +1,9 @@
 export const StepsOverview = () => {
   return (
-    <div className="flex flex-col-reverse md:flex-row items-center px-10 py-14 bg-white">
+    <div
+      className="flex flex-col-reverse md:flex-row items-center py-14 bg-white"
+      style={{ paddingLeft: "5%", paddingRight: "5%" }}
+    >
       <div className="flex-1 flex flex-col items-start justify-start gap-6">
         <div>
           <div className="text-3xl font-bold py-1">

@@ -3,8 +3,12 @@ import { Button } from "../Button";
 export const Header = () => {
   return (
     <div
-      className="h-2/3 flex flex-col justify-center bg-cover bg-center px-10"
-      style={{ backgroundImage: 'url("/images/landingPage/image1.png")' }}
+      className="h-2/3 flex flex-col justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: 'url("/images/landingPage/image1.png")',
+        paddingLeft: "5%",
+        paddingRight: "5%",
+      }}
     >
       <div className="grid grid-cols-12">
         <div className="col-span-12 md:col-span-8">

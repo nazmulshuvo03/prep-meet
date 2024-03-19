@@ -1,6 +1,9 @@
 export const Companies = () => {
   return (
-    <div className="bg-white px-10 py-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+    <div
+      className="bg-white py-6 flex flex-col md:flex-row gap-4 items-center justify-between"
+      style={{ paddingLeft: "5%", paddingRight: "5%" }}
+    >
       <div className="text-sm font-semibold">
         Practice with peers from your Dream Company
       </div>

@@ -2,7 +2,7 @@ import { Button } from "../Button";
 
 export const BrowseNetwork = () => {
   return (
-    <div className="px-10 py-16">
+    <div className="py-16" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 py-6 gap-4">
         <div className="flex flex-col justify-center items-center gap-6">
           <img

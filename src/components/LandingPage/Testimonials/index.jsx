@@ -65,7 +65,10 @@ export const Testimonials = () => {
   ];
 
   return (
-    <div className="bg-white px-10 py-16">
+    <div
+      className="bg-white py-16"
+      style={{ paddingLeft: "5%", paddingRight: "5%" }}
+    >
       <div className="text-center pb-6">
         <div className="text-4xl font-bold">Customer testimonials</div>
         <div className="text-base font-medium">

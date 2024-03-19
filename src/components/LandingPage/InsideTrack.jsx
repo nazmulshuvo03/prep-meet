@@ -1,6 +1,9 @@
 export const InsideTrack = () => {
   return (
-    <div className="flex flex-col md:flex-row px-10 py-14 bg-white">
+    <div
+      className="flex flex-col md:flex-row py-14 bg-white"
+      style={{ paddingLeft: "5%", paddingRight: "5%" }}
+    >
       <div className="flex-1 flex items-center justify-start">
         <div>
           <div className="text-4xl font-semibold py-4">
