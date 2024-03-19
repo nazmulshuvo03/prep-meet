@@ -29,7 +29,7 @@ export const Join = () => {
           Sign Up now and start practicing. Its fast, free, and the best way to
           ensure you nail your next interview.
         </div>
-        <Button className={"border border-text"}>
+        <Button className={"border border-text"} onClick={handleAction}>
           {!isAuthenticated ? "Join" : "Profile"}
         </Button>
       </div>
