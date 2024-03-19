@@ -3,6 +3,7 @@ import { Companies } from "./Companies";
 import { Faqs } from "./Faqs";
 import { Header } from "./Header";
 import { InsideTrack } from "./InsideTrack";
+import { Join } from "./Join";
 import { Quote } from "./Quote";
 import { StepsOverview } from "./StepsOverview";
 import { Testimonials } from "./Testimonials";
@@ -18,6 +19,7 @@ export const LandingPage = () => {
       <Testimonials />
       <Companies />
       <Faqs />
+      <Join />
     </div>
   );
 };
