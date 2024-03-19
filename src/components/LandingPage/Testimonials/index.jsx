@@ -25,7 +25,7 @@ export const Testimonials = () => {
     {
       id: 3,
       name: "Vipul M",
-      position: "Sr. Technical Product Manage",
+      position: "Sr. Technical Product Manager",
       company: "Mastercard",
       photo:
         "https://candidace-public-storage.s3.ap-south-1.amazonaws.com/default.png",

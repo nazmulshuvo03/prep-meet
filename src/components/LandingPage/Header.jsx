@@ -18,9 +18,9 @@ export const Header = () => {
 
   return (
     <div
-      className="h-2/3 flex flex-col justify-center bg-cover bg-center"
+      className="h-2/3 flex flex-col justify-center bg-cover bg-center bg-text text-white"
       style={{
-        backgroundImage: 'url("/images/landingPage/image1.png")',
+        // backgroundImage: 'url("/images/landingPage/image1.png")',
         paddingLeft: "5%",
         paddingRight: "5%",
       }}
@@ -46,7 +46,7 @@ export const Header = () => {
             </Button>
             <Button
               size="large"
-              className={"border !border-text !bg-transparent !text-text"}
+              className={"border !border-white !bg-transparent !text-white"}
             >
               Learn More
             </Button>
