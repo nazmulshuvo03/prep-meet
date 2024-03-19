@@ -28,11 +28,11 @@ export const Auth = ({ authMode = "" }) => {
 
   return (
     <div
-      className="fixed top-0 left-0 h-full w-full"
+      className="fixed top-0 left-0 h-full w-full z-50"
       style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
     >
       <div
-        className="fixed top-0 left-0 w-full h-full z-10"
+        className="fixed top-0 left-0 w-full h-full"
         onClick={() =>
           history.push({
             search: "",
