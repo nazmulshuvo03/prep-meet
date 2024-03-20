@@ -6,7 +6,7 @@ export const Drawer = ({ open = false, setOpen = () => {}, children }) => {
     >
       <div
         className={`h-full bg-white transition-all ease-in-out duration-200  ${
-          open ? "w-2/3" : "w-0"
+          open ? "w-fit" : "w-0"
         }`}
       >
         {children}

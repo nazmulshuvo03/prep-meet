@@ -47,8 +47,8 @@ export const TabNavigation = () => {
           key={link.name}
           to={link.to}
           isActive={() => isRouteActive(link.to)}
-          className="text-text w-full h-8 flex justify-start items-center gap-2 cursor-pointer text-sm font-medium ml-10 pl-2 !text-gray-700"
-          activeClassName="bg-background text-gray-700 w-full h-8 flex justify-start items-center cursor-pointer text-sm font-semibold ml-10 pl-2"
+          className="text-text w-full h-8 flex justify-start items-center gap-2 cursor-pointer text-sm font-medium ml-4 md:ml-10 px-2 !text-gray-700"
+          activeClassName="bg-background text-gray-700 cursor-default font-semibold"
         >
           <div className="text-base">{link.icon}</div>
           <div>{link.name}</div>
