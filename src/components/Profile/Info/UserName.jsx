@@ -57,10 +57,12 @@ export const UserName = ({ visit = false }) => {
         <UnderlineInput
           value={userName || ""}
           onChange={(e) => setUserName(e.target.value)}
-          className={alreadyExists ? "border-red-500 !text-red-500" : ""}
+          className={`text-xs md:text-base ${
+            alreadyExists ? "border-red-500 !text-red-500" : ""
+          }`}
         />
       ) : (
-        <div className="text-md text-gray-500 w-32">
+        <div className="text-xs md:text-base text-gray-500 w-32">
           {userName ? userName : "User Name"}
         </div>
       )}

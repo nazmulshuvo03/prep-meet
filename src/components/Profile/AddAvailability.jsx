@@ -98,7 +98,7 @@ export const AddAvailability = () => {
           <Button
             size="small"
             onClick={handleSubmit}
-            className={"!bg-blue-500"}
+            className={"!bg-secondary"}
           >
             Add
           </Button>

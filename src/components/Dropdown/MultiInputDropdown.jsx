@@ -104,7 +104,7 @@ export const MultiInputDropdown = ({
               );
             })
           ) : (
-            <div>{defaultText}</div>
+            <span className="text-gray-400">{defaultText}</span>
           )}
         </div>
         {dropdownOpen && (

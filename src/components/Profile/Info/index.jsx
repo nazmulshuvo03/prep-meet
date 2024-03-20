@@ -30,16 +30,16 @@ export const Info = ({ visit = false }) => {
 
   return (
     <div className="bg-white p-2 h-full w-full flex flex-col">
-      <div className="flex-1 p-2">
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-4 px-4">
+      <div className="flex-1 md:p-2">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+          <div className="md:col-span-4 md:px-4 flex gap-2 justify-between md:flex-col">
             <div className="flex items-center justify-start">
               <div className="flex flex-col items-center">
                 <label>
                   <img
                     src={newPP ? URL.createObjectURL(newPP) : profile.photoURL}
                     alt={"Person Profile Image"}
-                    className="h-32 w-32 rounded-md my-2"
+                    className="h-16 w-16 md:h-32 md:w-32 rounded-md my-2"
                   />
                   <input
                     className="hidden"
@@ -70,11 +70,11 @@ export const Info = ({ visit = false }) => {
                 ) : (
                   <div />
                 )}
-                <div className="flex gap-2 font-semibold text-lg">
+                <div className="flex gap-2 font-semibold text-base md:text-lg">
                   <span>{profile.firstName}</span>
                   <span>{profile.lastName}</span>
                 </div>
-                <div className="text-sm font-normal text-gray-500">
+                <div className="text-xs md:text-sm font-normal text-gray-500">
                   {profile.country}
                 </div>
               </div>
@@ -86,7 +86,9 @@ export const Info = ({ visit = false }) => {
                     className="text-xs text-gray-500"
                     icon={faEnvelope}
                   />
-                  <div className="text-md text-gray-500">{profile.email}</div>
+                  <div className="text-xs md:text-base text-gray-500">
+                    {profile.email}
+                  </div>
                 </div>
               ) : (
                 ""

@@ -9,7 +9,7 @@ export const TextInput = ({
 }) => {
   return (
     <label>
-      <div>{label}</div>
+      <label className="text-xs">{label}</label>
       <textarea
         rows={rows}
         cols={cols}

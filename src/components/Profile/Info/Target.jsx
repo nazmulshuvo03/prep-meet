@@ -28,7 +28,7 @@ export const Target = ({ visit = false }) => {
   const [editMode, setEditMode] = useState(false);
 
   return (
-    <div className="relative col-span-8 flex flex-col gap-2 pt-4">
+    <div className="relative md:col-span-8 flex flex-col gap-2 pt-4">
       <div className="flex flex-col gap-2 mb-4">
         <div className="flex flex-wrap items-baseline gap-1 break-words">
           <div className="text-base font-semibold">
@@ -154,14 +154,17 @@ export const Target = ({ visit = false }) => {
       {!visit ? (
         <div className="absolute top-0 right-0">
           <IconButton onClick={() => setEditMode(true)}>
-            <FontAwesomeIcon icon={faPen} className="text-gray-600 text-xl" />
+            <FontAwesomeIcon
+              icon={faPen}
+              className="text-gray-600 md:text-xl"
+            />
           </IconButton>
         </div>
       ) : (
         <></>
       )}
       {editMode && (
-        <Modal className="!w-2/3">
+        <Modal className="!w-11/12 !md:w-2/3">
           <EditTarget
             handleDone={() => setEditMode(false)}
             handleClose={() => setEditMode(false)}

@@ -14,7 +14,7 @@ export const Modal = ({
       />
       <div
         style={{ maxHeight: "80%", maxWidth: "90%" }}
-        className={`w-fit min-w-96 h-fit min-h-36 bg-white shadow-lg rounded-md overflow-y-auto overflow-x-hidden z-20 ${className}`}
+        className={`w-fit min-w-40 md:min-w-96 h-fit min-h-36 bg-white shadow-lg rounded-md overflow-y-auto overflow-x-hidden z-20 ${className}`}
       >
         {children}
       </div>

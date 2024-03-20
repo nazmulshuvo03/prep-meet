@@ -88,8 +88,8 @@ export const EditTarget = ({
   }, [professions, state.targetProfessionId]);
 
   return (
-    <div className="px-6 py-4 ">
-      <div className="flex items-center justify-between pb-4">
+    <div className="px-3 md:px-6 py-3 md:py-4">
+      <div className="flex items-center justify-between pb-2 md:pb-4">
         <div className="text-lg font-semibold uppercase">Edit Profile</div>
         <IconButton onClick={handleClose}>
           <FontAwesomeIcon icon={faClose} className="text-gray-500 text-2xl" />
@@ -97,13 +97,13 @@ export const EditTarget = ({
       </div>
       <div className="py-6 grid grid-cols-2 gap-4">
         <Input
-          placeholder={"First Name"}
+          label={"First Name"}
           name={"firstName"}
           value={state.firstName}
           onChange={handleChange}
         />
         <Input
-          placeholder={"Last Name"}
+          label={"Last Name"}
           name={"lastName"}
           value={state.lastName}
           onChange={handleChange}
@@ -153,6 +153,7 @@ export const EditTarget = ({
           defaultText="Select an option"
         />
         <Dropdown
+          label="Country"
           name={"country"}
           value={state.country}
           options={COUNTRY_DATA}
@@ -160,7 +161,7 @@ export const EditTarget = ({
           defaultText="Select an option"
         />
         <Input
-          placeholder={"LinkedIn Profile"}
+          label={"LinkedIn Profile"}
           name={"linkedInProfile"}
           value={state.linkedInProfile}
           onChange={handleChange}
