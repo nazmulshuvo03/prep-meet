@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { TabNavigation } from "./TabNavigation";
+import { Drawer } from "../Drawer";
 
 export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
@@ -101,20 +102,9 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
           )}
         </div>
       </div>
-      <div
-        className={`fixed top-0 left-0 h-full z-50 ${
-          openTabNavs ? "w-full" : "w-0"
-        }`}
-        onClick={() => setOpenTabNavs(false)}
-      >
-        <div
-          className={`h-full bg-white transition-all ease-in-out duration-200  ${
-            openTabNavs ? "w-2/3" : "w-0"
-          }`}
-        >
-          <TabNavigation />
-        </div>
-      </div>
+      <Drawer open={openTabNavs} setOpen={setOpenTabNavs}>
+        <TabNavigation />
+      </Drawer>
     </>
   );
 };
