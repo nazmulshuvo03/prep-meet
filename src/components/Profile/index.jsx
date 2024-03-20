@@ -18,13 +18,15 @@ export const UserProfile = ({ visit = false }) => {
           <div className="col-span-3">
             <Info visit={visit} />
           </div>
-          <div className="">
+          <div className="col-span-3 md:col-span-1">
             {visit ? <DisplayAvailability /> : <AddAvailability />}
           </div>
           <div className="col-span-3">
             <Details visit={visit} />
           </div>
-          <div className="">{!visit ? <Schedules /> : <div />}</div>
+          <div className="col-span-3 md:col-span-1">
+            {!visit ? <Schedules /> : <div />}
+          </div>
         </div>
       ) : (
         <div />

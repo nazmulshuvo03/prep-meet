@@ -63,7 +63,7 @@ export const AddAvailability = () => {
   }, [errorMessage]);
 
   return (
-    <div className="bg-white p-3 h-full w-ful">
+    <div className="bg-white p-3 h-full w-full">
       <div className="font-semibold text-center pt-2 pb-3">
         Add Availability {!completionStatus.availabilities && <MandatoryStar />}
       </div>

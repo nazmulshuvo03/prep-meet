@@ -61,7 +61,7 @@ export const Schedules = () => {
             })}
           </div>
         ) : (
-          <div></div>
+          <div className="text-xs text-gray-600">None Available</div>
         )}
       </div>
     </div>
