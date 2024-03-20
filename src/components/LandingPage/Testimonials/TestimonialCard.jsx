@@ -13,12 +13,16 @@ export const TestimonialCard = ({ data }) => {
           />
         ))}
       </div>
-      <div className="flex-1 py-4">{data.text}</div>
+      <div className="flex-1 py-4 text-xs md:text-base">{data.text}</div>
       <div className="flex gap-3 items-center">
-        <img src={data.photo} alt={"Customer photo"} className="w-16 h-16" />
+        <img
+          src={data.photo}
+          alt={"Customer photo"}
+          className="w-10 h-10 md:w-16 md:h-16"
+        />
         <div>
-          <div className="text-base font-semibold">{data.name}</div>
-          <div className="text-sm font-normal">
+          <div className="text-sm md:text-base font-semibold">{data.name}</div>
+          <div className="text-xs md:text-sm font-normal">
             {data.position}, {data.company}
           </div>
         </div>

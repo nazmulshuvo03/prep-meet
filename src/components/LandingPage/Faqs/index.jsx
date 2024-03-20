@@ -41,13 +41,13 @@ export const Faqs = ({ reference }) => {
 
   return (
     <div
-      className="py-16"
+      className="py-6 md:py-16"
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
       ref={reference}
     >
       <div className="pb-6">
-        <div className="text-4xl font-bold pb-4">FAQs</div>
-        <div className="text-base font-medium">
+        <div className="text-2xl md:text-4xl font-bold pb-4">FAQs</div>
+        <div className="text-xs md:text-base font-medium">
           Find answers to common questions about the service, interview
           preparation, and technical requirements.
         </div>

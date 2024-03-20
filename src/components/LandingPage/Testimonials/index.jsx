@@ -66,16 +66,18 @@ export const Testimonials = () => {
 
   return (
     <div
-      className="bg-white py-16"
+      className="bg-white py-6 md:py-16"
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
     >
       <div className="text-center pb-6">
-        <div className="text-4xl font-bold">Customer testimonials</div>
-        <div className="text-base font-medium">
+        <div className="text-2xl md:text-4xl font-bold">
+          Customer testimonials
+        </div>
+        <div className="text-xs md:text-base font-medium">
           See what our users are saying about their experience
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-2 md:py-6">
         {TESTIMONIALS.map((tm) => (
           <TestimonialCard data={tm} key={tm.id} />
         ))}

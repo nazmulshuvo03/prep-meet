@@ -18,14 +18,14 @@ export const Join = () => {
 
   return (
     <div
-      className="bg-white py-16 flex flex-col md:flex-row justify-between gap-10"
+      className="bg-white py-6 md:py-16 flex flex-col md:flex-row justify-between gap-4 md:gap-10"
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
     >
-      <div className="text-3xl font-semibold">
+      <div className="text-xl md:text-3xl font-semibold">
         Join 1000+ candidates leveling up together
       </div>
       <div>
-        <div className="text-base font-medium pb-6">
+        <div className="text-xs md:text-base font-medium pb-6">
           Sign Up now and start practicing. Its fast, free, and the best way to
           ensure you nail your next interview.
         </div>

@@ -24,14 +24,7 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
             clickHandler: scrollToHowItWorks,
           },
           { name: "FAQs", type: "button", clickHandler: scrollToFaqs },
-          ...(isAuthenticated
-            ? [
-                {
-                  to: "/people",
-                  name: "Search & Schedule",
-                },
-              ]
-            : []),
+          ...(isAuthenticated ? [] : []),
         ]),
   ];
 

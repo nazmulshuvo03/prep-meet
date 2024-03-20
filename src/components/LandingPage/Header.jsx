@@ -18,7 +18,7 @@ export const Header = ({ scrollToLearnMore }) => {
 
   return (
     <div
-      className="h-2/3 flex flex-col justify-center bg-cover bg-center bg-text text-white"
+      className="h-fit md:h-2/3 flex flex-col justify-center bg-cover bg-center bg-text text-white"
       style={{
         // backgroundImage: 'url("/images/landingPage/image1.png")',
         paddingLeft: "5%",
@@ -27,10 +27,10 @@ export const Header = ({ scrollToLearnMore }) => {
     >
       <div className="grid grid-cols-12">
         <div className="col-span-12 md:col-span-8">
-          <div className="text-6xl font-bold py-4">
+          <div className="text-4xl md:text-6xl font-bold py-4">
             Ace Your Next Job Interview
           </div>
-          <div className="text-lg font-medium py-4">
+          <div className="text-base md:text-lg font-medium py-4">
             Join the candidate network to practice mock interviews together.
             Find peers with experience at your target company and dream roles.
             Take turns interviewing each other, get invaluable feedback, and

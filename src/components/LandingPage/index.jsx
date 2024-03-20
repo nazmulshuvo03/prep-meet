@@ -27,7 +27,7 @@ export const LandingPage = ({ landingHowItWorksRef, landingFaqsRef }) => {
       <StepsOverview reference={landingHowItWorksRef} />
       <Quote />
       <Testimonials />
-      <Companies />
+      {/* <Companies /> */}
       <Faqs reference={landingFaqsRef} />
       <Join />
       <Footer />

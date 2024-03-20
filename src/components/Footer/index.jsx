@@ -26,8 +26,10 @@ export const Footer = () => {
           <FontAwesomeIcon icon={faLinkedin} />
         </div>
       </div>
-      <div className="flex justify-center gap-4 py-4 text-xs">
-        <div>© 2024 Candidace.fyi. All rights reserved.</div>
+      <div className="flex flex-col md:flex-row justify-center gap-4 py-4 text-xs">
+        <div className="text-center md:text-start">
+          © 2024 Candidace.fyi. All rights reserved.
+        </div>
         <div className="flex gap-4">
           <NavLink to={""} className="underline">
             Privacy Policy
