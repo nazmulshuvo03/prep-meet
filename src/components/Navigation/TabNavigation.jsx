@@ -41,10 +41,7 @@ export const TabNavigation = () => {
   };
 
   return (
-    <nav
-      className="bg-primary pt-20 overflow-hidden hidden md:block"
-      style={{ width: "17vw" }}
-    >
+    <nav className="bg-primary pt-20 overflow-hidden h-full w-full">
       {navLinks.map((link) => (
         <NavLink
           key={link.name}

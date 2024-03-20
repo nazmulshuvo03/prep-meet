@@ -2,11 +2,18 @@ import { useSelector } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { ProfileAvatar } from "../ProfileAvatar";
+import { IconButton } from "../Button/IconButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { TabNavigation } from "./TabNavigation";
 
 export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
+
+  const [openTabNavs, setOpenTabNavs] = useState(false);
 
   const isDashboard = () => {
     const dashboardRoutes = ["/people", "/profile", "/progress", "/interviews"];
@@ -28,10 +35,6 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
         ]),
   ];
 
-  // const isRouteActive = (routePath) => {
-  //   return location.pathname === routePath;
-  // };
-
   const handleLoginClick = () => {
     history.push({
       search: "?auth=login",
@@ -46,6 +49,13 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
         }
       /> */}
       <div className="bg-primary flex justify-between w-full h-full items-center px-5 z-10">
+        {isAuthenticated && (
+          <div className="visible md:hidden">
+            <IconButton onClick={() => setOpenTabNavs((prev) => !prev)}>
+              <FontAwesomeIcon icon={faBars} className="text-text h-4 w-4" />
+            </IconButton>
+          </div>
+        )}
         <div className="text-3xl font-semibold opacity-75 ">
           <NavLink to={"/"} className="text-gray-900">
             Candidace
@@ -69,9 +79,7 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
                   <NavLink
                     key={link.name}
                     to={link.to}
-                    // isActive={() => isRouteActive(link.to)}
                     className="h-fit rounded-lg !text-slate-950 dark:text-slate-50"
-                    // activeClassName="bg-secondary !text-slate-50 dark:!text-slate-100 font-semibold"
                   >
                     {link.name}
                   </NavLink>
@@ -91,6 +99,20 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
               Login
             </Button>
           )}
+        </div>
+      </div>
+      <div
+        className={`fixed top-0 left-0 h-full z-50 ${
+          openTabNavs ? "w-full" : "w-0"
+        }`}
+        onClick={() => setOpenTabNavs(false)}
+      >
+        <div
+          className={`h-full bg-white transition-all ease-in-out duration-200  ${
+            openTabNavs ? "w-2/3" : "w-0"
+          }`}
+        >
+          <TabNavigation />
         </div>
       </div>
     </>
