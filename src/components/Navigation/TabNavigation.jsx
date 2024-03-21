@@ -41,14 +41,28 @@ export const TabNavigation = () => {
   };
 
   return (
-    <nav className="bg-primary pt-20 overflow-hidden h-full w-full">
+    // <nav className="bg-primary pt-20 overflow-hidden h-full w-full">
+    //   {navLinks.map((link) => (
+    //     <NavLink
+    //       key={link.name}
+    //       to={link.to}
+    //       isActive={() => isRouteActive(link.to)}
+    //       className="text-text w-full h-8 flex justify-start items-center gap-2 cursor-pointer text-sm font-medium ml-4 md:ml-10 px-2 !text-gray-700"
+    //       activeClassName="bg-background text-gray-700 cursor-default font-semibold"
+    //     >
+    //       <div className="text-base">{link.icon}</div>
+    //       <div>{link.name}</div>
+    //     </NavLink>
+    //   ))}
+    // </nav>
+    <nav className="bg-white pt-20 overflow-hidden h-full w-full border-r-2 border-slate-300">
       {navLinks.map((link) => (
         <NavLink
           key={link.name}
           to={link.to}
           isActive={() => isRouteActive(link.to)}
-          className="text-text w-full h-8 flex justify-start items-center gap-2 cursor-pointer text-sm font-medium ml-4 md:ml-10 px-2 !text-gray-700"
-          activeClassName="bg-background text-gray-700 cursor-default font-semibold"
+          className="text-text w-full h-8 flex justify-start items-center gap-2 cursor-pointer text-sm font-medium pl-4 md:pl-10 px-2 !text-gray-700"
+          activeClassName="bg-accent text-gray-700 cursor-default font-semibold"
         >
           <div className="text-base">{link.icon}</div>
           <div>{link.name}</div>
