@@ -32,8 +32,8 @@ export const AllPeople = ({
   return (
     <div className="py-2 flex flex-col h-full">
       <div className="flex justify-between items-center pb-4">
-        <div className="flex w-full gap-2">
-          <div className="flex-1 grid grid-cols-8 gap-2">
+        <div className="flex flex-col md:flex-row w-full gap-2">
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-8 gap-2">
             <Dropdown
               name={"companiesOfInterest"}
               value={queries["companiesOfInterest"] || ""}

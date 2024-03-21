@@ -34,7 +34,7 @@ export const HorizontalTabs = ({
           )}
         </div>
         {allowSearch ? (
-          <div className="w-1/4">
+          <div className="hidden md:block md:w-1/4">
             <Input
               placeholder="Search by Name"
               value={searchValue}

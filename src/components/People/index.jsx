@@ -102,9 +102,9 @@ export const PeoplePage = () => {
   ];
 
   return (
-    <div className="p-6 h-full">
-      <div className="text-4xl font-bold">People</div>
-      <div className="pt-6 pb-16 h-full">
+    <div className="p-2 md:p-6 h-full">
+      <div className="text-2xl md:text-4xl font-bold">People</div>
+      <div className="pt-2 md:pt-6 pb-16 h-full">
         <HorizontalTabs
           data={TABS}
           allowSearch

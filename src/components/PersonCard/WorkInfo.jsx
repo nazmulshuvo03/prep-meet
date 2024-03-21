@@ -47,12 +47,12 @@ const Other = ({ data, companies, experienceLevels }) => (
       <div>{data.jobTitle ? `${data.jobTitle},` : ""}</div>
       <div>
         {data.experienceId
-          ? `${getDataLabelFromKey(experienceLevels, data.experienceId)},`
+          ? `${getDataLabelFromKey(experienceLevels, data.experienceId)}`
           : ""}
       </div>
-      <div>
+      {/* <div>
         {data.endDate ? `${timeDistance(data.startDate, data.endDate)}` : ""}
-      </div>
+      </div> */}
     </div>
   </div>
 );
@@ -66,49 +66,46 @@ export const WorkInfo = ({ data = null }) => {
   return (
     <>
       {data ? (
-        <div className="flex flex-col h-full w-full pl-6">
-          <div className="flex-1">
-            <div className="flex gap-2">
-              <ProfileCardCapsul className="bg-blue-200 text-blue-800">
-                Chip 1
-              </ProfileCardCapsul>
-              <ProfileCardCapsul className="bg-yellow-200 text-yellow-800">
-                Chip 2
-              </ProfileCardCapsul>
-              <ProfileCardCapsul className="bg-red-200 text-red-800">
-                Chip 3
-              </ProfileCardCapsul>
-            </div>
-            <div className="pt-2 pb-3 text-gray-600 text-sm">
-              {data.workExperiences.map((we) => {
-                if (we.currentCompany) {
-                  return (
-                    <Current
-                      key={we.id}
-                      data={we}
-                      companies={companies}
-                      experienceLevels={experienceLevels}
-                    />
-                  );
-                }
-              })}
-            </div>
-            <div className="py-3 text-gray-600 text-sm">
-              {data.workExperiences?.map((we) => {
-                if (!we.currentCompany) {
-                  return (
-                    <Other
-                      key={we.id}
-                      data={we}
-                      companies={companies}
-                      experienceLevels={experienceLevels}
-                    />
-                  );
-                }
-              })}
-            </div>
+        <div className="flex flex-col h-full w-full md:pl-6">
+          <div className="flex gap-2">
+            <ProfileCardCapsul className="bg-blue-200 text-blue-800">
+              Chip 1
+            </ProfileCardCapsul>
+            <ProfileCardCapsul className="bg-yellow-200 text-yellow-800">
+              Chip 2
+            </ProfileCardCapsul>
+            <ProfileCardCapsul className="bg-red-200 text-red-800">
+              Chip 3
+            </ProfileCardCapsul>
           </div>
-          <AdditionalInfo />
+          <div className="pt-2 pb-3 text-gray-600 text-sm">
+            {data.workExperiences.map((we) => {
+              if (we.currentCompany) {
+                return (
+                  <Current
+                    key={we.id}
+                    data={we}
+                    companies={companies}
+                    experienceLevels={experienceLevels}
+                  />
+                );
+              }
+            })}
+          </div>
+          <div className="py-3 text-gray-600 text-sm">
+            {data.workExperiences?.map((we) => {
+              if (!we.currentCompany) {
+                return (
+                  <Other
+                    key={we.id}
+                    data={we}
+                    companies={companies}
+                    experienceLevels={experienceLevels}
+                  />
+                );
+              }
+            })}
+          </div>
         </div>
       ) : (
         <div />
