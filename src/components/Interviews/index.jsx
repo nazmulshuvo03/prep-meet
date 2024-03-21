@@ -46,7 +46,7 @@ export const Meetings = () => {
   }, [meetings]);
 
   return (
-    <div className="p-6">
+    <div className="px-3 md:px-10 pt-3 md:pt-6 pb-2">
       {meetings && meetings.length ? (
         <div className="grid grid-cols-1 gap-4">
           <MostRecent data={mostRecent} />

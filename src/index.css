@@ -17,9 +17,9 @@
   :root {
     --text: #3e3f3f;
     --background: #f6f5fb;
-    --primary: #cbcade;
-    --secondary: #6a68f0;
-    --accent: #7289c7;
+    --primary: #becbd7;
+    --secondary: #3c6289;
+    --accent: #e3edf8;
   }
 
   .dark {

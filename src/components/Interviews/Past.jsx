@@ -1,15 +1,20 @@
 import { useSelector } from "react-redux";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
+import useDeviceSize from "../../hooks/useDeviceSize";
 
 export const Past = ({ data }) => {
+  const deviceSize = useDeviceSize();
   const profile = useSelector((state) => state.user.profile);
   const companies = useSelector((state) => state.static.companies);
 
   return (
-    <div className="rounded-md bg-white p-2">
+    <div className="rounded-md bg-white p-2 overflow-x-auto md:overflow-x-hidden !overflow-y-auto">
       <div className="text-xl font-semibold py-2">Past Interviews</div>
-      <div className="shadow-md rounded-md">
+      <div
+        className="shadow-md rounded-md"
+        style={deviceSize === "sm" ? { width: "30rem" } : {}}
+      >
         <div className="grid grid-cols-6 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
           <div>Date</div>
           <div>Type</div>
