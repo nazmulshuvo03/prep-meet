@@ -117,18 +117,24 @@ export const personTag = (user, person, skillsList) => {
   if (user.experienceLevel === person.experienceLevel) {
     tags.push(newTag(5, `Levels match`, 4, "text-blue-700", "bg-blue-100"));
   }
-  if (focusAreaIncludes(skillsList, person.focusAreas, "Product Sense")) {
-    tags.push(
-      newTag(6, `Product Sense`, 5, "text-yellow-700", "bg-yellow-100")
-    );
-  }
-  if (focusAreaIncludes(skillsList, person.focusAreas, "Analytics & Metrics")) {
-    tags.push(
-      newTag(7, `Analytics & Metrics`, 5, "text-yellow-700", "bg-yellow-100")
-    );
-  }
-  if (focusAreaIncludes(skillsList, person.focusAreas, "Behavioural")) {
-    tags.push(newTag(8, `Behavioural`, 5, "text-yellow-700", "bg-yellow-100"));
+  if (skillsList && skillsList.length) {
+    if (focusAreaIncludes(skillsList, person.focusAreas, "Product Sense")) {
+      tags.push(
+        newTag(6, `Product Sense`, 5, "text-yellow-700", "bg-yellow-100")
+      );
+    }
+    if (
+      focusAreaIncludes(skillsList, person.focusAreas, "Analytics & Metrics")
+    ) {
+      tags.push(
+        newTag(7, `Analytics & Metrics`, 5, "text-yellow-700", "bg-yellow-100")
+      );
+    }
+    if (focusAreaIncludes(skillsList, person.focusAreas, "Behavioural")) {
+      tags.push(
+        newTag(8, `Behavioural`, 5, "text-yellow-700", "bg-yellow-100")
+      );
+    }
   }
   return tags;
 };

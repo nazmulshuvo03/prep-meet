@@ -65,7 +65,7 @@ export const WorkInfo = ({ data = null }) => {
     (state) => state.static.experienceLevels
   );
   const skillsList = useSelector(
-    (state) => state.profession.targetProfession.skills
+    (state) => state.profession?.targetProfession?.skills || null
   );
 
   const [tags, setTags] = useState();
