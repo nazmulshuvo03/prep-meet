@@ -73,8 +73,8 @@ export const MostRecent = ({ data }) => {
     <div className="rounded-md bg-white p-2">
       <div className="text-xl font-semibold pt-2 pb-6">Next Interview</div>
       {data && meetingUser ? (
-        <div className="flex justify-between items-center">
-          <div className="border-l-2 px-1">
+        <div className="grid grid-cols-4 md:grid-cols-3 gap-4 justify-between items-center">
+          <div className="col-span-4 md:col-span-1 border-l-2 px-1">
             <div className="text-xs text-gray-400 pb-3">
               {
                 convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC)
@@ -103,7 +103,7 @@ export const MostRecent = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="col-span-2 md:col-span-1 text-sm text-gray-500">
             <div>
               <span className="font-semibold">Current Company: </span>
               <span>
@@ -162,7 +162,7 @@ export const MostRecent = ({ data }) => {
               </>
             </div>
           </div>
-          <div className="flex flex-col gap-4 px-8">
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4 px-2 md:px-8">
             <div className="flex flex-col items-center gap-1">
               <Button
                 size="small"
