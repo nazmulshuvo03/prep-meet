@@ -1,13 +1,24 @@
 import { useState } from "react";
 import { Input } from "../Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRotateLeft,
+  faFilter,
+  faFilterCircleXmark,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import { IconButton } from "../Button/IconButton";
 
 export const HorizontalTabs = ({
   data = [{ id: 1, name: "First Tab", component: <div>Empty Content</div> }],
   allowSearch = false,
   searchValue = "",
   handleSearch = () => {},
+  showReset = false,
+  handleReset = () => {},
+  showFilterToggle = false,
+  showFilters = false,
+  setShowFilters = () => {},
 }) => {
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -33,24 +44,44 @@ export const HorizontalTabs = ({
             <div />
           )}
         </div>
-        {allowSearch ? (
-          <div className="hidden md:block md:w-1/4">
-            <Input
-              placeholder="Search by Name"
-              value={searchValue}
-              onChange={handleSearch}
-              style={{ backgroundColor: "#eceef8" }}
-              icon={
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  className="text-sm text-gray-500"
-                />
-              }
-            />
-          </div>
-        ) : (
-          <div />
-        )}
+        <div className="flex gap-2 items-center">
+          {allowSearch ? (
+            <div className="hidden md:block md:w-72">
+              <Input
+                placeholder="Search by Name"
+                value={searchValue}
+                onChange={handleSearch}
+                style={{ backgroundColor: "#eceef8" }}
+                icon={
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    className="text-sm text-gray-500"
+                  />
+                }
+              />
+            </div>
+          ) : (
+            <div />
+          )}
+          {showFilterToggle && (
+            <IconButton>
+              <FontAwesomeIcon
+                icon={showFilters ? faFilterCircleXmark : faFilter}
+                className="text-gray-600 w-4 h-4"
+                onClick={() => setShowFilters((prev) => !prev)}
+              />
+            </IconButton>
+          )}
+          {showReset && (
+            <IconButton>
+              <FontAwesomeIcon
+                icon={faArrowRotateLeft}
+                className="text-gray-600 w-4 h-4"
+                onClick={handleReset}
+              />
+            </IconButton>
+          )}
+        </div>
       </div>
       <div className="h-full overflow-hidden">
         {data[currentTab] ? data[currentTab].component : ""}

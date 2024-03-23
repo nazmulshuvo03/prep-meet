@@ -8,6 +8,7 @@ import { deepEqual, isEmptyObject } from "../../utils/object";
 import { HorizontalTabs } from "../Tabs/HorizontalTabs";
 import { AllPeople } from "./AllPeople";
 import { FavouritePeople } from "./FavouritePeople";
+import useDeviceSize from "../../hooks/useDeviceSize";
 
 const EXPERIENCE_MIN_VALUE = 0;
 const EXPERIENCE_MAX_VALUE = 20;
@@ -15,6 +16,8 @@ const EXPERIENCE_MAX_VALUE = 20;
 export const PeoplePage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const deviceSize = useDeviceSize();
+
   const profile = useSelector((state) => state.user.profile);
   const oldQuery = useSelector((state) => state.global.dashboardQuery);
 
@@ -22,6 +25,17 @@ export const PeoplePage = () => {
   const [minExp, setMinExp] = useState(EXPERIENCE_MIN_VALUE);
   const [maxExp, setMaxExp] = useState(EXPERIENCE_MAX_VALUE);
   const [searchValue, setSearchValue] = useState();
+  const [showFilterToggle, setShowFilterToggle] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+
+  useEffect(() => {
+    if (deviceSize === "sm") {
+      setShowFilterToggle(true);
+    } else {
+      setShowFilterToggle(false);
+      setShowFilters(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (oldQuery) {
@@ -90,6 +104,7 @@ export const PeoplePage = () => {
             minExp,
             maxExp,
             handleExperienceSelect,
+            showFilters,
           }}
         />
       ),
@@ -110,6 +125,11 @@ export const PeoplePage = () => {
           allowSearch
           searchValue={searchValue}
           handleSearch={(e) => setSearchValue(e.target.value)}
+          showReset={!!Object.keys(queries).length}
+          handleReset={handleResetQuery}
+          showFilterToggle={showFilterToggle}
+          showFilters={showFilters}
+          setShowFilters={setShowFilters}
         />
       </div>
     </div>
