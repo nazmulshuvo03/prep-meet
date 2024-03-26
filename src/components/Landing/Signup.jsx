@@ -68,6 +68,12 @@ export const Signup = ({ switchMode = () => {} }) => {
     return () => clearTimeout(timer);
   }, [errorMessage]);
 
+  useEffect(() => {
+    if (professions && professions.length) {
+      setState((prev) => ({ ...prev, targetProfessionId: professions[0].id }));
+    }
+  }, [professions]);
+
   return (
     <div className="w-full h-full flex justify-center p-4">
       <div>
