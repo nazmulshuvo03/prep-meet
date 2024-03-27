@@ -7,7 +7,7 @@ export const config = devMode
         "https://candidace-public-storage.s3.ap-south-1.amazonaws.com",
     }
   : {
-      SERVER_URL: "https://api.candidace.fyi",
+      SERVER_URL: "https://candidace.fyi",
       STORAGE_URL:
         "https://candidace-public-storage.s3.ap-south-1.amazonaws.com",
     };
