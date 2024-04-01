@@ -1,9 +1,7 @@
+import { ProgressComponent } from "../components/Progress";
+
 const Progress = () => {
-  return (
-    <div>
-      <h1>This is Progress page</h1>
-    </div>
-  );
+  return <ProgressComponent />;
 };
 
 export default Progress;
