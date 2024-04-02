@@ -7,7 +7,7 @@ export const ProgressTracker = () => {
       <div>
         <div>Progress tracker</div>
       </div>
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <ProgressChart />
         <ProgressHighlight />
       </div>

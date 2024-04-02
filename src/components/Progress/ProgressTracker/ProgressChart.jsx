@@ -82,7 +82,7 @@ export const ProgressChart = () => {
   };
 
   return (
-    <div className="flex-1 h-full w-full p-2">
+    <div className="flex-1 h-96 md:h-full w-full p-2">
       <Line options={options} data={data} />
     </div>
   );
