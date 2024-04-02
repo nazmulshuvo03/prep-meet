@@ -24,7 +24,7 @@ export const HorizontalTabs = ({
 
   return (
     <div className="h-full w-full">
-      <div className="bg-background flex justify-between items-baseline border-b border-gray-700 py-1 px-2">
+      <div className="flex justify-between items-baseline border-b border-gray-700 py-1 px-2">
         <div className="flex gap-8">
           {data && data.length ? (
             data.map((item) => {
