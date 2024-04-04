@@ -34,10 +34,8 @@ export const BookSlot = ({
     }
   }, [data]);
 
-  console.log("!!!!!!!!!!!!!!!!!", selected);
-
   return (
-    <div className="px-10 py-8">
+    <div className="px-8 py-8">
       <div className="flex items-center justify-between">
         <div className="text-xl font-medium text-gray-400">
           Book Interview Slot
@@ -93,9 +91,9 @@ export const BookSlot = ({
         )}
       </div>
       <div>
-        <div className="py-1">
-          <div className="text-xs text-gray-500">
-            Selected Slot Practice Areas
+        <div className="py-2">
+          <div className="text-sm text-gray-500 pb-1">
+            Practice Areas for this slot
           </div>
           <div className="flex gap-1">
             {selected.practiceAreas && selected.practiceAreas.length ? (
@@ -114,9 +112,9 @@ export const BookSlot = ({
           </div>
         </div>
         {selected.interviewNote ? (
-          <div className="py-1">
-            <div className="text-xs text-gray-500">
-              Seleted Slot Interview Note
+          <div className="py-2">
+            <div className="text-sm text-gray-500 pb-1">
+              Interview Note for this slot
             </div>
             <div className="text-base text-text font-medium pb-1">
               {selected.interviewNote}
