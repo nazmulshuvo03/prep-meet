@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconButton } from "../Button/IconButton";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../Button";
+import { getDataLabelFromKey } from "../../utils/data";
+import { useSelector } from "react-redux";
 
 export const BookSlot = ({
   data,
@@ -12,6 +14,8 @@ export const BookSlot = ({
   handleClose = () => {},
   handleBook = () => {},
 }) => {
+  const allSkill = useSelector((state) => state.profession.allSkill);
+
   const [dates, setDates] = useState();
 
   const groupedByDate = data.availabilities.reduce((acc, obj) => {
@@ -30,8 +34,10 @@ export const BookSlot = ({
     }
   }, [data]);
 
+  console.log("!!!!!!!!!!!!!!!!!", selected);
+
   return (
-    <div className="p-6">
+    <div className="px-10 py-8">
       <div className="flex items-center justify-between">
         <div className="text-xl font-medium text-gray-400">
           Book Interview Slot
@@ -40,7 +46,7 @@ export const BookSlot = ({
           <FontAwesomeIcon icon={faClose} className="text-gray-700 text-lg" />
         </IconButton>
       </div>
-      <div className="pl-8 py-4">
+      <div className="py-4">
         {dates && dates.length ? (
           <>
             {dates.map((date, i) => {
@@ -82,6 +88,40 @@ export const BookSlot = ({
               );
             })}
           </>
+        ) : (
+          <div />
+        )}
+      </div>
+      <div>
+        <div className="py-1">
+          <div className="text-xs text-gray-500">
+            Selected Slot Practice Areas
+          </div>
+          <div className="flex gap-1">
+            {selected.practiceAreas && selected.practiceAreas.length ? (
+              selected.practiceAreas.map((focus, i) => {
+                return (
+                  <div key={focus}>
+                    <span className="bg-gray-200 text-gray-600 px-4 py-0 rounded-full">
+                      {getDataLabelFromKey(allSkill, focus)}
+                    </span>
+                  </div>
+                );
+              })
+            ) : (
+              <div />
+            )}
+          </div>
+        </div>
+        {selected.interviewNote ? (
+          <div className="py-1">
+            <div className="text-xs text-gray-500">
+              Seleted Slot Interview Note
+            </div>
+            <div className="text-base text-text font-medium pb-1">
+              {selected.interviewNote}
+            </div>
+          </div>
         ) : (
           <div />
         )}

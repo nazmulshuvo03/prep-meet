@@ -62,7 +62,7 @@ export const Schedules = () => {
                       avl.practiceAreas.map((focus, i) => {
                         return (
                           <div key={focus}>
-                            <span className="bg-gray-200 gray-purple-600 px-4 py-0 rounded-full text-xs">
+                            <span className="bg-gray-200 text-gray-600 px-4 py-0 rounded-full text-xs">
                               {getDataLabelFromKey(allSkill, focus)}
                             </span>
                           </div>
