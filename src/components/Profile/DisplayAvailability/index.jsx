@@ -17,6 +17,8 @@ export const DisplayAvailability = () => {
     setSelectedAvailability();
   };
 
+  console.log("|||||||||||||", profile.availabilities);
+
   return (
     <div className="bg-white h-full w-full p-4">
       <div className="text-center font-semibold text-lg">Availabilities</div>

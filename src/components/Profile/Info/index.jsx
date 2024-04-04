@@ -71,8 +71,14 @@ export const Info = ({ visit = false }) => {
                   <div />
                 )}
                 <div className="flex gap-2 font-semibold text-base md:text-lg">
-                  <span>{profile.firstName}</span>
-                  <span>{profile.lastName}</span>
+                  {!visit ? (
+                    <>
+                      <span>{profile.firstName}</span>
+                      <span>{profile.lastName}</span>
+                    </>
+                  ) : (
+                    <span>{profile.userName}</span>
+                  )}
                 </div>
                 <div className="text-xs md:text-sm font-normal text-gray-500">
                   {profile.country}

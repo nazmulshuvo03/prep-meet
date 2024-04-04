@@ -4,12 +4,14 @@ import { Button } from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteAvailability } from "../../store/middlewares/availability";
+import { getDataLabelFromKey } from "../../utils/data";
 
 export const Schedules = () => {
   const dispatch = useDispatch();
   const availabilities = useSelector(
     (state) => state.availability.userAvailabilities
   );
+  const allSkill = useSelector((state) => state.profession.allSkill);
 
   const handleDelete = (values) => {
     dispatch(deleteAvailability(values));
@@ -25,36 +27,50 @@ export const Schedules = () => {
           <div>
             {availabilities.map((avl) => {
               return (
-                <div
-                  key={avl.id}
-                  className="grid grid-cols-12 items-center justify-between py-1"
-                >
-                  <div className="col-span-7 text-sm font-normal text-gray-500">
-                    {
-                      convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
-                        .dateMonthView
-                    }
-                    {", "}
-                    {convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC).time}
-                  </div>
-                  <div
-                    className={`col-span-4 px-5 py-1 font-semibold text-xs ${
-                      avl.state === "COMPLETED"
-                        ? "text-red-400"
-                        : avl.state === "BOOKED"
-                        ? "text-green-400"
-                        : "text-blue-500"
-                    }`}
-                  >
-                    {avl.state}
-                  </div>
-                  <div className="col-span-1">
-                    <Button
-                      onClick={() => handleDelete(avl)}
-                      className={"!bg-transparent !text-red-500 !p-0"}
+                <div key={avl.id} className="py-2">
+                  <div className="grid grid-cols-12 items-center justify-between">
+                    <div className="col-span-7 text-sm font-normal text-gray-500">
+                      {
+                        convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
+                          .dateMonthView
+                      }
+                      {", "}
+                      {convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC).time}
+                    </div>
+                    <div
+                      className={`col-span-4 px-5 py-1 font-semibold text-xs ${
+                        avl.state === "COMPLETED"
+                          ? "text-red-400"
+                          : avl.state === "BOOKED"
+                          ? "text-green-400"
+                          : "text-blue-500"
+                      }`}
                     >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </Button>
+                      {avl.state}
+                    </div>
+                    <div className="col-span-1">
+                      <Button
+                        onClick={() => handleDelete(avl)}
+                        className={"!bg-transparent !text-red-500 !p-0"}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="flex gap-1">
+                    {avl.practiceAreas && avl.practiceAreas.length ? (
+                      avl.practiceAreas.map((focus, i) => {
+                        return (
+                          <div key={focus}>
+                            <span className="bg-gray-200 gray-purple-600 px-4 py-0 rounded-full text-xs">
+                              {getDataLabelFromKey(allSkill, focus)}
+                            </span>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div />
+                    )}
                   </div>
                 </div>
               );

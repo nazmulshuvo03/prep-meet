@@ -102,7 +102,7 @@ export const Target = ({ visit = false }) => {
 
         <div className="flex flex-wrap items-baseline gap-1 break-words py-1">
           <div className="text-xs font-semibold">
-            Practice Areas {!completionStatus.focusAreas && <MandatoryStar />}:
+            Focus Areas {!completionStatus.focusAreas && <MandatoryStar />}:
           </div>
           <div className="flex gap-1 flex-wrap break-words text-xs font-normal">
             {profile.focusAreas && profile.focusAreas.length ? (

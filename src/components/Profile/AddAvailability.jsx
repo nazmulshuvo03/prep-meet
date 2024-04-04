@@ -9,15 +9,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUserAvailability } from "../../store/middlewares/availability";
 import { DateInput } from "../Input/DateInput";
 import { MandatoryStar } from "../MandatoryStar";
+import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
+import { TextInput } from "../TextInput";
 
 export const AddAvailability = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
+  const professions = useSelector(
+    (state) => state.profession.targetProfession.skills
+  );
   const completionStatus = useSelector((state) => state.user.completionStatus);
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [errorMessage, setErrorMessage] = useState();
+  const [selectedPracticeAreas, setSelectedPracticeAreas] = useState();
+  const [interviewNote, setInterviewNote] = useState("");
 
   const isTodaySelected = () => {
     if (date) {
@@ -43,13 +50,25 @@ export const AddAvailability = () => {
       setErrorMessage("Please select time");
       return;
     }
+    if (!selectedPracticeAreas || !selectedPracticeAreas.length) {
+      setErrorMessage(
+        "Please select at least one Practice area for this interview"
+      );
+      return;
+    }
     const data = {
       userId: profile.id,
       dayHourUTC: convertLocalDayTimeStringToUTCDayTime(date, time),
+      practiceAreas: selectedPracticeAreas,
+      interviewNote,
     };
     dispatch(createUserAvailability(data));
     setDate();
     setTime();
+  };
+
+  const handlePracticeAreaSelection = (e) => {
+    setSelectedPracticeAreas(e.target.value);
   };
 
   useEffect(() => {
@@ -62,6 +81,10 @@ export const AddAvailability = () => {
     return () => clearTimeout(timer);
   }, [errorMessage]);
 
+  useEffect(() => {
+    if (profile) setSelectedPracticeAreas(profile.focusAreas);
+  }, [profile]);
+
   return (
     <div className="bg-white p-3 h-full w-full">
       <div className="font-semibold text-center pt-2 pb-3">
@@ -69,7 +92,7 @@ export const AddAvailability = () => {
       </div>
       <div className="flex flex-col gap-2">
         <DateInput
-          label={"Date"}
+          label={"Date*"}
           minDate={new Date()}
           placeholder={"Select a date"}
           value={date || ""}
@@ -78,19 +101,33 @@ export const AddAvailability = () => {
           }}
           maxDate={maxSelectabaleAvailability()}
         />
-        <div>
-          <Dropdown
-            label={"Time"}
-            name={"time"}
-            value={time || ""}
-            options={generateHourArray({ untilNow: isTodaySelected() })}
-            onSelect={(e) => {
-              setTime(e.target.value);
-            }}
-            defaultText="Time"
-            allowSearch={false}
-          />
-        </div>
+        <Dropdown
+          label={"Time*"}
+          name={"time"}
+          value={time || ""}
+          options={generateHourArray({ untilNow: isTodaySelected() })}
+          onSelect={(e) => {
+            setTime(e.target.value);
+          }}
+          defaultText="Time"
+          allowSearch={false}
+        />
+        <MultiInputDropdown
+          label="Practice Areas*"
+          name="practiceAreas"
+          value={selectedPracticeAreas}
+          options={professions}
+          onSelect={handlePracticeAreaSelection}
+          defaultText={"Select upto 5"}
+        />
+        <TextInput
+          label="Interview Note"
+          name={"interviewNote"}
+          placeholder={"Write a small note about the interview"}
+          rows="4"
+          value={interviewNote}
+          setValue={(e) => setInterviewNote(e.target.value)}
+        />
         <div className="text-xs text-red-500 font-medium min-h-4 text-center">
           {errorMessage}
         </div>
