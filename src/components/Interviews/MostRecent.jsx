@@ -5,6 +5,7 @@ import { getDataLabelFromKey } from "../../utils/data";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { Button } from "../Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Modal } from "../Modal";
 
 export const MostRecent = ({ data }) => {
   const history = useHistory();
@@ -20,6 +21,7 @@ export const MostRecent = ({ data }) => {
     min: 0,
     sec: 0,
   });
+  const [showNote, setShowNote] = useState(false);
 
   useEffect(() => {
     if (data && profile) {
@@ -166,10 +168,15 @@ export const MostRecent = ({ data }) => {
                 )}
               </>
             </div>
-            <div>
-              <span className="font-semibold">Interview Note: </span>
-              <span>{data.interviewNote}</span>
-            </div>
+            <Button
+              size="small"
+              className={
+                "w-full !bg-transparent border !border-gray-400 !text-gray-400 my-2"
+              }
+              onClick={() => setShowNote(true)}
+            >
+              Show Interview Note
+            </Button>
           </div>
           <div className="col-span-2 md:col-span-1 flex flex-col gap-4 px-2 md:px-8">
             <div className="flex flex-col items-center gap-1">
@@ -201,6 +208,14 @@ export const MostRecent = ({ data }) => {
         </div>
       ) : (
         <div>You have no interview</div>
+      )}
+      {showNote && (
+        <Modal handleClose={() => setShowNote(false)} className="w-1/3">
+          <div className="p-8">
+            <span className="font-semibold">Interview Note: </span>
+            <span>{data.interviewNote}</span>
+          </div>
+        </Modal>
       )}
     </div>
   );

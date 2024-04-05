@@ -7,6 +7,7 @@ export const Upcoming = ({ data }) => {
   const deviceSize = useDeviceSize();
   const profile = useSelector((state) => state.user.profile);
   const companies = useSelector((state) => state.static.companies);
+  const allSkill = useSelector((state) => state.profession.allSkill);
 
   return (
     <div className="rounded-md bg-white p-2 overflow-x-auto md:overflow-hidden">
@@ -48,7 +49,21 @@ export const Upcoming = ({ data }) => {
                     }
                   </div>
                 </div>
-                <div>N/A</div>
+                <div className="flex gap-1">
+                  {meeting.practiceAreas && meeting.practiceAreas.length ? (
+                    meeting.practiceAreas.map((focus, i) => {
+                      return (
+                        <div key={focus}>
+                          <span className="bg-gray-200 text-gray-600 px-4 py-0 rounded-full text-xs">
+                            {getDataLabelFromKey(allSkill, focus)}
+                          </span>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div />
+                  )}
+                </div>
                 <div>{meetingUser.userName}</div>
                 <div>
                   {meetingUser.workExperiences &&
