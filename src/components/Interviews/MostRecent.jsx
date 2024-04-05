@@ -168,15 +168,13 @@ export const MostRecent = ({ data }) => {
                 )}
               </>
             </div>
-            <Button
+            <IconButton
               size="small"
-              className={
-                "w-full !bg-transparent border !border-gray-400 !text-gray-400 my-2"
-              }
+              className="!py-2 !text-xs underline !text-secondary"
               onClick={() => setShowNote(true)}
             >
-              Show Interview Note
-            </Button>
+              Interview Note
+            </IconButton>
           </div>
           <div className="col-span-2 md:col-span-1 flex flex-col gap-4 px-2 md:px-8">
             <div className="flex flex-col items-center gap-1">

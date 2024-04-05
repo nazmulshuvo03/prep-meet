@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import { IconButton } from "../Button/IconButton";
 
 export const Past = ({ data }) => {
   const deviceSize = useDeviceSize();
@@ -76,8 +77,22 @@ export const Past = ({ data }) => {
                       )
                     : ""}
                 </div>
-                <div>N/A</div>
-                <div>N/A</div>
+                <div>
+                  <IconButton
+                    size="small"
+                    className="!py-2 !text-xs underline !text-secondary"
+                  >
+                    See Notes
+                  </IconButton>
+                </div>
+                <div>
+                  <IconButton
+                    size="small"
+                    className="!py-2 !text-xs underline !text-secondary"
+                  >
+                    Evaluate your experience
+                  </IconButton>
+                </div>
               </div>
             );
           })

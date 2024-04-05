@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import { IconButton } from "../Button/IconButton";
 
 export const Upcoming = ({ data }) => {
   const deviceSize = useDeviceSize();
@@ -16,11 +17,12 @@ export const Upcoming = ({ data }) => {
         className="shadow-md rounded-md"
         style={deviceSize === "sm" ? { width: "30rem" } : {}}
       >
-        <div className="grid grid-cols-4 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
+        <div className="grid grid-cols-5 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
           <div>Date</div>
           <div>Type</div>
           <div>Name</div>
           <div>Company</div>
+          <div>Actions</div>
         </div>
         {data && data.length ? (
           data.map((meeting, i) => {
@@ -73,6 +75,14 @@ export const Upcoming = ({ data }) => {
                         meetingUser.workExperiences[0].companyId
                       )
                     : ""}
+                </div>
+                <div>
+                  <IconButton
+                    size="small"
+                    className="!py-2 !text-xs underline !text-secondary"
+                  >
+                    Reschedule
+                  </IconButton>
                 </div>
               </div>
             );
