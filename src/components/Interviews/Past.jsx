@@ -3,8 +3,10 @@ import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import { IconButton } from "../Button/IconButton";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Past = ({ data }) => {
+  const history = useHistory();
   const deviceSize = useDeviceSize();
   const profile = useSelector((state) => state.user.profile);
   const companies = useSelector((state) => state.static.companies);
@@ -89,6 +91,11 @@ export const Past = ({ data }) => {
                   <IconButton
                     size="small"
                     className="!py-2 !text-xs underline !text-secondary"
+                    onClick={() => {
+                      history.push({
+                        search: "?review=true",
+                      });
+                    }}
                   >
                     Evaluate your experience
                   </IconButton>

@@ -13,7 +13,7 @@ export const Modal = ({
         style={{ backgroundColor: "rgba(0,0,0, 0.5)" }}
       />
       <div
-        style={{ maxHeight: "80%", maxWidth: "90%" }}
+        style={{ maxHeight: "90%", maxWidth: "90%" }}
         className={`w-fit min-w-40 md:min-w-96 h-fit min-h-36 bg-white shadow-lg rounded-md overflow-y-auto overflow-x-hidden z-20 ${className}`}
       >
         {children}

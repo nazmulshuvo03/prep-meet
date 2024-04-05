@@ -4,14 +4,21 @@ import { getUserMeetings } from "../../store/middlewares/meeting";
 import { Past } from "./Past";
 import { Upcoming } from "./Upcoming";
 import { MostRecent } from "./MostRecent";
+import { useLocation } from "react-router-dom";
+import { Modal } from "../Modal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { Review } from "../Review";
 
 export const Meetings = () => {
+  const location = useLocation();
+  const history = useHistory();
   const profile = useSelector((state) => state.user.profile);
   const meetings = useSelector((state) => state.meeting.userMeetings);
   const dispatch = useDispatch();
   const [mostRecent, setMostRecent] = useState();
   const [upcoming, setUpcoming] = useState();
   const [past, setPast] = useState();
+  const [openReview, setOpenReview] = useState(false);
 
   const splitByTime = (arr) => {
     const past = [];
@@ -45,6 +52,14 @@ export const Meetings = () => {
     }
   }, [meetings]);
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const modeParam = searchParams.get("review");
+    if (modeParam) {
+      setOpenReview(modeParam);
+    } else setOpenReview(false);
+  }, [location.search]);
+
   return (
     <div className="px-3 md:px-10 py-3 md:py-6 pb-2  h-full overflow-y-auto overflow-x-hidden">
       {meetings && meetings.length ? (
@@ -55,6 +70,18 @@ export const Meetings = () => {
         </div>
       ) : (
         <div className="text-center mt-20">You have no upcoming interviews</div>
+      )}
+      {openReview && (
+        <Modal
+          handleClose={() => {
+            history.push({
+              search: "",
+            });
+          }}
+          className="w-11/12 !h-svh"
+        >
+          <Review />
+        </Modal>
       )}
     </div>
   );
