@@ -1,11 +1,7 @@
 import { Meetings } from "../components/Interviews";
 
 const Interviews = () => {
-  return (
-    <>
-      <Meetings />
-    </>
-  );
+  return <Meetings />;
 };
 
 export default Interviews;

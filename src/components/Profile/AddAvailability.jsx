@@ -58,13 +58,14 @@ export const AddAvailability = () => {
     }
     const data = {
       userId: profile.id,
-      dayHourUTC: convertLocalDayTimeStringToUTCDayTime(date, time),
+      dayHourUTC: convertLocalDayTimeStringToUTCDayTime(date, time - 1),
       practiceAreas: selectedPracticeAreas,
       interviewNote,
     };
     dispatch(createUserAvailability(data));
     setDate();
     setTime();
+    setInterviewNote();
   };
 
   const handlePracticeAreaSelection = (e) => {

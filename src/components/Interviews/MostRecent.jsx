@@ -34,6 +34,7 @@ export const MostRecent = ({ data }) => {
   function getTimeAndDayDifference(timestamp) {
     const currentTime = new Date().getTime();
     const targetTime = new Date(timestamp).getTime();
+    if (currentTime - targetTime > 0) return;
     const timeDifference = Math.abs(currentTime - targetTime);
     const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
     const minutesDifference = Math.floor(
@@ -54,6 +55,10 @@ export const MostRecent = ({ data }) => {
       const timestamp = parseInt(data.dayHour);
       const interval = setInterval(() => {
         const difference = getTimeAndDayDifference(timestamp);
+        if (!difference) {
+          setRemaining();
+          return () => clearInterval(interval);
+        }
         setRemaining({
           day: difference.daysDifference,
           hour: difference.hoursDifference,
@@ -145,9 +150,9 @@ export const MostRecent = ({ data }) => {
             <div className="flex gap-1">
               <span className="font-semibold">Interested to Practice: </span>
               <>
-                {meetingUser.focusAreas && meetingUser.focusAreas.length ? (
+                {data.practiceAreas && data.practiceAreas.length ? (
                   <div className="flex gap-1">
-                    {meetingUser.focusAreas.map((fa) => (
+                    {data.practiceAreas.map((fa) => (
                       <span
                         key={fa}
                         className="bg-purple-100 text-purple-700 px-4 py-0.5 rounded-full text-xs"
@@ -161,6 +166,10 @@ export const MostRecent = ({ data }) => {
                 )}
               </>
             </div>
+            <div>
+              <span className="font-semibold">Interview Note: </span>
+              <span>{data.interviewNote}</span>
+            </div>
           </div>
           <div className="col-span-2 md:col-span-1 flex flex-col gap-4 px-2 md:px-8">
             <div className="flex flex-col items-center gap-1">
@@ -171,12 +180,14 @@ export const MostRecent = ({ data }) => {
               >
                 Join Call
               </Button>
-              <div className="text-xs text-gray-400">
-                {remaining.day > 0 ? <>{remaining.day}:</> : ""}
-                {remaining.hour > 0 ? <>{remaining.hour}:</> : ""}
-                {remaining.min > 0 ? <>{remaining.min}:</> : ""}
-                {remaining.sec}
-              </div>
+              {remaining && (
+                <div className="text-xs text-gray-400">
+                  {remaining.day > 0 ? <>{remaining.day}:</> : ""}
+                  {remaining.hour > 0 ? <>{remaining.hour}:</> : ""}
+                  {remaining.min > 0 ? <>{remaining.min}:</> : ""}
+                  {remaining.sec}
+                </div>
+              )}
             </div>
             <Button
               size="small"

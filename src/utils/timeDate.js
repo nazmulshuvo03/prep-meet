@@ -50,11 +50,11 @@ export function generateHourArray({ untilNow = false }) {
   const hourArray = [];
   const currentHour = new Date().getHours();
 
-  for (let hour = 0; hour < 24; hour++) {
-    if (untilNow && hour <= currentHour) {
+  for (let hour = 1; hour <= 24; hour++) {
+    if (untilNow && hour - 1 <= currentHour) {
       continue;
     } else {
-      const formattedHour = formatHourWithAMPM(hour);
+      const formattedHour = formatHourWithAMPM(hour - 1);
       hourArray.push({ id: hour, name: formattedHour });
     }
   }
@@ -99,8 +99,11 @@ export const convertLocalDayTimeToUTCDayTime = (originalDate, hour) => {
   return updatedTimeToUTC;
 };
 
-export const convertLocalDayTimeStringToUTCDayTime = (originalDate, hour) => {
-  if (!originalDate || !hour) return "";
+export const convertLocalDayTimeStringToUTCDayTime = (
+  originalDate,
+  hour = 0
+) => {
+  if (!originalDate) return "";
   // let dateComponents = originalDate.split("-");
   // let year = parseInt(dateComponents[0]);
   // let month = parseInt(dateComponents[1]) - 1;

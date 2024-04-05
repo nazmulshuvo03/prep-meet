@@ -43,7 +43,7 @@ export const createUserAvailability = (data) =>
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[1],
-            message: `Error adding ${formatHourWithAMPM(data.hour)}`,
+            message: res.data,
           })
         );
       }
