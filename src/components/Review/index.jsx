@@ -59,8 +59,6 @@ export const Review = () => {
     }
   }, [meetingDetails]);
 
-  console.log("##############", tabs);
-
   return (
     <div className="p-6">
       {meetingDetails && <HorizontalTabs data={tabs} />}
