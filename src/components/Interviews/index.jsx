@@ -18,7 +18,7 @@ export const Meetings = () => {
   const [mostRecent, setMostRecent] = useState();
   const [upcoming, setUpcoming] = useState();
   const [past, setPast] = useState();
-  const [openReview, setOpenReview] = useState(false);
+  const [openReview, setOpenReview] = useState();
 
   const splitByTime = (arr) => {
     const past = [];
@@ -54,10 +54,10 @@ export const Meetings = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const modeParam = searchParams.get("review");
+    const modeParam = searchParams.get("meeting");
     if (modeParam) {
       setOpenReview(modeParam);
-    } else setOpenReview(false);
+    } else setOpenReview();
   }, [location.search]);
 
   return (
@@ -78,7 +78,7 @@ export const Meetings = () => {
               search: "",
             });
           }}
-          className="w-11/12 !h-svh"
+          className="!w-11/12 !h-svh"
         >
           <Review />
         </Modal>

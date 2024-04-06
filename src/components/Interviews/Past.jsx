@@ -12,6 +12,12 @@ export const Past = ({ data }) => {
   const companies = useSelector((state) => state.static.companies);
   const allSkill = useSelector((state) => state.profession.allSkill);
 
+  const handleMeetingClick = (id) => {
+    history.push({
+      search: `?meeting=${id}`,
+    });
+  };
+
   return (
     <div className="rounded-md bg-white p-2 overflow-x-auto md:overflow-x-hidden !overflow-y-auto">
       <div className="text-xl font-semibold py-2">Past Interviews</div>
@@ -91,11 +97,7 @@ export const Past = ({ data }) => {
                   <IconButton
                     size="small"
                     className="!py-2 !text-xs underline !text-secondary"
-                    onClick={() => {
-                      history.push({
-                        search: "?review=true",
-                      });
-                    }}
+                    onClick={() => handleMeetingClick(meeting.id)}
                   >
                     Evaluate your experience
                   </IconButton>

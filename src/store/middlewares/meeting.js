@@ -1,9 +1,13 @@
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { fetchContent, postContent } from "../../services/api";
-import { meeting_url, user_meeting_url } from "../../services/urls/meeting";
+import {
+  meeting_url,
+  single_meeting_url,
+  user_meeting_url,
+} from "../../services/urls/meeting";
 import { updateAvailabilityState } from "../slices/availability";
-import { setUserMeetings } from "../slices/meeting";
+import { setMeetingDetails, setUserMeetings } from "../slices/meeting";
 import { setLoading, setToastMessage } from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
 import {
@@ -44,6 +48,28 @@ export const createMeeting = (
           setToastMessage({
             type: TOAST_TYPES[1],
             message: res.data,
+          })
+        );
+      }
+    );
+    dispatch(setLoading(false));
+  });
+
+export const getSingleMeeting = (id) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await fetchContent(single_meeting_url(id));
+    console.log("meeting response: ", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(setMeetingDetails(res.data));
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: `Error finding meeting`,
           })
         );
       }
