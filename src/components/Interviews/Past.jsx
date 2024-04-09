@@ -60,7 +60,7 @@ export const Past = ({ data }) => {
                     }
                   </div>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 flex-wrap">
                   {meeting.practiceAreas && meeting.practiceAreas.length ? (
                     meeting.practiceAreas.map((focus, i) => {
                       return (

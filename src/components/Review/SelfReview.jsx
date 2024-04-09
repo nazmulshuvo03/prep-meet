@@ -3,19 +3,8 @@ import { Questions } from "./Questions";
 import { fetchAllReviewQuestions } from "../../store/middlewares/review";
 
 export const SelfReview = ({ meeting, practiceAreaId }) => {
-  const [questionType1, setQuestionsType1] = useState([
-    { id: 1, text: "This is question 1", type: 1 },
-    { id: 2, text: "This is question 2", type: 1 },
-    { id: 3, text: "This is question 3", type: 1 },
-    { id: 4, text: "This is question 4", type: 1 },
-  ]);
-
-  const [questionType2, setQuestionsType2] = useState([
-    { id: 1, text: "This is question 1", type: 2 },
-    { id: 2, text: "This is question 2", type: 2 },
-    { id: 3, text: "This is question 3", type: 2 },
-    { id: 4, text: "This is question 4", type: 2 },
-  ]);
+  const [questionType1, setQuestionsType1] = useState();
+  const [questionType2, setQuestionsType2] = useState();
 
   const getAllQuestions = async () => {
     const response = await fetchAllReviewQuestions(practiceAreaId);
@@ -31,7 +20,6 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
     }
   }, [meeting, practiceAreaId]);
 
-
   return (
     <>
       {meeting && practiceAreaId && (
@@ -43,24 +31,32 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
             </div>
             <div className="flex-1 border-t mx-2" />
           </div>
-          <Questions
-            questions={questionType1}
-            answers={[
-              { id: 1, name: "Yes" },
-              { id: 2, name: "No" },
-              { id: 3, name: "Not Applicable" },
-            ]}
-          />
-          <Questions
-            questions={questionType2}
-            answers={[
-              { id: 1, name: "Very Poor" },
-              { id: 2, name: "" },
-              { id: 3, name: "" },
-              { id: 4, name: "" },
-              { id: 5, name: "Excellent" },
-            ]}
-          />
+          {questionType1 ? (
+            <Questions
+              questions={questionType1}
+              answers={[
+                { id: 1, name: "Yes" },
+                { id: 2, name: "No" },
+                { id: 3, name: "Not Applicable" },
+              ]}
+            />
+          ) : (
+            <div />
+          )}
+          {questionType2 ? (
+            <Questions
+              questions={questionType2}
+              answers={[
+                { id: 1, name: "Very Poor" },
+                { id: 2, name: "" },
+                { id: 3, name: "" },
+                { id: 4, name: "" },
+                { id: 5, name: "Excellent" },
+              ]}
+            />
+          ) : (
+            <div />
+          )}
         </div>
       )}
     </>
