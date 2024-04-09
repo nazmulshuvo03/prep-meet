@@ -24,17 +24,19 @@ export const Meetings = () => {
     const past = [];
     const nowAndFuture = [];
     const currentTime = new Date().getTime();
-    arr.forEach((obj) => {
-      const timeValue = obj.dayHour;
-      if (timeValue <= currentTime) {
-        past.push(obj);
-      } else {
-        nowAndFuture.push(obj);
-      }
-    });
-    nowAndFuture.sort((a, b) => a.dayHour - b.dayHour);
-    const mostRecent = nowAndFuture.shift();
-    return { past, nowAndFuture, mostRecent };
+    if (arr) {
+      arr.forEach((obj) => {
+        const timeValue = obj.dayHour;
+        if (timeValue <= currentTime) {
+          past.push(obj);
+        } else {
+          nowAndFuture.push(obj);
+        }
+      });
+      nowAndFuture.sort((a, b) => a.dayHour - b.dayHour);
+      const mostRecent = nowAndFuture.shift();
+      return { past, nowAndFuture, mostRecent };
+    } else return {};
   };
 
   useEffect(() => {
