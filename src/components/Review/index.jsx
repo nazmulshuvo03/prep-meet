@@ -48,7 +48,10 @@ export const Review = () => {
                 id: prev.length + 1,
                 name: paName,
                 component: (
-                  <SelfReview meeting={meetingDetails} practiceAreaId={pa} />
+                  <SelfReview
+                    meeting={meetingDetails}
+                    practiceAreaId={paName}
+                  />
                 ),
               });
             }

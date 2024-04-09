@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Questions } from "./Questions";
+import { fetchAllReviewQuestions } from "../../store/middlewares/review";
 
 export const SelfReview = ({ meeting, practiceAreaId }) => {
   const [questionType1, setQuestionsType1] = useState([
@@ -15,6 +16,21 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
     { id: 3, text: "This is question 3", type: 2 },
     { id: 4, text: "This is question 4", type: 2 },
   ]);
+
+  const getAllQuestions = async () => {
+    const response = await fetchAllReviewQuestions(practiceAreaId);
+    if (response) {
+      setQuestionsType1(response.type1);
+      setQuestionsType2(response.type2);
+    }
+  };
+
+  useEffect(() => {
+    if (meeting && practiceAreaId) {
+      getAllQuestions();
+    }
+  }, [meeting, practiceAreaId]);
+
 
   return (
     <>
