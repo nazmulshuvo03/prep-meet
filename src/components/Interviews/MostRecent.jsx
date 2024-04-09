@@ -123,14 +123,14 @@ export const MostRecent = ({ data }) => {
                   : ""}
               </span>
             </div>
-            <div className="flex gap-1">
-              <span className="font-semibold">Target Company: </span>
+            <div className="">
+              <span className="font-semibold mr-1">Target Company: </span>
               <>
                 {meetingUser.companiesOfInterest &&
                 meetingUser.companiesOfInterest.length ? (
-                  <>
+                  <span>
                     {meetingUser.companiesOfInterest.map((ci, i) => (
-                      <span key={ci}>
+                      <span key={ci} className="mr-1">
                         {getDataLabelFromKey(companies, ci)}
                         {i < meetingUser.companiesOfInterest.length - 1 ? (
                           <span>,</span>
@@ -139,7 +139,7 @@ export const MostRecent = ({ data }) => {
                         )}
                       </span>
                     ))}
-                  </>
+                  </span>
                 ) : (
                   ""
                 )}
@@ -149,15 +149,17 @@ export const MostRecent = ({ data }) => {
               <span className="font-semibold">Work Experience: </span>
               <span>X years</span>
             </div>
-            <div className="flex gap-1">
-              <span className="font-semibold">Interested to Practice: </span>
+            <div className="">
+              <span className="font-semibold mr-1">
+                Interested to Practice:
+              </span>
               <>
                 {data.practiceAreas && data.practiceAreas.length ? (
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 flex-wrap">
                     {data.practiceAreas.map((fa) => (
                       <span
                         key={fa}
-                        className="bg-purple-100 text-purple-700 px-4 py-0.5 rounded-full text-xs"
+                        className="bg-purple-100 text-purple-700 px-4 py-0.5 rounded-full text-xs h-fit m-1"
                       >
                         {getDataLabelFromKey(allSkill, fa)}
                       </span>
