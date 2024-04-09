@@ -16,6 +16,10 @@ export default {
         serif: ["Roboto", "serif"],
         mono: ["Menlo", "monospace"],
       },
+      gridTemplateColumns: {
+        6: "repeat(6, minmax(0, 1fr))",
+        9: "repeat(9, minmax(0, 1fr))",
+      },
     },
   },
   plugins: [],
