@@ -12,10 +12,12 @@ export const Review = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const user = useSelector((state) => state.user.profile);
   const meetingDetails = useSelector((state) => state.meeting.details);
   const allSkill = useSelector((state) => state.profession.allSkill);
 
   const [tabs, setTabs] = useState();
+  const [interviewer, setInterviewer] = useState();
 
   function idExists(name, arr) {
     return arr.some((obj) => obj.name === name);
@@ -32,11 +34,21 @@ export const Review = () => {
 
   useEffect(() => {
     if (meetingDetails) {
+      if (user.id === meetingDetails.acceptor) {
+        setInterviewer(meetingDetails.initiatorProfile);
+      } else {
+        setInterviewer(meetingDetails.acceptorProfile);
+      }
       setTabs([
         {
           id: 1,
           name: "Review Interviewer",
-          component: <InterviewerReview meeting={meetingDetails} />,
+          component: (
+            <InterviewerReview
+              meeting={meetingDetails}
+              interviewer={interviewer}
+            />
+          ),
         },
       ]);
       if (meetingDetails.practiceAreas) {

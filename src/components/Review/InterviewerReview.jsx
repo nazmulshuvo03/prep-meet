@@ -2,15 +2,21 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { Stars } from "../Stars";
 import { TextInput } from "../TextInput";
+import {
+  convertISOUTCDayTimeToLocalDayTime,
+  convertUTCDayTimeToLocalDayTime,
+  getDateDescription,
+} from "../../utils/timeDate";
 
-export const InterviewerReview = ({ meeting }) => {
+export const InterviewerReview = ({ meeting, interviewer }) => {
   const [punctuality, setPunctuality] = useState(0);
   const [preparedness, setPreparedness] = useState(0);
   const [depthOfFeedback, setDepthOfFeedback] = useState(0);
+  const [comments, setComments] = useState();
 
   return (
     <>
-      {meeting && (
+      {meeting && interviewer && (
         <div className="flex flex-col items-center w-full">
           <div className="w-full flex items-center justify-center gap-3 pt-4 pb-8">
             <div className="flex-1 border-t mx-2" />
@@ -21,8 +27,22 @@ export const InterviewerReview = ({ meeting }) => {
           </div>
           <div className="text-base text-gray-500 font-light">
             <div className="pb-3">
-              <div>Name: John Doe</div>
-              <div>Interview Date and Time: March5, 2024</div>
+              {interviewer.firstName && (
+                <div>
+                  Name: {interviewer.firstName} {interviewer.lastName}
+                </div>
+              )}
+              {interviewer.userName && (
+                <div>Username: {interviewer.userName}</div>
+              )}
+              <div>Email: {interviewer.email}</div>
+              <div>
+                Interview Date and Time:{" "}
+                {
+                  convertISOUTCDayTimeToLocalDayTime(meeting.dayHourUTC)
+                    .dateMonthView
+                }
+              </div>
             </div>
             <div className="pb-5">
               <div className="flex gap-2 items-center">
@@ -51,7 +71,12 @@ export const InterviewerReview = ({ meeting }) => {
               </div>
             </div>
             <div className="pb-6">
-              <TextInput placeholder="Additional Comments" rows="4" />
+              <TextInput
+                placeholder="Additional Comments"
+                rows="4"
+                value={comments}
+                onChange={(e) => setComments(e.target.value)}
+              />
             </div>
             <div className="flex justify-center">
               <Button>Submit</Button>
