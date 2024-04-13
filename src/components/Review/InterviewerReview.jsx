@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "../Button";
 import { Stars } from "../Stars";
 import { TextInput } from "../TextInput";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
-import { createInterviewerReview } from "../../store/middlewares/review";
+import { getOrCreateInterviewerReview } from "../../store/middlewares/review";
 
 export const InterviewerReview = ({ meeting, interviewer }) => {
   const dispatch = useDispatch();
@@ -22,8 +22,25 @@ export const InterviewerReview = ({ meeting, interviewer }) => {
       depthOfFeedback,
       comments,
     };
-    dispatch(createInterviewerReview(data));
+    const response = await dispatch(getOrCreateInterviewerReview(data));
+    return response;
   };
+
+  const fetchReviewData = async () => {
+    const alreadyExists = await submitReview();
+    if (alreadyExists) {
+      setPunctuality(alreadyExists.punctuality);
+      setPreparedness(alreadyExists.preparedness);
+      setDepthOfFeedback(alreadyExists.depthOfFeedback);
+      setComments(alreadyExists.comments);
+    }
+  };
+
+  useEffect(() => {
+    if (meeting && interviewer) {
+      fetchReviewData();
+    }
+  }, [meeting, interviewer]);
 
   return (
     <>

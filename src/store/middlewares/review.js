@@ -17,20 +17,19 @@ export const fetchAllReviewQuestions = async (practiceAreaId) => {
   }
 };
 
-export const createInterviewerReview = (data) => async (dispatch) => {
+export const getOrCreateInterviewerReview = (data) => async (dispatch) => {
   dispatch(setLoading());
   const res = await postContent(review_interviewer(), data);
   console.log("Review interviewer response ", res);
   dispatch(setLoading(false));
-  responseHandler(
-    res,
-    () => {},
-    () =>
-      dispatch(
-        setToastMessage({
-          type: TOAST_TYPES[1],
-          message: res.data,
-        })
-      )
-  );
+  if (res.success) {
+    return res.data;
+  } else {
+    dispatch(
+      setToastMessage({
+        type: TOAST_TYPES[1],
+        message: res.data,
+      })
+    );
+  }
 };
