@@ -1,5 +1,11 @@
-import { fetchContent } from "../../services/api";
-import { all_review_questions } from "../../services/urls/review";
+import { TOAST_TYPES } from "../../constants/Toast";
+import { fetchContent, postContent } from "../../services/api";
+import {
+  all_review_questions,
+  review_interviewer,
+} from "../../services/urls/review";
+import { responseHandler } from "../../utils/api";
+import { setLoading, setToastMessage } from "../slices/global";
 
 export const fetchAllReviewQuestions = async (practiceAreaId) => {
   const res = await fetchContent(all_review_questions(practiceAreaId));
@@ -9,4 +15,22 @@ export const fetchAllReviewQuestions = async (practiceAreaId) => {
   } else {
     return null;
   }
+};
+
+export const createInterviewerReview = (data) => async (dispatch) => {
+  dispatch(setLoading());
+  const res = await postContent(review_interviewer(), data);
+  console.log("Review interviewer response ", res);
+  dispatch(setLoading(false));
+  responseHandler(
+    res,
+    () => {},
+    () =>
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: res.data,
+        })
+      )
+  );
 };

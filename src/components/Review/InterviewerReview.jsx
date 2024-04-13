@@ -1,18 +1,29 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button } from "../Button";
 import { Stars } from "../Stars";
 import { TextInput } from "../TextInput";
-import {
-  convertISOUTCDayTimeToLocalDayTime,
-  convertUTCDayTimeToLocalDayTime,
-  getDateDescription,
-} from "../../utils/timeDate";
+import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
+import { createInterviewerReview } from "../../store/middlewares/review";
 
 export const InterviewerReview = ({ meeting, interviewer }) => {
+  const dispatch = useDispatch();
   const [punctuality, setPunctuality] = useState(0);
   const [preparedness, setPreparedness] = useState(0);
   const [depthOfFeedback, setDepthOfFeedback] = useState(0);
-  const [comments, setComments] = useState();
+  const [comments, setComments] = useState("");
+
+  const submitReview = async () => {
+    const data = {
+      meetingId: meeting.id,
+      interviewerId: interviewer.id,
+      punctuality,
+      preparedness,
+      depthOfFeedback,
+      comments,
+    };
+    dispatch(createInterviewerReview(data));
+  };
 
   return (
     <>
@@ -78,7 +89,7 @@ export const InterviewerReview = ({ meeting, interviewer }) => {
                 onChange={(e) => setComments(e.target.value)}
               />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center" onClick={submitReview}>
               <Button>Submit</Button>
             </div>
           </div>
