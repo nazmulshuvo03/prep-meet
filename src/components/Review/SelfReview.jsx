@@ -1,17 +1,49 @@
 import { useEffect, useState } from "react";
 import { Questions } from "./Questions";
-import { fetchAllReviewQuestions } from "../../store/middlewares/review";
+import {
+  createSelfReview,
+  fetchAllReviewQuestions,
+  getSelfReview,
+} from "../../store/middlewares/review";
+import { useDispatch } from "react-redux";
+import { Button } from "../Button";
 
 export const SelfReview = ({ meeting, practiceAreaId }) => {
+  const dispatch = useDispatch();
   const [questionType1, setQuestionsType1] = useState();
   const [questionType2, setQuestionsType2] = useState();
+  const [answerType1, setAnswerType1] = useState();
+  const [answerType2, setAnswerType2] = useState();
 
   const getAllQuestions = async () => {
-    const response = await fetchAllReviewQuestions(practiceAreaId);
+    const response = await dispatch(fetchAllReviewQuestions(practiceAreaId));
     if (response) {
       setQuestionsType1(response.type1);
       setQuestionsType2(response.type2);
     }
+    const alreadyExists = await dispatch(
+      getSelfReview({
+        meetingId: meeting.id,
+        skillId: practiceAreaId,
+      })
+    );
+    if (alreadyExists) {
+      setAnswerType1(alreadyExists.answerType1);
+      setAnswerType2(alreadyExists.answerType2);
+    } else {
+      setAnswerType1(Array.from({ length: response.type1.length }, () => 0));
+      setAnswerType2(Array.from({ length: response.type2.length }, () => 0));
+    }
+  };
+
+  const handleSubmit = async () => {
+    const data = {
+      meetingId: meeting.id,
+      skillId: practiceAreaId,
+      answerType1,
+      answerType2,
+    };
+    dispatch(createSelfReview(data));
   };
 
   useEffect(() => {
@@ -37,8 +69,9 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
               answers={[
                 { id: 1, name: "Yes" },
                 { id: 2, name: "No" },
-                { id: 3, name: "Not Applicable" },
               ]}
+              selections={answerType1}
+              setSelections={setAnswerType1}
             />
           ) : (
             <div />
@@ -53,10 +86,15 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
                 { id: 4, name: "" },
                 { id: 5, name: "Excellent" },
               ]}
+              selections={answerType2}
+              setSelections={setAnswerType2}
             />
           ) : (
             <div />
           )}
+          <div className="flex justify-center" onClick={handleSubmit}>
+            <Button>Submit</Button>
+          </div>
         </div>
       )}
     </>

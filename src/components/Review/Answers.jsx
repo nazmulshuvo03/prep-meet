@@ -15,7 +15,7 @@ export const Answers = ({
           <div className="col-span-1 items-center justify-self-center" key={i}>
             <FontAwesomeIcon
               className={`text-${color}-400`}
-              icon={i < value ? faCircle : faCircleRegular}
+              icon={i + 1 === value ? faCircle : faCircleRegular}
               onClick={() => setValue(i + 1)}
             />
           </div>
