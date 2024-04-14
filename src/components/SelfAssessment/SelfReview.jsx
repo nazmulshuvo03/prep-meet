@@ -36,6 +36,7 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
     } else {
       setAnswerType1(Array.from({ length: response.type1.length }, () => 0));
       setAnswerType2(Array.from({ length: response.type2.length }, () => 0));
+      setNote("");
     }
   };
 

@@ -7,6 +7,7 @@ const userSlice = createSlice({
     visitingProfile: null,
     people: [],
     completionStatus: null,
+    progress: null,
   },
   reducers: {
     setProfile: (state, data) => {
@@ -99,6 +100,9 @@ const userSlice = createSlice({
       const data = action.payload;
       state.completionStatus = data;
     },
+    setUserProgress: (state, action) => {
+      state.progress = action.payload;
+    },
   },
 });
 
@@ -118,5 +122,6 @@ export const {
   updateVisitorProfileAvailability,
   updatePeopleAvailability,
   setCompletionStatus,
+  setUserProgress,
 } = userSlice.actions;
 export default userSlice.reducer;

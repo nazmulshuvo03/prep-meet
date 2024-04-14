@@ -5,6 +5,7 @@ import { fetchContent, postContent, putContent } from "../../services/api";
 import {
   all_profile_url,
   all_users_url,
+  user_progress,
   user_url,
   users_check_prop_url,
 } from "../../services/urls/user";
@@ -13,6 +14,7 @@ import {
   setCompletionStatus,
   setPeople,
   setProfile,
+  setUserProgress,
   setVisitingProfile,
   updateProfile,
 } from "../slices/user";
@@ -96,3 +98,20 @@ export const checkUserProperty = (obj) => async (dispatch) => {
   console.log("Check user prop response: ", res);
   return res.data?.exists;
 };
+
+export const getUserProgress = () =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await fetchContent(user_progress());
+    console.log("User progress response: ", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(setUserProgress(res.data));
+      },
+      () => {
+        dispatch(setToastMessage({ type: TOAST_TYPES[1], message: res.data }));
+      }
+    );
+    dispatch(setLoading(false));
+  });

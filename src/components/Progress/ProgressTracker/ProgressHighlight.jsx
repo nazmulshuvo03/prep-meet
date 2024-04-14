@@ -1,13 +1,6 @@
 import { Button } from "../../Button";
 
-export const ProgressHighlight = () => {
-  const data = [
-    { id: 1, name: "Analytics and Metrics", value: 4.3 },
-    { id: 2, name: "Product Sense", value: 4.7 },
-    { id: 3, name: "Behavioral", value: 3.8 },
-    { id: 4, name: "Total Mocks Practiced", value: 5 },
-  ];
-
+export const ProgressHighlight = ({ data }) => {
   return (
     <div className="flex-1 flex flex-col">
       <div className="flex-1 grid grid-cols-3">
@@ -20,7 +13,7 @@ export const ProgressHighlight = () => {
                     {item.name}
                   </div>
                   <div className="text-xl md:text-4xl font-bold text-text">
-                    {item.value}
+                    {item.point || 0}
                   </div>
                 </div>
               );

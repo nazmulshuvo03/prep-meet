@@ -57,7 +57,7 @@ export const InterviewerReview = ({ meeting, interviewer }) => {
           <div className="w-full flex items-center justify-center gap-3 pt-4 pb-8">
             <div className="flex-1 border-t mx-2" />
             <div className="text-lg font-medium text-gray-600">
-              Rate your Experience with John Doe as Interviewer
+              Rate your Experience with {interviewer.userName} Interviewer
             </div>
             <div className="flex-1 border-t mx-2" />
           </div>
@@ -67,9 +67,6 @@ export const InterviewerReview = ({ meeting, interviewer }) => {
                 <div>
                   Name: {interviewer.firstName} {interviewer.lastName}
                 </div>
-              )}
-              {interviewer.userName && (
-                <div>Username: {interviewer.userName}</div>
               )}
               <div>Email: {interviewer.email}</div>
               <div>
