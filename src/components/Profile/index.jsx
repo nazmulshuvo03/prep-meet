@@ -4,6 +4,7 @@ import { AddAvailability } from "./AddAvailability";
 import { Details } from "./Details";
 import { Schedules } from "./Schedules";
 import { DisplayAvailability } from "./DisplayAvailability";
+import { Reviews } from "./Reviews";
 // import { PersonalAccount } from "../../components/PersonalAccount";
 
 export const UserProfile = ({ visit = false }) => {
@@ -25,7 +26,7 @@ export const UserProfile = ({ visit = false }) => {
             <Details visit={visit} />
           </div>
           <div className="col-span-3 md:col-span-3">
-            {!visit ? <Schedules /> : <div />}
+            {visit ? <Reviews /> : <Schedules />}
           </div>
         </div>
       ) : (

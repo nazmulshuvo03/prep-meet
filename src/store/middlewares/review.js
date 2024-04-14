@@ -4,6 +4,7 @@ import {
   all_review_questions,
   review_interviewer,
   review_self,
+  user_reviews,
 } from "../../services/urls/review";
 import { setLoading, setToastMessage } from "../slices/global";
 
@@ -77,5 +78,15 @@ export const createSelfReview = (data) => async (dispatch) => {
         message: res.data,
       })
     );
+  }
+};
+
+export const getUserReviews = (userId) => async (dispatch) => {
+  dispatch(setLoading());
+  const res = await fetchContent(user_reviews(userId));
+  console.log("User reviews response: ", res);
+  dispatch(setLoading(false));
+  if (res.success) {
+    return res.data;
   }
 };
