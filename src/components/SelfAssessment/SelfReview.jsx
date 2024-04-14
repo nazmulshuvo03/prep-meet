@@ -7,6 +7,7 @@ import {
 } from "../../store/middlewares/review";
 import { useDispatch } from "react-redux";
 import { Button } from "../Button";
+import { TextInput } from "../TextInput";
 
 export const SelfReview = ({ meeting, practiceAreaId }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
   const [questionType2, setQuestionsType2] = useState();
   const [answerType1, setAnswerType1] = useState();
   const [answerType2, setAnswerType2] = useState();
+  const [note, setNote] = useState("");
 
   const getAllQuestions = async () => {
     const response = await dispatch(fetchAllReviewQuestions(practiceAreaId));
@@ -30,6 +32,7 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
     if (alreadyExists) {
       setAnswerType1(alreadyExists.answerType1);
       setAnswerType2(alreadyExists.answerType2);
+      setNote(alreadyExists.note || "");
     } else {
       setAnswerType1(Array.from({ length: response.type1.length }, () => 0));
       setAnswerType2(Array.from({ length: response.type2.length }, () => 0));
@@ -42,6 +45,7 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
       skillId: practiceAreaId,
       answerType1,
       answerType2,
+      note,
     };
     dispatch(createSelfReview(data));
   };
@@ -92,6 +96,14 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
           ) : (
             <div />
           )}
+          <div>
+            <TextInput
+              placeholder="Additional Note for future reference"
+              rows="4"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+            />
+          </div>
           <div className="flex justify-center" onClick={handleSubmit}>
             <Button>Submit</Button>
           </div>

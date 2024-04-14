@@ -11,12 +11,10 @@ export const SelfAssessment = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const user = useSelector((state) => state.user.profile);
   const meetingDetails = useSelector((state) => state.meeting.details);
   const allSkill = useSelector((state) => state.profession.allSkill);
 
   const [tabs, setTabs] = useState([]);
-  const [interviewer, setInterviewer] = useState();
 
   function idExists(name, arr) {
     return arr.some((obj) => obj.name === name);
@@ -32,17 +30,7 @@ export const SelfAssessment = () => {
   }, [location.search]);
 
   useEffect(() => {
-    if (meetingDetails) {
-      if (user.id === meetingDetails.acceptor) {
-        setInterviewer(meetingDetails.initiatorProfile);
-      } else {
-        setInterviewer(meetingDetails.acceptorProfile);
-      }
-    }
-  }, [meetingDetails]);
-
-  useEffect(() => {
-    if (meetingDetails && meetingDetails.practiceAreas && interviewer) {
+    if (meetingDetails && meetingDetails.practiceAreas) {
       setTabs((prev) => {
         for (let pa of meetingDetails.practiceAreas) {
           const paName = getDataLabelFromKey(allSkill, pa);
@@ -59,11 +47,11 @@ export const SelfAssessment = () => {
         return prev;
       });
     }
-  }, [meetingDetails, interviewer]);
+  }, [meetingDetails]);
 
   return (
     <div className="p-6">
-      {meetingDetails && <HorizontalTabs data={tabs} />}
+      {tabs && tabs.length && <HorizontalTabs data={tabs} />}
     </div>
   );
 };
