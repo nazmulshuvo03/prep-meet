@@ -12,9 +12,15 @@ export const Past = ({ data }) => {
   const companies = useSelector((state) => state.static.companies);
   const allSkill = useSelector((state) => state.profession.allSkill);
 
-  const handleMeetingClick = (id) => {
+  const handleNotesClick = (id) => {
     history.push({
-      search: `?meeting=${id}`,
+      search: `?open=note&meeting=${id}`,
+    });
+  };
+
+  const handleFeedbackClick = (id) => {
+    history.push({
+      search: `?open=review&meeting=${id}`,
     });
   };
 
@@ -89,6 +95,7 @@ export const Past = ({ data }) => {
                   <IconButton
                     size="small"
                     className="!py-2 !text-xs underline !text-secondary"
+                    onClick={() => handleNotesClick(meeting.id)}
                   >
                     See Notes
                   </IconButton>
@@ -97,7 +104,7 @@ export const Past = ({ data }) => {
                   <IconButton
                     size="small"
                     className="!py-2 !text-xs underline !text-secondary"
-                    onClick={() => handleMeetingClick(meeting.id)}
+                    onClick={() => handleFeedbackClick(meeting.id)}
                   >
                     Evaluate your experience
                   </IconButton>

@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { Modal } from "../Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { Review } from "../Review";
+import { SelfAssessment } from "../SelfAssessment";
 
 export const Meetings = () => {
   const location = useLocation();
@@ -19,6 +20,7 @@ export const Meetings = () => {
   const [upcoming, setUpcoming] = useState();
   const [past, setPast] = useState();
   const [openReview, setOpenReview] = useState();
+  const [openNotes, setOpenNotes] = useState();
 
   const splitByTime = (arr) => {
     const past = [];
@@ -56,10 +58,16 @@ export const Meetings = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
+    const open = searchParams.get("open");
     const modeParam = searchParams.get("meeting");
-    if (modeParam) {
+    if (open === "review") {
       setOpenReview(modeParam);
-    } else setOpenReview();
+    } else if (open === "note") {
+      setOpenNotes(modeParam);
+    } else {
+      setOpenReview();
+      setOpenNotes();
+    }
   }, [location.search]);
 
   return (
@@ -83,6 +91,18 @@ export const Meetings = () => {
           className="!w-11/12 !h-svh"
         >
           <Review />
+        </Modal>
+      )}
+      {openNotes && (
+        <Modal
+          handleClose={() => {
+            history.push({
+              search: "",
+            });
+          }}
+          className="!w-11/12 !h-svh"
+        >
+          <SelfAssessment />
         </Modal>
       )}
     </div>

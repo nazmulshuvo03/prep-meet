@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { HorizontalTabs } from "../Tabs/HorizontalTabs";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleMeeting } from "../../store/middlewares/meeting";
 import { setMeetingDetails } from "../../store/slices/meeting";
-import { InterviewerReview } from "./InterviewerReview";
+import { getDataLabelFromKey } from "../../utils/data";
+import { SelfReview } from "./SelfReview";
 
-export const Review = () => {
+export const SelfAssessment = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   const user = useSelector((state) => state.user.profile);
   const meetingDetails = useSelector((state) => state.meeting.details);
+  const allSkill = useSelector((state) => state.profession.allSkill);
 
+  const [tabs, setTabs] = useState([]);
   const [interviewer, setInterviewer] = useState();
+
+  function idExists(name, arr) {
+    return arr.some((obj) => obj.name === name);
+  }
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -33,11 +41,29 @@ export const Review = () => {
     }
   }, [meetingDetails]);
 
+  useEffect(() => {
+    if (meetingDetails && meetingDetails.practiceAreas && interviewer) {
+      setTabs((prev) => {
+        for (let pa of meetingDetails.practiceAreas) {
+          const paName = getDataLabelFromKey(allSkill, pa);
+          if (!idExists(paName, prev)) {
+            prev.push({
+              id: prev.length + 1,
+              name: paName,
+              component: (
+                <SelfReview meeting={meetingDetails} practiceAreaId={pa} />
+              ),
+            });
+          }
+        }
+        return prev;
+      });
+    }
+  }, [meetingDetails, interviewer]);
+
   return (
     <div className="p-6">
-      {meetingDetails && interviewer && (
-        <InterviewerReview meeting={meetingDetails} interviewer={interviewer} />
-      )}
+      {meetingDetails && <HorizontalTabs data={tabs} />}
     </div>
   );
 };

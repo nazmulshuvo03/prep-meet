@@ -20,8 +20,6 @@ export const Reviews = () => {
     }
   }, [profile]);
 
-  console.log("!!!!!!!!!!!!", profile, reviews);
-
   return (
     <div className="bg-white p-3 h-fit w-full">
       <div className="font-semibold text-center pt-2 pb-3">Reviews</div>
