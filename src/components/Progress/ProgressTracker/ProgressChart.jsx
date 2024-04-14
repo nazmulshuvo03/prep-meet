@@ -8,7 +8,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 
 ChartJS.register(
   CategoryScale,
@@ -20,10 +22,8 @@ ChartJS.register(
   Legend
 );
 
-export const ProgressChart = () => {
-  function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+export const ProgressChart = ({ data }) => {
+  const [chartData, setChartData] = useState();
 
   const options = {
     responsive: true,
@@ -47,43 +47,52 @@ export const ProgressChart = () => {
     },
   };
 
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
+  const borderColors = [
+    "rgb(255, 99, 132)",
+    "rgb(53, 162, 235)",
+    "rgb(53, 62, 135)",
+    "rgb(53, 162, 135)",
   ];
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Analytics and Matrics",
-        data: labels.map(() => getRandomNumber(-1000, 1000)),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Product Sense",
-        data: labels.map(() => getRandomNumber(-1000, 1000)),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-      {
-        label: "Behavioral",
-        data: labels.map(() => getRandomNumber(-1000, 1000)),
-        borderColor: "rgb(53, 62, 135)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
+  const backgroundColors = [
+    "rgba(255, 99, 132, 0.5)",
+    "rgba(53, 162, 235, 0.5)",
+    "rgba(53, 62, 135, 0.5)",
+    "rgba(53, 162, 135, 0.5)",
+  ];
+
+  useEffect(() => {
+    if (data && data.length) {
+      let labels = [];
+      let datasets = [];
+      for (let i = 0; i < data.length; i++) {
+        let dataObj = {
+          label: data[i].name,
+          data: [],
+          borderColor: borderColors[i],
+          backgroundColor: backgroundColors[i],
+        };
+        for (let note of data[i].notes) {
+          if (!labels.includes(note.meeting.dayHourUTC)) {
+            labels.push(
+              convertISOUTCDayTimeToLocalDayTime(note.meeting.dayHourUTC)
+                .dateMonthView
+            );
+          }
+          dataObj.data.push(note.points);
+        }
+        datasets.push(dataObj);
+      }
+      setChartData({
+        labels,
+        datasets,
+      });
+    }
+  }, [data]);
 
   return (
     <div className="flex-1 h-96 md:h-full w-full p-2">
-      <Line options={options} data={data} />
+      {chartData && <Line options={options} data={chartData} />}
     </div>
   );
 };

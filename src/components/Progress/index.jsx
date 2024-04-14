@@ -43,7 +43,7 @@ export const ProgressComponent = () => {
   return (
     <div className="px-3 md:px-10 py-3 md:py-6 h-full overflow-y-auto overflow-x-hidden">
       <div className="h-auto md:h-1/2 mb-4">
-        <ProgressTracker data={points} />
+        <ProgressTracker data={points} progressData={progress} />
       </div>
       <div className="h-auto mt-4">
         <InterviewNotes data={notes} />
