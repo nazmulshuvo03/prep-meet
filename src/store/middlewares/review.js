@@ -22,14 +22,27 @@ export const fetchAllReviewQuestions = (practiceAreaId) => async (dispatch) => {
   }
 };
 
-export const getOrCreateInterviewerReview = (data) => async (dispatch) => {
+export const getInterviewerReview = (ids) => async (dispatch) => {
   dispatch(setLoading());
-  const res = await postContent(review_interviewer(), data);
-  console.log("Review interviewer response ", res);
+  const res = await fetchContent(
+    review_interviewer(ids.meetingId, ids.interviewerId)
+  );
+  console.log("Interviewer review get response: ", res);
   dispatch(setLoading(false));
   if (res.success) {
     return res.data;
-  } else {
+  }
+};
+
+export const createInterviewerReview = (data) => async (dispatch) => {
+  dispatch(setLoading());
+  const res = await postContent(
+    review_interviewer(data.meetingId, data.interviewerId),
+    data
+  );
+  console.log("Review interviewer response ", res);
+  dispatch(setLoading(false));
+  if (!res.success) {
     dispatch(
       setToastMessage({
         type: TOAST_TYPES[1],

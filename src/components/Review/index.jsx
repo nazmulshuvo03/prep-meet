@@ -39,6 +39,11 @@ export const Review = () => {
       } else {
         setInterviewer(meetingDetails.acceptorProfile);
       }
+    }
+  }, [meetingDetails]);
+
+  useEffect(() => {
+    if (meetingDetails && interviewer) {
       setTabs([
         {
           id: 1,
@@ -51,25 +56,28 @@ export const Review = () => {
           ),
         },
       ]);
-      if (meetingDetails.practiceAreas) {
-        setTabs((prev) => {
-          for (let pa of meetingDetails.practiceAreas) {
-            const paName = getDataLabelFromKey(allSkill, pa);
-            if (!idExists(paName, prev)) {
-              prev.push({
-                id: prev.length + 1,
-                name: paName,
-                component: (
-                  <SelfReview meeting={meetingDetails} practiceAreaId={pa} />
-                ),
-              });
-            }
-          }
-          return prev;
-        });
-      }
     }
-  }, [meetingDetails]);
+  }, [meetingDetails, interviewer]);
+
+  useEffect(() => {
+    if (meetingDetails && meetingDetails.practiceAreas && interviewer) {
+      setTabs((prev) => {
+        for (let pa of meetingDetails.practiceAreas) {
+          const paName = getDataLabelFromKey(allSkill, pa);
+          if (!idExists(paName, prev)) {
+            prev.push({
+              id: prev.length + 1,
+              name: paName,
+              component: (
+                <SelfReview meeting={meetingDetails} practiceAreaId={pa} />
+              ),
+            });
+          }
+        }
+        return prev;
+      });
+    }
+  }, [meetingDetails, interviewer]);
 
   return (
     <div className="p-6">

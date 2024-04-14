@@ -4,7 +4,10 @@ import { Button } from "../Button";
 import { Stars } from "../Stars";
 import { TextInput } from "../TextInput";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
-import { getOrCreateInterviewerReview } from "../../store/middlewares/review";
+import {
+  createInterviewerReview,
+  getInterviewerReview,
+} from "../../store/middlewares/review";
 
 export const InterviewerReview = ({ meeting, interviewer }) => {
   const dispatch = useDispatch();
@@ -22,12 +25,17 @@ export const InterviewerReview = ({ meeting, interviewer }) => {
       depthOfFeedback,
       comments,
     };
-    const response = await dispatch(getOrCreateInterviewerReview(data));
+    const response = await dispatch(createInterviewerReview(data));
     return response;
   };
 
   const fetchReviewData = async () => {
-    const alreadyExists = await submitReview();
+    const alreadyExists = await dispatch(
+      getInterviewerReview({
+        meetingId: meeting.id,
+        interviewerId: interviewer.id,
+      })
+    );
     if (alreadyExists) {
       setPunctuality(alreadyExists.punctuality);
       setPreparedness(alreadyExists.preparedness);
