@@ -33,7 +33,7 @@ export const Reviews = () => {
             ))}
           </>
         ) : (
-          <div />
+          <div>No Data</div>
         )}
       </div>
     </div>
