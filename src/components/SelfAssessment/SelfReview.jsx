@@ -2,27 +2,24 @@ import { useEffect, useState } from "react";
 import { Questions } from "./Questions";
 import {
   createSelfReview,
-  fetchAllReviewQuestions,
   getSelfReview,
 } from "../../store/middlewares/review";
 import { useDispatch } from "react-redux";
 import { Button } from "../Button";
 import { TextInput } from "../TextInput";
 
-export const SelfReview = ({ meeting, practiceAreaId }) => {
+export const SelfReview = ({
+  meeting,
+  questionType1,
+  questionType2,
+  practiceAreaId,
+}) => {
   const dispatch = useDispatch();
-  const [questionType1, setQuestionsType1] = useState();
-  const [questionType2, setQuestionsType2] = useState();
   const [answerType1, setAnswerType1] = useState();
   const [answerType2, setAnswerType2] = useState();
   const [note, setNote] = useState("");
 
-  const getAllQuestions = async () => {
-    const response = await dispatch(fetchAllReviewQuestions(practiceAreaId));
-    if (response) {
-      setQuestionsType1(response.type1);
-      setQuestionsType2(response.type2);
-    }
+  const getAllAnsers = async () => {
     const alreadyExists = await dispatch(
       getSelfReview({
         meetingId: meeting.id,
@@ -53,7 +50,7 @@ export const SelfReview = ({ meeting, practiceAreaId }) => {
 
   useEffect(() => {
     if (meeting && practiceAreaId) {
-      getAllQuestions();
+      getAllAnsers();
     }
   }, [meeting, practiceAreaId]);
 
