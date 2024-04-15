@@ -51,7 +51,7 @@ export const SelfAssessment = () => {
 
   return (
     <div className="p-6">
-      {tabs && tabs.length && <HorizontalTabs data={tabs} />}
+      {meetingDetails && <HorizontalTabs data={tabs} />}
     </div>
   );
 };
