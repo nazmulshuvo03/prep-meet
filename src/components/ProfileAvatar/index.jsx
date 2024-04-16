@@ -20,14 +20,14 @@ export const ProfileAvatar = () => {
 
   return (
     <div
-      className="relative w-fit h-fit rounded-full cursor-pointer z-50"
+      className="relative w-fit h-fit rounded-full z-50"
       onMouseEnter={handleAvatarHover}
       onMouseLeave={handleAvatarLeave}
     >
       <img
         src={user?.photoURL}
         alt={"Profile Image"}
-        className="h-12 w-12 rounded-full cursor-pointer transition duration-300 ease-in-out hover:shadow-none"
+        className="h-12 w-12 rounded-full transition duration-300 ease-in-out hover:shadow-none"
       />
       {isMenuOpen && <ProfileMenu />}
     </div>
