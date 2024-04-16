@@ -7,6 +7,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Colors,
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
@@ -19,7 +20,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Colors
 );
 
 export const ProgressChart = ({ data }) => {
@@ -31,10 +33,6 @@ export const ProgressChart = ({ data }) => {
       legend: {
         position: "top",
       },
-      // title: {
-      //   display: true,
-      //   text: "Chart.js Line Chart",
-      // },
     },
     maintainAspectRatio: true,
     layout: {
@@ -45,32 +43,36 @@ export const ProgressChart = ({ data }) => {
         left: 0,
       },
     },
+    elements: {
+      point: {
+        radius: 2,
+        pointStyle: "circle",
+      },
+    },
   };
 
-  const borderColors = [
-    "rgb(255, 99, 132)",
-    "rgb(53, 162, 235)",
-    "rgb(53, 62, 135)",
-    "rgb(53, 162, 135)",
-  ];
-
-  const backgroundColors = [
-    "rgba(255, 99, 132, 0.5)",
-    "rgba(53, 162, 235, 0.5)",
-    "rgba(53, 62, 135, 0.5)",
-    "rgba(53, 162, 135, 0.5)",
-  ];
+  // const generatedColors = () => {
+  //   const rand1 = Math.floor(Math.random() * 255) + 1;
+  //   const rand2 = Math.floor(Math.random() * 255) + 1;
+  //   const rand3 = Math.floor(Math.random() * 255) + 1;
+  //   const colors = {
+  //     borderColor: `rgba(${rand1}, ${rand2}, ${rand3}, 1)`,
+  //     backgroundColor: `rgba(${rand1}, ${rand2}, ${rand3}, 0.5)`,
+  //   };
+  //   return colors;
+  // };
 
   useEffect(() => {
     if (data && data.length) {
       let labels = [];
       let datasets = [];
       for (let i = 0; i < data.length; i++) {
+        // const colors = generatedColors();
         let dataObj = {
           label: data[i].name,
           data: [],
-          borderColor: borderColors[i],
-          backgroundColor: backgroundColors[i],
+          // borderColor: colors.borderColor,
+          // backgroundColor: colors.backgroundColor,
         };
         for (let note of data[i].notes) {
           if (!labels.includes(note.meeting.dayHourUTC)) {
