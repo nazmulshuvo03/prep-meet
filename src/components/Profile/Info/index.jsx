@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { UserName } from "./UserName";
 import { Target } from "./Target";
-import { AdditionalInfo } from "../../PersonCard/AdditionalInfo";
+import { AdditionalInfo } from "../Reviews/AdditionalInfo";
 import { useState } from "react";
 import { IconButton } from "../../Button/IconButton";
 import { uploadFile } from "../../../store/middlewares/file";
@@ -106,7 +106,7 @@ export const Info = ({ visit = false }) => {
         </div>
       </div>
       <div className="flex justify-end items-center mt-4">
-        <AdditionalInfo visit={visit} />
+        <AdditionalInfo reviews={profile.reviews} />
       </div>
     </div>
   );

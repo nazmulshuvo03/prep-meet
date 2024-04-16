@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { isAllTrue } from "../../utils/object";
 import { Tooltip } from "../Tooltip";
-import { AdditionalInfo } from "./AdditionalInfo";
+import { AdditionalInfo } from "../Profile/Reviews/AdditionalInfo";
 
 export const ActionArea = ({
   data = null,
@@ -36,7 +36,9 @@ export const ActionArea = ({
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-      <AdditionalInfo />
+      <div>
+        <AdditionalInfo reviews={data.reviews} />
+      </div>
       <div className="flex flex-col md:flex-row gap-1 md:gap-3 items-center pt-2 md:pt-0">
         {data.lastMeeting ? (
           <div className="bg-transparent !text-green-600 text-xs !font-semibold uppercase !p-0">
