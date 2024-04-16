@@ -3,6 +3,7 @@ import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import { IconButton } from "../Button/IconButton";
+import { CapsulList } from "../Capsul/CapsulList";
 
 export const Upcoming = ({ data }) => {
   const deviceSize = useDeviceSize();
@@ -51,21 +52,7 @@ export const Upcoming = ({ data }) => {
                     }
                   </div>
                 </div>
-                <div className="flex gap-1 flex-wrap">
-                  {meeting.practiceAreas && meeting.practiceAreas.length ? (
-                    meeting.practiceAreas.map((focus, i) => {
-                      return (
-                        <div key={focus}>
-                          <span className="bg-gray-200 text-gray-600 px-4 py-0 rounded-full text-xs">
-                            {getDataLabelFromKey(allSkill, focus)}
-                          </span>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div />
-                  )}
-                </div>
+                <CapsulList data={meeting.practiceAreas} labels={allSkill} />
                 <div>{meetingUser.userName}</div>
                 <div>
                   {meetingUser.workExperiences &&

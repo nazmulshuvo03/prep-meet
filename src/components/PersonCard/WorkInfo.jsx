@@ -8,6 +8,7 @@ import { companyNameShortner } from "../../utils/string";
 import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
 import { useEffect, useState } from "react";
 import { personTag } from "../../utils/tag";
+import { CapsulList } from "../Capsul/CapsulList";
 
 const Current = ({ data, companies, experienceLevels }) => (
   <div className="text-text">

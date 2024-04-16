@@ -8,6 +8,7 @@ import { CreateMeeting } from "./CreateMeeting";
 import { useSelector } from "react-redux";
 import { isAllTrue } from "../../../utils/object";
 import { getDataLabelFromKey } from "../../../utils/data";
+import { CapsulList } from "../../Capsul/CapsulList";
 
 export const DisplayAvailability = () => {
   const profile = useSelector((state) => state.user.visitingProfile);
@@ -73,20 +74,11 @@ export const DisplayAvailability = () => {
                           )}
                         </div>
                       </div>
-                      <div className="flex gap-1">
-                        {avl.practiceAreas && avl.practiceAreas.length ? (
-                          avl.practiceAreas.map((focus, i) => {
-                            return (
-                              <div key={focus}>
-                                <span className="bg-gray-200 text-gray-600 px-4 py-0 rounded-full text-xs">
-                                  {getDataLabelFromKey(allSkill, focus)}
-                                </span>
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <div />
-                        )}
+                      <div className="py-1">
+                        <CapsulList
+                          data={avl.practiceAreas}
+                          labels={allSkill}
+                        />
                       </div>
                     </div>
                   );

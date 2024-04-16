@@ -7,6 +7,7 @@ import { Button } from "../Button";
 import { getDataLabelFromKey } from "../../utils/data";
 import { useSelector } from "react-redux";
 import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
+import { CapsulList } from "../Capsul/CapsulList";
 
 export const BookSlot = ({
   data,
@@ -98,20 +99,8 @@ export const BookSlot = ({
             <div className="text-sm text-gray-500 pb-1">
               Practice Areas for this slot
             </div>
-            <div className="flex gap-1">
-              {selected.practiceAreas && selected.practiceAreas.length ? (
-                selected.practiceAreas.map((focus, i) => {
-                  return (
-                    <div key={focus}>
-                      <ProfileCardCapsul>
-                        {getDataLabelFromKey(allSkill, focus)}
-                      </ProfileCardCapsul>
-                    </div>
-                  );
-                })
-              ) : (
-                <div />
-              )}
+            <div className="py-1">
+              <CapsulList data={selected.practiceAreas} labels={allSkill} />
             </div>
           </div>
           {selected.interviewNote ? (

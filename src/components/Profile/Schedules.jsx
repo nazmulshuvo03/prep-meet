@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteAvailability } from "../../store/middlewares/availability";
 import { getDataLabelFromKey } from "../../utils/data";
+import { CapsulList } from "../Capsul/CapsulList";
 
 export const Schedules = () => {
   const dispatch = useDispatch();
@@ -57,20 +58,8 @@ export const Schedules = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="flex gap-1">
-                    {avl.practiceAreas && avl.practiceAreas.length ? (
-                      avl.practiceAreas.map((focus, i) => {
-                        return (
-                          <div key={focus}>
-                            <span className="bg-gray-200 text-gray-600 px-4 py-0 rounded-full text-xs">
-                              {getDataLabelFromKey(allSkill, focus)}
-                            </span>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div />
-                    )}
+                  <div className="py-1">
+                    <CapsulList data={avl.practiceAreas} labels={allSkill} />
                   </div>
                 </div>
               );
