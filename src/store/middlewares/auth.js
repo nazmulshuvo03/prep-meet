@@ -1,11 +1,15 @@
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
-import { loginPageUrl, postContent } from "../../services/api";
+import { postContent } from "../../services/api";
 import { login_url, logout_url, signup_url } from "../../services/urls/auth";
 import { persistor } from "../index";
 import { setAuthenticated, setToastMessage } from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
-import { setCompletionStatus, setProfile } from "../slices/user";
+import {
+  resetUserState,
+  setCompletionStatus,
+  setProfile,
+} from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
 
@@ -15,7 +19,7 @@ export const logoutUser = () =>
     responseHandler(res, () => {
       persistor.purge();
       dispatch(setAuthenticated(false));
-      dispatch(setProfile(null));
+      dispatch(resetUserState());
     });
   });
 

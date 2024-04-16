@@ -1,15 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const defaultState = {
+  profile: null,
+  visitingProfile: null,
+  people: [],
+  completionStatus: null,
+  progress: null,
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    profile: null,
-    visitingProfile: null,
-    people: [],
-    completionStatus: null,
-    progress: null,
+    ...defaultState,
   },
   reducers: {
+    resetUserState: (state, action) => {
+      return defaultState;
+    },
     setProfile: (state, data) => {
       state.profile = data.payload;
     },
@@ -107,6 +114,7 @@ const userSlice = createSlice({
 });
 
 export const {
+  resetUserState,
   setProfile,
   updateProfile,
   setPeople,
