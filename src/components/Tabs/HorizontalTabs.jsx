@@ -48,7 +48,7 @@ export const HorizontalTabs = ({
           {allowSearch ? (
             <div className="hidden md:block md:w-72">
               <Input
-                placeholder="Search by Name"
+                placeholder="Search by Username"
                 value={searchValue}
                 onChange={handleSearch}
                 style={{ backgroundColor: "#eceef8" }}

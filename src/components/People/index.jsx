@@ -60,9 +60,9 @@ export const PeoplePage = () => {
 
   useEffect(() => {
     if (searchValue && searchValue.length >= 3) {
-      setQueries((prev) => ({ ...prev, name: searchValue }));
+      setQueries((prev) => ({ ...prev, userName: searchValue }));
     } else if (searchValue && searchValue.length == 2) {
-      setQueries((prev) => ({ ...prev, name: "" }));
+      setQueries((prev) => ({ ...prev, userName: "" }));
     }
   }, [searchValue]);
 
@@ -89,6 +89,7 @@ export const PeoplePage = () => {
     setMinExp(EXPERIENCE_MIN_VALUE);
     setMaxExp(EXPERIENCE_MAX_VALUE);
     dispatch(setDashboardQuery(""));
+    setSearchValue("");
   };
 
   const TABS = [
