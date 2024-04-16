@@ -40,12 +40,7 @@ export const ActionArea = ({
       <div className="flex flex-col md:flex-row gap-1 md:gap-3 items-center pt-2 md:pt-0">
         {data.lastMeeting ? (
           <div className="bg-transparent !text-green-600 text-xs !font-semibold uppercase !p-0">
-            Last Practiced{" "}
-            {timeDistance(
-              new Date().toISOString(),
-              data.lastMeeting.dayHourUTC
-            )}{" "}
-            ago
+            Last Practiced {timeDistance(data.lastMeeting.dayHourUTC)} ago
           </div>
         ) : (
           <div />

@@ -28,7 +28,7 @@ export const PersonCard = ({ data }) => {
   };
 
   return (
-    <div className="w-full h-fit bg-white rounded-md px-2 md:px-4 py-2">
+    <div className="w-full h-fit bg-white rounded-md shadow-md px-2 md:px-4 py-2">
       <div className="grid md:grid-cols-12 grid-cols-1 border-b relative">
         <div className="col-span-2">
           <ImageArea data={data} />
@@ -54,7 +54,7 @@ export const PersonCard = ({ data }) => {
         <ActionArea data={data} onNextAvailableClick={setSelectedBook} />
       </div>
       {selectedBook ? (
-        <Modal handleClose={() => setSelectedBook()}>
+        <Modal handleClose={() => setSelectedBook()} className="!w-1/2 !h-2/3">
           <BookSlot
             data={data}
             selected={selectedBook}
