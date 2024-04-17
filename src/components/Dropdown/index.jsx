@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Input } from "../Input";
-import { Button } from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretDown,
   faCaretUp,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
-import { DropdownSearch } from "./Search";
-import { Option } from "./Option";
 import { Options } from "./Options";
 
 export const Dropdown = ({

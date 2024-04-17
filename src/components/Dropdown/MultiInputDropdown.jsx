@@ -1,8 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Input } from "../Input";
-import { Button } from "../Button";
-import { DropdownSearch } from "./Search";
-import { MultiOption } from "./MultiOption";
 import { Options } from "./Options";
 
 export const MultiInputDropdown = ({

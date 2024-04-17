@@ -90,9 +90,8 @@ export const AddAvailability = () => {
 
   return (
     <ProfileBlock
-      title={`Add Availability ${
-        !completionStatus.availabilities ? <MandatoryStar /> : ""
-      }`}
+      title={`Add Availability`}
+      titleStar={!completionStatus.availabilities}
     >
       <div className="flex flex-col gap-2">
         <DateInput
