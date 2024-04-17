@@ -15,47 +15,56 @@ export const Review = ({ data }) => {
         className="h-16 w-16"
       />
       <div>
-        <div className="flex items-baseline gap-1 mb-2">
+        <div className="mb-2">
           <div className="font-bold text-lg">
-            {data.reviewerProfile.userName}
+            {data.reviewerProfile.firstName
+              ? data.reviewerProfile.firstName +
+                " " +
+                data.reviewerProfile.lastName
+              : data.reviewerProfile.userName}
           </div>
-          {data.reviewerProfile.workExperiences &&
-            data.reviewerProfile.workExperiences.length && (
-              <div className="text-xs font-medium italic">
-                {data.reviewerProfile.workExperiences[0].jobTitle}
-                {","}
-              </div>
-            )}
-          {data.reviewerProfile.workExperiences &&
-            data.reviewerProfile.workExperiences.length && (
-              <div className="text-xs font-medium italic">
-                {companyNameShortner(
-                  getDataLabelFromKey(
-                    companies,
-                    data.reviewerProfile.workExperiences[0].companyId
-                  ),
-                  2
-                )}
-              </div>
-            )}
+          <div className="flex gap-1">
+            {data.reviewerProfile.workExperiences &&
+              data.reviewerProfile.workExperiences.length && (
+                <div className="text-xs text-gray-700 font-light">
+                  {data.reviewerProfile.workExperiences[0].jobTitle}
+                  {","}
+                </div>
+              )}
+            {data.reviewerProfile.workExperiences &&
+              data.reviewerProfile.workExperiences.length && (
+                <div className="text-xs text-gray-700 font-light">
+                  {companyNameShortner(
+                    getDataLabelFromKey(
+                      companies,
+                      data.reviewerProfile.workExperiences[0].companyId
+                    ),
+                    2
+                  )}
+                </div>
+              )}
+          </div>
         </div>
-        <div className="text-sm text-gray-500 mb-1">
+        <div className="text-sm text-gray-500 mb-2">
           <span>Interview Date: </span>
           <span>
             {
               convertISOUTCDayTimeToLocalDayTime(data.meeting.dayHourUTC)
-                .dateMonthView
+                .dateYearView
             }
           </span>
         </div>
         <div className="flex gap-2 items-center text-sm text-gray-500">
-          Punctuality: <Stars color="blue" value={data.punctuality} />
+          Punctuality:{" "}
+          <Stars size="small" color="blue" value={data.punctuality} />
         </div>
         <div className="flex gap-2 items-center text-sm text-gray-500">
-          Preparedness: <Stars color="blue" value={data.preparedness} />
+          Preparedness:{" "}
+          <Stars size="small" color="blue" value={data.preparedness} />
         </div>
         <div className="flex gap-2 items-center text-sm text-gray-500">
-          Feedback: <Stars color="blue" value={data.depthOfFeedback} />
+          Feedback:{" "}
+          <Stars size="small" color="blue" value={data.depthOfFeedback} />
         </div>
       </div>
     </div>

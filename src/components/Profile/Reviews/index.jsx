@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import { Review } from "./Review";
+import { ProfileBlock } from "../../Layouts/ProfileBlock";
 
 export const Reviews = () => {
   const profile = useSelector((state) => state.user.visitingProfile);
 
   return (
-    <div className="bg-white p-3 h-fit w-full shadow-md">
-      <div className="font-semibold text-center pt-2 pb-3">Reviews</div>
+    <ProfileBlock title="Reviews" className="!bg-primary h-full">
       {profile && profile.reviews ? (
         <div>
           {profile.reviews && profile.reviews.length ? (
@@ -22,6 +22,6 @@ export const Reviews = () => {
       ) : (
         <div />
       )}
-    </div>
+    </ProfileBlock>
   );
 };

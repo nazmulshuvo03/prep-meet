@@ -11,6 +11,7 @@ import { DateInput } from "../Input/DateInput";
 import { MandatoryStar } from "../MandatoryStar";
 import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
 import { TextInput } from "../TextInput";
+import { ProfileBlock } from "../Layouts/ProfileBlock";
 
 export const AddAvailability = () => {
   const dispatch = useDispatch();
@@ -88,10 +89,11 @@ export const AddAvailability = () => {
   }, [profile]);
 
   return (
-    <div className="bg-white p-3 h-fit w-full shadow-md">
-      <div className="font-semibold text-center pt-2 pb-3">
-        Add Availability {!completionStatus.availabilities && <MandatoryStar />}
-      </div>
+    <ProfileBlock
+      title={`Add Availability ${
+        !completionStatus.availabilities ? <MandatoryStar /> : ""
+      }`}
+    >
       <div className="flex flex-col gap-2">
         <DateInput
           label={"Date*"}
@@ -144,6 +146,6 @@ export const AddAvailability = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </ProfileBlock>
   );
 };

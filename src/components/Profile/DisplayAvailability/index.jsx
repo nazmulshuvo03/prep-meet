@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { isAllTrue } from "../../../utils/object";
 import { getDataLabelFromKey } from "../../../utils/data";
 import { CapsulList } from "../../Capsul/CapsulList";
+import { ProfileBlock } from "../../Layouts/ProfileBlock";
 
 export const DisplayAvailability = () => {
   const profile = useSelector((state) => state.user.visitingProfile);
@@ -22,8 +23,7 @@ export const DisplayAvailability = () => {
   };
 
   return (
-    <div className="bg-white h-fit w-full p-4 shadow-md">
-      <div className="text-center font-semibold text-lg">Availabilities</div>
+    <ProfileBlock title="Availabilities">
       <div className="py-2">
         {profile.availabilities ? (
           <>
@@ -101,6 +101,6 @@ export const DisplayAvailability = () => {
           />
         </Modal>
       )}
-    </div>
+    </ProfileBlock>
   );
 };

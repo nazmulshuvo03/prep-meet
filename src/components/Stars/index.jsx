@@ -7,13 +7,16 @@ export const Stars = ({
   setValue = () => {},
   count = 5,
   color = "yellow",
+  size = "normal", // "normal", "small"
 }) => {
   return (
-    <div className="py-1">
+    <div>
       {[...Array(count).keys()].map((i) => {
         return (
           <FontAwesomeIcon
-            className={`text-${color}-400`}
+            className={`text-${color}-400 ${
+              size === "small" ? "text-xs" : "text-sm"
+            }`}
             icon={i < value ? faStar : faStarRegular}
             key={i}
             onClick={() => setValue(i + 1)}

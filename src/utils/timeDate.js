@@ -153,11 +153,20 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
     day: "2-digit",
     month: "short",
     weekday: "short",
+    year: "numeric",
   };
   const formatter = new Intl.DateTimeFormat("en-US", dateOptionsMonthView);
-  const [{ value: weekday }, , { value: month }, , { value: day }] =
-    formatter.formatToParts(localTime);
+  const [
+    { value: weekday },
+    ,
+    { value: month },
+    ,
+    { value: day },
+    ,
+    { value: year },
+  ] = formatter.formatToParts(localTime);
   const formattedDateMonthView = `${weekday}, ${day} ${month}`;
+  const formattedDateYearView = `${month} ${day}, ${year}`;
 
   const hourOptions = {
     hour: "numeric",
@@ -171,6 +180,7 @@ export const convertISOUTCDayTimeToLocalDayTime = (isoTIme) => {
   return {
     date: formattedDate,
     dateMonthView: formattedDateMonthView,
+    dateYearView: formattedDateYearView,
     time: formattedHour,
   };
 };

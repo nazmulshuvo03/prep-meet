@@ -12,6 +12,7 @@ import { useState } from "react";
 import { IconButton } from "../../Button/IconButton";
 import { uploadFile } from "../../../store/middlewares/file";
 import { updateUserData } from "../../../store/middlewares/user";
+import { ProfileBlock } from "../../Layouts/ProfileBlock";
 
 export const Info = ({ visit = false }) => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export const Info = ({ visit = false }) => {
   };
 
   return (
-    <div className="bg-white p-2 h-fit w-full flex flex-col shadow-md">
+    <ProfileBlock>
       <div className="flex-1 md:p-2">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           <div className="md:col-span-4 md:px-4 flex gap-2 justify-between md:flex-col">
@@ -108,6 +109,6 @@ export const Info = ({ visit = false }) => {
       <div className="flex justify-end items-center mt-4">
         <AdditionalInfo reviews={profile.reviews} />
       </div>
-    </div>
+    </ProfileBlock>
   );
 };
