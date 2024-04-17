@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { PersonCard } from "../../components/PersonCard";
 import { Dropdown } from "../../components/Dropdown";
+import { NoData } from "../NoData";
 // import { RangeSlider } from "../../components/Slider/RangeSlider";
 
 // const EXPERIENCE_MIN_VALUE = 0;
@@ -13,6 +14,7 @@ export const AllPeople = ({
   // minExp = EXPERIENCE_MIN_VALUE,
   // maxExp = EXPERIENCE_MAX_VALUE,
   // handleExperienceSelect = () => {},
+  handleResetQuery = () => {},
 }) => {
   const people = useSelector((state) => state.user.people);
   const targetProfession = useSelector(
@@ -83,13 +85,18 @@ export const AllPeople = ({
         />
       </div> */}
       <div className="flex-1 overflow-y-auto">
-        <div className="grid grid-cols-1 gap-4">
-          {people && people.length && typeof people !== "string"
-            ? people.map((person) => (
-                <PersonCard key={person.id} data={person} />
-              ))
-            : null}
-        </div>
+        {people && people.length && typeof people !== "string" ? (
+          <div className="grid grid-cols-1 gap-4">
+            {people.map((person) => (
+              <PersonCard key={person.id} data={person} />
+            ))}
+          </div>
+        ) : (
+          <NoData
+            message="Oops! No matches found. Change filters and try again."
+            size={120}
+          />
+        )}
       </div>
     </div>
   );

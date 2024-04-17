@@ -3,9 +3,9 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowDown,
-  faSortDown,
-  faSortUp,
+  faCaretDown,
+  faCaretUp,
+  faClose,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Dropdown = ({
@@ -20,7 +20,6 @@ export const Dropdown = ({
   allowSearch = true,
   allowAddNew = false,
   addNewAction = () => {},
-  ...rest
 }) => {
   const dropdownRef = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -39,13 +38,13 @@ export const Dropdown = ({
   };
 
   const handleSelect = (option) => {
+    setDropdownOpen(false);
     onSelect({
       target: {
         name,
-        value: option[defaultKey],
+        value: option ? option[defaultKey] : null,
       },
     });
-    setDropdownOpen(false);
     setQuery("");
     setFilteredOptions(options);
   };
@@ -79,13 +78,15 @@ export const Dropdown = ({
       <label className="text-xs">{label}</label>
       <div className="relative">
         <div
-          onClick={handleInputClick}
           className="relative w-full flex-1 flex gap-2 rounded-lg border 
           border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer 
           whitespace-nowrap overflow-hidden text-ellipsis"
           style={{ minHeight: 38 }}
         >
-          <div className="w-full whitespace-nowrap overflow-hidden text-ellipsis">
+          <div
+            className="w-full whitespace-nowrap overflow-hidden text-ellipsis"
+            onClick={handleInputClick}
+          >
             {value && options && options.length ? (
               <span className="">
                 {options.find((option) => option.id === value)[defaultLabel]}
@@ -94,19 +95,25 @@ export const Dropdown = ({
               <span className="text-gray-400">{defaultText}</span>
             )}
           </div>
-          <span className="text-gray-500 text-sm">
-            {dropdownOpen ? (
-              <FontAwesomeIcon
-                className="absolute top-4 right-2"
-                icon={faSortUp}
-              />
+          <div>
+            {value ? (
+              <FontAwesomeIcon icon={faClose} onClick={() => handleSelect()} />
             ) : (
-              <FontAwesomeIcon
-                className="absolute top-2 right-2"
-                icon={faSortDown}
-              />
+              <span className="text-gray-500 text-sm">
+                {dropdownOpen ? (
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    onClick={handleInputClick}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    onClick={handleInputClick}
+                  />
+                )}
+              </span>
             )}
-          </span>
+          </div>
         </div>
         {dropdownOpen && (
           <div
