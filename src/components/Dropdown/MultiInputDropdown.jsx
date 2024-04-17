@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "../Input";
 import { Button } from "../Button";
+import { DropdownSearch } from "./Search";
+import { MultiOption } from "./MultiOption";
+import { Options } from "./Options";
 
 export const MultiInputDropdown = ({
   label = "",
@@ -111,61 +114,21 @@ export const MultiInputDropdown = ({
           )}
         </div>
         {dropdownOpen && (
-          <div
-            className="z-10 absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
-            <div className="max-h-56 overflow-y-auto">
-              <div className="py-2 px-2" role="none">
-                {filteredOptions && filteredOptions.length ? (
-                  filteredOptions.map((option) => (
-                    <label
-                      key={option[defaultKey]}
-                      className="flex items-center"
-                    >
-                      <input
-                        type="checkbox"
-                        className="h-4 w-4 border-gray-300 rounded"
-                        onChange={() => {
-                          handleCheckboxChange(option[defaultKey]);
-                        }}
-                        checked={selectedOptions.includes(option[defaultKey])}
-                      />
-                      <span className="ml-2 text-sm text-gray-700">
-                        {option[defaultLabel]}
-                      </span>
-                    </label>
-                  ))
-                ) : (
-                  <div>Empty</div>
-                )}
-              </div>
-            </div>
-            {allowSearch ? (
-              <div className="flex gap-0">
-                <Input
-                  type="text"
-                  placeholder="Search..."
-                  name=""
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-                {allowAddNew &&
-                query &&
-                query.length &&
-                filteredOptions &&
-                !filteredOptions.length ? (
-                  <Button onClick={handleAddNewClick}>Add New</Button>
-                ) : (
-                  <div />
-                )}
-              </div>
-            ) : (
-              <div />
-            )}
-          </div>
+          <Options
+            {...{
+              allowSearch,
+              query,
+              setQuery,
+              allowAddNew,
+              filteredOptions,
+              handleAddNewClick,
+              defaultKey,
+              defaultLabel,
+              handleSelect: handleCheckboxChange,
+              multiple: true,
+              selectedOptions,
+            }}
+          />
         )}
       </div>
     </div>

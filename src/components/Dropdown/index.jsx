@@ -7,6 +7,9 @@ import {
   faCaretUp,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
+import { DropdownSearch } from "./Search";
+import { Option } from "./Option";
+import { Options } from "./Options";
 
 export const Dropdown = ({
   label = "",
@@ -116,52 +119,19 @@ export const Dropdown = ({
           </div>
         </div>
         {dropdownOpen && (
-          <div
-            className="z-30 absolute top-full left-0 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
-            <div className="max-h-56 overflow-y-auto py-2 px-2">
-              {filteredOptions && filteredOptions.length ? (
-                filteredOptions.map((option) => (
-                  <div
-                    key={option[defaultKey]}
-                    className="flex items-center cursor-pointer"
-                    onClick={() => handleSelect(option)}
-                  >
-                    <span className="ml-2 text-sm text-gray-700">
-                      {option[defaultLabel]}
-                    </span>
-                  </div>
-                ))
-              ) : (
-                <div>Empty</div>
-              )}
-            </div>
-            {allowSearch ? (
-              <div className="flex gap-0">
-                <Input
-                  type="text"
-                  placeholder="Search..."
-                  name=""
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-                {allowAddNew &&
-                query &&
-                query.length &&
-                filteredOptions &&
-                !filteredOptions.length ? (
-                  <Button onClick={handleAddNewClick}>Add New</Button>
-                ) : (
-                  <div />
-                )}
-              </div>
-            ) : (
-              <div />
-            )}
-          </div>
+          <Options
+            {...{
+              allowSearch,
+              query,
+              setQuery,
+              allowAddNew,
+              filteredOptions,
+              handleAddNewClick,
+              defaultKey,
+              defaultLabel,
+              handleSelect,
+            }}
+          />
         )}
       </div>
     </div>
