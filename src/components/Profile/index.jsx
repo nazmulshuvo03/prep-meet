@@ -15,17 +15,13 @@ export const UserProfile = ({ visit = false }) => {
   return (
     <>
       {profile ? (
-        <div className="px-3 md:px-10 pt-3 md:pt-6 pb-2 grid grid-cols-1 md:grid-cols-8 gap-3 h-full overflow-y-auto overflow-x-hidden">
-          <div className="col-span-5">
+        <div className="px-3 md:px-10 pt-3 md:pt-6 flex flex-col md:flex-row gap-3 pb-2 h-full w-full overflow-y-auto overflow-x-hidden">
+          <div className="flex flex-col gap-3 md:flex-1">
             <Info visit={visit} />
-          </div>
-          <div className="col-span-3 md:col-span-3">
-            {visit ? <DisplayAvailability /> : <AddAvailability />}
-          </div>
-          <div className="col-span-5">
             <Details visit={visit} />
           </div>
-          <div className="col-span-3 md:col-span-3">
+          <div className="flex flex-col gap-3 w-1/3">
+            {visit ? <DisplayAvailability /> : <AddAvailability />}
             {visit ? <Reviews /> : <Schedules />}
           </div>
         </div>

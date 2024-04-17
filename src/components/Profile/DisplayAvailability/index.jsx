@@ -22,7 +22,7 @@ export const DisplayAvailability = () => {
   };
 
   return (
-    <div className="bg-white h-full w-full p-4">
+    <div className="bg-white h-fit w-full p-4 shadow-md">
       <div className="text-center font-semibold text-lg">Availabilities</div>
       <div className="py-2">
         {profile.availabilities ? (

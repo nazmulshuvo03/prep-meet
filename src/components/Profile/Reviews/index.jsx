@@ -5,7 +5,7 @@ export const Reviews = () => {
   const profile = useSelector((state) => state.user.visitingProfile);
 
   return (
-    <div className="bg-white p-3 h-fit w-full">
+    <div className="bg-white p-3 h-fit w-full shadow-md">
       <div className="font-semibold text-center pt-2 pb-3">Reviews</div>
       {profile && profile.reviews ? (
         <div>

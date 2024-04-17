@@ -65,6 +65,7 @@ export const AddAvailability = () => {
     dispatch(createUserAvailability(data));
     setDate();
     setTime();
+    setSelectedPracticeAreas(profile.focusAreas);
     setInterviewNote();
   };
 
@@ -87,7 +88,7 @@ export const AddAvailability = () => {
   }, [profile]);
 
   return (
-    <div className="bg-white p-3 h-full w-full">
+    <div className="bg-white p-3 h-fit w-full shadow-md">
       <div className="font-semibold text-center pt-2 pb-3">
         Add Availability {!completionStatus.availabilities && <MandatoryStar />}
       </div>
@@ -120,6 +121,7 @@ export const AddAvailability = () => {
           options={professions}
           onSelect={handlePracticeAreaSelection}
           defaultText={"Select upto 5"}
+          size="small"
         />
         <TextInput
           label="Interview Note"

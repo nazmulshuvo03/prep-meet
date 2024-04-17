@@ -14,6 +14,7 @@ export const MultiInputDropdown = ({
   allowSearch = true,
   allowAddNew = false,
   addNewAction = () => {},
+  size = "normal", // "normal", "small"
 }) => {
   const dropdownRef = useRef(null);
   const [selectedOptions, setSelectedOptions] = useState(value);
@@ -97,7 +98,9 @@ export const MultiInputDropdown = ({
               return (
                 <div
                   key={seleted}
-                  className="bg-gray-400 text-white rounded-md py-1 px-2"
+                  className={`bg-gray-400 text-white rounded-md py-1 px-2 ${
+                    size === "small" ? "text-xs" : "text-sm"
+                  }`}
                 >
                   {selectedOption ? selectedOption[defaultLabel] : "Not Found"}
                 </div>

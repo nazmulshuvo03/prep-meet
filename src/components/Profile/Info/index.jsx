@@ -29,7 +29,7 @@ export const Info = ({ visit = false }) => {
   };
 
   return (
-    <div className="bg-white p-2 h-full w-full flex flex-col">
+    <div className="bg-white p-2 h-fit w-full flex flex-col shadow-md">
       <div className="flex-1 md:p-2">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           <div className="md:col-span-4 md:px-4 flex gap-2 justify-between md:flex-col">
