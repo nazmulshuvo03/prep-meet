@@ -26,21 +26,32 @@ export const TargetItem = ({
       ) : valueArray && valueArray.length ? (
         valueArray.map((val, i) => {
           const label = getDataLabelFromKey(optionArray, val);
+          const nextLabel = getDataLabelFromKey(optionArray, valueArray[i + 1]);
           return (
             <div
               key={val}
-              className={`${size === "big" ? "font-medium" : "font-normal"}`}
+              className={`${
+                size === "big" ? "font-medium" : "font-normal"
+              } flex gap-1 items-baseline`}
             >
-              <Tooltip text={tooltip ? label : ""}>
-                <span>{tooltip ? companyNameShortner(label, 1) : label}</span>
-                {i < valueArray.length - 1 ? (
-                  <span style={{ fontSize: 15, marginLeft: "4px" }}>
-                    &middot;
-                  </span>
-                ) : (
-                  <span />
-                )}
-              </Tooltip>
+              {label ? (
+                <Tooltip text={tooltip ? label : ""}>
+                  {tooltip ? companyNameShortner(label, 1) : label}
+                </Tooltip>
+              ) : (
+                <span className="-ml-2" />
+              )}
+              {nextLabel ? (
+                <div
+                  style={{
+                    fontSize: 15,
+                  }}
+                >
+                  &middot;
+                </div>
+              ) : (
+                <span />
+              )}
             </div>
           );
         })

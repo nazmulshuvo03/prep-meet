@@ -94,16 +94,18 @@ export const MultiInputDropdown = ({
               const selectedOption = options.find(
                 (option) => option[defaultKey] === seleted
               );
-              return (
-                <div
-                  key={seleted}
-                  className={`bg-gray-400 text-white rounded-md py-1 px-2 ${
-                    size === "small" ? "text-xs" : "text-sm"
-                  }`}
-                >
-                  {selectedOption ? selectedOption[defaultLabel] : "Not Found"}
-                </div>
-              );
+              if (selectedOption) {
+                return (
+                  <div
+                    key={seleted}
+                    className={`bg-gray-400 text-white rounded-md py-1 px-2 ${
+                      size === "small" ? "text-xs" : "text-sm"
+                    }`}
+                  >
+                    {selectedOption[defaultLabel]}
+                  </div>
+                );
+              }
             })
           ) : (
             <span className="text-gray-400">{defaultText}</span>
