@@ -31,7 +31,7 @@ export const ProgressChart = ({ data }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "right",
       },
     },
     maintainAspectRatio: true,
@@ -93,7 +93,7 @@ export const ProgressChart = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="flex-1 h-96 md:h-full w-full p-2">
+    <div className="flex-1 md:h-full w-screen md:w-full p-2">
       {chartData && <Line options={options} data={chartData} />}
     </div>
   );

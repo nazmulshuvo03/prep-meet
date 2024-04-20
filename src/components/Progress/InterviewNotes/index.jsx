@@ -1,3 +1,4 @@
+import { Block } from "../../Layouts/Block";
 import { HorizontalTabs } from "../../Tabs/HorizontalTabs";
 import { Notes } from "./Notes";
 import { useEffect, useState } from "react";
@@ -20,8 +21,8 @@ export const InterviewNotes = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="bg-white !h-full rounded-md">
+    <Block title="Interview Notes">
       <HorizontalTabs data={tabs} />
-    </div>
+    </Block>
   );
 };

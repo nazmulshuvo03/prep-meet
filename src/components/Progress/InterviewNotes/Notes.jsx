@@ -47,7 +47,7 @@ export const Notes = ({ data = null }) => {
           })}
         </>
       ) : (
-        <div className="h-2/3">
+        <div className="h-36">
           <NoData message={`No notes yet`} size={62} />
         </div>
       )}
