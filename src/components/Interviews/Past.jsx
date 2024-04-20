@@ -97,7 +97,7 @@ export const Past = ({ data }) => {
                     className="!py-2 !text-xs underline !text-secondary"
                     onClick={() => handleFeedbackClick(meeting.id)}
                   >
-                    Evaluate your experience
+                    Evaluate
                   </IconButton>
                 </div>
               </div>

@@ -26,7 +26,7 @@ export const Target = ({ visit = false }) => {
   const [editMode, setEditMode] = useState(false);
 
   return (
-    <div className="relative flex flex-col gap-2 pt-4">
+    <div className="relative flex-1 flex flex-col gap-2 pt-4">
       <div className="flex flex-col gap-2 mb-4">
         <TargetItem
           title="Target Company"
