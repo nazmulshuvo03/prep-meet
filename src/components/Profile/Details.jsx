@@ -5,7 +5,7 @@ import { WorkExperience } from "./WorkExperience";
 
 export const Details = ({ visit = false }) => {
   return (
-    <ProfileBlock className="h-full">
+    <ProfileBlock>
       <WorkExperience visit={visit} />
       <Education visit={visit} />
       <InterviewExperience visit={visit} />

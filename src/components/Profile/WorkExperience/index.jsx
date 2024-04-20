@@ -17,6 +17,7 @@ import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
 import { MandatoryStar } from "../../MandatoryStar";
+import { NoData } from "../../NoData";
 
 const DEFAULT_DATA = {
   jobTitle: "",
@@ -101,9 +102,7 @@ export const WorkExperience = ({ visit = false }) => {
           Work Experiences{" "}
           {!completionStatus.workExperiences && <MandatoryStar />}
         </div>
-        {!visit &&
-        profile.workExperiences &&
-        profile.workExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default
+        {!visit ? (
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
             onClick={() => setShowInput(true)}
@@ -130,17 +129,11 @@ export const WorkExperience = ({ visit = false }) => {
             );
           })
         ) : (
-          <>
-            {!visit ? (
-              <AddNew
-                data={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-              />
-            ) : (
-              <div className="text-sm text-gray-400">No Data</div>
-            )}
-          </>
+          <NoData
+            size={48}
+            message="No Work Experience Provided"
+            className={"bg-background"}
+          />
         )}
       </div>
       {showInput && (

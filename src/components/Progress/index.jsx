@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { InterviewNotes } from "./InterviewNotes";
 import { ProgressTracker } from "./ProgressTracker";
 import { getUserProgress } from "../../store/middlewares/user";
+import { ProfileBlock } from "../Layouts/ProfileBlock";
+import { Block } from "../Layouts/Block";
 
 export const ProgressComponent = () => {
   const dispatch = useDispatch();
@@ -41,13 +43,13 @@ export const ProgressComponent = () => {
   }, [progress]);
 
   return (
-    <div className="px-3 md:px-10 py-3 md:py-6 h-full overflow-y-auto overflow-x-hidden">
-      <div className="h-auto md:h-1/2 mb-4">
+    <div className="px-3 md:px-10 py-3 md:py-6 h-full flex flex-col gap-4 overflow-y-auto overflow-x-hidden">
+      <Block title="Progress Tracker">
         <ProgressTracker data={points} progressData={progress} />
-      </div>
-      <div className="h-auto mt-4">
+      </Block>
+      <Block title="Interview Notes" style={{ minHeight: "50%" }}>
         <InterviewNotes data={notes} />
-      </div>
+      </Block>
     </div>
   );
 };

@@ -4,9 +4,9 @@ import { Button } from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteAvailability } from "../../store/middlewares/availability";
-import { getDataLabelFromKey } from "../../utils/data";
 import { CapsulList } from "../Capsul/CapsulList";
 import { ProfileBlock } from "../Layouts/ProfileBlock";
+import { NoData } from "../NoData";
 
 export const Schedules = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const Schedules = () => {
 
   return (
     <ProfileBlock title="Schedules" className="!bg-primary h-full">
-      <div>
+      <div className="h-full">
         {availabilities && availabilities.length ? (
           <div>
             {availabilities.map((avl) => {
@@ -74,7 +74,9 @@ export const Schedules = () => {
             })}
           </div>
         ) : (
-          <div className="text-xs text-gray-600">None Available</div>
+          <div className="h-2/3">
+            <NoData message="You have not scheduled any interview yet" />
+          </div>
         )}
       </div>
     </ProfileBlock>

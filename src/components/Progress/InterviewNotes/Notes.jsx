@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { NoData } from "../../NoData";
 
 export const Notes = ({ data = null }) => {
   const user = useSelector((state) => state.user.profile);
 
   return (
-    <div>
+    <div className="h-full">
       {data && data.length ? (
         <>
           {data.map((item) => {
@@ -46,7 +47,9 @@ export const Notes = ({ data = null }) => {
           })}
         </>
       ) : (
-        <div>No Notes</div>
+        <div className="h-2/3">
+          <NoData message={`No notes yet`} size={62} />
+        </div>
       )}
     </div>
   );

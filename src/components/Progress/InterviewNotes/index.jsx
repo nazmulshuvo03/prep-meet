@@ -20,8 +20,7 @@ export const InterviewNotes = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="bg-white h-full rounded-sm p-4">
-      <div className="text-xl font-medium text-text mb-3">Interview Notes</div>
+    <div className="bg-white !h-full rounded-md">
       <HorizontalTabs data={tabs} />
     </div>
   );

@@ -4,6 +4,8 @@ import { getDataLabelFromKey } from "../../utils/data";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import { IconButton } from "../Button/IconButton";
 import { CapsulList } from "../Capsul/CapsulList";
+import { Block } from "../Layouts/Block";
+import { NoData } from "../NoData";
 
 export const Upcoming = ({ data }) => {
   const deviceSize = useDeviceSize();
@@ -12,21 +14,23 @@ export const Upcoming = ({ data }) => {
   const allSkill = useSelector((state) => state.profession.allSkill);
 
   return (
-    <div className="rounded-md bg-white p-2 overflow-x-auto md:overflow-hidden">
-      <div className="text-xl font-semibold py-2">Upcoming Interviews</div>
-      <div
-        className="shadow-md rounded-md"
-        style={deviceSize === "sm" ? { width: "30rem" } : {}}
-      >
-        <div className="grid grid-cols-5 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
-          <div>Date</div>
-          <div>Type</div>
-          <div>Name</div>
-          <div>Company</div>
-          <div>Actions</div>
-        </div>
-        {data && data.length ? (
-          data.map((meeting, i) => {
+    <Block
+      title="Upcoming Interviews"
+      className="bg-white overflow-x-auto md:overflow-hidden"
+    >
+      {data && data.length ? (
+        <div
+          className="shadow-md rounded-md"
+          style={deviceSize === "sm" ? { width: "30rem" } : {}}
+        >
+          <div className="grid grid-cols-5 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
+            <div>Date</div>
+            <div>Type</div>
+            <div>Name</div>
+            <div>Company</div>
+            <div>Actions</div>
+          </div>
+          {data.map((meeting, i) => {
             const meetingUser =
               profile.id === meeting.acceptor
                 ? meeting.initiatorProfile
@@ -73,11 +77,11 @@ export const Upcoming = ({ data }) => {
                 </div>
               </div>
             );
-          })
-        ) : (
-          <div>No Data</div>
-        )}
-      </div>
-    </div>
+          })}
+        </div>
+      ) : (
+        <NoData message="No upcoming interviews" />
+      )}
+    </Block>
   );
 };

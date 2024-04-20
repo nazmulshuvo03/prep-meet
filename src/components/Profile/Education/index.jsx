@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
+import { NoData } from "../../NoData";
 
 const DEFAULT_DATA = {
   degree: "",
@@ -74,7 +75,7 @@ export const Education = ({ visit = false }) => {
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
         <div className="text-lg font-semibold uppercase">Education</div>
-        {!visit && profile.education && profile.education.length > 0 ? ( // If there is no data added, input fields will be open by default
+        {!visit ? (
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
             onClick={() => setShowInput(true)}
@@ -99,17 +100,11 @@ export const Education = ({ visit = false }) => {
             );
           })
         ) : (
-          <>
-            {!visit ? (
-              <AddNew
-                data={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-              />
-            ) : (
-              <div className="text-sm text-gray-400">No Data</div>
-            )}
-          </>
+          <NoData
+            size={48}
+            message="No Educational Background Provided"
+            className={"bg-background"}
+          />
         )}
       </div>
       {showInput && (

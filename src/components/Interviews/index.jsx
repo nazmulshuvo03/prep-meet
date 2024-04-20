@@ -72,15 +72,11 @@ export const Meetings = () => {
 
   return (
     <div className="px-3 md:px-10 py-3 md:py-6 pb-2  h-full overflow-y-auto overflow-x-hidden">
-      {meetings && meetings.length ? (
-        <div className="grid grid-cols-1 gap-4">
-          <MostRecent data={mostRecent} />
-          <Upcoming data={upcoming} />
-          <Past data={past} />
-        </div>
-      ) : (
-        <div className="text-center mt-20">You have no upcoming interviews</div>
-      )}
+      <div className="grid grid-cols-1 gap-4">
+        <MostRecent data={mostRecent} />
+        <Upcoming data={upcoming} />
+        <Past data={past} />
+      </div>
       {openReview && (
         <Modal
           handleClose={() => {

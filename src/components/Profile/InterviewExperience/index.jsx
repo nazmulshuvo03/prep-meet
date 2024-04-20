@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
+import { NoData } from "../../NoData";
 
 const DEFAULT_DATA = {
   role: null,
@@ -74,9 +75,7 @@ export const InterviewExperience = ({ visit = false }) => {
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
         <div className="font-semibold uppercase">Interview Experiences</div>
-        {!visit &&
-        profile.interviewExperiences &&
-        profile.interviewExperiences.length > 0 ? ( // If there is no data added, input fields will be open by default
+        {!visit ? (
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
             onClick={() => setShowInput(true)}
@@ -103,17 +102,11 @@ export const InterviewExperience = ({ visit = false }) => {
             );
           })
         ) : (
-          <>
-            {!visit ? (
-              <AddNew
-                data={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-              />
-            ) : (
-              <div className="text-sm text-gray-400">No Data</div>
-            )}
-          </>
+          <NoData
+            size={48}
+            message="No Interview Experience Provided"
+            className={"bg-background"}
+          />
         )}
       </div>
       {showInput && (

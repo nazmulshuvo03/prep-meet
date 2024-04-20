@@ -6,6 +6,8 @@ import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { Button } from "../Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Modal } from "../Modal";
+import { Block } from "../Layouts/Block";
+import { NoData } from "../NoData";
 
 export const MostRecent = ({ data }) => {
   const history = useHistory();
@@ -77,8 +79,7 @@ export const MostRecent = ({ data }) => {
   };
 
   return (
-    <div className="rounded-md bg-white p-2">
-      <div className="text-xl font-semibold pt-2 pb-6">Next Interview</div>
+    <Block title="Next Interview" className="rounded-md bg-white p-2">
       {data && meetingUser ? (
         <div className="grid grid-cols-4 md:grid-cols-3 gap-4 justify-between items-center">
           <div className="col-span-4 md:col-span-1 border-l-2 px-1">
@@ -207,7 +208,7 @@ export const MostRecent = ({ data }) => {
           </div>
         </div>
       ) : (
-        <div>You have no interview</div>
+        <NoData size={48} message="No interview scheduled" />
       )}
       {showNote && (
         <Modal handleClose={() => setShowNote(false)} className="w-1/3">
@@ -217,6 +218,6 @@ export const MostRecent = ({ data }) => {
           </div>
         </Modal>
       )}
-    </div>
+    </Block>
   );
 };
