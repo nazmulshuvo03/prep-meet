@@ -82,7 +82,7 @@ export const WorkInfo = ({ data = null }) => {
     <>
       {data ? (
         <div className="flex flex-col h-full w-full md:pl-6">
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             {tags && tags.length ? (
               <>
                 {tags.map((tag) => (

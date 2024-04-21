@@ -100,7 +100,7 @@ export const Target = ({ visit = false }) => {
         <></>
       )}
       {editMode && (
-        <Modal className="!w-11/12 !md:w-2/3">
+        <Modal className="!w-11/12 !md:w-2/3 !h-4/5">
           <EditTarget
             handleDone={() => setEditMode(false)}
             handleClose={() => setEditMode(false)}

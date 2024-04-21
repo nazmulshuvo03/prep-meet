@@ -95,7 +95,7 @@ export const EditTarget = ({
           <FontAwesomeIcon icon={faClose} className="text-gray-500 text-2xl" />
         </IconButton>
       </div>
-      <div className="py-6 grid grid-cols-2 gap-4">
+      <div className="py-6 flex flex-col md:grid md:grid-cols-2 gap-4">
         <Input
           label={"First Name"}
           name={"firstName"}
@@ -108,7 +108,7 @@ export const EditTarget = ({
           value={state.lastName}
           onChange={handleChange}
         />
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <MultiInputDropdown
             label="Target Companies"
             name="companiesOfInterest"
