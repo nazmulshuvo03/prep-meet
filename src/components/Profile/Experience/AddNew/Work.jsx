@@ -1,17 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../../Button";
-import { Dropdown } from "../../Dropdown";
-import { Input } from "../../Input";
-import { addCompany } from "../../../store/middlewares/static";
-import { DateInput } from "../../Input/DateInput";
-import { Checkbox } from "../../Checkbox";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Dropdown } from "../../../Dropdown";
+import { Input } from "../../../Input";
+import { addCompany } from "../../../../store/middlewares/static";
+import { DateInput } from "../../../Input/DateInput";
+import { Checkbox } from "../../../Checkbox";
 
-export const AddNew = ({
-  data,
-  handleChange = () => {},
-  handleSubmit = () => {},
-}) => {
+export const Work = ({ data, handleChange = () => {} }) => {
   const dispatch = useDispatch();
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels
@@ -27,7 +22,7 @@ export const AddNew = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <>
       <div className="grid grid-cols-3 items-baseline justify-between gap-4">
         <Dropdown
           label="Company"
@@ -100,11 +95,6 @@ export const AddNew = ({
           onChange={handleChange}
         />
       </div>
-      <div className="flex justify-center mt-auto">
-        <Button size="small" className={"!bg-secondary"} onClick={handleSubmit}>
-          Save
-        </Button>
-      </div>
-    </div>
+    </>
   );
 };

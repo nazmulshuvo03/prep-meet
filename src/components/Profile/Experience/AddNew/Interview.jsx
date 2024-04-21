@@ -1,18 +1,13 @@
 import { useSelector } from "react-redux";
-import { Button } from "../../Button";
-import { Dropdown } from "../../Dropdown";
+import { Dropdown } from "../../../Dropdown";
 
-export const AddNew = ({
-  data,
-  handleChange = () => {},
-  handleSubmit = () => {},
-}) => {
+export const Interview = ({ data, handleChange = () => {} }) => {
   const professions = useSelector((state) => state.profession.items);
   const companies = useSelector((state) => state.static.companies);
   const { role, companyId } = data;
 
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <>
       <Dropdown
         name={"role"}
         value={role || ""}
@@ -29,11 +24,6 @@ export const AddNew = ({
           label="Company"
         />
       </div>
-      <div className="flex justify-center mt-auto">
-        <Button size="small" className={"!bg-secondary"} onClick={handleSubmit}>
-          Save
-        </Button>
-      </div>
-    </div>
+    </>
   );
 };

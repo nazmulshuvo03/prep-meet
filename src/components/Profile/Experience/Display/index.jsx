@@ -1,42 +1,33 @@
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Work } from "./Work";
+import { Education } from "./Education";
+import { Interview } from "./Interview";
 
 export const Display = ({
   data,
+  title,
   handleEditClick = () => {},
   handleDeleteClick = () => {},
   visit = false,
 }) => {
-  const professions = useSelector((state) => state.profession.items);
+  const experienceLevels = useSelector(
+    (state) => state.static.experienceLevels
+  );
   const companies = useSelector((state) => state.static.companies);
 
   return (
     <div className="px-2 relative pb-3 flex justify-between items-start">
-      <div>
-        <div
-          className="border-l-2 border-gray-200 absolute"
-          style={{ height: "100%", top: 10, left: -2 }}
-        />
-        <div
-          className="text-gray-300 absolute"
-          style={{ fontSize: 30, top: -11, left: -5 }}
-        >
-          &middot;
-        </div>
-        <div className="flex items-center justify-between text-sm font-semibold">
-          <div>{professions.find((prf) => prf.id === data.role)?.name}</div>
-        </div>
-        <div className="text-sm font-medium">
-          {companies &&
-            companies.length &&
-            companies.filter(
-              (company) => company.id === parseInt(data.companyId)
-            )[0]?.name}
-          {", "}
-          {data.country}
-        </div>
-      </div>
+      {title === "Work Experience" ? (
+        <Work data={data} />
+      ) : title === "Education" ? (
+        <Education data={data} />
+      ) : title === "Interview Experience" ? (
+        <Interview data={data} />
+      ) : (
+        <div />
+      )}
       {!visit ? (
         <div className="flex gap-2 text-xs">
           <div

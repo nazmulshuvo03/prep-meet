@@ -1,80 +1,36 @@
-import { useState } from "react";
 import { Button } from "../../Button";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addEducation,
-  deleteEducation,
-  editEducation,
-} from "../../../store/middlewares/education";
+import { useSelector } from "react-redux";
 import { AddNew } from "./AddNew";
 import { Display } from "./Display";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
+import { MandatoryStar } from "../../MandatoryStar";
 import { NoData } from "../../NoData";
 
-const DEFAULT_DATA = {
-  degree: "",
-  major: "",
-  institution: "",
-  year_of_graduation: "",
-};
-
-export const Education = ({ visit = false }) => {
-  const dispatch = useDispatch();
-  const profile = useSelector((state) =>
-    visit ? state.user.visitingProfile : state.user.profile
-  );
-  const [editItem, setEditItem] = useState();
-  const [showInput, setShowInput] = useState(false);
-  const [formData, setFormData] = useState(DEFAULT_DATA);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = () => {
-    const fullData = {
-      user_id: profile.id,
-      ...formData,
-    };
-    if (editItem) {
-      dispatch(editEducation(editItem, fullData));
-      setEditItem();
-    } else {
-      dispatch(addEducation(fullData));
-    }
-    setShowInput(false);
-    setFormData(DEFAULT_DATA);
-  };
-
-  const handleEditClick = (id) => {
-    const data = profile.education.find((we) => we.id === id);
-    setFormData({
-      ...data,
-    });
-    setEditItem(data.id);
-    setShowInput(true);
-  };
-
-  const handleEditClose = () => {
-    setShowInput(false);
-    setFormData(DEFAULT_DATA);
-  };
-
-  const handleDeleteClick = (id) => {
-    dispatch(deleteEducation(id));
-  };
+export const Experience = ({
+  title = "",
+  data,
+  formData,
+  showInput,
+  setShowInput,
+  handleEditClick,
+  handleDeleteClick,
+  editItem,
+  handleEditClose,
+  handleChange,
+  handleSubmit,
+  visit = false,
+}) => {
+  const completionStatus = useSelector((state) => state.user.completionStatus);
 
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
-        <div className="text-lg font-semibold uppercase">Education</div>
+        <div className="text-lg font-semibold uppercase">
+          {title} {!completionStatus.workExperiences && <MandatoryStar />}
+        </div>
         {!visit ? (
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
@@ -87,12 +43,13 @@ export const Education = ({ visit = false }) => {
         )}
       </div>
       <div className="pt-4 pb-2">
-        {profile && profile.education && profile.education.length ? (
-          profile.education.map((ed) => {
+        {data && data.length ? (
+          data.map((wp) => {
             return (
               <Display
-                data={ed}
-                key={ed.id}
+                key={wp.id}
+                data={wp}
+                title={title}
                 handleEditClick={handleEditClick}
                 handleDeleteClick={handleDeleteClick}
                 visit={visit}
@@ -102,7 +59,7 @@ export const Education = ({ visit = false }) => {
         ) : (
           <NoData
             size={48}
-            message="No Educational Background Provided"
+            message="No Work Experience Provided"
             className={"bg-background"}
           />
         )}
@@ -112,7 +69,7 @@ export const Education = ({ visit = false }) => {
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between pb-4">
               <div className="text-lg font-semibold uppercase">
-                {!editItem ? "Add" : "Edit"} Education
+                {!editItem ? "Add" : "Edit"} {title}
               </div>
               <IconButton onClick={handleEditClose}>
                 <FontAwesomeIcon
@@ -123,6 +80,7 @@ export const Education = ({ visit = false }) => {
             </div>
             <AddNew
               data={formData}
+              title={title}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
             />
