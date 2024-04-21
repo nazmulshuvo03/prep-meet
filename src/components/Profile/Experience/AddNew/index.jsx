@@ -10,7 +10,7 @@ export const AddNew = ({
   handleSubmit = () => {},
 }) => {
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <div className="flex-1 flex flex-col gap-2 pb-4">
       {title === "Work Experience" ? (
         <Work data={data} handleChange={handleChange} />
       ) : title === "Education" ? (

@@ -15,7 +15,7 @@ export const Interview = ({ data, handleChange = () => {} }) => {
         onSelect={handleChange}
         label="Role"
       />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         <Dropdown
           name={"companyId"}
           value={companyId || ""}

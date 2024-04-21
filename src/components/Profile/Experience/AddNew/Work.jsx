@@ -23,7 +23,7 @@ export const Work = ({ data, handleChange = () => {} }) => {
 
   return (
     <>
-      <div className="grid grid-cols-3 items-baseline justify-between gap-4">
+      <div className="grid md:grid-cols-3 items-baseline justify-between gap-4">
         <Dropdown
           label="Company"
           name={"companyId"}
@@ -73,7 +73,7 @@ export const Work = ({ data, handleChange = () => {} }) => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-4">
         <Input
           label="Role"
           name="jobTitle"
