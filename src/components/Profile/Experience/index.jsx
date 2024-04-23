@@ -1,12 +1,10 @@
 import { Button } from "../../Button";
-import { useSelector } from "react-redux";
 import { AddNew } from "./AddNew";
 import { Display } from "./Display";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
-import { MandatoryStar } from "../../MandatoryStar";
 import { NoData } from "../../NoData";
 
 export const Experience = ({
@@ -23,14 +21,10 @@ export const Experience = ({
   handleSubmit,
   visit = false,
 }) => {
-  const completionStatus = useSelector((state) => state.user.completionStatus);
-
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
-        <div className="text-lg font-semibold uppercase">
-          {title} {!completionStatus.workExperiences && <MandatoryStar />}
-        </div>
+        <div className="text-lg font-semibold uppercase">{title}</div>
         {!visit ? (
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"

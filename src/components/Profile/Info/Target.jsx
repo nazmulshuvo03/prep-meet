@@ -26,6 +26,7 @@ export const Target = ({ visit = false }) => {
   const allExperienceType = useSelector(
     (state) => state.profession.allExperienceType
   );
+  const completionStatus = useSelector((state) => state.user.completionStatus);
   const [editMode, setEditMode] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -49,6 +50,7 @@ export const Target = ({ visit = false }) => {
           optionArray={companies}
           size="big"
           tooltip={true}
+          star={!completionStatus.companiesOfInterest}
         />
         <TargetItem
           title="Target Role"
@@ -68,6 +70,7 @@ export const Target = ({ visit = false }) => {
                 ) || ""
               : ""
           }
+          star={!completionStatus.experienceLevel}
         />
         <TargetItem
           title="Stage of Interviewing"
@@ -79,16 +82,19 @@ export const Target = ({ visit = false }) => {
                 ) || ""
               : ""
           }
+          star={!completionStatus.preparationStage}
         />
         <TargetItem
-          title="Focus Area"
+          title="Focus Areas"
           valueArray={profile.focusAreas}
           optionArray={allSkill}
+          star={!completionStatus.focusAreas}
         />
         <TargetItem
           title="Experience Types"
           valueArray={profile.typesOfExperience}
           optionArray={allExperienceType}
+          star={!completionStatus.typesOfExperience}
         />
       </div>
 

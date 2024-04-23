@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { isAllTrue } from "../../utils/object";
 import { Tooltip } from "../Tooltip";
 import { AdditionalInfo } from "../Profile/Reviews/AdditionalInfo";
+import { completionRemaining } from "../../utils/profile";
 
 export const ActionArea = ({
   data = null,
@@ -73,8 +74,11 @@ export const ActionArea = ({
                 text={
                   isAllTrue(completionStatus)
                     ? ""
-                    : "Complete your profile to start scheduling!"
+                    : `Provide ${completionRemaining(
+                        completionStatus
+                      )} to complete profile`
                 }
+                className={"!whitespace-normal"}
               >
                 Next Available {getDateDescription(latest.dayHour)}{" "}
                 {convertISOUTCDayTimeToLocalDayTime(latest.dayHourUTC).time}

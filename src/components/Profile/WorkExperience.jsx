@@ -7,6 +7,7 @@ import {
 } from "../../store/middlewares/workExperience";
 import { formatPostgresDate, htmlDateInputFormat } from "../../utils/timeDate";
 import { Experience } from "./Experience";
+import { MandatoryStar } from "../MandatoryStar";
 
 const DEFAULT_DATA = {
   jobTitle: "",
@@ -22,6 +23,7 @@ export const WorkExperience = ({ visit }) => {
   const profile = useSelector((state) =>
     visit ? state.user.visitingProfile : state.user.profile
   );
+  const completionStatus = useSelector((state) => state.user.completionStatus);
 
   const [editItem, setEditItem] = useState();
   const [showInput, setShowInput] = useState(false);
@@ -86,7 +88,12 @@ export const WorkExperience = ({ visit }) => {
   return (
     <Experience
       {...{
-        title: "Work Experience",
+        title: (
+          <div>
+            Work Experience{" "}
+            {!completionStatus.workExperiences && <MandatoryStar />}
+          </div>
+        ),
         data: profile.workExperiences,
         formData,
         showInput,

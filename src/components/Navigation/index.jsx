@@ -10,6 +10,7 @@ import { TabNavigation } from "./TabNavigation";
 import { Drawer } from "../Drawer";
 import { Banner } from "../Banner";
 import { isAllTrue } from "../../utils/object";
+import { completionRemaining } from "../../utils/profile";
 
 export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
@@ -55,9 +56,9 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
       {completionStatus && !isAllTrue(completionStatus) && (
         <Banner
           className="!bg-red-500"
-          text={
-            "Your profile is not complete at this moment. Please fill up all the * marked fileds"
-          }
+          text={`Profile is not complete at this moment. You will have to provide ${completionRemaining(
+            completionStatus
+          )}.`}
         />
       )}
       <div className="bg-primary flex justify-between w-full h-16 items-center px-5 z-10">

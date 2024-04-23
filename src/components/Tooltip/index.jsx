@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Tooltip = ({ text = "", children }) => {
+export const Tooltip = ({ text = "", className, children }) => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const handleMouseEnter = () => {
@@ -12,9 +12,12 @@ export const Tooltip = ({ text = "", children }) => {
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="relative">
       {isTooltipVisible && text && (
-        <div className="absolute z-10 px-2 py-2 text-xs font-light text-white bg-gray-600 rounded-md whitespace-nowrap bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2">
+        <div
+          className={`absolute max-w-60 h-fit z-10 px-2 py-2 text-xs font-light text-white bg-gray-600 
+          rounded-md whitespace-nowrap bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 ${className}`}
+        >
           {text}
           <svg
             className="absolute text-gray-800 h-2 w-full left-1/2 transform -translate-x-1/2 top-full"
@@ -26,11 +29,7 @@ export const Tooltip = ({ text = "", children }) => {
           </svg>
         </div>
       )}
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className="inline-block"
-      >
+      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {children}
       </div>
     </div>
