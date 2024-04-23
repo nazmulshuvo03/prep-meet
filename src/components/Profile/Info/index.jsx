@@ -54,12 +54,10 @@ export const Info = ({ visit = false }) => {
               {!visit && profile.email ? (
                 <div className="flex gap-2 items-center">
                   <FontAwesomeIcon
-                    className="text-xs text-gray-500"
+                    className="text-gray-500 h-3 w-3"
                     icon={faEnvelope}
                   />
-                  <div className="text-xs md:text-base text-gray-500">
-                    {profile.email}
-                  </div>
+                  <div className="text-xs text-gray-500">{profile.email}</div>
                 </div>
               ) : (
                 ""

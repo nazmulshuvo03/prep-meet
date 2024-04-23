@@ -52,17 +52,17 @@ export const UserName = ({ visit = false }) => {
 
   return (
     <div className="flex gap-2 items-center">
-      <FontAwesomeIcon className="text-xs text-gray-500" icon={faUser} />
+      <FontAwesomeIcon className="text-gray-500 h-3 w-3" icon={faUser} />
       {editMode ? (
         <UnderlineInput
           value={userName || ""}
           onChange={(e) => setUserName(e.target.value)}
-          className={`text-xs md:text-base ${
+          className={`text-xs ${
             alreadyExists ? "border-red-500 !text-red-500" : ""
           }`}
         />
       ) : (
-        <div className="text-xs md:text-base text-gray-500 w-32">
+        <div className="text-xs text-gray-500 w-32">
           {userName ? userName : "User Name"}
         </div>
       )}
@@ -76,7 +76,7 @@ export const UserName = ({ visit = false }) => {
                   className={"!bg-transparent !text-gray-500 !p-0"}
                 >
                   <FontAwesomeIcon
-                    className="text-xs text-gray-500"
+                    className="text-gray-500 h-3 w-3"
                     icon={faSave}
                   />
                 </IconButton>
@@ -86,7 +86,7 @@ export const UserName = ({ visit = false }) => {
                 className={"!bg-transparent !text-gray-500 !p-0"}
               >
                 <FontAwesomeIcon
-                  className="text-sm text-gray-500"
+                  className="text-gray- h-3 w-3"
                   icon={faClose}
                 />
               </IconButton>
@@ -96,7 +96,7 @@ export const UserName = ({ visit = false }) => {
               onClick={() => setEditMode(true)}
               className={"!bg-transparent !text-gray-500 !p-0"}
             >
-              <FontAwesomeIcon className="text-xs text-gray-500" icon={faPen} />
+              <FontAwesomeIcon className="text-gray-500 h-3 w-3" icon={faPen} />
             </IconButton>
           )}
         </>
