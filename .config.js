@@ -8,8 +8,8 @@ export const config = devMode
         "https://candidace-public-storage.s3.ap-south-1.amazonaws.com",
     }
   : {
-      SERVER_URL: "https://candidace.fyi",
-      FRONTEND_URL: "https://candidace.fyi",
+      SERVER_URL: "http://candidace.fyi",
+      FRONTEND_URL: "http://candidace.fyi",
       STORAGE_URL:
         "https://candidace-public-storage.s3.ap-south-1.amazonaws.com",
     };
