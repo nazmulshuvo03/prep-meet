@@ -74,7 +74,7 @@ function App() {
         <div
           className={`bg-background text-text h-full w-full flex flex-col overflow-y-auto`}
         >
-          <div className="w-full h-16">
+          <div className="w-full">
             <Navigation {...{ scrollToHowItWorks, scrollToFaqs }} />
           </div>
           <div

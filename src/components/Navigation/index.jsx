@@ -8,6 +8,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { TabNavigation } from "./TabNavigation";
 import { Drawer } from "../Drawer";
+import { Banner } from "../Banner";
 
 export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
@@ -44,12 +45,12 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
 
   return (
     <>
-      {/* <Banner
+      <Banner
         text={
           "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
         }
-      /> */}
-      <div className="bg-primary flex justify-between w-full h-full items-center px-5 z-10">
+      />
+      <div className="bg-primary flex justify-between w-full h-16 items-center px-5 z-10">
         {isAuthenticated && (
           <div className="visible md:hidden">
             <IconButton onClick={() => setOpenTabNavs((prev) => !prev)}>
@@ -58,7 +59,7 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
           </div>
         )}
         <div className="text-3xl font-semibold opacity-75 ">
-          <NavLink to={"/"} className="text-gray-900">
+          <NavLink to={"/profile"} className="text-gray-900">
             Candidace
           </NavLink>
         </div>
