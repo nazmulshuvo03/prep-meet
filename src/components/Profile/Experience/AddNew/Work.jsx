@@ -31,7 +31,6 @@ export const Work = ({ data, handleChange = () => {} }) => {
           options={companies}
           onSelect={handleChange}
           defaultText="Company"
-          allowAddNew={true}
           addNewAction={handleAddNewCompany}
         />
         <DateInput

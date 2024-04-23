@@ -116,7 +116,6 @@ export const EditTarget = ({
             options={companies}
             onSelect={handleChange}
             defaultText={"Select upto 5"}
-            allowAddNew={true}
             addNewAction={handleAddNewCompany}
           />
         </div>

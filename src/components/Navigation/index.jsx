@@ -55,7 +55,7 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
       />
       {completionStatus && !isAllTrue(completionStatus) && (
         <Banner
-          className="!bg-red-500"
+          className="!bg-red-800 !text-white !font-normal"
           text={`Profile is not complete at this moment. You will have to provide ${completionRemaining(
             completionStatus
           )}.`}

@@ -22,7 +22,9 @@ export const DropdownSearch = ({
       query.length &&
       filteredOptions &&
       !filteredOptions.length ? (
-        <Button onClick={handleAddNewClick}>Add New</Button>
+        <Button onClick={handleAddNewClick} className={"!rounded-lg ml-1"}>
+          Add
+        </Button>
       ) : (
         <div />
       )}

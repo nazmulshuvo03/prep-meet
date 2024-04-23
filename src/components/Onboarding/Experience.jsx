@@ -73,7 +73,6 @@ export const Experience = ({
             options={professions}
             onSelect={handleWorkChange}
             label="Job Title"
-            allowAddNew={false}
           />
           <div className="grid grid-cols-2 gap-4">
             <Dropdown
@@ -82,7 +81,6 @@ export const Experience = ({
               options={companies}
               onSelect={handleWorkChange}
               label="Company"
-              allowAddNew={false}
             />
             <Input
               label="Country"

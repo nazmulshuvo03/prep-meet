@@ -1,3 +1,4 @@
+import { NoData } from "../NoData";
 import { MultiOption } from "./MultiOption";
 import { Option } from "./Option";
 import { DropdownSearch } from "./Search";
@@ -56,7 +57,9 @@ export const Options = ({
               </div>
             ))
           ) : (
-            <div>Empty</div>
+            <div className="h-fit flex items-center justify-center">
+              <NoData />
+            </div>
           )}
         </div>
       </div>

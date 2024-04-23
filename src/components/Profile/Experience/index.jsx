@@ -57,7 +57,7 @@ export const Experience = ({
         ) : (
           <NoData
             size={48}
-            message="No Work Experience Provided"
+            message={`No ${title} Provided`}
             className={"bg-background"}
           />
         )}
