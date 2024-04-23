@@ -124,16 +124,14 @@ export const personTag = (user, person, skillsList) => {
       );
     }
     if (
-      focusAreaIncludes(skillsList, person.focusAreas, "Analytics & Metrics")
+      focusAreaIncludes(skillsList, person.focusAreas, "Analytical & Metrics")
     ) {
       tags.push(
-        newTag(7, `Analytics & Metrics`, 5, "text-yellow-700", "bg-yellow-100")
+        newTag(7, `Analytical & Metrics`, 5, "text-yellow-700", "bg-yellow-100")
       );
     }
-    if (focusAreaIncludes(skillsList, person.focusAreas, "Behavioural")) {
-      tags.push(
-        newTag(8, `Behavioural`, 5, "text-yellow-700", "bg-yellow-100")
-      );
+    if (focusAreaIncludes(skillsList, person.focusAreas, "Behavioral")) {
+      tags.push(newTag(8, `Behavioral`, 5, "text-yellow-700", "bg-yellow-100"));
     }
   }
   return tags;

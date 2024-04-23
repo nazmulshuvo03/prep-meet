@@ -96,8 +96,8 @@ function App() {
                     <AppNavigation />
                     <div className="flex-1">
                       <Route exact path="/profile/:userId" component={Home} />
-                      <Route exact path="/profile" component={Profile} />
                       <Route exact path="/people" component={People} />
+                      <Route exact path="/profile" component={Profile} />
                       <Route exact path="/progress" component={Progress} />
                       <Route exact path="/interviews" component={Interviews} />
                       <Route exact path="/user/:userId" component={Visit} />
