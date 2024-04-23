@@ -9,11 +9,13 @@ import { useState } from "react";
 import { TabNavigation } from "./TabNavigation";
 import { Drawer } from "../Drawer";
 import { Banner } from "../Banner";
+import { isAllTrue } from "../../utils/object";
 
 export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
+  const completionStatus = useSelector((state) => state.user.completionStatus);
 
   const [openTabNavs, setOpenTabNavs] = useState(false);
 
@@ -50,6 +52,14 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
           "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
         }
       />
+      {completionStatus && !isAllTrue(completionStatus) && (
+        <Banner
+          className="!bg-red-500"
+          text={
+            "Your profile is not complete at this moment. Please fill up all the * marked fileds"
+          }
+        />
+      )}
       <div className="bg-primary flex justify-between w-full h-16 items-center px-5 z-10">
         {isAuthenticated && (
           <div className="visible md:hidden">
