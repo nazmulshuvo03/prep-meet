@@ -88,12 +88,7 @@ export const WorkExperience = ({ visit }) => {
   return (
     <Experience
       {...{
-        title: (
-          <div>
-            Work Experience{" "}
-            {!completionStatus.workExperiences && <MandatoryStar />}
-          </div>
-        ),
+        title: "Work Experience",
         data: profile.workExperiences,
         formData,
         showInput,
@@ -104,6 +99,7 @@ export const WorkExperience = ({ visit }) => {
         handleEditClose,
         handleChange,
         handleSubmit,
+        star: !completionStatus.workExperiences,
         visit,
       }}
     />

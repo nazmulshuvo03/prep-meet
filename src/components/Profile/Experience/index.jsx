@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "../../Modal";
 import { IconButton } from "../../Button/IconButton";
+import { MandatoryStar } from "../../MandatoryStar";
 import { NoData } from "../../NoData";
 
 export const Experience = ({
@@ -19,12 +20,15 @@ export const Experience = ({
   handleEditClose,
   handleChange,
   handleSubmit,
+  star = false,
   visit = false,
 }) => {
   return (
     <div className="flex flex-col mb-6">
       <div className="flex items-center justify-between">
-        <div className="text-lg font-semibold uppercase">{title}</div>
+        <div className="text-lg font-semibold uppercase">
+          {title} {star && <MandatoryStar />}
+        </div>
         {!visit ? (
           <Button
             className="!bg-transparent !text-gray-500 !p-0 text-2xl"
