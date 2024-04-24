@@ -7,7 +7,7 @@ export const completionRemaining = (obj) => {
   } else if (falses.length === 2) {
     return `${falses[0]} and ${falses[1]}`;
   } else if (falses.length === 1) {
-    return `only ${falses[0]}`;
+    return `${falses[0]}`;
   } else {
     return `all required items`;
   }

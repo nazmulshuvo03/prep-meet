@@ -20,7 +20,7 @@ export const ProfileAvatar = () => {
 
   return (
     <div
-      className="relative w-fit h-fit rounded-full z-50"
+      className="relative w-fit h-fit rounded-full z-20"
       onMouseEnter={handleAvatarHover}
       onMouseLeave={handleAvatarLeave}
     >

@@ -54,7 +54,7 @@ export const PersonCard = ({ data }) => {
         <ActionArea data={data} onNextAvailableClick={setSelectedBook} />
       </div>
       {selectedBook ? (
-        <Modal handleClose={() => setSelectedBook()} className="!w-1/2 !h-2/3">
+        <Modal handleClose={() => setSelectedBook()} className="md:w-2/3">
           <BookSlot
             data={data}
             selected={selectedBook}
