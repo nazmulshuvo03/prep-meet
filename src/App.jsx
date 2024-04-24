@@ -32,6 +32,7 @@ import Progress from "./routes/Progress";
 import AboutUs from "./routes/AboutUs";
 import HowItWorks from "./routes/HowItWorks";
 import Faqs from "./routes/Faqs";
+import ModalMessage from "./components/ModalMessages";
 
 function App() {
   const dispatch = useDispatch();
@@ -113,6 +114,7 @@ function App() {
       </Router>
       {global?.loading && <CircularProgress />}
       {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
+      {global?.modalMessageData && <ModalMessage />}
     </div>
   );
 }

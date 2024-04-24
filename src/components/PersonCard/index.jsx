@@ -15,16 +15,16 @@ export const PersonCard = ({ data }) => {
     (state) => state.static.preparationStages
   );
 
-  const [selectedBook, setSelectedBook] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(false);
 
   const handleBook = async () => {
     const payload = {
-      availabilityId: selectedBook.id,
+      availabilityId: selectedSlot.id,
       acceptorId: user.id,
       initiatorId: data.id,
     };
     await dispatch(createMeeting(payload, "people"));
-    setSelectedBook();
+    setSelectedSlot();
   };
 
   return (
@@ -51,15 +51,15 @@ export const PersonCard = ({ data }) => {
         </div>
       </div>
       <div className="pt-2">
-        <ActionArea data={data} onNextAvailableClick={setSelectedBook} />
+        <ActionArea data={data} onNextAvailableClick={setSelectedSlot} />
       </div>
-      {selectedBook ? (
-        <Modal handleClose={() => setSelectedBook()} className="md:w-2/3">
+      {selectedSlot ? (
+        <Modal handleClose={() => setSelectedSlot()} className="md:w-2/3">
           <BookSlot
             data={data}
-            selected={selectedBook}
-            setSelected={setSelectedBook}
-            handleClose={() => setSelectedBook()}
+            selected={selectedSlot}
+            setSelected={setSelectedSlot}
+            handleClose={() => setSelectedSlot()}
             handleBook={handleBook}
           />
         </Modal>

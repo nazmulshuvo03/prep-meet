@@ -30,6 +30,7 @@ const Toast = ({
 
   const handleClose = () => {
     setVisible(false);
+    dispatch(setToastMessage(null));
     onClose && onClose();
   };
 

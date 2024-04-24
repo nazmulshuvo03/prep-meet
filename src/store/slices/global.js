@@ -8,6 +8,7 @@ const globalSlice = createSlice({
     dark: false,
     loading: false,
     toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
+    modalMessageData: null,
     dashboardQuery: {},
   },
   reducers: {
@@ -26,6 +27,9 @@ const globalSlice = createSlice({
     setToastMessage: (state, data) => {
       state.toastMessage = data.payload;
     },
+    setModalMessageData: (state, data) => {
+      state.modalMessageData = data.payload;
+    },
   },
 });
 
@@ -35,6 +39,7 @@ export const {
   setTheme,
   setDashboardQuery,
   setToastMessage,
+  setModalMessageData,
 } = globalSlice.actions;
 export const selectTheme = (state) => state.global.dark;
 export const switchLoading = (state) => !state.global.switchLoading;

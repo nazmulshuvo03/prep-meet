@@ -4,9 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconButton } from "../Button/IconButton";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../Button";
-import { getDataLabelFromKey } from "../../utils/data";
 import { useSelector } from "react-redux";
-import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
 import { CapsulList } from "../Capsul/CapsulList";
 
 export const BookSlot = ({
@@ -73,7 +71,9 @@ export const BookSlot = ({
                                   ? "bg-gray-300 border border-gray-300"
                                   : "cursor-pointer bg-transparent border border-secondary"
                               } text-sm font-normal rounded-lg px-4 py-2`}
-                              onClick={() => setSelected(hour)}
+                              onClick={() =>
+                                hour.state !== "BOOKED" && setSelected(hour)
+                              }
                             >
                               {
                                 convertISOUTCDayTimeToLocalDayTime(

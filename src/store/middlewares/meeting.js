@@ -8,7 +8,11 @@ import {
 } from "../../services/urls/meeting";
 import { updateAvailabilityState } from "../slices/availability";
 import { setMeetingDetails, setUserMeetings } from "../slices/meeting";
-import { setLoading, setToastMessage } from "../slices/global";
+import {
+  setLoading,
+  setModalMessageData,
+  setToastMessage,
+} from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
 import {
   updatePeopleAvailability,
@@ -36,12 +40,14 @@ export const createMeeting = (
         dispatch(updateAvailabilityState(res.data));
         if (page === "visit") dispatch(updateVisitorProfileAvailability(data));
         if (page === "people") dispatch(updatePeopleAvailability(data));
-        dispatch(
-          setToastMessage({
-            type: TOAST_TYPES[0],
-            message: "Meeting scheduled",
-          })
-        );
+        const messageData = { name: "meetingSuccess", ...res.data };
+        dispatch(setModalMessageData(messageData));
+        // dispatch(
+        //   setToastMessage({
+        //     type: TOAST_TYPES[0],
+        //     message: "Meeting scheduled",
+        //   })
+        // );
       },
       () => {
         dispatch(
