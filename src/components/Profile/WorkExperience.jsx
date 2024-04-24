@@ -99,7 +99,7 @@ export const WorkExperience = ({ visit }) => {
         handleEditClose,
         handleChange,
         handleSubmit,
-        star: !completionStatus.workExperiences,
+        star: !visit && !completionStatus.workExperiences,
         visit,
       }}
     />

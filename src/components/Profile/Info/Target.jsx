@@ -50,7 +50,7 @@ export const Target = ({ visit = false }) => {
           optionArray={companies}
           size="big"
           tooltip={true}
-          star={!completionStatus.companiesOfInterest}
+          star={!visit && !completionStatus.companiesOfInterest}
         />
         <TargetItem
           title="Target Role"
@@ -70,7 +70,7 @@ export const Target = ({ visit = false }) => {
                 ) || ""
               : ""
           }
-          star={!completionStatus.experienceLevel}
+          star={!visit && !completionStatus.experienceLevel}
         />
         <TargetItem
           title="Stage of Interviewing"
@@ -82,19 +82,19 @@ export const Target = ({ visit = false }) => {
                 ) || ""
               : ""
           }
-          star={!completionStatus.preparationStage}
+          star={!visit && !completionStatus.preparationStage}
         />
         <TargetItem
           title="Focus Areas"
           valueArray={profile.focusAreas}
           optionArray={allSkill}
-          star={!completionStatus.focusAreas}
+          star={!visit && !completionStatus.focusAreas}
         />
         <TargetItem
           title="Experience Types"
           valueArray={profile.typesOfExperience}
           optionArray={allExperienceType}
-          star={!completionStatus.typesOfExperience}
+          star={!visit && !completionStatus.typesOfExperience}
         />
       </div>
 
