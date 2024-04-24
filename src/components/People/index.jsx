@@ -9,12 +9,14 @@ import { HorizontalTabs } from "../Tabs/HorizontalTabs";
 import { AllPeople } from "./AllPeople";
 import { FavouritePeople } from "./FavouritePeople";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const EXPERIENCE_MIN_VALUE = 0;
 const EXPERIENCE_MAX_VALUE = 20;
 
 export const PeoplePage = () => {
   const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const deviceSize = useDeviceSize();
 
@@ -46,17 +48,21 @@ export const PeoplePage = () => {
   }, [oldQuery]);
 
   useEffect(() => {
-    if (queries) {
-      if (!isEmptyObject(queries) && !deepEqual(queries, oldQuery)) {
-        dispatch(setDashboardQuery(queries));
-      }
-      const queryString = queryObjectToString(queries);
-      if (profile) {
-        dispatch(fetchPeople(profile.id, queryString));
-        history.push(`/people?${queryString}`);
+    const searchParams = new URLSearchParams(location.search);
+    const introParam = searchParams.get("intro");
+    if (!introParam) {
+      if (queries) {
+        if (!isEmptyObject(queries) && !deepEqual(queries, oldQuery)) {
+          dispatch(setDashboardQuery(queries));
+        }
+        const queryString = queryObjectToString(queries);
+        if (profile) {
+          dispatch(fetchPeople(profile.id, queryString));
+          history.push(`/people/?${queryString}`);
+        }
       }
     }
-  }, [queries, oldQuery, profile]);
+  }, [location.search, queries, oldQuery, profile]);
 
   useEffect(() => {
     if (searchValue && searchValue.length >= 3) {

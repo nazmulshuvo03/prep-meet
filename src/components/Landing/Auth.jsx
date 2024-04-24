@@ -22,7 +22,9 @@ export const Auth = ({ authMode = "" }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/people");
+      history.push(
+        `/people/${authMode === "signup" ? "?intro=" + authMode : ""}`
+      );
     }
   }, [isAuthenticated]);
 

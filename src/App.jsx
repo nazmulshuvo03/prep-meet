@@ -11,7 +11,6 @@ import { Navigation } from "./components/Navigation";
 import Admin from "./routes/Admin";
 import CircularProgress from "./components/ProgressBar";
 import Toast from "./components/Toast";
-import Intro from "./components/Intro";
 import {
   fetchCompanies,
   fetchExperienceLevels,
@@ -114,7 +113,6 @@ function App() {
       </Router>
       {global?.loading && <CircularProgress />}
       {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
-      {false && <Intro />}
     </div>
   );
 }
