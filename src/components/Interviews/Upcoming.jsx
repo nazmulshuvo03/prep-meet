@@ -23,9 +23,9 @@ export const Upcoming = ({ data }) => {
           className="shadow-md rounded-md"
           style={deviceSize === "sm" ? { width: "30rem" } : {}}
         >
-          <div className="grid grid-cols-5 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
+          <div className="grid grid-cols-6 bg-gray-200 px-2 py-2 text-sm font-semibold rounded-t-md">
             <div>Date</div>
-            <div>Type</div>
+            <div className="col-span-2 flex justify-center">Type</div>
             <div>Name</div>
             <div>Company</div>
             <div>Actions</div>
@@ -38,7 +38,7 @@ export const Upcoming = ({ data }) => {
             return (
               <div
                 key={meeting.id}
-                className={`grid grid-cols-4 items-center px-2 py-2 text-sm font-normal ${
+                className={`grid grid-cols-6 items-center px-2 py-2 text-sm font-normal ${
                   i % 2 === 1 ? "bg-slate-50" : "bg-white"
                 }`}
               >
@@ -56,7 +56,9 @@ export const Upcoming = ({ data }) => {
                     }
                   </div>
                 </div>
-                <CapsulList data={meeting.practiceAreas} labels={allSkill} />
+                <div className="col-span-2 flex justify-center">
+                  <CapsulList data={meeting.practiceAreas} labels={allSkill} />
+                </div>
                 <div>{meetingUser.userName}</div>
                 <div>
                   {meetingUser.workExperiences &&
