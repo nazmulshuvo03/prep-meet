@@ -10,10 +10,10 @@ export const MeetingSuccess = ({ data }) => {
   return (
     <div className="py-8 px-20">
       <div className="text-center text-green-500 font-light text-3xl">
-        Meeting Scheduled Successfully
+        Interview Scheduled Successfully
       </div>
       <div className="pb-10 text-center text-text text-sm font-normal">
-        A link for the meeting has been sent to your registered email!
+        A link for the interview has been sent to your registered email!
       </div>
       <div className="flex gap-10 pb-10">
         <div className="flex-0.5 flex justify-center items-center">
