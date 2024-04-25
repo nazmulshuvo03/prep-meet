@@ -7,8 +7,6 @@ import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 export const MeetingSuccess = ({ data }) => {
   const allSkill = useSelector((state) => state.profession.allSkill);
 
-  console.log("############", data);
-
   return (
     <div className="py-8 px-20">
       <div className="text-center text-green-500 font-light text-3xl">

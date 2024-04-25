@@ -10,33 +10,23 @@ import {
 import { Button } from "../Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const BoldText = ({ children }) => (
-  <span className="font-medium text-gray-600">{children}</span>
-);
-
 const Messages = [
   <div>
-    To <BoldText>Set Your Profile</BoldText> go to the Profile tab and follow
-    the instructions. Your profile needs to be complete before you can start
-    practicing mock interviews.
+    To Set Your Profile go to the Profile tab and follow the instructions. Your
+    profile needs to be complete before you can start practicing mock
+    interviews.
   </div>,
   <div>
-    To <BoldText>Schedule Mock Interviews</BoldText> go to Search and Schedule
-    tab and filter participants based on your choice and requirements. To know
-    more about the person, click on Learn More. If you want to schedule mocks,
-    just click on their next availability to book or select other available
-    times.
+    To Schedule Mock Interviews go to Search and Schedule tab and filter
+    participants based on your choice and requirements. To know more about the
+    person, click on Learn More. If you want to schedule mocks, just click on
+    their next availability to book or select other available times.
   </div>,
   <div>
-    To see all your <BoldText>Scheduled Interviews</BoldText>,
-    <BoldText>Past Interviews</BoldText>, and to
-    <BoldText>give Feedback for your last Interview</BoldText> go to the
-    Interviews tab.
+    To see all your Scheduled Interviews, Past Interviews, and to give Feedback
+    for your last Interview go to the Interviews tab.
   </div>,
-  <div>
-    To <BoldText>Track Your Progress</BoldText> go to the Progress tab. Happy
-    Practicing!
-  </div>,
+  <div>To Track Your Progress go to the Progress tab. Happy Practicing!</div>,
 ];
 
 export const SignupIntro = () => {
