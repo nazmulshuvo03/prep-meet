@@ -27,7 +27,7 @@ export const ProfileMenu = () => {
   const [copied, setCopied] = useState(false);
 
   const handleLogout = async () => {
-    await dispatch(logoutUser());
+    await dispatch(logoutUser({ userId: user.id }));
     history.push("/");
   };
 

@@ -33,7 +33,6 @@ import AboutUs from "./routes/AboutUs";
 import HowItWorks from "./routes/HowItWorks";
 import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
-import { MIXPANEL_TRACK } from "./utils/mixpanel";
 
 function App() {
   const dispatch = useDispatch();

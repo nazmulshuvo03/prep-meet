@@ -13,9 +13,9 @@ import {
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
 
-export const logoutUser = () =>
+export const logoutUser = (data) =>
   asyncWrapper(async (dispatch) => {
-    const res = await postContent(logout_url());
+    const res = await postContent(logout_url(), data);
     responseHandler(res, () => {
       persistor.purge();
       dispatch(setAuthenticated(false));

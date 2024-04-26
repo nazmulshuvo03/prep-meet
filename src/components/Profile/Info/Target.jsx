@@ -111,7 +111,7 @@ export const Target = ({ visit = false }) => {
       {!visit ? (
         <div className="absolute top-0 right-0 flex gap-4">
           <IconButton onClick={handleCopy}>
-            <Tooltip text="Copy Profile Address">
+            <Tooltip text="Share Profile">
               <FontAwesomeIcon
                 icon={copied ? faCopied : faCopy}
                 className={`text-gray-600 md:text-md`}

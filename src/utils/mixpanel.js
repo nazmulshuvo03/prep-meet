@@ -3,7 +3,7 @@ import { config } from "../../.config";
 
 mixpanel.init(config.MIXPANEL_TOKEN, {
   debug: true,
-  track_pageview: true,
+  // track_pageview: true,
   persistence: "localStorage",
 });
 
