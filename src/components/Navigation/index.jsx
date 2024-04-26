@@ -29,13 +29,13 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
     ...(isDashboard()
       ? []
       : [
-          { to: "/about-us", name: "About Us" },
-          {
-            name: "How it works",
-            type: "button",
-            clickHandler: scrollToHowItWorks,
-          },
-          { name: "FAQs", type: "button", clickHandler: scrollToFaqs },
+          // { to: "/about-us", name: "About Us" },
+          // {
+          //   name: "How it works",
+          //   type: "button",
+          //   clickHandler: scrollToHowItWorks,
+          // },
+          // { name: "FAQs", type: "button", clickHandler: scrollToFaqs },
           ...(isAuthenticated ? [] : []),
         ]),
   ];
