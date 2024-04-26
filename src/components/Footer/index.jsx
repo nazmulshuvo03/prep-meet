@@ -1,5 +1,4 @@
-import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -16,14 +15,22 @@ export const Footer = () => {
           </NavLink>
         </div>
         <div className="flex-1 flex items-center justify-center gap-6 text-sm font-semibold">
-          <NavLink to={""}>Contact Us</NavLink>
+          {/* <NavLink to={""}>Contact Us</NavLink>
           <NavLink to={""}>FAQ</NavLink>
-          <NavLink to={""}>Support</NavLink>
+          <NavLink to={""}>Support</NavLink> */}
         </div>
         <div className="flex gap-4">
-          <FontAwesomeIcon icon={faFacebook} />
-          <FontAwesomeIcon icon={faX} />
-          <FontAwesomeIcon icon={faLinkedin} />
+          <NavLink to="">
+            <FontAwesomeIcon icon={faXTwitter} />
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: "https://www.linkedin.com/company/candidace-fyi/about",
+            }}
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
+          </NavLink>
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center gap-4 py-4 text-xs">
@@ -31,14 +38,11 @@ export const Footer = () => {
           © 2024 Candidace.fyi. All rights reserved.
         </div>
         <div className="flex gap-4">
-          <NavLink to={""} className="underline">
+          <NavLink to={"/privacy-policy"} className="underline">
             Privacy Policy
           </NavLink>
-          <NavLink to={""} className="underline">
+          <NavLink to={"/terms-and-conditions"} className="underline">
             Terms and Conditions
-          </NavLink>
-          <NavLink to={""} className="underline">
-            Cookie Policy
           </NavLink>
         </div>
       </div>
