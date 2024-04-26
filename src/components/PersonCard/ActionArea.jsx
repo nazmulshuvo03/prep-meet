@@ -20,6 +20,8 @@ export const ActionArea = ({
   const completionStatus = useSelector((state) => state.user.completionStatus);
   const [latest, setLatest] = useState();
 
+  const lastPracticed = timeDistance(data.lastMeeting?.dayHourUTC);
+
   useEffect(() => {
     if (data && data.availabilities && data.availabilities.length) {
       let sorted = data.availabilities
@@ -43,7 +45,10 @@ export const ActionArea = ({
       <div className="flex flex-col md:flex-row gap-1 md:gap-3 items-center pt-2 md:pt-0">
         {data.lastMeeting ? (
           <div className="bg-transparent !text-green-600 text-xs !font-semibold uppercase !p-0">
-            Last Practiced {timeDistance(data.lastMeeting.dayHourUTC)} ago
+            Last Practiced {lastPracticed}{" "}
+            {lastPracticed !== "Today" && lastPracticed !== "Yesterday"
+              ? "ago"
+              : ""}
           </div>
         ) : (
           <div />

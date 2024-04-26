@@ -205,6 +205,7 @@ export const timeDistance = (startDate, endDate) => {
   let yearDiff = end.getFullYear() - start.getFullYear();
   let monthDiff = end.getMonth() - start.getMonth();
   let dayDiff = end.getDate() - start.getDate();
+  console.log("!!!!!!!!!!!!", startDate, endDate, yearDiff, monthDiff, dayDiff);
 
   if (dayDiff < 0) {
     monthDiff--;
@@ -227,7 +228,13 @@ export const timeDistance = (startDate, endDate) => {
       monthDiff > 1 ? "s" : ""
     }`;
   } else {
-    return `${dayDiff} day${dayDiff > 1 ? "s" : ""}`;
+    if (dayDiff === 0) {
+      return "Today";
+    } else if (dayDiff === 1) {
+      return "Yesterday";
+    } else {
+      return `${dayDiff} day${dayDiff > 1 ? "s" : ""}`;
+    }
   }
 };
 
