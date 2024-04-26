@@ -1,4 +1,3 @@
-import { useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import {
   convertISOUTCDayTimeToLocalDayTime,
@@ -15,8 +14,8 @@ import { completionRemaining } from "../../utils/profile";
 export const ActionArea = ({
   data = null,
   onNextAvailableClick = () => {},
+  handleClick = () => {},
 }) => {
-  const history = useHistory();
   const completionStatus = useSelector((state) => state.user.completionStatus);
   const [latest, setLatest] = useState();
 
@@ -32,10 +31,6 @@ export const ActionArea = ({
       }
     }
   }, [data]);
-
-  const handleClick = () => {
-    history.push(`/user/${data.id}`);
-  };
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-3">

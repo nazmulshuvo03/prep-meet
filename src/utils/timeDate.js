@@ -205,7 +205,6 @@ export const timeDistance = (startDate, endDate) => {
   let yearDiff = end.getFullYear() - start.getFullYear();
   let monthDiff = end.getMonth() - start.getMonth();
   let dayDiff = end.getDate() - start.getDate();
-  console.log("!!!!!!!!!!!!", startDate, endDate, yearDiff, monthDiff, dayDiff);
 
   if (dayDiff < 0) {
     monthDiff--;

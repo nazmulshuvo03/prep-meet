@@ -1,15 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { ImageArea } from "./ImageArea";
 import { WorkInfo } from "./WorkInfo";
 import { ActionArea } from "./ActionArea";
-import { useDispatch, useSelector } from "react-redux";
 import { getDataLabelFromKey } from "../../utils/data";
 import { BookSlot } from "./BookSlot";
 import { useState } from "react";
 import { Modal } from "../Modal";
 import { createMeeting } from "../../store/middlewares/meeting";
+import { MIXPANEL_TRACK } from "../../utils/mixpanel";
 
 export const PersonCard = ({ data }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const user = useSelector((state) => state.user.profile);
   const preparationStages = useSelector(
     (state) => state.static.preparationStages
@@ -27,11 +31,20 @@ export const PersonCard = ({ data }) => {
     setSelectedSlot();
   };
 
+  const handleProfileVisit = () => {
+    MIXPANEL_TRACK({
+      name: "Profile Visited",
+      data: { visitorId: user.id },
+      id: data.id,
+    });
+    history.push(`/user/${data.id}`);
+  };
+
   return (
     <div className="w-full h-fit bg-white rounded-md shadow-md px-2 md:px-4 py-2">
       <div className="grid md:grid-cols-12 grid-cols-1 border-b relative">
         <div className="col-span-2">
-          <ImageArea data={data} />
+          <ImageArea data={data} handleProfileVisit={handleProfileVisit} />
         </div>
         <div className="col-span-10">
           <WorkInfo data={data} />
@@ -51,7 +64,11 @@ export const PersonCard = ({ data }) => {
         </div>
       </div>
       <div className="pt-2">
-        <ActionArea data={data} onNextAvailableClick={setSelectedSlot} />
+        <ActionArea
+          data={data}
+          onNextAvailableClick={setSelectedSlot}
+          handleClick={handleProfileVisit}
+        />
       </div>
       {selectedSlot ? (
         <Modal handleClose={() => setSelectedSlot()} className="md:w-2/3">

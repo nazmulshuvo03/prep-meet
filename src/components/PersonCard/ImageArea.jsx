@@ -1,6 +1,9 @@
-export const ImageArea = ({ data = null }) => {
+export const ImageArea = ({ data = null, handleProfileVisit }) => {
   return (
-    <div className="flex flex-col items-start md:items-center justify-center py-2">
+    <div
+      className="flex flex-col items-start md:items-center justify-center py-2 cursor-pointer"
+      onClick={handleProfileVisit}
+    >
       <img
         src={data.photoURL}
         alt={"Person Profile Image"}
