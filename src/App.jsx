@@ -31,6 +31,8 @@ import Interviews from "./routes/Interviews";
 import Progress from "./routes/Progress";
 import AboutUs from "./routes/AboutUs";
 import HowItWorks from "./routes/HowItWorks";
+import PrivacyPolicy from "./routes/PrivacyPolicy";
+import TermsConditions from "./routes/TermsConditions";
 import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
 
@@ -90,6 +92,12 @@ function App() {
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/about-us" component={AboutUs} />
               <Route exact path="/how-it-works" component={HowItWorks} />
+              <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+              <Route
+                exact
+                path="/terms-and-conditions"
+                component={TermsConditions}
+              />
               <Route exact path="/faqs" component={Faqs} />
               <Route>
                 {global.isAuthenticated ? (

@@ -1,15 +1,14 @@
 import { useSelector } from "react-redux";
 import { getDataLabelFromKey } from "../../../utils/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faPen } from "@fortawesome/free-solid-svg-icons";
-import { faCopy as faCopied } from "@fortawesome/free-regular-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "../../Button/IconButton";
 import { Modal } from "../../Modal";
 import { useState } from "react";
 import { EditTarget } from "./EditTarget";
 import { TargetItem } from "./TargetItem";
 import { Tooltip } from "../../Tooltip";
-import { config } from "../../../../.config";
+import { ShareProfile } from "../../ShareProfile";
 
 export const Target = ({ visit = false }) => {
   const profile = useSelector((state) =>
@@ -28,18 +27,6 @@ export const Target = ({ visit = false }) => {
   );
   const completionStatus = useSelector((state) => state.user.completionStatus);
   const [editMode, setEditMode] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    const formattedURL = `${config.FRONTEND_URL}/user/${profile.id}`;
-    navigator.clipboard
-      .writeText(formattedURL)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500); // Reset copied state after 1.5 seconds
-      })
-      .catch((err) => console.error("Failed to copy:", err));
-  };
 
   return (
     <div className="relative flex-1 flex flex-col gap-2 pt-4">
@@ -110,14 +97,7 @@ export const Target = ({ visit = false }) => {
 
       {!visit ? (
         <div className="absolute top-0 right-0 flex gap-4">
-          <IconButton onClick={handleCopy}>
-            <Tooltip text="Share Profile">
-              <FontAwesomeIcon
-                icon={copied ? faCopied : faCopy}
-                className={`text-gray-600 md:text-md`}
-              />
-            </Tooltip>
-          </IconButton>
+          <ShareProfile />
           <IconButton onClick={() => setEditMode(true)}>
             <Tooltip text="Edit Profile">
               <FontAwesomeIcon
