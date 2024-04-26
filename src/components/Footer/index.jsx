@@ -1,6 +1,9 @@
 import { faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { FooterSocials } from "./Socials";
+import { FooterLinks } from "./Links";
+import { FooterRights } from "./Rights";
 
 export const Footer = () => {
   return (
@@ -15,35 +18,13 @@ export const Footer = () => {
           </NavLink>
         </div>
         <div className="flex-1 flex items-center justify-center gap-6 text-sm font-semibold">
-          {/* <NavLink to={""}>Contact Us</NavLink>
-          <NavLink to={""}>FAQ</NavLink>
-          <NavLink to={""}>Support</NavLink> */}
+          <FooterLinks />
         </div>
-        <div className="flex gap-4">
-          <NavLink to="">
-            <FontAwesomeIcon icon={faXTwitter} />
-          </NavLink>
-          <NavLink
-            to={{
-              pathname: "https://www.linkedin.com/company/candidace-fyi/about",
-            }}
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </NavLink>
-        </div>
+        <FooterSocials />
       </div>
       <div className="flex flex-col md:flex-row justify-center gap-4 py-4 text-xs">
-        <div className="text-center md:text-start">
-          © 2024 Candidace.fyi. All rights reserved.
-        </div>
-        <div className="flex gap-4">
-          <NavLink to={"/privacy-policy"} className="underline">
-            Privacy Policy
-          </NavLink>
-          <NavLink to={"/terms-and-conditions"} className="underline">
-            Terms and Conditions
-          </NavLink>
+        <div className="text-center md:text-start flex gap-2 items-center justify-center">
+          <FooterRights />
         </div>
       </div>
     </div>
