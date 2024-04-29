@@ -20,7 +20,7 @@ export const Schedules = () => {
   };
 
   return (
-    <ProfileBlock title="Schedules" className="!bg-primary h-full">
+    <ProfileBlock title="Schedules" className="!bg-primary !h-auto">
       <div className="h-full">
         {availabilities && availabilities.length ? (
           <div>
