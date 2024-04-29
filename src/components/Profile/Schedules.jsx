@@ -80,7 +80,7 @@ export const Schedules = () => {
                     <CapsulList data={avl.practiceAreas} labels={allSkill} />
                   </div>
                   {avl.interviewNote && (
-                    <div className="py-1 max-h-40 overflow-y-auto text-xs">
+                    <div className="my-1 py-1 max-h-40 overflow-y-auto text-xs">
                       {avl.interviewNote}
                     </div>
                   )}
