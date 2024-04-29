@@ -22,7 +22,7 @@ export const UserProfile = ({ visit = false }) => {
           </div>
           <div className="flex flex-col gap-5 md:w-1/3">
             {visit ? <DisplayAvailability /> : <AddAvailability />}
-            {visit ? <Reviews /> : <Schedules />}
+            {visit ? <Reviews visit={visit} /> : <Schedules />}
           </div>
         </div>
       ) : (

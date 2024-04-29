@@ -4,7 +4,7 @@ import { companyNameShortner } from "../../../utils/string";
 import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 import { Stars } from "../../Stars";
 
-export const Review = ({ data }) => {
+export const Review = ({ data, visit }) => {
   const companies = useSelector((state) => state.static.companies);
 
   return (
@@ -17,7 +17,9 @@ export const Review = ({ data }) => {
       <div>
         <div className="mb-2">
           <div className="font-bold text-lg">
-            {data.reviewerProfile.firstName
+            {visit
+              ? data.reviewerProfile.userName
+              : data.reviewerProfile.firstName
               ? data.reviewerProfile.firstName +
                 " " +
                 data.reviewerProfile.lastName

@@ -20,8 +20,6 @@ export const Schedules = () => {
     dispatch(deleteAvailability(values));
   };
 
-  console.log("@@@@@@@@@@@", availabilities);
-
   return (
     <ProfileBlock title="Schedules" className="!bg-primary !h-auto">
       <div className="h-full">

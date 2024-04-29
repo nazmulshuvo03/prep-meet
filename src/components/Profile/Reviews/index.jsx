@@ -3,8 +3,10 @@ import { Review } from "./Review";
 import { ProfileBlock } from "../../Layouts/ProfileBlock";
 import { NoData } from "../../NoData";
 
-export const Reviews = () => {
-  const profile = useSelector((state) => state.user.visitingProfile);
+export const Reviews = ({ visit }) => {
+  const profile = useSelector((state) =>
+    visit ? state.user.visitingProfile : state.user.profile
+  );
 
   return (
     <ProfileBlock title="Reviews" className="!bg-primary h-full">
@@ -12,7 +14,7 @@ export const Reviews = () => {
         {profile && profile.reviews && profile.reviews.length ? (
           <>
             {profile.reviews.map((review) => (
-              <Review key={review.id} data={review} />
+              <Review key={review.id} data={review} visit={visit} />
             ))}
           </>
         ) : (
