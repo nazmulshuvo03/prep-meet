@@ -35,6 +35,7 @@ import PrivacyPolicy from "./routes/PrivacyPolicy";
 import TermsConditions from "./routes/TermsConditions";
 import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
+import Availability from "./routes/Availability";
 
 function App() {
   const dispatch = useDispatch();
@@ -109,6 +110,11 @@ function App() {
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/progress" component={Progress} />
                       <Route exact path="/interviews" component={Interviews} />
+                      <Route
+                        exact
+                        path="/availability"
+                        component={Availability}
+                      />
                       <Route exact path="/user/:userId" component={Visit} />
                     </div>
                   </div>

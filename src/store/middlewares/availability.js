@@ -6,14 +6,16 @@ import {
   user_availability_url,
   availability_url,
   single_availability_url,
+  recurrent_availability_url,
 } from "../../services/urls/availability";
-import { formatHourWithAMPM } from "../../utils/timeDate";
 import {
   removeAvailability,
+  setRecurrentAvailabilities,
   setUserAvailabilities,
+  updateRecurrentAvailabilities,
   updateUserAvailabilities,
 } from "../slices/availability";
-import { setToastMessage } from "../slices/global";
+import { setLoading, setToastMessage } from "../slices/global";
 import { setCompletionStatus } from "../slices/user";
 
 export const fetchUserAvailabilities = (userId) =>
@@ -69,4 +71,46 @@ export const deleteAvailability = (data) =>
         );
       }
     );
+  });
+
+export const fetchRecurrentAvailabilities = () =>
+  asyncWrapper(async (dispatch) => {
+    const res = await fetchContent(recurrent_availability_url());
+    console.log("recurrent availability response: ", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(setRecurrentAvailabilities(res.data));
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: `Error fetching recurrent availability data`,
+          })
+        );
+      }
+    );
+  });
+
+export const createRecurrentAvailability = (data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await postContent(recurrent_availability_url(), data);
+    console.log("recurrent availability created: ", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(updateRecurrentAvailabilities(res.data));
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: res.data,
+          })
+        );
+      }
+    );
+    dispatch(setLoading(false));
   });

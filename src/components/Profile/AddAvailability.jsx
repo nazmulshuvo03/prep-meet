@@ -8,7 +8,6 @@ import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createUserAvailability } from "../../store/middlewares/availability";
 import { DateInput } from "../Input/DateInput";
-import { MandatoryStar } from "../MandatoryStar";
 import { MultiInputDropdown } from "../Dropdown/MultiInputDropdown";
 import { TextInput } from "../TextInput";
 import { ProfileBlock } from "../Layouts/ProfileBlock";
@@ -108,7 +107,7 @@ export const AddAvailability = () => {
           label={"Time*"}
           name={"time"}
           value={time || ""}
-          options={generateHourArray({ untilNow: isTodaySelected() })}
+          options={generateHourArray(isTodaySelected())}
           onSelect={(e) => {
             setTime(e.target.value);
           }}

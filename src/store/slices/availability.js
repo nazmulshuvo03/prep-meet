@@ -4,6 +4,7 @@ const availabilitySlice = createSlice({
   name: "availability",
   initialState: {
     userAvailabilities: [],
+    recurrentAvailabilities: [],
   },
   reducers: {
     setUserAvailabilities: (state, data) => {
@@ -25,6 +26,15 @@ const availabilitySlice = createSlice({
       });
     },
     updateAvailabilityState: (state, data) => {},
+    setRecurrentAvailabilities: (state, action) => {
+      state.recurrentAvailabilities = action.payload;
+    },
+    updateRecurrentAvailabilities: (state, action) => {
+      state.recurrentAvailabilities = [
+        ...state.recurrentAvailabilities,
+        action.payload,
+      ];
+    },
   },
 });
 
@@ -33,5 +43,7 @@ export const {
   updateUserAvailabilities,
   removeAvailability,
   updateAvailabilityState,
+  setRecurrentAvailabilities,
+  updateRecurrentAvailabilities,
 } = availabilitySlice.actions;
 export default availabilitySlice.reducer;
