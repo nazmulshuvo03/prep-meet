@@ -15,7 +15,7 @@ export const Tooltip = ({ text = "", className, children }) => {
     <div className="relative">
       {isTooltipVisible && text && (
         <div
-          className={`absolute max-w-60 h-fit z-10 px-2 py-2 text-xs font-light text-white bg-gray-600 
+          className={`absolute h-fit z-10 px-2 py-2 text-xs font-light text-white bg-gray-600 
           rounded-md whitespace-nowrap bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 ${className}`}
         >
           {text}

@@ -69,29 +69,25 @@ export const Recurrent = () => {
     if (profile) setSelectedPracticeAreas(profile.focusAreas);
   }, [profile]);
 
-  console.log("@@@@@@@@@@@@@@", selectedDay, time);
-
   return (
     <ProfileBlock title={`Recurrent Availability`}>
-      <div className="flex gap-2 flex-wrap border border-primary p-2 rounded-md">
-        {recurrentAvailabilities && recurrentAvailabilities.length ? (
-          <>
-            {recurrentAvailabilities.map((avl) => {
-              return (
-                <RecurrentItem
-                  key={avl.id}
-                  data={avl}
-                  dayIndexes={dayIndexes}
-                  hourIndexes={hourIndexes}
-                  handleDelete={handleDelete}
-                />
-              );
-            })}
-          </>
-        ) : (
-          <div />
-        )}
-      </div>
+      {recurrentAvailabilities && recurrentAvailabilities.length ? (
+        <div className="flex gap-2 flex-wrap border border-primary p-2 rounded-md">
+          {recurrentAvailabilities.map((avl) => {
+            return (
+              <RecurrentItem
+                key={avl.id}
+                data={avl}
+                dayIndexes={dayIndexes}
+                hourIndexes={hourIndexes}
+                handleDelete={handleDelete}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div />
+      )}
       <div className="p-2 flex flex-col gap-1">
         <div>
           <label className="text-xs">Weekday</label>

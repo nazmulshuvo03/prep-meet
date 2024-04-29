@@ -7,6 +7,7 @@ import { deleteAvailability } from "../../store/middlewares/availability";
 import { CapsulList } from "../Capsul/CapsulList";
 import { ProfileBlock } from "../Layouts/ProfileBlock";
 import { NoData } from "../NoData";
+import { Tooltip } from "../Tooltip";
 
 export const Schedules = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ export const Schedules = () => {
   const handleDelete = (values) => {
     dispatch(deleteAvailability(values));
   };
+
+  console.log("@@@@@@@@@@@", availabilities);
 
   return (
     <ProfileBlock title="Schedules" className="!bg-primary !h-auto">
@@ -43,6 +46,13 @@ export const Schedules = () => {
                             .time
                         }
                       </div>
+                      {avl.isRecurring && (
+                        <Tooltip text="This user will be available next week this day same time">
+                          <div className="cursor-default px-1 py-1 font-normal text-xs text-gray-400">
+                            (Recurring)
+                          </div>
+                        </Tooltip>
+                      )}
                       <div
                         className={`px-1 py-1 font-normal text-xs ${
                           avl.state === "COMPLETED"
@@ -69,6 +79,11 @@ export const Schedules = () => {
                   <div className="py-1">
                     <CapsulList data={avl.practiceAreas} labels={allSkill} />
                   </div>
+                  {avl.interviewNote && (
+                    <div className="py-1 max-h-40 overflow-y-auto text-xs">
+                      {avl.interviewNote}
+                    </div>
+                  )}
                 </div>
               );
             })}
