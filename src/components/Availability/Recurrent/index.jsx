@@ -3,6 +3,7 @@ import { generateHourArray } from "../../../utils/timeDate";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createRecurrentAvailability,
+  deleteRecurrentAvailability,
   fetchRecurrentAvailabilities,
 } from "../../../store/middlewares/availability";
 import { Dropdown } from "../../Dropdown";
@@ -52,6 +53,10 @@ export const Recurrent = () => {
     setInterviewNote("");
   };
 
+  const handleDelete = (data) => {
+    dispatch(deleteRecurrentAvailability(data));
+  };
+
   const handlePracticeAreaSelection = (e) => {
     setSelectedPracticeAreas(e.target.value);
   };
@@ -78,6 +83,7 @@ export const Recurrent = () => {
                   data={avl}
                   dayIndexes={dayIndexes}
                   hourIndexes={hourIndexes}
+                  handleDelete={handleDelete}
                 />
               );
             })}
@@ -98,7 +104,7 @@ export const Recurrent = () => {
                   selectedDay === day.id
                     ? "text-secondary cursor-default"
                     : "text-gray-400 cursor-pointer"
-                } text-xl font-medium`}
+                } text-sm md:text-xl font-medium`}
               >
                 {day.name}
               </div>

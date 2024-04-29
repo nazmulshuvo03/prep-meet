@@ -35,6 +35,20 @@ const availabilitySlice = createSlice({
         action.payload,
       ];
     },
+    removeRecurrentAvailability: (state, action) => {
+      const payload = action.payload;
+      const filterValues = {
+        userId: payload.userId,
+        id: payload.id,
+      };
+      state.recurrentAvailabilities = state.recurrentAvailabilities.filter(
+        (obj) => {
+          return !Object.entries(filterValues).every(
+            ([key, value]) => obj[key] === value
+          );
+        }
+      );
+    },
   },
 });
 
@@ -45,5 +59,6 @@ export const {
   updateAvailabilityState,
   setRecurrentAvailabilities,
   updateRecurrentAvailabilities,
+  removeRecurrentAvailability,
 } = availabilitySlice.actions;
 export default availabilitySlice.reducer;

@@ -7,9 +7,11 @@ import {
   availability_url,
   single_availability_url,
   recurrent_availability_url,
+  single_recurrent_availability_url,
 } from "../../services/urls/availability";
 import {
   removeAvailability,
+  removeRecurrentAvailability,
   setRecurrentAvailabilities,
   setUserAvailabilities,
   updateRecurrentAvailabilities,
@@ -66,7 +68,7 @@ export const deleteAvailability = (data) =>
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[1],
-            message: `Error removing availability data`,
+            message: res.data,
           })
         );
       }
@@ -113,4 +115,24 @@ export const createRecurrentAvailability = (data) =>
       }
     );
     dispatch(setLoading(false));
+  });
+
+export const deleteRecurrentAvailability = (data) =>
+  asyncWrapper(async (dispatch) => {
+    const res = await deleteContent(single_recurrent_availability_url(data.id));
+    console.log("recurrent availability deleted", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(removeRecurrentAvailability(data));
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: res.data,
+          })
+        );
+      }
+    );
   });
