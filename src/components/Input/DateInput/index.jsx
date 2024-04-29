@@ -26,7 +26,7 @@ export const DateInput = ({
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <label className="!text-xs mb-px">{label}</label>
+      <label className="!text-xs my-1">{label}</label>
       {!disabled ? (
         <DatePicker
           renderCustomHeader={({

@@ -93,27 +93,31 @@ export const AddAvailability = () => {
       titleStar={!completionStatus.availabilities}
     >
       <div className="flex flex-col gap-2">
-        <DateInput
-          label={"Date*"}
-          minDate={new Date()}
-          placeholder={"Select a date"}
-          value={date || ""}
-          onChange={(value) => {
-            setDate(value);
-          }}
-          maxDate={maxSelectabaleAvailability()}
-        />
-        <Dropdown
-          label={"Time*"}
-          name={"time"}
-          value={time || ""}
-          options={generateHourArray(isTodaySelected())}
-          onSelect={(e) => {
-            setTime(e.target.value);
-          }}
-          defaultText="Time"
-          allowSearch={false}
-        />
+        <div className="flex gap-2 items-center">
+          <DateInput
+            label={"Date*"}
+            minDate={new Date()}
+            placeholder={"Select a date"}
+            value={date || ""}
+            onChange={(value) => {
+              setDate(value);
+            }}
+            maxDate={maxSelectabaleAvailability()}
+            className="flex-1"
+          />
+          <Dropdown
+            label={"Time*"}
+            name={"time"}
+            value={time || ""}
+            options={generateHourArray(isTodaySelected())}
+            onSelect={(e) => {
+              setTime(e.target.value);
+            }}
+            defaultText="Time"
+            allowSearch={false}
+            className="flex-1"
+          />
+        </div>
         <MultiInputDropdown
           label="Practice Areas*"
           name="practiceAreas"

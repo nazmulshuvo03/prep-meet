@@ -19,6 +19,7 @@ export const Dropdown = ({
   allowSearch = true,
   allowAddNew = false,
   addNewAction = () => {},
+  className = "",
 }) => {
   const dropdownRef = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -73,7 +74,7 @@ export const Dropdown = ({
   }, [query, options]);
 
   return (
-    <div ref={dropdownRef} className="w-full">
+    <div ref={dropdownRef} className={`w-full ${className}`}>
       <label className="text-xs">{label}</label>
       <div className="relative">
         <div
