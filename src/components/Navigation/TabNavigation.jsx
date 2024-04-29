@@ -1,5 +1,5 @@
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faCalendarDays, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faChartLine, faHeadset } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
@@ -22,6 +22,11 @@ export const TabNavigation = () => {
             to: "/profile",
             name: "Profile",
             icon: <FontAwesomeIcon icon={faUser} />,
+          },
+          {
+            to: "/availability",
+            name: "Schedule",
+            icon: <FontAwesomeIcon icon={faCalendarDays} />,
           },
           {
             to: "/progress",
