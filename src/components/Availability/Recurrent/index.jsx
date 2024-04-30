@@ -57,6 +57,7 @@ export const Recurrent = () => {
       hour: time - 1,
       practiceAreas: selectedPracticeAreas,
       interviewNote: interviewNote,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
     dispatch(createRecurrentAvailability(data));
     setTime();
