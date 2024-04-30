@@ -45,7 +45,7 @@ export const AllPeople = ({
             value={queries["focusAreas"] || ""}
             options={targetProfession ? targetProfession.skills : null}
             onSelect={handleQuerySelect}
-            defaultText={"Focus Areas"}
+            defaultText={"Interests"}
             allowSearch={false}
           />
           <Dropdown
@@ -53,7 +53,7 @@ export const AllPeople = ({
             value={queries["typesOfExperience"] || ""}
             options={targetProfession ? targetProfession.experienceTypes : null}
             onSelect={handleQuerySelect}
-            defaultText={"Interview Type"}
+            defaultText={"Experience"}
             allowSearch={false}
           />
           <Dropdown
@@ -69,7 +69,7 @@ export const AllPeople = ({
             value={queries["preparationStage"] || ""}
             options={preparationStages}
             onSelect={handleQuerySelect}
-            defaultText={"Stage of Interviewing"}
+            defaultText={"Status"}
             allowSearch={false}
           />
         </div>
