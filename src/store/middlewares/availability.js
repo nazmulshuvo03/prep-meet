@@ -103,7 +103,9 @@ export const createRecurrentAvailability = (data) =>
     responseHandler(
       res,
       () => {
-        dispatch(updateRecurrentAvailabilities(res.data));
+        dispatch(updateRecurrentAvailabilities(res.data.recurrent));
+        dispatch(updateUserAvailabilities(res.data.availablity));
+        dispatch(setCompletionStatus(res.data.availablity.completionStatus));
       },
       () => {
         dispatch(
