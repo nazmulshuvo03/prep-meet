@@ -52,7 +52,7 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
         text={
           <div>
             <a
-              href="https://forms.gle/RiefnCQVtVFJKhYe6"
+              href="https://forms.gle/WFMQhmP98HdyQwXy6"
               target="_blank"
               className="italic hover:underline hover:text-blue-600 px-1 font-semibold"
             >
