@@ -50,7 +50,17 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
     <>
       <Banner
         text={
-          "This website is currently under active construction. Please inform us of any anomalies or issues you encounter. Thank you for your patience."
+          <div>
+            <a
+              href="https://forms.gle/RiefnCQVtVFJKhYe6"
+              target="_blank"
+              className="italic hover:underline hover:text-blue-600 px-1 font-semibold"
+            >
+              This website is currently under active construction. Please inform
+              us of any anomalies or issues you encounter here. Thank you for
+              your patience.
+            </a>
+          </div>
         }
       />
       {completionStatus && !isAllTrue(completionStatus) && (
