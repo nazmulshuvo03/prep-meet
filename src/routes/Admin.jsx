@@ -1,9 +1,9 @@
-import ProfessionAdmin from "../components/Admin/Profession";
+import { AdminPage } from "../components/Admin";
 
 const Admin = () => {
   return (
     <div className="w-full p-4">
-      <ProfessionAdmin />
+      <AdminPage />
     </div>
   );
 };

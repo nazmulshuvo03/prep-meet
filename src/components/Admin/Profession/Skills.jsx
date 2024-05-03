@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addExperienceType,
-  deleteExperienceType,
-} from "../../store/middlewares/skill";
+import { addSkill, deleteSkill } from "../../../store/middlewares/skill";
 import { Chip } from "./Chip";
 import { Section } from "./CommonSection";
 
-export const ExperienceTypes = ({ professionId = "", data = null }) => {
+export const Skills = ({ professionId = "", data = null }) => {
   const dispatch = useDispatch();
+
   const [query, setQuery] = useState();
   const [filteredData, setFilteredData] = useState();
 
@@ -24,22 +22,22 @@ export const ExperienceTypes = ({ professionId = "", data = null }) => {
 
   return (
     <Section
-      title="Experience Types"
+      title="Skills"
       profession={professionId}
-      actionHandler={addExperienceType}
+      actionHandler={addSkill}
       query={query}
       setQuery={setQuery}
     >
       {filteredData && filteredData.length ? (
-        filteredData.map((et) => {
+        filteredData.map((skill) => {
           return (
             <Chip
-              key={et.id}
+              key={skill.id}
               deleteHandler={() =>
-                dispatch(deleteExperienceType(et.id, professionId))
+                dispatch(deleteSkill(skill.id, professionId))
               }
             >
-              {et.name}
+              {skill.name}
             </Chip>
           );
         })

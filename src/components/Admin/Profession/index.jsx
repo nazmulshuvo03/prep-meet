@@ -4,9 +4,9 @@ import {
   addProfession,
   deleteProfession,
   fetchProfessions,
-} from "../../store/middlewares/profession";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
+} from "../../../store/middlewares/profession";
+import { Button } from "../../../components/Button";
+import { Input } from "../../../components/Input";
 import { Skills } from "./Skills";
 import { ExperienceTypes } from "./ExperienceTypes";
 

@@ -90,7 +90,6 @@ function App() {
                 <Landing {...{ landingHowItWorksRef, landingFaqsRef }} />
               </Route>
               <Route exact path="/onboard" component={Onboard} />
-              <Route exact path="/admin" component={Admin} />
               <Route exact path="/about-us" component={AboutUs} />
               <Route exact path="/how-it-works" component={HowItWorks} />
               <Route exact path="/privacy-policy" component={PrivacyPolicy} />
@@ -116,6 +115,7 @@ function App() {
                         component={Availability}
                       />
                       <Route exact path="/user/:userId" component={Visit} />
+                      <Route exact path="/admin" component={Admin} />
                     </div>
                   </div>
                 ) : (

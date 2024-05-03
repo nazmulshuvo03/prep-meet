@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import { setToastMessage } from "../../store/slices/global";
+import { Button } from "../../Button";
+import { Input } from "../../Input";
+import { setToastMessage } from "../../../store/slices/global";
 
 export const Section = ({
   children,
