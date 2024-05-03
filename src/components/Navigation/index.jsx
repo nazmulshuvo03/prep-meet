@@ -79,9 +79,13 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
             </IconButton>
           </div>
         )}
-        <div className="text-3xl font-semibold opacity-75 ">
-          <NavLink to={"/profile"} className="text-gray-900">
-            Candidace
+        <div className="text-3xl font-semibold opacity-75 h-full">
+          <NavLink to={"/profile"} className="text-gray-900 h-full">
+            <img
+              src={"/images/logo_full.svg"}
+              alt="Candidace Logo"
+              style={{ height: "100%", width: "100%" }}
+            />
           </NavLink>
         </div>
         <div className="flex gap-8 items-center">

@@ -1,5 +1,3 @@
-import { faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { FooterSocials } from "./Socials";
 import { FooterLinks } from "./Links";
@@ -14,7 +12,11 @@ export const Footer = () => {
       <div className="flex flex-col md:flex-row gap-2 items-center border-b-2 border-gray-800 pb-10">
         <div className="text-3xl font-semibold opacity-75 ">
           <NavLink to={"/"} className="text-gray-900">
-            Candidace
+            <img
+              src={"/images/logo_full.svg"}
+              alt="Candidace Logo"
+              style={{ height: "80px" }}
+            />
           </NavLink>
         </div>
         <div className="flex-1 flex items-center justify-center gap-6 text-sm font-semibold">
