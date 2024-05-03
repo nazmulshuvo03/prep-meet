@@ -10,7 +10,7 @@ import { Input } from "../../../components/Input";
 import { Skills } from "./Skills";
 import { ExperienceTypes } from "./ExperienceTypes";
 
-const ProfessionAdmin = () => {
+export const ProfessionAdmin = () => {
   const dispatch = useDispatch();
   const professions = useSelector((state) => state.profession.items);
   const [query, setQuery] = useState("");
@@ -49,7 +49,9 @@ const ProfessionAdmin = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <Button onClick={addNewProfession}>Add Profession</Button>
+        <Button onClick={addNewProfession} className={"!rounded-md"}>
+          Add Profession
+        </Button>
       </div>
       {filteredData && filteredData.length ? (
         filteredData.map((profession) => {
@@ -83,5 +85,3 @@ const ProfessionAdmin = () => {
     </div>
   );
 };
-
-export default ProfessionAdmin;

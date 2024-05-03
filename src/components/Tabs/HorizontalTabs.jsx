@@ -6,7 +6,7 @@ export const HorizontalTabs = ({
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex flex-col">
       <div className="flex items-center flex-wrap gap-4 py-1 px-2 w-full whitespace-nowrap">
         {data && data.length ? (
           data.map((item) => {
@@ -26,7 +26,7 @@ export const HorizontalTabs = ({
           <div />
         )}
       </div>
-      <div className="h-full overflow-hidden">
+      <div className="flex-1 overflow-hidden">
         {data[currentTab] ? data[currentTab].component : ""}
       </div>
     </div>
