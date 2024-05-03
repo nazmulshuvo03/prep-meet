@@ -40,10 +40,10 @@ export const SignupIntro = () => {
     setState((prev) => (prev + 1 < Messages.length ? prev + 1 : prev));
 
   return (
-    <Modal>
+    <Modal className="md:w-1/3">
       <div
         className="relative px-6 py-4 flex flex-col"
-        style={{ width: "33vw", height: "33vh" }}
+        style={{ height: "33vh" }}
       >
         <div className="text-center text-gray-600 text-2xl font-normal mb-6">
           Lets get Started

@@ -16,8 +16,10 @@ export const AppNavigation = () => {
   }, [location.search]);
 
   return (
-    <div className="h-full hidden md:block" style={{ width: "17vw" }}>
-      <TabNavigation />
+    <div>
+      <div className="h-full hidden md:block" style={{ width: "17vw" }}>
+        <TabNavigation />
+      </div>
       {openIntro && <Intro type={openIntro} />}
     </div>
   );
