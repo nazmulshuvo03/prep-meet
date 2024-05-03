@@ -4,10 +4,11 @@ import {
   all_companies_url,
   all_experience_levels_url,
   all_preparation_stages_url,
+  single_companies_url,
 } from "../../services/urls/static";
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
-import { setToastMessage } from "../slices/global";
+import { setLoading, setToastMessage } from "../slices/global";
 import {
   setCompanies,
   setExperienceLevels,
@@ -40,7 +41,8 @@ export const fetchCompanies = () =>
 
 export const addCompany = (data) =>
   asyncWrapper(async (dispatch) => {
-    const res = await postContent(all_companies_url(), data);
+    dispatch(setLoading());
+    const res = await postContent(single_companies_url(), data);
     console.log("Company Added", res);
     responseHandler(
       res,
@@ -55,4 +57,5 @@ export const addCompany = (data) =>
           })
         )
     );
+    dispatch(setLoading(false));
   });

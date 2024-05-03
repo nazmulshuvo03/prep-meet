@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sortArrayByProperty } from "../../utils/array";
 
 const staticSlices = createSlice({
   name: "static",
@@ -19,7 +20,9 @@ const staticSlices = createSlice({
     },
     updateCompaniesState: (state, action) => {
       const data = action.payload;
-      state.companies.push(data);
+      let current = [...state.companies, data];
+      let sorted = sortArrayByProperty(current);
+      state.companies = sorted;
     },
   },
 });

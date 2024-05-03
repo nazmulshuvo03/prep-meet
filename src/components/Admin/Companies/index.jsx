@@ -1,32 +1,40 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NoData } from "../../NoData";
 import { Input } from "../../Input";
 import { Button } from "../../Button";
 import { useEffect, useState } from "react";
+import { addCompany } from "../../../store/middlewares/static";
 
 export const CompaniesAdmin = () => {
+  const dispatch = useDispatch();
   const companies = useSelector((state) => state.static.companies);
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState();
 
   useEffect(() => {
-    if (companies) {
-      if (query && query.length) {
-        setFilteredData(() =>
-          companies.filter((item) =>
-            item.name.toLowerCase().includes(query.toLowerCase())
-          )
-        );
-      } else {
-        setFilteredData(companies);
-      }
-    }
-  }, [companies, query]);
+    if (query && query.length) {
+      setFilteredData(() =>
+        companies.filter((item) =>
+          item.name.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    } else setFilteredData(companies);
+  }, [query, companies]);
 
-  const addNewCompany = () => {};
+  const addNewCompany = () => {
+    if (query) {
+      dispatch(
+        addCompany({
+          name: query,
+        })
+      );
+    }
+    setQuery("");
+    setFilteredData(companies);
+  };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Input
           className=""
