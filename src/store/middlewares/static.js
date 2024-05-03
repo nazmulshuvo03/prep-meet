@@ -59,3 +59,22 @@ export const addCompany = (data) =>
     );
     dispatch(setLoading(false));
   });
+
+export const addAndGetCompany = (data) => async (dispatch) => {
+  const res = await postContent(single_companies_url(), data);
+  console.log("Company Added", res);
+  responseHandler(
+    res,
+    () => {
+      dispatch(updateCompaniesState(res.data));
+    },
+    () =>
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: res.data,
+        })
+      )
+  );
+  return res.data;
+};

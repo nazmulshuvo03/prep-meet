@@ -21,16 +21,12 @@ export const MultiInputDropdown = ({
   const [filteredOptions, setFilteredOptions] = useState();
   const [query, setQuery] = useState("");
 
-  const toggleOption = (option) => {
+  const handleCheckboxChange = (option) => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((item) => item !== option));
     } else {
       setSelectedOptions([...selectedOptions, option]);
     }
-  };
-
-  const handleCheckboxChange = (option) => {
-    toggleOption(option);
   };
 
   const handleInputClick = () => {
@@ -39,8 +35,9 @@ export const MultiInputDropdown = ({
     setFilteredOptions(options);
   };
 
-  const handleAddNewClick = () => {
-    addNewAction({ name: query });
+  const handleAddNewClick = async () => {
+    const response = await addNewAction({ name: query });
+    if (response) handleCheckboxChange(response.id);
     setQuery("");
   };
 

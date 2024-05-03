@@ -6,7 +6,7 @@ import { TextInput } from "../../TextInput";
 import { MultiInputDropdown } from "../../Dropdown/MultiInputDropdown";
 import COUNTRY_DATA from "../../../assets/data/countries.json";
 import { updateUserData } from "../../../store/middlewares/user";
-import { addCompany } from "../../../store/middlewares/static";
+import { addAndGetCompany } from "../../../store/middlewares/static";
 import { Input } from "../../Input";
 import { IconButton } from "../../Button/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,8 +57,9 @@ export const EditTarget = ({
     handleDone();
   };
 
-  const handleAddNewCompany = (data) => {
-    dispatch(addCompany(data));
+  const handleAddNewCompany = async (data) => {
+    const response = await dispatch(addAndGetCompany(data));
+    return response;
   };
 
   const updateStateFromProfile = (currentState, profileData) => {
@@ -116,6 +117,7 @@ export const EditTarget = ({
             options={companies}
             onSelect={handleChange}
             defaultText={"Select upto 5"}
+            allowAddNew={true}
             addNewAction={handleAddNewCompany}
           />
         </div>

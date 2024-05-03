@@ -32,8 +32,9 @@ export const Dropdown = ({
     setFilteredOptions(options);
   };
 
-  const handleAddNewClick = () => {
-    addNewAction({ name: query });
+  const handleAddNewClick = async () => {
+    const response = await addNewAction({ name: query });
+    if (response) handleSelect(response);
     setQuery("");
   };
 

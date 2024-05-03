@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "../../../Dropdown";
 import { Input } from "../../../Input";
-import { addCompany } from "../../../../store/middlewares/static";
+import { addAndGetCompany } from "../../../../store/middlewares/static";
 import { DateInput } from "../../../Input/DateInput";
 import { Checkbox } from "../../../Checkbox";
 
@@ -17,8 +17,9 @@ export const Work = ({ data, handleChange = () => {} }) => {
 
   const [current, setCurrent] = useState(false);
 
-  const handleAddNewCompany = (data) => {
-    dispatch(addCompany(data));
+  const handleAddNewCompany = async (data) => {
+    const res = await dispatch(addAndGetCompany(data));
+    return res;
   };
 
   return (
@@ -31,6 +32,7 @@ export const Work = ({ data, handleChange = () => {} }) => {
           options={companies}
           onSelect={handleChange}
           defaultText="Company"
+          allowAddNew={true}
           addNewAction={handleAddNewCompany}
         />
         <DateInput
