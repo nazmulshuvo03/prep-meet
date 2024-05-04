@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { UserName } from "./UserName";
 import { Target } from "./Target";
 import { AdditionalInfo } from "../Reviews/AdditionalInfo";
-import { useState } from "react";
 import { uploadFile } from "../../../store/middlewares/file";
 import { updateUserData } from "../../../store/middlewares/user";
 import { ProfileBlock } from "../../Layouts/ProfileBlock";

@@ -3,7 +3,6 @@ import { Info } from "./Info";
 import { Details } from "./Details";
 import { DisplayAvailability } from "./DisplayAvailability";
 import { Reviews } from "./Reviews";
-// import { PersonalAccount } from "../../components/PersonalAccount";
 
 export const UserProfile = ({ visit = false }) => {
   const profile = useSelector((state) =>
@@ -33,7 +32,6 @@ export const UserProfile = ({ visit = false }) => {
       ) : (
         <div />
       )}
-      {/* <PersonalAccount /> */}
     </>
   );
 };

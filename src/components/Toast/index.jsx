@@ -40,21 +40,21 @@ const Toast = ({
         return (
           <FontAwesomeIcon
             icon={faThumbsUp}
-            className="h-8 w-8 text-green-500"
+            className="h-4 w-4 md:h-8 md:w-8 text-green-500"
           />
         );
       case TOAST_TYPES[1]:
         return (
           <FontAwesomeIcon
             icon={faCircleExclamation}
-            className="h-8 w-8 text-red-500"
+            className="h-4 w-4 md:h-8 md:w-8 text-red-500"
           />
         );
       case TOAST_TYPES[2]:
         return (
           <FontAwesomeIcon
             icon={faLightbulb}
-            className="h-8 w-8 text-yellow-500"
+            className="h-4 w-4 md:h-8 md:w-8 text-yellow-500"
           />
         );
       default:
@@ -64,22 +64,22 @@ const Toast = ({
 
   return (
     <div
-      className={`fixed bottom-20 left-10 min-w-96 flex items-center z-50 bg-background ${
+      className={`fixed bottom-5 md:bottom-20 left-2 md:left-10 max-w-full md:min-w-96 flex items-center z-50 bg-background rounded-md ${
         visible ? "toast-message-slide-in" : "toast-message-slide-out"
       }`}
     >
-      <div className="p-3 w-full rounded-md shadow-md flex items-center">
+      <div className="p-3 w-full rounded-md shadow-md flex items-center justify-between">
         <div className="my-auto">{getIcon()}</div>
         <div className="flex-1 px-2">
-          <h2 className="text-lg font-semibold">{message}</h2>
+          <h2 className="text-sm md:text-lg font-semibold">{message}</h2>
           {description && <p>{description}</p>}
         </div>
         {onClose && (
           <button
             onClick={handleClose}
-            className="bg-gray-300 hover:bg-gray-400 px-3 py-2 rounded-full"
+            className="bg-gray-300 hover:bg-gray-400 px-2 h-6 w-6 md:h-10 md:w-10 flex items-center justify-center rounded-full"
           >
-            <FontAwesomeIcon icon={faX} className="h-4 w-4 " />
+            <FontAwesomeIcon icon={faX} className="h-2 w-2 md:h-4 md:w-4 " />
           </button>
         )}
       </div>

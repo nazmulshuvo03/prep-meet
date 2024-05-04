@@ -119,6 +119,7 @@ export const EditTarget = ({
             defaultText={"Select upto 5"}
             allowAddNew={true}
             addNewAction={handleAddNewCompany}
+            max={5}
           />
         </div>
         <MultiInputDropdown
@@ -128,6 +129,7 @@ export const EditTarget = ({
           options={skillOptions}
           onSelect={handleChange}
           defaultText={"Select upto 5"}
+          max={5}
         />
         <MultiInputDropdown
           label="Types of Experience"
@@ -136,6 +138,7 @@ export const EditTarget = ({
           options={expTypsOptions}
           onSelect={handleChange}
           defaultText={"Select upto 5"}
+          max={5}
         />
         <Dropdown
           label={"Target Level"}

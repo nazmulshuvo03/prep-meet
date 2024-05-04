@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Options } from "./Options";
+import { setToastMessage } from "../../store/slices/global";
+import { TOAST_TYPES } from "../../constants/Toast";
+import { useDispatch } from "react-redux";
 
 export const MultiInputDropdown = ({
   label = "",
@@ -14,8 +17,10 @@ export const MultiInputDropdown = ({
   allowAddNew = false,
   addNewAction = () => {},
   size = "normal", // "normal", "small"
+  max = null,
 }) => {
   const dropdownRef = useRef(null);
+  const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState(value);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState();
@@ -23,9 +28,19 @@ export const MultiInputDropdown = ({
 
   const handleCheckboxChange = (option) => {
     if (selectedOptions.includes(option)) {
-      setSelectedOptions(selectedOptions.filter((item) => item !== option));
+      setSelectedOptions((prev) => prev.filter((item) => item !== option));
     } else {
-      setSelectedOptions([...selectedOptions, option]);
+      setSelectedOptions((prev) => {
+        if (max && prev.length >= max) {
+          dispatch(
+            setToastMessage({
+              type: TOAST_TYPES[1],
+              message: `Maximum ${max} items can be selected`,
+            })
+          );
+          return prev;
+        } else return [...prev, option];
+      });
     }
   };
 

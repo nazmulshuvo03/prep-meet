@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Button } from "../Button";
 import { Input } from "../Input";
-import { setToastMessage } from "../../store/slices/global";
-import { TOAST_TYPES } from "../../constants/Toast";
 import { signupUser } from "../../store/middlewares/auth";
 import { Dropdown } from "../Dropdown";
+import { isEmail, isStrongPassword } from "validator";
 
 export const Signup = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
@@ -14,48 +14,22 @@ export const Signup = ({ switchMode = () => {} }) => {
     email: "",
     password: "",
     confirmPassword: "",
-    // firstName: "",
-    // lastName: "",
     targetProfessionId: "",
   });
   const [agree, setAgree] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
 
-  const handleSignup = () => {
-    if (!agree) {
-      dispatch(
-        setToastMessage({
-          type: TOAST_TYPES[1],
-          message: "Please read our Terms and Conditions",
-        })
-      );
-      return;
-    }
-    // if (!state.firstName) {
-    //   setErrorMessage("First Name can not be empty");
-    //   return;
-    // }
-    // if (!state.lastName) {
-    //   setErrorMessage("Last Name can not be empty");
-    //   return;
-    // }
-    if (!state.email) {
-      setErrorMessage("Email can not be empty");
-      return;
-    }
-    if (!state.password) {
-      setErrorMessage("Password can not be empty");
-      return;
-    }
-    if (!state.confirmPassword) {
+  const handleSignup = (e) => {
+    e.preventDefault();
+    if (!state.email) setErrorMessage("Email can not be empty");
+    else if (!isEmail(state.email)) setErrorMessage("Invalid Email");
+    else if (!state.password) setErrorMessage("Password can not be empty");
+    else if (!state.confirmPassword)
       setErrorMessage("Please confirm your password");
-      return;
-    }
-    if (!state.targetProfessionId) {
+    else if (!state.targetProfessionId)
       setErrorMessage("Please choose a career path");
-      return;
-    }
-    dispatch(signupUser(state));
+    else if (!agree) setErrorMessage("Please read our Terms and Conditions");
+    else dispatch(signupUser(state));
   };
 
   useEffect(() => {
@@ -80,33 +54,7 @@ export const Signup = ({ switchMode = () => {} }) => {
         <div className="text-center py-4">
           <div className="text-xl font-bold">Create your account</div>
         </div>
-        <div className="grid grid-cols-1 gap-1">
-          {/* <div className="flex gap-2">
-            <Input
-              type="text"
-              label={"First Name"}
-              name="firstName"
-              value={state.firstName}
-              onChange={(e) =>
-                setState((prev) => ({
-                  ...prev,
-                  [e.target.name]: e.target.value,
-                }))
-              }
-            />
-            <Input
-              type="text"
-              label={"Last Name"}
-              name="lastName"
-              value={state.lastName}
-              onChange={(e) =>
-                setState((prev) => ({
-                  ...prev,
-                  [e.target.name]: e.target.value,
-                }))
-              }
-            />
-          </div> */}
+        <form className="grid grid-cols-1 gap-1" onSubmit={handleSignup}>
           <Input
             type="email"
             label={"Email Address"}
@@ -162,9 +110,9 @@ export const Signup = ({ switchMode = () => {} }) => {
               value={agree}
               onChange={(e) => setAgree((prev) => !prev)}
             />
-            <a className="hover:underline" href="/">
-              I agree to the terms & policy
-            </a>
+            <Link to={"/terms-and-conditions"}>
+              I agree to the Terms & Conditions
+            </Link>
           </div>
           <div className="text-xs text-red-500 font-medium min-h-4 text-center">
             {errorMessage}
@@ -184,7 +132,7 @@ export const Signup = ({ switchMode = () => {} }) => {
               Sign In
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

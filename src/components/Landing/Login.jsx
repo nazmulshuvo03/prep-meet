@@ -3,6 +3,7 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { useEffect, useState } from "react";
 import { loginUser } from "../../store/middlewares/auth";
+import { isEmail } from "validator";
 
 export const Login = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
@@ -10,19 +11,15 @@ export const Login = ({ switchMode = () => {} }) => {
     email: "",
     password: "",
   });
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(true);
   const [errorMessage, setErrorMessage] = useState();
 
-  const handleLogin = () => {
-    if (!state.email) {
-      setErrorMessage("Email can not be empty");
-      return;
-    }
-    if (!state.password) {
-      setErrorMessage("Password can not be empty");
-      return;
-    }
-    dispatch(loginUser(state));
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!state.email) setErrorMessage("Email can not be empty");
+    else if (!isEmail(state.email)) setErrorMessage("Invalid Email");
+    else if (!state.password) setErrorMessage("Password can not be empty");
+    else dispatch(loginUser(state));
   };
 
   useEffect(() => {
@@ -41,7 +38,7 @@ export const Login = ({ switchMode = () => {} }) => {
         <div className="text-center py-4">
           <div className="text-xl font-bold">Welcome back!</div>
         </div>
-        <div className="grid grid-cols-1 gap-4">
+        <form className="grid grid-cols-1 gap-4" onSubmit={handleLogin}>
           <Input
             type="email"
             label={"Email Address"}
@@ -72,9 +69,7 @@ export const Login = ({ switchMode = () => {} }) => {
               value={remember}
               onChange={(e) => setRemember((prev) => !prev)}
             />
-            <a className="hover:underline" href="/">
-              Remember me
-            </a>
+            <span>Remember me</span>
           </div>
           <div className="text-xs text-red-500 font-medium min-h-4 text-center">
             {errorMessage}
@@ -94,7 +89,7 @@ export const Login = ({ switchMode = () => {} }) => {
               Sign Up
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
