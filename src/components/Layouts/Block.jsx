@@ -1,4 +1,5 @@
 import { MandatoryStar } from "../MandatoryStar";
+import { InfoTooltip } from "../Tooltip/InfoTooltip";
 
 export const Block = ({
   children,
@@ -6,6 +7,7 @@ export const Block = ({
   titleStar = false,
   className = "",
   titleClass = "",
+  titleInfo = "",
   ...rest
 }) => {
   return (
@@ -14,8 +16,11 @@ export const Block = ({
       {...rest}
     >
       {title && (
-        <div className={`font-semibold text-lg pt-2 pb-3 ${titleClass}`}>
-          {title} {titleStar ? <MandatoryStar /> : ""}
+        <div
+          className={`font-semibold text-lg pt-2 pb-3 ${titleClass} flex items-center justify-center gap-1`}
+        >
+          {title} {titleInfo ? <InfoTooltip message={titleInfo} /> : ""}
+          {titleStar ? <MandatoryStar /> : ""}
         </div>
       )}
       {children}

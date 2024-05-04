@@ -12,7 +12,7 @@ export const Tooltip = ({ text = "", className, children }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       {isTooltipVisible && text && (
         <div
           className={`absolute h-fit z-10 px-2 py-2 text-xs font-light text-white bg-gray-600 

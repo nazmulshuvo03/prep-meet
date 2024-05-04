@@ -93,8 +93,9 @@ export const Recurrent = () => {
 
   return (
     <ProfileBlock
-      title={`Recurrent Availability`}
+      title={`Recurring Availability`}
       titleStar={!completionStatus.availabilities}
+      titleInfo="Availabilities set here will be re-added to your schedules every 1st day of the week"
     >
       <div className="flex">
         <div className="p-2 flex flex-col gap-1">

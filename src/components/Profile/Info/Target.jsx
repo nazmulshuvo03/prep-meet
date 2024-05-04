@@ -36,7 +36,7 @@ export const Target = ({ visit = false }) => {
           valueArray={profile.companiesOfInterest}
           optionArray={companies}
           size="big"
-          tooltip={true}
+          // tooltip={true}
           star={!visit && !completionStatus.companiesOfInterest}
         />
         <TargetItem
