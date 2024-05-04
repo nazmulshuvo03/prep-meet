@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
 import { Info } from "./Info";
-import { AddAvailability } from "./AddAvailability";
 import { Details } from "./Details";
-import { Schedules } from "./Schedules";
 import { DisplayAvailability } from "./DisplayAvailability";
 import { Reviews } from "./Reviews";
 // import { PersonalAccount } from "../../components/PersonalAccount";

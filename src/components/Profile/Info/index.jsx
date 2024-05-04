@@ -33,7 +33,7 @@ export const Info = ({ visit = false }) => {
             <div className="flex items-center justify-start">
               <div className="flex flex-col items-center">
                 <ProfilePhoto
-                  {...{ newPP, setNewPP, profile, handlePPSubmit }}
+                  {...{ newPP, setNewPP, profile, handlePPSubmit, visit }}
                 />
                 <div className="flex gap-2 font-semibold text-base md:text-lg">
                   {!visit ? (

@@ -1,21 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconButton } from "../../Button/IconButton";
-import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faClose, faUpload } from "@fortawesome/free-solid-svg-icons";
 
-export const ProfilePhoto = ({ newPP, setNewPP, profile, handlePPSubmit }) => {
+export const ProfilePhoto = ({
+  newPP,
+  setNewPP,
+  profile,
+  handlePPSubmit,
+  visit,
+}) => {
   return (
     <>
-      <label>
+      <label className="relative inline-block cursor-pointer">
         <img
           src={newPP ? URL.createObjectURL(newPP) : profile.photoURL}
           alt={"Person Profile Image"}
-          className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2"
+          className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2 transition duration-300 ease-in-out transform hover:scale-105"
         />
+        {!visit && (
+          <div className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2 absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-0 hover:bg-opacity-50 transition duration-300 ease-in-out">
+            <FontAwesomeIcon className="text-3xl text-white" icon={faUpload} />
+          </div>
+        )}
         <input
           className="hidden"
           type="file"
           accept="image/*"
           name="photoURL"
+          disabled={visit}
           onChange={(e) => {
             const file = e.target.files[0];
             setNewPP(file);

@@ -34,6 +34,7 @@ export const Recurrent = () => {
   const professions = useSelector(
     (state) => state.profession.targetProfession.skills
   );
+  const completionStatus = useSelector((state) => state.user.completionStatus);
 
   const [selectedDay, setSelectedDay] = useState(0);
   const [time, setTime] = useState();
@@ -91,7 +92,10 @@ export const Recurrent = () => {
   }, [errorMessage]);
 
   return (
-    <ProfileBlock title={`Recurrent Availability`}>
+    <ProfileBlock
+      title={`Recurrent Availability`}
+      titleStar={!completionStatus.availabilities}
+    >
       <div className="flex">
         <div className="p-2 flex flex-col gap-1">
           <div>

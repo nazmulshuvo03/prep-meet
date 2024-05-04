@@ -17,13 +17,7 @@ export const Review = ({ data, visit }) => {
       <div>
         <div className="mb-2">
           <div className="font-bold text-lg">
-            {visit
-              ? data.reviewerProfile.userName
-              : data.reviewerProfile.firstName
-              ? data.reviewerProfile.firstName +
-                " " +
-                data.reviewerProfile.lastName
-              : data.reviewerProfile.userName}
+            {data.reviewerProfile.userName}
           </div>
           <div className="flex gap-1">
             {data.reviewerProfile.workExperiences &&
