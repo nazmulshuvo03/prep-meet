@@ -97,8 +97,28 @@ export const Recurrent = () => {
       titleStar={!completionStatus.availabilities}
       titleInfo="Availabilities set here will be re-added to your schedules every 1st day of the week"
     >
-      <div className="flex">
-        <div className="p-2 flex flex-col gap-1">
+      <div className="p-2">
+        {recurrentAvailabilities && recurrentAvailabilities.length ? (
+          <div className="w-full pb-2">
+            <label className="text-xs">Already Added</label>
+            <div className="flex gap-2 flex-wrap w-full">
+              {recurrentAvailabilities.map((avl) => {
+                return (
+                  <RecurrentItem
+                    key={avl.id}
+                    data={avl}
+                    dayIndexes={dayIndexes}
+                    hourIndexes={hourIndexes}
+                    handleDelete={handleDelete}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div />
+        )}
+        <div className="flex flex-col gap-1">
           <div>
             <label className="text-xs">Weekday</label>
             <div className="flex gap-2 flex-wrap">
@@ -155,28 +175,6 @@ export const Recurrent = () => {
               Add More
             </Button>
           </div>
-        </div>
-        <div className="h-full border border-primary px-2 pb-2 rounded-md w-3/5 overflow-y-auto flex flex-col items-center">
-          <div className="text-center text-lg font-semibold py-2">
-            Recurring Next Week
-          </div>
-          {recurrentAvailabilities && recurrentAvailabilities.length ? (
-            <div className="flex gap-2 flex-wrap w-full">
-              {recurrentAvailabilities.map((avl) => {
-                return (
-                  <RecurrentItem
-                    key={avl.id}
-                    data={avl}
-                    dayIndexes={dayIndexes}
-                    hourIndexes={hourIndexes}
-                    handleDelete={handleDelete}
-                  />
-                );
-              })}
-            </div>
-          ) : (
-            <div />
-          )}
         </div>
       </div>
     </ProfileBlock>
