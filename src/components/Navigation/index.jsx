@@ -50,17 +50,16 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
     <>
       <Banner
         text={
-          <div>
-            <a
-              href="https://forms.gle/WFMQhmP98HdyQwXy6"
-              target="_blank"
-              className="italic hover:underline hover:text-blue-600 px-1 font-semibold"
-            >
-              This website is currently under active construction. Please inform
-              us of any anomalies or issues you encounter here. Thank you for
-              your patience.
-            </a>
-          </div>
+          <a
+            href="https://forms.gle/WFMQhmP98HdyQwXy6"
+            target="_blank"
+            className="hover:underline"
+          >
+            This website is currently under active construction. Please inform
+            us of any anomalies or issues you encounter
+            <span className="text-blue-600 px-1 font-semibold">here</span>.
+            Thank you for your patience.
+          </a>
         }
       />
       {completionStatus && !isAllTrue(completionStatus) && (
