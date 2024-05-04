@@ -8,6 +8,8 @@ import {
 import { formatPostgresDate, htmlDateInputFormat } from "../../utils/timeDate";
 import { Experience } from "./Experience";
 import { MandatoryStar } from "../MandatoryStar";
+import { setToastMessage } from "../../store/slices/global";
+import { TOAST_TYPES } from "../../constants/Toast";
 
 const DEFAULT_DATA = {
   jobTitle: "",
@@ -39,27 +41,59 @@ export const WorkExperience = ({ visit }) => {
     });
   };
 
-  const handleSubmit = () => {
-    const formattedStartDate = formatPostgresDate(startDate);
-    const formattedEndDate = formatPostgresDate(endDate);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const fullData = {
-      user_id: profile.id,
-      jobTitle: jobTitle,
-      experienceId: experienceId,
-      companyId: companyId,
-      country: country,
-      startDate: formattedStartDate,
-      endDate: formattedEndDate,
-    };
-    if (editItem) {
-      dispatch(editWorkExperience(editItem, fullData));
-      setEditItem();
+    if (!companyId) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Company is not provided",
+        })
+      );
+    } else if (!jobTitle) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Role is not provided",
+        })
+      );
+    } else if (!startDate) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Joining date is required",
+        })
+      );
+    } else if (!experienceId) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Experience Level is not provided",
+        })
+      );
     } else {
-      dispatch(addWorkExperience(fullData));
+      const formattedStartDate = formatPostgresDate(startDate);
+      const formattedEndDate = formatPostgresDate(endDate);
+
+      const fullData = {
+        user_id: profile.id,
+        jobTitle: jobTitle,
+        experienceId: experienceId,
+        companyId: companyId,
+        country: country,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+      };
+      if (editItem) {
+        dispatch(editWorkExperience(editItem, fullData));
+        setEditItem();
+      } else {
+        dispatch(addWorkExperience(fullData));
+      }
+      setShowInput(false);
+      setFormData(DEFAULT_DATA);
     }
-    setShowInput(false);
-    setFormData(DEFAULT_DATA);
   };
 
   const handleEditClick = (id) => {

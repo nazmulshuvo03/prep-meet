@@ -6,12 +6,14 @@ import {
   editEducation,
 } from "../../store/middlewares/education";
 import { Experience } from "./Experience";
+import { setToastMessage } from "../../store/slices/global";
+import { TOAST_TYPES } from "../../constants/Toast";
 
 const DEFAULT_DATA = {
   degree: "",
   major: "",
   institution: "",
-  year_of_graduation: "",
+  year_of_graduation: null,
 };
 
 export const Education = ({ visit = false }) => {
@@ -31,19 +33,44 @@ export const Education = ({ visit = false }) => {
     });
   };
 
-  const handleSubmit = () => {
-    const fullData = {
-      user_id: profile.id,
-      ...formData,
-    };
-    if (editItem) {
-      dispatch(editEducation(editItem, fullData));
-      setEditItem();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.degree) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Degree is not provided",
+        })
+      );
+    } else if (!formData.major) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Major is not provided",
+        })
+      );
+    } else if (!formData.institution) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Institution is not provided",
+        })
+      );
     } else {
-      dispatch(addEducation(fullData));
+      const fullData = {
+        user_id: profile.id,
+        ...formData,
+      };
+      if (editItem) {
+        dispatch(editEducation(editItem, fullData));
+        setEditItem();
+      } else {
+        dispatch(addEducation(fullData));
+      }
+      setShowInput(false);
+      setFormData(DEFAULT_DATA);
     }
-    setShowInput(false);
-    setFormData(DEFAULT_DATA);
   };
 
   const handleEditClick = (id) => {

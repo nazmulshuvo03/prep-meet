@@ -6,6 +6,8 @@ import {
   editInterviewExperience,
 } from "../../store/middlewares/interviewExperience";
 import { Experience } from "./Experience";
+import { setToastMessage } from "../../store/slices/global";
+import { TOAST_TYPES } from "../../constants/Toast";
 
 const DEFAULT_DATA = {
   role: null,
@@ -30,19 +32,37 @@ export const InterviewExperience = ({ visit = false }) => {
     });
   };
 
-  const handleSubmit = () => {
-    const fullData = {
-      user_id: profile.id,
-      role,
-      companyId,
-    };
-    if (editItem) {
-      dispatch(editInterviewExperience(editItem, fullData));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!role) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Role is not provided",
+        })
+      );
+    } else if (!companyId) {
+      dispatch(
+        setToastMessage({
+          type: TOAST_TYPES[1],
+          message: "Company is not provided",
+        })
+      );
     } else {
-      dispatch(addInterviewExperience(fullData));
+      const fullData = {
+        user_id: profile.id,
+        role,
+        companyId,
+      };
+      if (editItem) {
+        dispatch(editInterviewExperience(editItem, fullData));
+      } else {
+        dispatch(addInterviewExperience(fullData));
+      }
+      setShowInput(false);
+      setFormData(DEFAULT_DATA);
     }
-    setShowInput(false);
-    setFormData(DEFAULT_DATA);
   };
 
   const handleEditClick = (id) => {

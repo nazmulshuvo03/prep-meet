@@ -52,7 +52,8 @@ export const EditTarget = ({
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     dispatch(updateUserData(profile.id, state));
     handleDone();
   };
@@ -96,7 +97,10 @@ export const EditTarget = ({
           <FontAwesomeIcon icon={faClose} className="text-gray-500 text-2xl" />
         </IconButton>
       </div>
-      <div className="py-6 flex flex-col md:grid md:grid-cols-2 gap-4">
+      <form
+        className="py-6 flex flex-col md:grid md:grid-cols-2 gap-4"
+        onSubmit={handleSave}
+      >
         <Input
           label={"First Name"}
           name={"firstName"}
@@ -185,7 +189,7 @@ export const EditTarget = ({
             Save
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

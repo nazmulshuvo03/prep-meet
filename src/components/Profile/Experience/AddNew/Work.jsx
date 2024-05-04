@@ -26,7 +26,7 @@ export const Work = ({ data, handleChange = () => {} }) => {
     <>
       <div className="grid md:grid-cols-3 items-baseline justify-between gap-4">
         <Dropdown
-          label="Company"
+          label="Company *"
           name={"companyId"}
           value={companyId || ""}
           options={companies}
@@ -36,7 +36,7 @@ export const Work = ({ data, handleChange = () => {} }) => {
           addNewAction={handleAddNewCompany}
         />
         <DateInput
-          label={"From"}
+          label={"From *"}
           value={startDate || ""}
           onChange={(value) => {
             handleChange({
@@ -76,13 +76,13 @@ export const Work = ({ data, handleChange = () => {} }) => {
       </div>
       <div className="grid md:grid-cols-3 gap-4">
         <Input
-          label="Role"
+          label="Role *"
           name="jobTitle"
           value={jobTitle || ""}
           onChange={handleChange}
         />
         <Dropdown
-          label="Experience Level"
+          label="Experience Level *"
           name={"experienceId"}
           value={experienceId || ""}
           options={experienceLevels}
