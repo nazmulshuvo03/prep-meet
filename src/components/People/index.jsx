@@ -37,7 +37,7 @@ export const PeoplePage = () => {
       setShowFilterToggle(false);
       setShowFilters(true);
     }
-  }, []);
+  }, [deviceSize]);
 
   useEffect(() => {
     if (oldQuery) {
@@ -147,6 +147,8 @@ export const PeoplePage = () => {
             maxExp,
             handleExperienceSelect,
             showFilters,
+            setShowFilters,
+            showFilterToggle,
           }}
         />
       </div>
