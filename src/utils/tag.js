@@ -84,39 +84,8 @@ function focusAreaIncludes(skillsList, personFocusAreas, includesItem) {
   return false;
 }
 
-export const personTag = (user, person, skillsList) => {
-  const tags = [];
-  if (user.experienceLevel < person.experienceLevel) {
-    tags.push(
-      newTag(1, `Level's don't match`, 0, "text-red-700", "bg-red-100")
-    );
-  }
-  if (sameTargetCompany(user.companiesOfInterest, person.companiesOfInterest)) {
-    tags.push(
-      newTag(2, `Same target company as yours`, 1, "text-white", "bg-green-800")
-    );
-  }
-  if (
-    targetCompanyExperience(user.companiesOfInterest, person.workExperiences) ||
-    targetCompanyExperience(
-      user.companiesOfInterest,
-      person.interviewExperiences
-    )
-  ) {
-    tags.push(
-      newTag(
-        3,
-        `Target Company Experience`,
-        2,
-        "text-green-700",
-        "bg-green-100"
-      )
-    );
-  }
-  // TODO: Actively Practising to be added
-  if (user.experienceLevel === person.experienceLevel) {
-    tags.push(newTag(5, `Levels match`, 4, "text-blue-700", "bg-blue-100"));
-  }
+export const personTag = (user, person, skillsList, max = 10) => {
+  let tags = [];
   if (skillsList && skillsList.length) {
     if (focusAreaIncludes(skillsList, person.focusAreas, "Product Sense")) {
       tags.push(
@@ -134,5 +103,36 @@ export const personTag = (user, person, skillsList) => {
       tags.push(newTag(8, `Behavioral`, 5, "text-yellow-700", "bg-yellow-100"));
     }
   }
-  return tags;
+  if (user.experienceLevel === person.experienceLevel) {
+    tags.push(newTag(5, `Levels match`, 4, "text-blue-700", "bg-blue-100"));
+  }
+  // TODO: Actively Practising to be added
+  if (
+    targetCompanyExperience(user.companiesOfInterest, person.workExperiences) ||
+    targetCompanyExperience(
+      user.companiesOfInterest,
+      person.interviewExperiences
+    )
+  ) {
+    tags.push(
+      newTag(
+        3,
+        `Target Company Experience`,
+        2,
+        "text-green-700",
+        "bg-green-100"
+      )
+    );
+  }
+  if (sameTargetCompany(user.companiesOfInterest, person.companiesOfInterest)) {
+    tags.push(
+      newTag(2, `Same target company as yours`, 1, "text-white", "bg-green-800")
+    );
+  }
+  if (user.experienceLevel < person.experienceLevel) {
+    tags.push(
+      newTag(1, `Level's don't match`, 0, "text-red-700", "bg-red-100")
+    );
+  }
+  return tags.slice(0, max);
 };

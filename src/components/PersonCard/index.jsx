@@ -42,14 +42,14 @@ export const PersonCard = ({ data }) => {
 
   return (
     <div className="w-full h-fit bg-white rounded-md shadow-md px-2 md:px-4 py-2">
-      <div className="grid md:grid-cols-12 grid-cols-1 border-b relative">
+      <div className="grid md:grid-cols-12 grid-cols-1 border-b">
         <div className="col-span-2">
           <ImageArea data={data} handleProfileVisit={handleProfileVisit} />
         </div>
-        <div className="col-span-10">
+        <div className="col-span-8">
           <WorkInfo data={data} />
         </div>
-        <div className={"absolute right-0 top-0 flex items-center gap-2"}>
+        <div className="col-span-2 text-right">
           <div className="text-gray-600 text-xs">
             {data.preparationStage
               ? getDataLabelFromKey(preparationStages, data.preparationStage)
