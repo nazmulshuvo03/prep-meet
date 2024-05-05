@@ -20,3 +20,36 @@ export const listOfFalses = (obj) => {
   });
   return falses;
 };
+
+export const workProfile = (works) => {
+  let mostRecent = null;
+  let rest = [];
+  if (works.length === 1) {
+    mostRecent = works[0];
+  }
+  if (works.length > 1) {
+    for (let work of works) {
+      if (work.currentCompany) {
+        mostRecent = work;
+      } else {
+        rest.push(work);
+      }
+    }
+    if (!mostRecent) {
+      // this means there is no current company; run the loop again to find the most recent company
+      rest = [];
+      mostRecent = works[0];
+      for (let work of works) {
+        if (new Date(work.endDate) > new Date(mostRecent.endDate)) {
+          rest.push(mostRecent);
+          mostRecent = work;
+        } else if (new Date(work.endDate) < new Date(mostRecent.endDate))
+          rest.push(work);
+      }
+    }
+  }
+  return {
+    mostRecent,
+    rest,
+  };
+};

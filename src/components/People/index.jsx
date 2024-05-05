@@ -112,6 +112,8 @@ export const PeoplePage = () => {
             maxExp,
             handleExperienceSelect,
             showFilters,
+            setShowFilters,
+            showFilterToggle,
           }}
         />
       ),

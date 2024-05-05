@@ -8,7 +8,7 @@ import { companyNameShortner } from "../../utils/string";
 import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
 import { useEffect, useState } from "react";
 import { personTag } from "../../utils/tag";
-import { CapsulList } from "../Capsul/CapsulList";
+import { workProfile } from "../../utils/profile";
 
 const Current = ({ data, companies, experienceLevels }) => (
   <div className="text-text">
@@ -30,8 +30,11 @@ const Current = ({ data, companies, experienceLevels }) => (
     </div>
     <div className="flex gap-1 text-gray-600 text-xs">
       <div>
-        {convertISOUTCDayTimeToLocalDayTime(data.startDate).dateMonthView} -
-        Present
+        {convertISOUTCDayTimeToLocalDayTime(data.startDate).dateMonthView} -{" "}
+        {""}
+        {data.endDate
+          ? convertISOUTCDayTimeToLocalDayTime(data.endDate).dateMonthView
+          : "Present"}
       </div>
       <div style={{ fontSize: 30 }}>&middot;</div>
       <div>{timeDistance(data.startDate, data.endDate)}</div>
@@ -70,11 +73,17 @@ export const WorkInfo = ({ data = null }) => {
   );
 
   const [tags, setTags] = useState();
+  const [mostRecent, setMostRecent] = useState();
+  const [otherWorks, setOtherWorks] = useState();
 
   useEffect(() => {
     if (user && data) {
-      let result = personTag(user, data, skillsList);
+      const result = personTag(user, data, skillsList);
       setTags(result);
+
+      const { mostRecent, rest } = workProfile(data.workExperiences);
+      setMostRecent(mostRecent);
+      setOtherWorks(rest);
     }
   }, [user, data]);
 
@@ -99,31 +108,24 @@ export const WorkInfo = ({ data = null }) => {
             )}
           </div>
           <div className="pt-2 pb-3 text-gray-600 text-sm">
-            {data.workExperiences.map((we) => {
-              if (we.currentCompany) {
-                return (
-                  <Current
-                    key={we.id}
-                    data={we}
-                    companies={companies}
-                    experienceLevels={experienceLevels}
-                  />
-                );
-              }
-            })}
+            {mostRecent && (
+              <Current
+                data={mostRecent}
+                companies={companies}
+                experienceLevels={experienceLevels}
+              />
+            )}
           </div>
           <div className="py-3 text-gray-600 text-sm">
-            {data.workExperiences?.map((we) => {
-              if (!we.currentCompany) {
-                return (
-                  <Other
-                    key={we.id}
-                    data={we}
-                    companies={companies}
-                    experienceLevels={experienceLevels}
-                  />
-                );
-              }
+            {otherWorks?.map((we) => {
+              return (
+                <Other
+                  key={we.id}
+                  data={we}
+                  companies={companies}
+                  experienceLevels={experienceLevels}
+                />
+              );
             })}
           </div>
         </div>
