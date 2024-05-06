@@ -5,12 +5,13 @@ import { ProfileAvatar } from "../ProfileAvatar";
 import { IconButton } from "../Button/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TabNavigation } from "./TabNavigation";
 import { Drawer } from "../Drawer";
 import { Banner } from "../Banner";
 import { isAllTrue } from "../../utils/object";
 import { completionRemaining } from "../../utils/profile";
+import { Auth } from "../Landing/Auth";
 
 export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const location = useLocation();
@@ -18,7 +19,16 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
   const completionStatus = useSelector((state) => state.user.completionStatus);
 
+  const [authMode, setAuthMode] = useState("");
   const [openTabNavs, setOpenTabNavs] = useState(false);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const modeParam = searchParams.get("auth");
+    if (modeParam) {
+      setAuthMode(modeParam);
+    } else setAuthMode("");
+  }, [location.search]);
 
   const isDashboard = () => {
     const dashboardRoutes = ["/people", "/profile", "/progress", "/interviews"];
@@ -70,6 +80,7 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
           )}.`}
         />
       )}
+      {authMode && <Auth authMode={authMode} />}
       <div className="bg-primary flex justify-between w-full h-16 items-center px-5 z-10">
         {isAuthenticated && (
           <div className="visible md:hidden">
