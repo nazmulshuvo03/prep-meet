@@ -4,6 +4,7 @@ import { ProfileBlock } from "../../Layouts/ProfileBlock";
 import { NoData } from "../../NoData";
 
 export const Reviews = ({ visit }) => {
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
   const profile = useSelector((state) =>
     visit ? state.user.visitingProfile : state.user.profile
   );
@@ -19,7 +20,13 @@ export const Reviews = ({ visit }) => {
           </>
         ) : (
           <div className="h-2/3">
-            <NoData message="No Reviews Yet" />
+            <NoData
+              message={
+                isAuthenticated
+                  ? "No Reviews Yet"
+                  : "Please login to see the reviews"
+              }
+            />
           </div>
         )}
       </div>

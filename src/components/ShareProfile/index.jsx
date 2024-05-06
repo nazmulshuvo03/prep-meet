@@ -13,7 +13,7 @@ export const ShareProfile = () => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const formattedURL = `${config.FRONTEND_URL}/user/${profile.id}`;
+    const formattedURL = `${config.FRONTEND_URL}/public-profile/${profile.id}`;
     navigator.clipboard
       .writeText(formattedURL)
       .then(() => {

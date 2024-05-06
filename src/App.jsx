@@ -99,6 +99,7 @@ function App() {
                 component={TermsConditions}
               />
               <Route exact path="/faqs" component={Faqs} />
+              <Route exact path="/public-profile/:userId" component={Visit} />
               <Route>
                 {global.isAuthenticated ? (
                   <div className="flex w-full overflow-hidden">
@@ -109,12 +110,12 @@ function App() {
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/progress" component={Progress} />
                       <Route exact path="/interviews" component={Interviews} />
+                      <Route exact path="/user/:userId" component={Visit} />
                       <Route
                         exact
                         path="/availability"
                         component={Availability}
                       />
-                      <Route exact path="/user/:userId" component={Visit} />
                       <Route exact path="/admin" component={Admin} />
                     </div>
                   </div>

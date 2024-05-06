@@ -52,7 +52,7 @@ export const DisplayAvailability = () => {
                       {avl.state}
                     </div>
                     <div className="col-span-1">
-                      {isAllTrue(completionStatus) && (
+                      {completionStatus && isAllTrue(completionStatus) && (
                         <>
                           {avl.state === "OPEN" ? (
                             <IconButton
