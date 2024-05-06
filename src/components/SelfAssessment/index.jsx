@@ -27,7 +27,14 @@ export const SelfAssessment = () => {
     const questionsData = {};
     for (let pa of practiceAreas) {
       const response = await dispatch(fetchAllReviewQuestions(pa));
-      questionsData[pa] = response;
+      if (response) {
+        questionsData[pa] = response;
+      } else {
+        questionsData[pa] = {
+          type1: [],
+          type2: [],
+        };
+      }
     }
     setQuestions(questionsData);
   };

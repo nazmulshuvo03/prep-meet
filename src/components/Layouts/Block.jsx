@@ -17,7 +17,7 @@ export const Block = ({
     >
       {title && (
         <div
-          className={`font-semibold text-lg pt-2 pb-3 ${titleClass} flex items-center justify-center gap-1`}
+          className={`font-semibold text-lg pt-2 pb-3 ${titleClass} flex items-center gap-1`}
         >
           {title} {titleInfo ? <InfoTooltip message={titleInfo} /> : ""}
           {titleStar ? <MandatoryStar /> : ""}

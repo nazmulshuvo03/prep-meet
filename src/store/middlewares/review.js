@@ -17,7 +17,7 @@ export const fetchAllReviewQuestions = (practiceAreaId) => async (dispatch) => {
     dispatch(
       setToastMessage({
         type: TOAST_TYPES[1],
-        message: res.data,
+        message: res.data.message,
       })
     );
   }

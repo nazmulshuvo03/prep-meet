@@ -19,7 +19,7 @@ export const Questions = ({
     <div className="py-4">
       <div className="grid grid-cols-12 py-1">
         <div className={`col-span-${qnSpan}`} />
-        {answers && answers.length ? (
+        {questions && questions.length && answers && answers.length ? (
           <>
             {answers.map((answer) => (
               <div
