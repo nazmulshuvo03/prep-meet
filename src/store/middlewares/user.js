@@ -5,6 +5,7 @@ import { fetchContent, postContent, putContent } from "../../services/api";
 import {
   all_profile_url,
   all_users_url,
+  public_user_url,
   user_progress,
   user_url,
   users_check_prop_url,
@@ -21,11 +22,11 @@ import {
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
 
-export const fetchPeople = (userId = null, query = "") =>
+export const fetchPeople = (query = "") =>
   asyncWrapper(async (dispatch) => {
     console.log("dashboard query: ", query);
     dispatch(setLoading());
-    const response = await fetchContent(all_profile_url(userId, query));
+    const response = await fetchContent(all_profile_url(query));
     console.log("Profile docs: ", response);
     responseHandler(response, dispatch(setPeople(response.data)));
     dispatch(setLoading(false));
@@ -59,7 +60,7 @@ export const fetchUserProfile = (
 export const visitUserProfile = (userId) =>
   asyncWrapper(async (dispatch) => {
     dispatch(setLoading());
-    const response = await fetchContent(user_url(userId));
+    const response = await fetchContent(public_user_url(userId));
     console.log("user doc: ", response);
     responseHandler(response, () => {
       dispatch(setVisitingProfile(response.data));

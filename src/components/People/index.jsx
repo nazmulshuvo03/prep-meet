@@ -57,7 +57,7 @@ export const PeoplePage = () => {
         }
         const queryString = queryObjectToString(queries);
         if (profile) {
-          dispatch(fetchPeople(profile.id, queryString));
+          dispatch(fetchPeople(queryString));
           history.push(`/people?${queryString}`);
         }
       }
