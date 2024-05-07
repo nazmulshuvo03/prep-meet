@@ -40,7 +40,6 @@ import Availability from "./routes/Availability";
 function App() {
   const dispatch = useDispatch();
   const global = useSelector((state) => state.global);
-  const profile = useSelector((state) => state.user.profile);
 
   const landingHowItWorksRef = useRef(null);
   const landingFaqsRef = useRef(null);
@@ -59,14 +58,12 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProfessions());
-    if (profile) {
-      dispatch(fetchExperienceLevels());
-      dispatch(fetchPreparationStages());
-      dispatch(fetchCompanies());
-      dispatch(fetchAllSkill());
-      dispatch(fetchAllExperienceType());
-    }
-  }, [profile]);
+    dispatch(fetchExperienceLevels());
+    dispatch(fetchPreparationStages());
+    dispatch(fetchCompanies());
+    dispatch(fetchAllSkill());
+    dispatch(fetchAllExperienceType());
+  }, []);
 
   return (
     <div
