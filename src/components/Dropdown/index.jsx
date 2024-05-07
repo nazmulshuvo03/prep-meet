@@ -19,6 +19,7 @@ export const Dropdown = ({
   allowSearch = true,
   allowAddNew = false,
   addNewAction = () => {},
+  disabled = false,
   className = "",
 }) => {
   const dropdownRef = useRef(null);
@@ -79,14 +80,18 @@ export const Dropdown = ({
       <label className="text-xs">{label}</label>
       <div className="relative">
         <div
-          className="relative w-full flex-1 flex gap-2 rounded-lg border 
-          border-gray-300 bg-white  px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer 
-          whitespace-nowrap overflow-hidden text-ellipsis"
+          className={`relative w-full flex-1 flex gap-2 rounded-lg border 
+          px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer 
+          whitespace-nowrap overflow-hidden text-ellipsis ${
+            disabled
+              ? "bg-gray-200 border-gray-200"
+              : "bg-white border-gray-300"
+          }`}
           style={{ minHeight: 38 }}
         >
           <div
             className="w-full whitespace-nowrap overflow-hidden text-ellipsis"
-            onClick={handleInputClick}
+            onClick={disabled ? () => {} : handleInputClick}
           >
             {value && options && options.length ? (
               <span className="">
@@ -104,12 +109,12 @@ export const Dropdown = ({
                 {dropdownOpen ? (
                   <FontAwesomeIcon
                     icon={faCaretUp}
-                    onClick={handleInputClick}
+                    onClick={disabled ? () => {} : handleInputClick}
                   />
                 ) : (
                   <FontAwesomeIcon
                     icon={faCaretDown}
-                    onClick={handleInputClick}
+                    onClick={disabled ? () => {} : handleInputClick}
                   />
                 )}
               </span>

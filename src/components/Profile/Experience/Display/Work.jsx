@@ -4,6 +4,7 @@ import {
   timeDistance,
 } from "../../../../utils/timeDate";
 import { getDataLabelFromKey } from "../../../../utils/data";
+import moment from "moment";
 
 export const Work = ({ data }) => {
   const experienceLevels = useSelector(
@@ -36,10 +37,10 @@ export const Work = ({ data }) => {
       <div className="text-sm font-medium text-gray-500">{data.country}</div>
       <div className="flex gap-1 items-center text-xs font-normal text-gray-500">
         <span>
-          {convertISOUTCDayTimeToLocalDayTime(data.startDate).date}
+          {moment(data.startDate).format("MMM DD, YYYY")}
           {" - "}
           {data.endDate
-            ? convertISOUTCDayTimeToLocalDayTime(data.endDate).date
+            ? moment(data.endDate).format("MMM DD, YYYY")
             : "Present"}
         </span>
         <span style={{ fontSize: 20 }}>&middot;</span>

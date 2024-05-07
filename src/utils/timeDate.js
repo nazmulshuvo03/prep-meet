@@ -1,3 +1,5 @@
+import moment from "moment";
+
 // Function to get formatted date with weekday (DD-MM-YYYY, Weekday)
 export function getFormattedDateWithWeekday(date) {
   date.setHours(0, 0, 0, 0); // Set time to 00:00:00 (midnight)
@@ -235,6 +237,19 @@ export const timeDistance = (startDate, endDate) => {
       return `${dayDiff} day${dayDiff > 1 ? "s" : ""}`;
     }
   }
+};
+
+export const timeDistanceMoment = (date1, date2) => {
+  const moment1 = moment(date1);
+  const moment2 = date2 ? moment(date2) : moment();
+
+  const duration = moment.duration(moment2.diff(moment1));
+
+  const years = duration.years();
+  const months = duration.months();
+  const days = duration.days();
+
+  return { years, months, days };
 };
 
 export const getDateDescription = (timestamp) => {

@@ -25,7 +25,7 @@ export const Interview = ({ data }) => {
           companies.filter(
             (company) => company.id === parseInt(data.companyId)
           )[0]?.name}
-        {", "}
+        {data.country ? ", " : ""}
         {data.country}
       </div>
     </div>

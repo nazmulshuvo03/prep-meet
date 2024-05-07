@@ -109,6 +109,7 @@ export const AddAvailability = () => {
             label={"Time*"}
             name={"time"}
             value={time || ""}
+            disabled={!date}
             options={generateHourArray(isTodaySelected())}
             onSelect={(e) => {
               setTime(e.target.value);

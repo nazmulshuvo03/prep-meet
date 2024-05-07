@@ -1,14 +1,12 @@
 import { useSelector } from "react-redux";
-import {
-  convertISOUTCDayTimeToLocalDayTime,
-  timeDistance,
-} from "../../utils/timeDate";
+import { timeDistance } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
 import { companyNameShortner } from "../../utils/string";
 import { ProfileCardCapsul } from "../Capsul/ProfileCardCapsul";
 import { useEffect, useState } from "react";
 import { personTag } from "../../utils/tag";
 import { workProfile } from "../../utils/profile";
+import moment from "moment";
 
 const Current = ({ data, companies, experienceLevels }) => (
   <div className="text-text">
@@ -30,11 +28,9 @@ const Current = ({ data, companies, experienceLevels }) => (
     </div>
     <div className="flex gap-1 text-gray-600 text-xs">
       <div>
-        {convertISOUTCDayTimeToLocalDayTime(data.startDate).dateMonthView} -{" "}
-        {""}
-        {data.endDate
-          ? convertISOUTCDayTimeToLocalDayTime(data.endDate).dateMonthView
-          : "Present"}
+        {moment(data.startDate).format("MMM YYYY")}
+        {" - "}
+        {data.endDate ? moment(data.endDate).format("MMM YYYY") : "Present"}
       </div>
       <div style={{ fontSize: 30 }}>&middot;</div>
       <div>{timeDistance(data.startDate, data.endDate)}</div>
@@ -55,9 +51,6 @@ const Other = ({ data, companies, experienceLevels }) => (
           ? `${getDataLabelFromKey(experienceLevels, data.experienceId)}`
           : ""}
       </div>
-      {/* <div>
-        {data.endDate ? `${timeDistance(data.startDate, data.endDate)}` : ""}
-      </div> */}
     </div>
   </div>
 );
