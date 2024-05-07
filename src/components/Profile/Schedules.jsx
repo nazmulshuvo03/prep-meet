@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { Button } from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +7,7 @@ import { CapsulList } from "../Capsul/CapsulList";
 import { ProfileBlock } from "../Layouts/ProfileBlock";
 import { NoData } from "../NoData";
 import { Tooltip } from "../Tooltip";
+import moment from "moment";
 
 export const Schedules = () => {
   const dispatch = useDispatch();
@@ -34,15 +34,7 @@ export const Schedules = () => {
                   <div className="flex items-baseline justify-between mb-2">
                     <div className="flex items-baseline justify-start">
                       <div className="text-base font-light text-gray-700">
-                        {
-                          convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
-                            .dateMonthView
-                        }
-                        {", "}
-                        {
-                          convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
-                            .time
-                        }
+                        {moment(avl.dayHourUTC).format("MMM DD, ddd, hh:mm A")}
                       </div>
                       {avl.isRecurring && (
                         <Tooltip text="This user will be available next week this day same time">

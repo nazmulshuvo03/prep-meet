@@ -11,7 +11,7 @@ import {
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
+import moment from "moment";
 
 ChartJS.register(
   CategoryScale,
@@ -76,10 +76,7 @@ export const ProgressChart = ({ data }) => {
         };
         for (let note of data[i].notes) {
           if (!labels.includes(note.meeting.dayHourUTC)) {
-            labels.push(
-              convertISOUTCDayTimeToLocalDayTime(note.meeting.dayHourUTC)
-                .dateMonthView
-            );
+            labels.push(moment(note.meeting.dayHourUTC).format("ddd, MMM DD"));
           }
           dataObj.data.push(note.points);
         }

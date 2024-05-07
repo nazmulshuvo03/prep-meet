@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { getDataLabelFromKey } from "../../../utils/data";
 import { companyNameShortner } from "../../../utils/string";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 import { Stars } from "../../Stars";
+import moment from "moment";
 
 export const Review = ({ data, visit }) => {
   const companies = useSelector((state) => state.static.companies);
@@ -44,10 +44,7 @@ export const Review = ({ data, visit }) => {
         <div className="text-sm text-gray-500 mb-2">
           <span>Interview Date: </span>
           <span>
-            {
-              convertISOUTCDayTimeToLocalDayTime(data.meeting.dayHourUTC)
-                .dateYearView
-            }
+            {moment(data.meeting.dayHourUTC).format("MMM DD, ddd, YYYY")}
           </span>
         </div>
         <div className="flex gap-2 items-center text-sm text-gray-500">

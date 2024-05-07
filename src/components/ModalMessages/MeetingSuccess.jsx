@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getDataLabelFromKey } from "../../utils/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
+import moment from "moment";
 
 export const MeetingSuccess = ({ data }) => {
   const allSkill = useSelector((state) => state.profession.allSkill);
@@ -24,13 +24,8 @@ export const MeetingSuccess = ({ data }) => {
         </div>
         <div className="flex-1 text-base leading-8 font-normal text-gray-600">
           <div>Username: {data.initiatorProfile.userName}</div>
-          <div>
-            Date:{" "}
-            {convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC).dateYearView}
-          </div>
-          <div>
-            Time: {convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC).time}
-          </div>
+          <div>Date: {moment(data.dayHourUTC).format("MMM DD, YYYY")}</div>
+          <div>Time: {moment(data.dayHourUTC).format("hh:mm A")}</div>
           <div className="flex gap-1 flex-wrap items-center">
             Practice Areas:
             {data.practiceAreas && data.practiceAreas.length ? (

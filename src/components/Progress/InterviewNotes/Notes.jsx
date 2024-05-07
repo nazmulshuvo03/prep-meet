@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { NoData } from "../../NoData";
+import moment from "moment";
 
 export const Notes = ({ data = null }) => {
   const user = useSelector((state) => state.user.profile);
@@ -28,18 +28,9 @@ export const Notes = ({ data = null }) => {
                   <div>-</div>
                   <div>{interviewerProfile.userName},</div>
                   <div>
-                    {
-                      convertISOUTCDayTimeToLocalDayTime(
-                        item.meeting.dayHourUTC
-                      ).dateMonthView
-                    }
-                  </div>
-                  <div>
-                    {
-                      convertISOUTCDayTimeToLocalDayTime(
-                        item.meeting.dayHourUTC
-                      ).time
-                    }
+                    {moment(item.meeting.dayHourUTC).format(
+                      "MMM DD, ddd, hh:mm A"
+                    )}
                   </div>
                 </Link>
               </div>

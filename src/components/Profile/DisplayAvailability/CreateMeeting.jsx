@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 import { Button } from "../../Button";
 import { createMeeting } from "../../../store/middlewares/meeting";
 import { getDataLabelFromKey } from "../../../utils/data";
+import moment from "moment";
 
 export const CreateMeeting = ({ profile, data, handleCancel = () => {} }) => {
   const dispatch = useDispatch();
@@ -27,9 +27,7 @@ export const CreateMeeting = ({ profile, data, handleCancel = () => {} }) => {
       <div className="py-1">
         <div className="text-xs text-gray-500">Interview Time</div>
         <div className="text-base text-text font-medium pb-1">
-          {convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC).dateMonthView}
-          {", "}
-          {convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC).time}
+          {moment(data.dayHourUTC).format("MMM DD, dddd, hh:mm A")}
         </div>
       </div>
       <div className="py-1">

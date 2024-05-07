@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconButton } from "../Button/IconButton";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../Button";
 import { useSelector } from "react-redux";
 import { CapsulList } from "../Capsul/CapsulList";
+import moment from "moment";
 
 export const BookSlot = ({
   data,
@@ -53,11 +53,7 @@ export const BookSlot = ({
                   return (
                     <div key={i} className="py-2">
                       <div className="text-text text-base font-semibold pb-2">
-                        {
-                          convertISOUTCDayTimeToLocalDayTime(date[0].dayHourUTC)
-                            .dateMonthView
-                        }
-                        :
+                        {moment(date[0].dayHourUTC).format("MMM DD, dddd")}:
                       </div>
                       {date && date.length ? (
                         <div className="flex gap-2">
@@ -75,11 +71,7 @@ export const BookSlot = ({
                                 hour.state !== "BOOKED" && setSelected(hour)
                               }
                             >
-                              {
-                                convertISOUTCDayTimeToLocalDayTime(
-                                  hour.dayHourUTC
-                                ).time
-                              }
+                              {moment(hour.dayHourUTC).format("hh:mm A")}
                             </div>
                           ))}
                         </div>

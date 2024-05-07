@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IconButton } from "../Button/IconButton";
 import { getDataLabelFromKey } from "../../utils/data";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { Button } from "../Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Modal } from "../Modal";
 import { Block } from "../Layouts/Block";
 import { NoData } from "../NoData";
+import moment from "moment";
 
 export const MostRecent = ({ data }) => {
   const history = useHistory();
@@ -84,12 +84,7 @@ export const MostRecent = ({ data }) => {
         <div className="grid grid-cols-4 md:grid-cols-3 gap-4 justify-between items-center">
           <div className="col-span-4 md:col-span-1 border-l-2 px-1">
             <div className="text-xs text-gray-400 pb-3">
-              {
-                convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC)
-                  .dateMonthView
-              }
-              {", "}
-              {convertISOUTCDayTimeToLocalDayTime(data.dayHourUTC).time}
+              {moment(data.dayHourUTC).format("MMM DD, dddd, hh:mm A")}
             </div>
             <div className="flex flex-col items-center px-10">
               <img
@@ -171,13 +166,15 @@ export const MostRecent = ({ data }) => {
                 )}
               </>
             </div>
-            <IconButton
-              size="small"
-              className="!py-2 !text-xs underline !text-secondary"
-              onClick={() => setShowNote(true)}
-            >
-              Interview Note
-            </IconButton>
+            {data.interviewNote && (
+              <IconButton
+                size="small"
+                className="!py-2 !text-xs underline !text-secondary"
+                onClick={() => setShowNote(true)}
+              >
+                Interview Note
+              </IconButton>
+            )}
           </div>
           <div className="col-span-2 md:col-span-1 flex flex-col gap-4 px-2 md:px-8">
             <div className="flex flex-col items-center gap-1">

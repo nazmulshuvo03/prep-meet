@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../../utils/timeDate";
 import { IconButton } from "../../Button/IconButton";
 import { faCalendarPlus } from "@fortawesome/free-regular-svg-icons";
 import { Modal } from "../../Modal";
 import { CreateMeeting } from "./CreateMeeting";
 import { useSelector } from "react-redux";
 import { isAllTrue } from "../../../utils/object";
-import { getDataLabelFromKey } from "../../../utils/data";
 import { CapsulList } from "../../Capsul/CapsulList";
 import { ProfileBlock } from "../../Layouts/ProfileBlock";
 import { NoData } from "../../NoData";
+import moment from "moment";
 
 export const DisplayAvailability = () => {
   const profile = useSelector((state) => state.user.visitingProfile);
@@ -33,12 +32,7 @@ export const DisplayAvailability = () => {
                 <div key={avl.id} className="py-1">
                   <div className="grid grid-cols-12 items-center justify-between">
                     <div className="col-span-7 text-sm font-normal text-gray-500">
-                      {
-                        convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC)
-                          .dateMonthView
-                      }
-                      {", "}
-                      {convertISOUTCDayTimeToLocalDayTime(avl.dayHourUTC).time}
+                      {moment(avl.dayHourUTC).format("MMM DD, ddd, hh:mm A")}
                     </div>
                     <div
                       className={`col-span-4 px-5 py-1 font-semibold text-xs ${

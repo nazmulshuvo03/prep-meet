@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { Button } from "../Button";
 import { Stars } from "../Stars";
 import { TextInput } from "../TextInput";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import {
   createInterviewerReview,
   getInterviewerReview,
 } from "../../store/middlewares/review";
+import moment from "moment";
 
 export const InterviewerReview = ({ meeting, interviewer }) => {
   const dispatch = useDispatch();
@@ -71,10 +71,7 @@ export const InterviewerReview = ({ meeting, interviewer }) => {
               <div>Email: {interviewer.email}</div>
               <div>
                 Interview Date and Time:{" "}
-                {
-                  convertISOUTCDayTimeToLocalDayTime(meeting.dayHourUTC)
-                    .dateMonthView
-                }
+                {moment(meeting.dayHourUTC).format("dddd, MMM DD, YYYY")}
               </div>
             </div>
             <div className="pb-5">

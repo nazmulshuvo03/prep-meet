@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { convertISOUTCDayTimeToLocalDayTime } from "../../utils/timeDate";
 import { getDataLabelFromKey } from "../../utils/data";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import { IconButton } from "../Button/IconButton";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { CapsulList } from "../Capsul/CapsulList";
 import { Block } from "../Layouts/Block";
 import { NoData } from "../NoData";
+import moment from "moment";
+import { Tooltip } from "../Tooltip";
 
 export const Past = ({ data }) => {
   const history = useHistory();
@@ -58,21 +58,32 @@ export const Past = ({ data }) => {
                 }`}
               >
                 <div>
-                  <div>
-                    {
-                      convertISOUTCDayTimeToLocalDayTime(meeting.dayHourUTC)
-                        .dateMonthView
-                    }
-                  </div>
-                  <div>
-                    {
-                      convertISOUTCDayTimeToLocalDayTime(meeting.dayHourUTC)
-                        .time
-                    }
-                  </div>
+                  <Tooltip
+                    text={moment(meeting.dayHourUTC).format(
+                      "MMM DD, ddd, YYYY, HH:mm"
+                    )}
+                  >
+                    {moment(meeting.dayHourUTC).format("MMM DD, hh:mm A")}
+                  </Tooltip>
                 </div>
-                <div className="col-span-2 flex justify-center">
-                  <CapsulList data={meeting.practiceAreas} labels={allSkill} />
+                <div className="col-span-2 flex flex-wrap gap-1 items-center justify-center">
+                  {meeting.practiceAreas && meeting.practiceAreas.length ? (
+                    meeting.practiceAreas.map((val, i) => {
+                      const label = getDataLabelFromKey(allSkill, val);
+                      const nextLabel = getDataLabelFromKey(
+                        allSkill,
+                        meeting.practiceAreas[i + 1]
+                      );
+                      return (
+                        <div key={val} className={`font-normal`}>
+                          {label}
+                          {nextLabel ? <span>{", "}</span> : <span />}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div />
+                  )}
                 </div>
                 <div>{meetingUser.userName}</div>
                 <div>
