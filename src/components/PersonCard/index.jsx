@@ -70,7 +70,7 @@ export const PersonCard = ({ data }) => {
           handleClick={handleProfileVisit}
         />
       </div>
-      {selectedSlot ? (
+      {selectedSlot && data ? (
         <Modal handleClose={() => setSelectedSlot()} className="md:w-2/3">
           <BookSlot
             data={data}

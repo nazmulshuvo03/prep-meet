@@ -18,18 +18,19 @@ export const BookSlot = ({
 
   const [dates, setDates] = useState();
 
-  const groupedByDate = data.availabilities.reduce((acc, obj) => {
-    const date = new Date(obj.dayHourUTC).toDateString();
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(obj);
-    return acc;
-  }, {});
+  const groupedByDate = (data) =>
+    data.availabilities.reduce((acc, obj) => {
+      const date = new Date(obj.dayHourUTC).toDateString();
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(obj);
+      return acc;
+    }, {});
 
   useEffect(() => {
     if (data && data.availabilities) {
-      const result = Object.values(groupedByDate);
+      const result = Object.values(groupedByDate(data));
       setDates(result);
     }
   }, [data]);
