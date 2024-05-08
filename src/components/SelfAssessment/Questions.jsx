@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Answers } from "./Answers";
 
 export const Questions = ({
@@ -7,18 +6,10 @@ export const Questions = ({
   selections = null,
   setSelections = () => {},
 }) => {
-  const qnSpan = 12 - answers.length;
-
-  // useEffect(() => {
-  //   if (questions && questions.length) {
-  //     setSelections(Array.from({ length: questions.length }, () => 0));
-  //   }
-  // }, questions);
-
   return (
     <div className="py-4">
-      <div className="grid grid-cols-12 py-1">
-        <div className={`col-span-${qnSpan}`} />
+      <div className="flex gap-4 py-1">
+        <div className={"flex-1"} />
         {questions && questions.length && answers && answers.length ? (
           <>
             {answers.map((answer) => (
@@ -39,8 +30,8 @@ export const Questions = ({
           <>
             {questions.map((question, i) => {
               return (
-                <div className="grid grid-cols-12 py-1" key={question.id}>
-                  <div className={`col-span-${qnSpan}`}>{question.text}</div>
+                <div className="flex gap-4 py-1" key={question.id}>
+                  <div className={"flex-1"}>{question.text}</div>
                   <Answers
                     color="blue"
                     count={answers.length}

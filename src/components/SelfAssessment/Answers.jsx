@@ -12,7 +12,12 @@ export const Answers = ({
     <>
       {[...Array(count).keys()].map((i) => {
         return (
-          <div className="col-span-1 items-center justify-self-center" key={i}>
+          <div
+            className={`col-span-1 items-center justify-self-center ${
+              i + 1 === value ? "cursor-default" : "cursor-pointer"
+            }`}
+            key={i}
+          >
             <FontAwesomeIcon
               className={`text-${color}-400`}
               icon={i + 1 === value ? faCircle : faCircleRegular}
