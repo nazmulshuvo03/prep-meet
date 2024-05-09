@@ -16,6 +16,7 @@ const Toast = ({
   description = "",
   type = TOAST_TYPES[2],
   onClose = () => {},
+  duration = 2000,
 }) => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(true);
@@ -23,8 +24,8 @@ const Toast = ({
   useEffect(() => {
     const timeout = setTimeout(() => {
       setVisible(false);
-      dispatch(setToastMessage(null));
-    }, 2000);
+      dispatch(handleClose());
+    }, duration);
     return () => clearTimeout(timeout);
   }, []);
 

@@ -36,6 +36,7 @@ import TermsConditions from "./routes/TermsConditions";
 import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
 import Availability from "./routes/Availability";
+import Verify from "./routes/Verify";
 
 function App() {
   const dispatch = useDispatch();
@@ -97,6 +98,7 @@ function App() {
               />
               <Route exact path="/faqs" component={Faqs} />
               <Route exact path="/public-profile/:userId" component={Visit} />
+              <Route exact path="/verify/:token" component={Verify} />
               <Route>
                 {global.isAuthenticated ? (
                   <div className="flex w-full overflow-hidden">

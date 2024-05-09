@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Button } from "../Button";
 import { ProfileAvatar } from "../ProfileAvatar";
@@ -12,11 +12,14 @@ import { Banner } from "../Banner";
 import { isAllTrue } from "../../utils/object";
 import { completionRemaining } from "../../utils/profile";
 import { Auth } from "../Landing/Auth";
+import { resendVerificationEmail } from "../../store/middlewares/auth";
 
-export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
+export const Navigation = () => {
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
+  const profile = useSelector((state) => state.user.profile);
   const completionStatus = useSelector((state) => state.user.completionStatus);
 
   const [authMode, setAuthMode] = useState("");
@@ -56,6 +59,10 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
     });
   };
 
+  const handleResendClick = async () => {
+    await dispatch(resendVerificationEmail());
+  };
+
   return (
     <>
       <Banner
@@ -78,6 +85,23 @@ export const Navigation = ({ scrollToHowItWorks, scrollToFaqs }) => {
           text={`Profile is not complete at this moment. You will have to provide ${completionRemaining(
             completionStatus
           )}.`}
+        />
+      )}
+      {profile && !profile.email_verified && (
+        <Banner
+          className="!bg-cyan-600 !text-white !font-normal"
+          text={
+            <div>
+              Email address is not verified yet. Please check email inbox or
+              <span
+                onClick={handleResendClick}
+                className="text-blue-800 px-1 font-semibold cursor-pointer"
+              >
+                click here
+              </span>
+              to resend it
+            </div>
+          }
         />
       )}
       {authMode && <Auth authMode={authMode} />}

@@ -1,9 +1,19 @@
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { postContent } from "../../services/api";
-import { login_url, logout_url, signup_url } from "../../services/urls/auth";
+import {
+  login_url,
+  logout_url,
+  resend_email_verification_url,
+  signup_url,
+  validate_email_verification_url,
+} from "../../services/urls/auth";
 import { persistor } from "../index";
-import { setAuthenticated, setToastMessage } from "../slices/global";
+import {
+  setAuthenticated,
+  setLoading,
+  setToastMessage,
+} from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
 import {
   resetUserState,
@@ -64,4 +74,53 @@ export const loginUser = (data) =>
         );
       }
     );
+  });
+
+export const resendVerificationEmail = () =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const response = await postContent(resend_email_verification_url());
+    console.log("resend email verification response: ", response);
+    responseHandler(
+      response,
+      () => {
+        dispatch(
+          setToastMessage({ type: TOAST_TYPES[0], message: response.data })
+        );
+      },
+      () => {
+        dispatch(
+          setToastMessage({ type: TOAST_TYPES[1], message: response.data })
+        );
+      }
+    );
+    dispatch(setLoading(false));
+  });
+
+export const validateEmailVerification = (data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const response = await postContent(validate_email_verification_url(), data);
+    console.log("validate email verification response: ", response);
+    responseHandler(
+      response,
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[0],
+            message: response.data,
+            duration: 500,
+            onClose: () => {
+              window.location.href = "/profile";
+            },
+          })
+        );
+      },
+      () => {
+        dispatch(
+          setToastMessage({ type: TOAST_TYPES[1], message: response.data })
+        );
+      }
+    );
+    dispatch(setLoading(false));
   });
