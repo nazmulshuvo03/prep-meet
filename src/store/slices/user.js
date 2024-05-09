@@ -110,6 +110,9 @@ const userSlice = createSlice({
     setUserProgress: (state, action) => {
       state.progress = action.payload;
     },
+    updateEmailVerificationStatus: (state, action) => {
+      state.profile.email_verified = action.payload;
+    },
   },
 });
 
@@ -131,5 +134,6 @@ export const {
   updatePeopleAvailability,
   setCompletionStatus,
   setUserProgress,
+  updateEmailVerificationStatus,
 } = userSlice.actions;
 export default userSlice.reducer;

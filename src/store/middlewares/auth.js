@@ -19,6 +19,7 @@ import {
   resetUserState,
   setCompletionStatus,
   setProfile,
+  updateEmailVerificationStatus,
 } from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
@@ -105,6 +106,7 @@ export const validateEmailVerification = (data) =>
     responseHandler(
       response,
       () => {
+        dispatch(updateEmailVerificationStatus(true));
         dispatch(
           setToastMessage({
             type: TOAST_TYPES[0],
@@ -118,7 +120,14 @@ export const validateEmailVerification = (data) =>
       },
       () => {
         dispatch(
-          setToastMessage({ type: TOAST_TYPES[1], message: response.data })
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: response.data,
+            duration: 500,
+            onClose: () => {
+              window.location.href = "/";
+            },
+          })
         );
       }
     );
