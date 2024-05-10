@@ -93,7 +93,7 @@ export const Upcoming = ({ data }) => {
           })}
         </div>
       ) : (
-        <NoData message="No upcoming interviews" />
+        <NoData size={80} image={2} message="No upcoming interviews" />
       )}
     </Block>
   );

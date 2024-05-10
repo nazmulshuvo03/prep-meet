@@ -72,7 +72,7 @@ export const DisplayAvailability = () => {
             })}
           </>
         ) : (
-          <NoData message={"No Available Time Provided"} />
+          <NoData image={1} message={"No Available Time Provided"} />
         )}
       </div>
       {selectedAvailability && (

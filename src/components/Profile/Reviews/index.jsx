@@ -21,6 +21,7 @@ export const Reviews = ({ visit }) => {
         ) : (
           <div className="h-2/3">
             <NoData
+              image={2}
               message={
                 isAuthenticated
                   ? "No Reviews Yet"

@@ -80,7 +80,10 @@ export const Schedules = () => {
           </div>
         ) : (
           <div className="h-2/3">
-            <NoData message="You have not scheduled any interview yet" />
+            <NoData
+              image={1}
+              message="You have not scheduled any interview yet"
+            />
           </div>
         )}
       </div>

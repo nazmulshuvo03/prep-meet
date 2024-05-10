@@ -58,7 +58,7 @@ export const Options = ({
             ))
           ) : (
             <div className="h-fit flex items-center justify-center">
-              <NoData />
+              <NoData size={80} />
             </div>
           )}
         </div>

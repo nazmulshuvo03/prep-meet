@@ -205,7 +205,7 @@ export const MostRecent = ({ data }) => {
           </div>
         </div>
       ) : (
-        <NoData size={48} message="No interview scheduled" />
+        <NoData size={80} image={2} message="No interview scheduled" />
       )}
       {showNote && (
         <Modal handleClose={() => setShowNote(false)} className="w-1/3">

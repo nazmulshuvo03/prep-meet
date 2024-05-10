@@ -19,7 +19,6 @@ export const AllPeople = ({
   // minExp = EXPERIENCE_MIN_VALUE,
   // maxExp = EXPERIENCE_MAX_VALUE,
   // handleExperienceSelect = () => {},
-  handleResetQuery = () => {},
 }) => {
   const people = useSelector((state) => state.user.people);
   const targetProfession = useSelector(
@@ -116,7 +115,8 @@ export const AllPeople = ({
         ) : (
           <NoData
             message="Oops! No matches found. Change filters and try again."
-            size={120}
+            image={1}
+            fontClassName={"font-semibold"}
           />
         )}
       </div>

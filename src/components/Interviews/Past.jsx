@@ -118,7 +118,7 @@ export const Past = ({ data }) => {
           })}
         </div>
       ) : (
-        <NoData message="No past interviews" />
+        <NoData size={80} image={2} message="No past interviews" />
       )}
     </Block>
   );

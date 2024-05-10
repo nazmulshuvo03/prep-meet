@@ -107,7 +107,6 @@ export const PeoplePage = () => {
           {...{
             queries,
             handleQuerySelect,
-            handleResetQuery,
             minExp,
             maxExp,
             handleExperienceSelect,
@@ -144,7 +143,6 @@ export const PeoplePage = () => {
           {...{
             queries,
             handleQuerySelect,
-            handleResetQuery,
             minExp,
             maxExp,
             handleExperienceSelect,
