@@ -18,7 +18,10 @@ export const ProfilePhoto = ({
           className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2 transition duration-300 ease-in-out transform hover:scale-105"
         />
         {!visit && (
-          <div className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2 absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-0 hover:bg-opacity-50 transition duration-300 ease-in-out">
+          <div
+            className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2 absolute inset-0 flex items-center justify-center 
+          bg-gray-800 bg-opacity-0 opacity-0 hover:opacity-100 hover:bg-opacity-50 transition duration-300 ease-in-out"
+          >
             <FontAwesomeIcon className="text-3xl text-white" icon={faUpload} />
           </div>
         )}
