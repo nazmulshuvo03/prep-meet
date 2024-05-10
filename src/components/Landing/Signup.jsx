@@ -5,7 +5,8 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { signupUser } from "../../store/middlewares/auth";
 import { Dropdown } from "../Dropdown";
-import { isEmail, isStrongPassword } from "validator";
+import { isEmail } from "validator";
+import SignupImage from "../../assets/signup.svg";
 
 export const Signup = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
@@ -51,8 +52,9 @@ export const Signup = ({ switchMode = () => {} }) => {
   return (
     <div className="w-full h-full flex justify-center p-4">
       <div>
-        <div className="text-center py-4">
-          <div className="text-xl font-bold">Create your account</div>
+        <div className="flex flex-col items-center justify-center py-4">
+          <img src={SignupImage} alt="Signup" className="h-40 w-40" />
+          <div className="text-2xl font-semibold text-secondary">Welcome!</div>
         </div>
         <form className="grid grid-cols-1 gap-1" onSubmit={handleSignup}>
           <Input

@@ -19,6 +19,7 @@ export const NoData = ({
         }
         className={`m-2`}
         style={size ? { height: `${size}px`, width: `${size}px` } : {}}
+        alt="No Data"
       />
       <div
         className={`font-light text-sm md:text-xl text-text ${fontClassName}`}

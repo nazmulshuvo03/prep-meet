@@ -4,6 +4,7 @@ import { Input } from "../Input";
 import { useEffect, useState } from "react";
 import { loginUser } from "../../store/middlewares/auth";
 import { isEmail } from "validator";
+import LoginImage from "../../assets/login.svg";
 
 export const Login = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
@@ -35,8 +36,11 @@ export const Login = ({ switchMode = () => {} }) => {
   return (
     <div className="w-full h-full flex justify-center p-4">
       <div>
-        <div className="text-center py-4">
-          <div className="text-xl font-bold">Welcome back!</div>
+        <div className="flex flex-col items-center justify-center py-4">
+          <img src={LoginImage} alt="Login" className="h-40 w-40" />
+          <div className="text-2xl font-semibold text-secondary">
+            Welcome back!
+          </div>
         </div>
         <form className="grid grid-cols-1 gap-4" onSubmit={handleLogin}>
           <Input

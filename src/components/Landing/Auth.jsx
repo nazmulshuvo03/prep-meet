@@ -42,7 +42,7 @@ export const Auth = ({ authMode = "" }) => {
         }
       />
       <div className="absolute right-0 w-3/4 lg:w-1/2 xl:w-1/3 h-full bg-white z-50 shadow-lg transform translate-x-0 transition-transform duration-300 ease-in-out">
-        <div className="h-full" style={{ paddingTop: "20%" }}>
+        <div className="h-full">
           {authMode === "login" ? (
             <Login switchMode={changeAuthMode} />
           ) : (

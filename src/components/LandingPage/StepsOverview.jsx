@@ -1,5 +1,7 @@
+import ProcessingImage from "../../assets/processing.svg";
+
 const Content = ({ title = "", desc = "" }) => (
-  <div>
+  <div className="text-end">
     <div className="text-xl md:text-3xl font-bold py-1">{title}</div>
     <div className="text-sm md:text-base font-light py-1">{desc}</div>
   </div>
@@ -12,7 +14,10 @@ export const StepsOverview = ({ reference }) => {
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
       ref={reference}
     >
-      <div className="flex-1 flex flex-col items-start justify-start gap-2 md:gap-6">
+      <div className="px-10 py-4">
+        <img src={ProcessingImage} alt="Steps Overview" />
+      </div>
+      <div className="flex flex-col items-start justify-start gap-2 md:gap-6">
         <Content
           title="Sign Up and Connect with Peers"
           desc="Create an account and start connecting with professionals in your field. Book practice sessions around your schedule."
@@ -24,12 +29,6 @@ export const StepsOverview = ({ reference }) => {
         <Content
           title="Get Honest, Valuable Feedback"
           desc="Get specific feedback to improve your skills. Track your progress over time and identify growth areas."
-        />
-      </div>
-      <div>
-        <img
-          src="/images/landingPage/image3.png"
-          alt="Landing Your Dream Job"
         />
       </div>
     </div>
