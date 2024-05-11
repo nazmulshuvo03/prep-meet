@@ -14,7 +14,7 @@ export const InsideTrack = ({ reference }) => {
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
       ref={reference}
     >
-      <div className="flex items-center justify-start">
+      <div className="flex-1 flex items-center justify-start">
         <div>
           <div className="text-2xl md:text-4xl font-semibold py-4">
             The Inside Track on Landing Your Dream Job
@@ -27,7 +27,7 @@ export const InsideTrack = ({ reference }) => {
           </div>
         </div>
       </div>
-      <div className="px-10 py-4">
+      <div className="px-4 md:px-10 py-4 md:w-2/5">
         <img src={VideoCallImage} alt="Inside Track" />
       </div>
     </section>

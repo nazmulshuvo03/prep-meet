@@ -14,10 +14,10 @@ export const StepsOverview = ({ reference }) => {
       style={{ paddingLeft: "5%", paddingRight: "5%" }}
       ref={reference}
     >
-      <div className="px-10 py-4">
+      <div className="px-4 md:px-10 py-4 md:w-2/5">
         <img src={ProcessingImage} alt="Steps Overview" />
       </div>
-      <div className="flex flex-col items-start justify-start gap-2 md:gap-6">
+      <div className="flex flex-col items-end justify-start gap-2 md:gap-6">
         <Content
           title="Sign Up and Connect with Peers"
           desc="Create an account and start connecting with professionals in your field. Book practice sessions around your schedule."
