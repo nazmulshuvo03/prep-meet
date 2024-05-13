@@ -36,6 +36,7 @@ export const logoutUser = (data) =>
 
 export const signupUser = (data) =>
   asyncWrapper(async (dispatch) => {
+    data.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const response = await postContent(signup_url(), data);
     console.log("user sign up response: ", response);
     responseHandler(
