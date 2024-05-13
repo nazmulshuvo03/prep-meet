@@ -37,6 +37,7 @@ import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
 import Availability from "./routes/Availability";
 import Verify from "./routes/Verify";
+import Unsubscribe from "./routes/Unsubscribe";
 
 function App() {
   const dispatch = useDispatch();
@@ -99,6 +100,11 @@ function App() {
               <Route exact path="/faqs" component={Faqs} />
               <Route exact path="/public-profile/:userId" component={Visit} />
               <Route exact path="/verify/:token" component={Verify} />
+              <Route
+                exact
+                path="/unsubscribe/:userId"
+                component={Unsubscribe}
+              />
               <Route>
                 {global.isAuthenticated ? (
                   <div className="flex w-full overflow-hidden">

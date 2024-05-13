@@ -6,6 +6,7 @@ import {
   all_profile_url,
   all_users_url,
   public_user_url,
+  user_email_subscription_url,
   user_progress,
   user_url,
   users_check_prop_url,
@@ -17,6 +18,7 @@ import {
   setProfile,
   setUserProgress,
   setVisitingProfile,
+  updateEmailSubscriptionState,
   updateProfile,
 } from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
@@ -112,6 +114,27 @@ export const getUserProgress = () =>
       },
       () => {
         dispatch(setToastMessage({ type: TOAST_TYPES[1], message: res.data }));
+      }
+    );
+    dispatch(setLoading(false));
+  });
+
+export const changeUserSubscription = (data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await putContent(user_email_subscription_url(), data);
+    console.log("user subscription changed response: ", res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(updateEmailSubscriptionState(res.data.unsubscribed));
+      },
+      () => {
+        () => {
+          dispatch(
+            setToastMessage({ type: TOAST_TYPES[1], message: res.data })
+          );
+        };
       }
     );
     dispatch(setLoading(false));

@@ -113,6 +113,9 @@ const userSlice = createSlice({
     updateEmailVerificationStatus: (state, action) => {
       state.profile.email_verified = action.payload;
     },
+    updateEmailSubscriptionState: (state, action) => {
+      state.profile.unsubscribed = action.payload;
+    },
   },
 });
 
@@ -135,5 +138,6 @@ export const {
   setCompletionStatus,
   setUserProgress,
   updateEmailVerificationStatus,
+  updateEmailSubscriptionState,
 } = userSlice.actions;
 export default userSlice.reducer;
