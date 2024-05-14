@@ -2,19 +2,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { deleteAvailability } from "../../store/middlewares/availability";
+import {
+  deleteAvailability,
+  fetchUserAvailabilities,
+} from "../../store/middlewares/availability";
 import { CapsulList } from "../Capsul/CapsulList";
 import { ProfileBlock } from "../Layouts/ProfileBlock";
 import { NoData } from "../NoData";
 import { Tooltip } from "../Tooltip";
 import moment from "moment";
+import { useEffect } from "react";
 
 export const Schedules = () => {
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.profile);
   const availabilities = useSelector(
     (state) => state.availability.userAvailabilities
   );
   const allSkill = useSelector((state) => state.profession.allSkill);
+
+  useEffect(() => {
+    if (profile) dispatch(fetchUserAvailabilities(profile.id));
+  }, [profile]);
 
   const handleDelete = (values) => {
     dispatch(deleteAvailability(values));
