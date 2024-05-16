@@ -18,9 +18,6 @@ const Visit = () => {
 
   useEffect(() => {
     if (userId) {
-      if (isAuthenticated) {
-        history.push(`/user/${userId}`);
-      }
       dispatch(visitUserProfile(userId));
     }
     return () => {

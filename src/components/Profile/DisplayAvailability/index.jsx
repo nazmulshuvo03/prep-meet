@@ -10,8 +10,10 @@ import { CapsulList } from "../../Capsul/CapsulList";
 import { ProfileBlock } from "../../Layouts/ProfileBlock";
 import { NoData } from "../../NoData";
 import moment from "moment";
+import { Tooltip } from "../../Tooltip";
 
 export const DisplayAvailability = () => {
+  const user = useSelector((state) => state.user.profile);
   const profile = useSelector((state) => state.user.visitingProfile);
   const completionStatus = useSelector((state) => state.user.completionStatus);
   const allSkill = useSelector((state) => state.profession.allSkill);
@@ -30,12 +32,12 @@ export const DisplayAvailability = () => {
             {profile.availabilities.map((avl) => {
               return (
                 <div key={avl.id} className="py-1">
-                  <div className="grid grid-cols-12 items-center justify-between">
-                    <div className="col-span-7 text-sm font-normal text-gray-500">
+                  <div className="flex items-baseline">
+                    <div className="text-sm font-normal text-gray-500">
                       {moment(avl.dayHourUTC).format("MMM DD, ddd, hh:mm A")}
                     </div>
                     <div
-                      className={`col-span-4 px-5 py-1 font-semibold text-xs ${
+                      className={`flex-1 px-2 py-1 font-semibold text-xs ${
                         avl.state === "COMPLETED"
                           ? "text-red-400"
                           : avl.state === "BOOKED"
@@ -45,22 +47,44 @@ export const DisplayAvailability = () => {
                     >
                       {avl.state}
                     </div>
-                    <div className="col-span-1">
-                      {completionStatus && isAllTrue(completionStatus) && (
-                        <>
-                          {avl.state === "OPEN" ? (
-                            <IconButton
-                              onClick={() => setSelectedAvailability(avl)}
-                            >
-                              <FontAwesomeIcon
-                                icon={faCalendarPlus}
-                                className="text-secondary"
-                              />
-                            </IconButton>
-                          ) : (
-                            <div />
-                          )}
-                        </>
+                    <div className="">
+                      {avl.state === "OPEN" ? (
+                        <Tooltip
+                          text={
+                            !user
+                              ? "Please login to create meeting"
+                              : !(
+                                  completionStatus &&
+                                  isAllTrue(completionStatus)
+                                )
+                              ? "Please complete your profile"
+                              : ""
+                          }
+                          className={"!whitespace-normal"}
+                        >
+                          <IconButton
+                            onClick={
+                              user &&
+                              completionStatus &&
+                              isAllTrue(completionStatus)
+                                ? () => setSelectedAvailability(avl)
+                                : () => {}
+                            }
+                          >
+                            <FontAwesomeIcon
+                              icon={faCalendarPlus}
+                              className={`${
+                                user &&
+                                completionStatus &&
+                                isAllTrue(completionStatus)
+                                  ? "text-secondary"
+                                  : "text-gray-400 cursor-default"
+                              }`}
+                            />
+                          </IconButton>
+                        </Tooltip>
+                      ) : (
+                        <div />
                       )}
                     </div>
                   </div>
