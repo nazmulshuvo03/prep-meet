@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import Home from "./routes/Home";
 import { Navigation } from "./components/Navigation";
 import Admin from "./routes/Admin";
 import CircularProgress from "./components/ProgressBar";
@@ -110,7 +109,6 @@ function App() {
                   <div className="flex w-full overflow-hidden">
                     <AppNavigation />
                     <div className="flex-1">
-                      <Route exact path="/profile/:userId" component={Home} />
                       <Route exact path="/people" component={People} />
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/progress" component={Progress} />
