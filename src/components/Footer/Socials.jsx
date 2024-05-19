@@ -9,12 +9,17 @@ export const FooterSocials = () => {
 
   return (
     <div className="flex gap-2">
-      <NavLink to="">
+      <NavLink
+        to={{
+          pathname: "https://twitter.com/candidacefyi",
+        }}
+        target="_blank"
+      >
         <FontAwesomeIcon icon={faXTwitter} />
       </NavLink>
       <NavLink
         to={{
-          pathname: "https://www.linkedin.com/company/candidace-fyi/about",
+          pathname: "https://www.linkedin.com/company/candidace-fyi",
         }}
         target="_blank"
       >
