@@ -113,6 +113,7 @@ function App() {
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/progress" component={Progress} />
                       <Route exact path="/interviews" component={Interviews} />
+                      <Route exact path="/user/:userId" component={Visit} />
                       <Route
                         exact
                         path="/availability"
