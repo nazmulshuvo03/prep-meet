@@ -2,6 +2,7 @@ import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { postContent } from "../../services/api";
 import {
+  google_auth_url,
   login_url,
   logout_url,
   resend_email_verification_url,
@@ -12,6 +13,7 @@ import { persistor } from "../index";
 import {
   setAuthenticated,
   setLoading,
+  setModalMessageData,
   setToastMessage,
 } from "../slices/global";
 import { TOAST_TYPES } from "../../constants/Toast";
@@ -74,6 +76,41 @@ export const loginUser = (data) =>
         dispatch(
           setToastMessage({ type: TOAST_TYPES[1], message: response.data })
         );
+      }
+    );
+  });
+
+export const googleAuthUser = (data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    data.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const response = await postContent(google_auth_url(), data);
+    console.log("google login response: ", response);
+    responseHandler(
+      response,
+      () => {
+        dispatch(setProfile(response.data));
+        dispatch(setAuthenticated(true));
+        dispatch(setTargetProfession(response.data.targetProfessionId));
+        dispatch(setUserAvailabilities(response.data.availabilities));
+        dispatch(setCompletionStatus(response.data.completionStatus));
+        dispatch(setModalMessageData(null));
+        dispatch(setLoading(false));
+      },
+      () => {
+        if (response.data.message === "PROFESSION_REQUIRED") {
+          dispatch(
+            setModalMessageData({
+              name: "professionRequired",
+              data: response.data,
+            })
+          );
+        } else {
+          dispatch(
+            setToastMessage({ type: TOAST_TYPES[1], message: response.data })
+          );
+        }
+        dispatch(setLoading(false));
       }
     );
   });

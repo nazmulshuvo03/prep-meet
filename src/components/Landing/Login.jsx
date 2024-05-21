@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { loginUser } from "../../store/middlewares/auth";
 import { isEmail } from "validator";
 import LoginImage from "../../assets/login.svg";
+import { GoogleAuth } from "./GoogleAuth";
 
 export const Login = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
@@ -84,6 +85,7 @@ export const Login = ({ switchMode = () => {} }) => {
           >
             Sign In
           </Button>
+          <GoogleAuth />
           <div className="py-2 flex justify-center gap-1 text-sm text-text underline">
             <div>Don't have an account ?</div>
             <div

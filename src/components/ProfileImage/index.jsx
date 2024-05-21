@@ -7,7 +7,6 @@ import {
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { uploadFile } from "../../store/middlewares/file";
-import { config } from "../../../.config";
 
 export const ProfileImage = () => {
   const dispatch = useDispatch();

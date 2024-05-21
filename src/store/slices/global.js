@@ -8,7 +8,7 @@ const globalSlice = createSlice({
     dark: false,
     loading: false,
     toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
-    modalMessageData: null,
+    modalMessageData: null, // { name: "", data: {} }
     dashboardQuery: {},
   },
   reducers: {

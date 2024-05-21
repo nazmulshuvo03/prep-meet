@@ -7,6 +7,7 @@ import { signupUser } from "../../store/middlewares/auth";
 import { Dropdown } from "../Dropdown";
 import { isEmail } from "validator";
 import SignupImage from "../../assets/signup.svg";
+import { GoogleAuth } from "./GoogleAuth";
 
 export const Signup = ({ switchMode = () => {} }) => {
   const dispatch = useDispatch();
@@ -125,6 +126,11 @@ export const Signup = ({ switchMode = () => {} }) => {
           >
             Sign Up
           </Button>
+          <GoogleAuth
+            additionalData={{
+              targetProfessionId: state.targetProfessionId,
+            }}
+          />
           <div className="py-2 flex justify-center gap-1 text-sm text-text underline">
             <div>Alreay have an account ?</div>
             <div

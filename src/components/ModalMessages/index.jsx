@@ -6,17 +6,11 @@ import { Modal } from "../Modal";
 import { IconButton } from "../Button/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { ProfessionRequired } from "./ProfessionRequired";
 
 const ModalMessage = () => {
   const dispatch = useDispatch();
   const messageData = useSelector((state) => state.global.modalMessageData);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      dispatch(setModalMessageData(null));
-    }, 3000);
-    return () => clearTimeout(timeout);
-  }, []);
 
   const handleClose = () => {
     dispatch(setModalMessageData(null));
@@ -26,6 +20,8 @@ const ModalMessage = () => {
     <Modal className="relative" handleClose={handleClose}>
       {messageData && messageData.name === "meetingSuccess" ? (
         <MeetingSuccess data={messageData} />
+      ) : messageData && messageData.name === "professionRequired" ? (
+        <ProfessionRequired data={messageData.data} />
       ) : (
         <div />
       )}

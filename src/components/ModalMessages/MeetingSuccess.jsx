@@ -1,11 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getDataLabelFromKey } from "../../utils/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
+import { useEffect } from "react";
+import { setModalMessageData } from "../../store/slices/global";
 
 export const MeetingSuccess = ({ data }) => {
+  const dispatch = useDispatch();
   const allSkill = useSelector((state) => state.profession.allSkill);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      dispatch(setModalMessageData(null));
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="py-8 px-20">
