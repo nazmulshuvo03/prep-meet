@@ -27,6 +27,7 @@ export const ProfileAvatar = () => {
       <img
         src={user?.photoURL}
         alt={"Profile Image"}
+        defaultSrc="https://candidace-public-storage.s3.ap-south-1.amazonaws.com/default.png"
         className="h-12 w-12 rounded-full transition duration-300 ease-in-out hover:shadow-none"
       />
       {isMenuOpen && <ProfileMenu />}
