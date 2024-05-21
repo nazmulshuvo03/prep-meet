@@ -3,6 +3,7 @@ import { logoutUser } from "../../store/middlewares/auth";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 // import { ThemeProvider } from "../ThemeProvider";
+import { googleLogout } from "@react-oauth/google";
 
 const MenuLink = ({ children, ...props }) => (
   <div
@@ -20,6 +21,7 @@ export const ProfileMenu = () => {
 
   const handleLogout = async () => {
     await dispatch(logoutUser({ userId: user.id }));
+    googleLogout();
     history.push("/");
   };
 

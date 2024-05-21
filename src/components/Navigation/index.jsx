@@ -13,6 +13,7 @@ import { isAllTrue } from "../../utils/object";
 import { completionRemaining } from "../../utils/profile";
 import { Auth } from "../Landing/Auth";
 import { resendVerificationEmail } from "../../store/middlewares/auth";
+import { GoogleAuth } from "../Landing/GoogleAuth";
 
 export const Navigation = () => {
   const location = useLocation();
@@ -105,6 +106,7 @@ export const Navigation = () => {
         />
       )}
       {authMode && <Auth authMode={authMode} />}
+      {!isAuthenticated && <GoogleAuth useOneTap />}
       <div className="bg-primary flex justify-between w-full h-16 items-center px-5 z-10">
         {isAuthenticated && (
           <div className="visible md:hidden">

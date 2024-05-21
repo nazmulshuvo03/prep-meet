@@ -15,7 +15,7 @@ export const ProfilePhoto = ({
         <img
           src={newPP ? URL.createObjectURL(newPP) : profile.photoURL}
           alt={"Person Profile Image"}
-          defaultSrc="https://candidace-public-storage.s3.ap-south-1.amazonaws.com/default.png"
+          defaultsrc="https://candidace-public-storage.s3.ap-south-1.amazonaws.com/default.png"
           className="h-16 w-16 md:h-32 md:w-32 rounded-full my-2 transition duration-300 ease-in-out transform hover:scale-105"
         />
         {!visit && (
