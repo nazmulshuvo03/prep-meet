@@ -5,11 +5,18 @@ import { useEffect, useState } from "react";
 import { fetchProfiles } from "../../../store/middlewares/user";
 import { uuidShortner } from "../../../utils/string";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faCircleExclamation,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import { Modal } from "../../Modal";
+import { ProfileModal } from "./ProfileModal";
+import { getDataLabelFromKey } from "../../../utils/data";
 
 const Label = ({ children = "", colSpan = 1 }) => (
   <div
-    className={`col-span-${colSpan} text-ellipsis whitespace-nowrap overflow-hidden`}
+    className={`col-span-${colSpan} text-sm text-ellipsis whitespace-nowrap overflow-hidden`}
   >
     {children}
   </div>
@@ -17,16 +24,17 @@ const Label = ({ children = "", colSpan = 1 }) => (
 
 export const UserAdmin = () => {
   const dispatch = useDispatch();
+  const professions = useSelector((state) => state.profession.items);
+
   const [allProfile, setAllProfile] = useState();
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState();
+  const [selectedProfile, setSelectedProfile] = useState();
 
   const getProfiles = async () => {
     const profiles = await dispatch(fetchProfiles());
     setAllProfile(profiles);
   };
-
-  console.log("!!!!!!!!!!!!", allProfile);
 
   useEffect(() => {
     getProfiles();
@@ -43,41 +51,56 @@ export const UserAdmin = () => {
   }, [query, allProfile]);
 
   return (
-    <div>
-      <div className="flex items-center gap-2">
-        <Input
-          className=""
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={"Search by email"}
-          icon={<FontAwesomeIcon icon={faSearch} />}
-        />
+    <div className="flex flex-col gap-2">
+      <Input
+        className=""
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder={"Search by email"}
+        icon={<FontAwesomeIcon icon={faSearch} />}
+      />
+      <div className="border border-primary px-2 py-1 grid grid-cols-12 bg-primary text-white">
+        <Label>User ID</Label>
+        <Label colSpan={3}>Email</Label>
+        <Label colSpan={2}>Target Profession</Label>
+        <Label>Username</Label>
+        <Label>Medium</Label>
+        <Label colSpan={2}>Timezone</Label>
+        <Label>Unsubscribed</Label>
       </div>
-      <div className="border border-primary my-2">
-        <div className="border border-primary px-2 py-1 grid grid-cols-12 bg-primary text-white">
-          <Label>User ID</Label>
-          <Label colSpan={3}>Email</Label>
-          <Label>Verified</Label>
-          <Label>Username</Label>
-          <Label>Medium</Label>
-          <Label colSpan={2}>Timezone</Label>
-          <Label>Unsubscribed</Label>
-        </div>
+      <div style={{ height: "80vh", overflowY: "auto" }}>
         {filteredData && filteredData.length ? (
-          <div className="">
+          <>
             {filteredData.map((profile) => {
               return (
                 <div
                   key={profile.id}
-                  className="border border-primary px-2 py-1 grid grid-cols-12 hover:shadow-md"
+                  className="border border-primary px-2 py-1 grid grid-cols-12 text-sm hover:shadow-md cursor-pointer"
+                  onClick={() => setSelectedProfile(profile)}
                 >
                   <div className="col-span-1">
                     {uuidShortner(profile.id, 3)}
                   </div>
-                  <div className="col-span-3">{profile.email}</div>
-                  <div className="col-span-1">
-                    {profile.email_verified ? "Yes" : "No"}
+                  <div className="col-span-3 flex items-center gap-1">
+                    {profile.email}{" "}
+                    {profile.email_verified ? (
+                      <FontAwesomeIcon
+                        icon={faCheckCircle}
+                        className="!text-green-500"
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faCircleExclamation}
+                        className="!text-red-500"
+                      />
+                    )}
+                  </div>
+                  <div className="col-span-2">
+                    {getDataLabelFromKey(
+                      professions,
+                      profile.targetProfessionId
+                    )}
                   </div>
                   <div className="col-span-1">{profile.userName}</div>
                   <div className="col-span-1">{profile.authMedium}</div>
@@ -88,11 +111,21 @@ export const UserAdmin = () => {
                 </div>
               );
             })}
-          </div>
+          </>
         ) : (
-          <NoData />
+          <div className="w-full h-full flex justify-center items-center">
+            <NoData className="!w-40 !h-40" />
+          </div>
         )}
       </div>
+      {selectedProfile && (
+        <Modal
+          handleClose={() => setSelectedProfile()}
+          className="w-full h-full"
+        >
+          <ProfileModal data={selectedProfile} setData={setSelectedProfile} />
+        </Modal>
+      )}
     </div>
   );
 };

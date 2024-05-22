@@ -1,7 +1,12 @@
 import { TOAST_TYPES } from "../../constants/Toast";
 import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
-import { fetchContent, postContent, putContent } from "../../services/api";
+import {
+  deleteContent,
+  fetchContent,
+  postContent,
+  putContent,
+} from "../../services/api";
 import {
   dashboard_profiles_url,
   public_user_url,
@@ -139,4 +144,12 @@ export const changeUserSubscription = (data) =>
       }
     );
     dispatch(setLoading(false));
+  });
+
+export const deleteUserData = (userId) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await deleteContent(user_url(userId));
+    console.log("delete user response: ", res);
+    responseHandler(res);
   });
