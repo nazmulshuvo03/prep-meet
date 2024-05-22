@@ -7,14 +7,14 @@ export const companyNameShortner = (str = "", maxLength = 3) => {
   }
 };
 
-export const uuidShortner = (uuid) => {
+export const uuidShortner = (uuid, letters = 4) => {
   const segments = uuid.split("-");
 
   const firstSegment = segments[0];
   const lastSegment = segments[segments.length - 1];
 
-  const firstFour = firstSegment.substring(0, 4);
-  const lastFour = lastSegment.substring(lastSegment.length - 4);
+  const firstFour = firstSegment.substring(0, letters);
+  const lastFour = lastSegment.substring(lastSegment.length - letters);
 
   return `${firstFour}....${lastFour}`;
 };

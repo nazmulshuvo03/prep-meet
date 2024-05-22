@@ -3,13 +3,13 @@ import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { fetchContent, postContent, putContent } from "../../services/api";
 import {
-  all_profile_url,
-  all_users_url,
+  dashboard_profiles_url,
   public_user_url,
   user_email_subscription_url,
   user_progress,
   user_url,
   users_check_prop_url,
+  all_profile_url,
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
 import {
@@ -28,17 +28,18 @@ export const fetchPeople = (query = "") =>
   asyncWrapper(async (dispatch) => {
     console.log("dashboard query: ", query);
     dispatch(setLoading());
-    const response = await fetchContent(all_profile_url(query));
+    const response = await fetchContent(dashboard_profiles_url(query));
     console.log("Profile docs: ", response);
     responseHandler(response, dispatch(setPeople(response.data)));
     dispatch(setLoading(false));
   });
 
-export const fetchUsers = (queries = []) =>
-  asyncWrapper(async (dispatch) => {
-    const response = await fetchContent(all_users_url());
-    responseHandler(response);
-  });
+export const fetchProfiles = () => async (dispatch) => {
+  const response = await fetchContent(all_profile_url());
+  // responseHandler(response);
+  console.log("all profile response: ", response);
+  return response.data;
+};
 
 export const fetchUserProfile = (
   userId,

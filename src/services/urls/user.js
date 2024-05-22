@@ -1,6 +1,7 @@
-export const all_profile_url = (query = "") =>
-  `/user/all${query ? "?" + query : ""}`;
+export const dashboard_profiles_url = (query = "") =>
+  `/user/dashboard${query ? "?" + query : ""}`;
 export const all_users_url = () => `/user/users`;
+export const all_profile_url = () => `/user/all`;
 export const public_user_url = (userId) => `/user/public/${userId}`;
 export const user_url = (userId) => `/user/${userId}`;
 export const users_check_prop_url = () => `/user/check`;
