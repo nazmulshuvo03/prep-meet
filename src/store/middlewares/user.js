@@ -136,11 +136,7 @@ export const changeUserSubscription = (data) =>
         dispatch(updateEmailSubscriptionState(res.data.unsubscribed));
       },
       () => {
-        () => {
-          dispatch(
-            setToastMessage({ type: TOAST_TYPES[1], message: res.data })
-          );
-        };
+        dispatch(setToastMessage({ type: TOAST_TYPES[1], message: res.data }));
       }
     );
     dispatch(setLoading(false));
@@ -151,5 +147,14 @@ export const deleteUserData = (userId) =>
     dispatch(setLoading());
     const res = await deleteContent(user_url(userId));
     console.log("delete user response: ", res);
-    responseHandler(res);
+    responseHandler(
+      res,
+      () => {
+        dispatch(setToastMessage({ type: TOAST_TYPES[0], message: res.data }));
+      },
+      () => {
+        dispatch(setToastMessage({ type: TOAST_TYPES[1], message: res.data }));
+      }
+    );
+    dispatch(setLoading(false));
   });

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NoData } from "../../NoData";
 import { Input } from "../../Input";
 import { useEffect, useState } from "react";
-import { fetchProfiles } from "../../../store/middlewares/user";
+import { deleteUserData, fetchProfiles } from "../../../store/middlewares/user";
 import { uuidShortner } from "../../../utils/string";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -34,6 +34,12 @@ export const UserAdmin = () => {
   const getProfiles = async () => {
     const profiles = await dispatch(fetchProfiles());
     setAllProfile(profiles);
+  };
+
+  const handleDelete = async (userId) => {
+    await dispatch(deleteUserData(userId));
+    setFilteredData(() => allProfile.filter((item) => item.id !== userId));
+    setSelectedProfile();
   };
 
   useEffect(() => {
@@ -123,7 +129,7 @@ export const UserAdmin = () => {
           handleClose={() => setSelectedProfile()}
           className="w-full h-full"
         >
-          <ProfileModal data={selectedProfile} setData={setSelectedProfile} />
+          <ProfileModal data={selectedProfile} handleDelete={handleDelete} />
         </Modal>
       )}
     </div>

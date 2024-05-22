@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getDataLabelFromKey } from "../../../utils/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,7 +6,6 @@ import {
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../../Button";
-import { deleteUserData } from "../../../store/middlewares/user";
 
 const Item = ({ label, value, data }) => (
   <div className="flex gap-2 items-start py-0.5">
@@ -37,8 +36,7 @@ const Item = ({ label, value, data }) => (
   </div>
 );
 
-export const ProfileModal = ({ data, setData }) => {
-  const dispatch = useDispatch();
+export const ProfileModal = ({ data, setData, handleDelete }) => {
   const experienceLevels = useSelector(
     (state) => state.static.experienceLevels
   );
@@ -51,11 +49,6 @@ export const ProfileModal = ({ data, setData }) => {
   const experienceTypes = useSelector(
     (state) => state.profession.allExperienceType
   );
-
-  const handleDelete = async () => {
-    await dispatch(deleteUserData(data.id));
-    setData();
-  };
 
   return (
     <div className="p-6 flex gap-4">
@@ -77,7 +70,7 @@ export const ProfileModal = ({ data, setData }) => {
         <Item label={"Authentication Medium"} value={data.authMedium} />
         <Item label={"Timezone"} value={data.timezone} />
         <Item label={"Unsubscribed"} value={data.unsubscribed} />
-        <Button className={"!bg-red-500"} onClick={handleDelete}>
+        <Button className={"!bg-red-500"} onClick={() => handleDelete(data.id)}>
           Delete Account
         </Button>
       </div>
