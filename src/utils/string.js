@@ -18,3 +18,11 @@ export const uuidShortner = (uuid, letters = 4) => {
 
   return `${firstFour}....${lastFour}`;
 };
+
+export const timezoneLastpart = (timezone = "") => {
+  const parts = timezone.split("/");
+  if (parts.length > 0) {
+    const lastPart = parts[parts.length - 1];
+    return lastPart;
+  } else return "";
+};

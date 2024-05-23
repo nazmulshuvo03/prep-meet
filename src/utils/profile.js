@@ -13,6 +13,10 @@ export const completionRemaining = (obj) => {
   }
 };
 
+export const isProfileComplete = (status) => {
+  return Object.values(status).every((value) => value === true);
+};
+
 export const listOfFalses = (obj) => {
   const falses = [];
   Object.keys(obj).forEach((key) => {

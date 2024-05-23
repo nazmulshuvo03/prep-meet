@@ -3,7 +3,7 @@ import { NoData } from "../../NoData";
 import { Input } from "../../Input";
 import { useEffect, useState } from "react";
 import { deleteUserData, fetchProfiles } from "../../../store/middlewares/user";
-import { uuidShortner } from "../../../utils/string";
+import { timezoneLastpart, uuidShortner } from "../../../utils/string";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
@@ -13,6 +13,7 @@ import {
 import { Modal } from "../../Modal";
 import { ProfileModal } from "./ProfileModal";
 import { getDataLabelFromKey } from "../../../utils/data";
+import { isProfileComplete } from "../../../utils/profile";
 
 const Label = ({ children = "", colSpan = 1 }) => (
   <div
@@ -66,63 +67,82 @@ export const UserAdmin = () => {
         placeholder={"Search by email"}
         icon={<FontAwesomeIcon icon={faSearch} />}
       />
-      <div className="border border-primary px-2 py-1 grid grid-cols-12 bg-primary text-white">
-        <Label>User ID</Label>
-        <Label colSpan={3}>Email</Label>
-        <Label colSpan={2}>Target Profession</Label>
-        <Label>Username</Label>
-        <Label>Medium</Label>
-        <Label colSpan={2}>Timezone</Label>
-        <Label>Unsubscribed</Label>
-      </div>
-      <div style={{ height: "70vh", overflowY: "auto" }}>
-        {filteredData && filteredData.length ? (
-          <>
-            {filteredData.map((profile) => {
-              return (
-                <div
-                  key={profile.id}
-                  className="border border-primary px-2 py-1 grid grid-cols-12 text-sm hover:shadow-md cursor-pointer"
-                  onClick={() => setSelectedProfile(profile)}
-                >
-                  <div className="col-span-1">
-                    {uuidShortner(profile.id, 3)}
+      <div className="text-center">
+        <div className="border border-primary px-2 py-1 grid grid-cols-12 text-sm font-semibold bg-primary text-white">
+          <Label>User ID</Label>
+          <Label colSpan={3}>Email</Label>
+          <Label colSpan={2}>Target Profession</Label>
+          <Label>Profile Complete</Label>
+          <Label>Medium</Label>
+          <Label colSpan={2}>Timezone</Label>
+          <Label>Unsubscribed</Label>
+          <Label>Last Login</Label>
+        </div>
+        <div style={{ height: "70vh", overflowY: "auto" }}>
+          {filteredData && filteredData.length ? (
+            <>
+              {filteredData.map((profile) => {
+                return (
+                  <div
+                    key={profile.id}
+                    className="border border-primary px-2 py-2 grid grid-cols-12 text-xs hover:shadow-md cursor-pointer"
+                    onClick={() => setSelectedProfile(profile)}
+                  >
+                    <div className="col-span-1">
+                      {uuidShortner(profile.id, 3)}
+                    </div>
+                    <div className="col-span-3 flex items-center justify-center gap-1">
+                      {profile.email}{" "}
+                      {profile.email_verified ? (
+                        <FontAwesomeIcon
+                          icon={faCheckCircle}
+                          className="!text-green-500"
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faCircleExclamation}
+                          className="!text-red-500"
+                        />
+                      )}
+                    </div>
+                    <div className="col-span-2">
+                      {getDataLabelFromKey(
+                        professions,
+                        profile.targetProfessionId
+                      )}
+                    </div>
+                    <div className="col-span-1">
+                      {isProfileComplete(profile.completionStatus) ? (
+                        <span className="bg-green-500 text-white py-1 px-2 rounded-md">
+                          Yes
+                        </span>
+                      ) : (
+                        <span className="bg-red-500 text-white py-1 px-2 rounded-md">
+                          No
+                        </span>
+                      )}
+                    </div>
+                    <div className="col-span-1">{profile.authMedium}</div>
+                    <div className="col-span-2">
+                      {timezoneLastpart(profile.timezone)}
+                    </div>
+                    <div className="col-span-1">
+                      {profile.unsubscribed ? (
+                        <span className="text-red-500 font-semibold">Yes</span>
+                      ) : (
+                        <span className="text-gray-500">-</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="col-span-3 flex items-center gap-1">
-                    {profile.email}{" "}
-                    {profile.email_verified ? (
-                      <FontAwesomeIcon
-                        icon={faCheckCircle}
-                        className="!text-green-500"
-                      />
-                    ) : (
-                      <FontAwesomeIcon
-                        icon={faCircleExclamation}
-                        className="!text-red-500"
-                      />
-                    )}
-                  </div>
-                  <div className="col-span-2">
-                    {getDataLabelFromKey(
-                      professions,
-                      profile.targetProfessionId
-                    )}
-                  </div>
-                  <div className="col-span-1">{profile.userName}</div>
-                  <div className="col-span-1">{profile.authMedium}</div>
-                  <div className="col-span-2">{profile.timezone}</div>
-                  <div className="col-span-1">
-                    {profile.unsubscribed ? "Yes" : "No"}
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        ) : (
-          <div className="w-full h-full flex justify-center items-center">
-            <NoData className="!w-40 !h-40" />
-          </div>
-        )}
+                );
+              })}
+            </>
+          ) : (
+            <div className="w-full h-full flex justify-center items-center">
+              <NoData className="!w-40 !h-40" />
+            </div>
+          )}
+        </div>
       </div>
       {selectedProfile && (
         <Modal
