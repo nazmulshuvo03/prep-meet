@@ -75,7 +75,7 @@ export const UserAdmin = () => {
         <Label colSpan={2}>Timezone</Label>
         <Label>Unsubscribed</Label>
       </div>
-      <div style={{ height: "80vh", overflowY: "auto" }}>
+      <div style={{ height: "70vh", overflowY: "auto" }}>
         {filteredData && filteredData.length ? (
           <>
             {filteredData.map((profile) => {

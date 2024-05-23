@@ -46,7 +46,7 @@ export const CompaniesAdmin = () => {
           Add Company
         </Button>
       </div>
-      <div style={{ height: "80vh", overflowY: "auto" }}>
+      <div style={{ height: "70vh", overflowY: "auto" }}>
         {filteredData && filteredData.length ? (
           <>
             {filteredData.map((company) => (
