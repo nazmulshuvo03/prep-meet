@@ -50,12 +50,9 @@ export const CompaniesAdmin = () => {
         {filteredData && filteredData.length ? (
           <>
             {filteredData.map((company) => (
-              <div
-                key={company.id}
-                className="flex gap-2 border border-gray-400 my-1 rounded px-2 py-1"
-              >
-                <div>{company.id}</div>
-                <div>{company.name}</div>
+              <div key={company.id} className="flex gap-2 my-1 rounded text-xs">
+                <div className="text-gray-500">{company.id}</div>
+                <div className="font-semibold">{company.name}</div>
               </div>
             ))}
           </>
