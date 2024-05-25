@@ -14,6 +14,7 @@ import { Modal } from "../../Modal";
 import { ProfileModal } from "./ProfileModal";
 import { getDataLabelFromKey } from "../../../utils/data";
 import { isProfileComplete } from "../../../utils/profile";
+import moment from "moment";
 
 const Label = ({ children = "", colSpan = 1 }) => (
   <div
@@ -70,12 +71,13 @@ export const UserAdmin = () => {
       <div className="text-center">
         <div className="border border-primary px-2 py-1 grid grid-cols-12 text-sm font-semibold bg-primary text-white">
           <Label>User ID</Label>
-          <Label colSpan={3}>Email</Label>
+          <Label colSpan={2}>Email</Label>
           <Label colSpan={2}>Target Profession</Label>
           <Label>Profile Complete</Label>
           <Label>Medium</Label>
-          <Label colSpan={2}>Timezone</Label>
+          <Label colSpan={1}>Timezone</Label>
           <Label>Unsubscribed</Label>
+          <Label>Created At</Label>
           <Label>Last Login</Label>
         </div>
         <div style={{ height: "70vh", overflowY: "auto" }}>
@@ -91,7 +93,7 @@ export const UserAdmin = () => {
                     <div className="col-span-1">
                       {uuidShortner(profile.id, 3)}
                     </div>
-                    <div className="col-span-3 flex items-center justify-center gap-1">
+                    <div className="col-span-2 flex items-center justify-center gap-1">
                       {profile.email}{" "}
                       {profile.email_verified ? (
                         <FontAwesomeIcon
@@ -123,7 +125,7 @@ export const UserAdmin = () => {
                       )}
                     </div>
                     <div className="col-span-1">{profile.authMedium}</div>
-                    <div className="col-span-2">
+                    <div className="col-span-1">
                       {timezoneLastpart(profile.timezone)}
                     </div>
                     <div className="col-span-1">
@@ -132,6 +134,9 @@ export const UserAdmin = () => {
                       ) : (
                         <span className="text-gray-500">-</span>
                       )}
+                    </div>
+                    <div className="col-span-1">
+                      {moment(profile.createdAt).fromNow()}
                     </div>
                   </div>
                 );
