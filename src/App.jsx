@@ -119,7 +119,11 @@ function App() {
                         path="/availability"
                         component={Availability}
                       />
-                      <Route exact path="/admin" component={Admin} />
+                      {global.isAdmin ? (
+                        <Route exact path="/admin" component={Admin} />
+                      ) : (
+                        <Redirect to="/people" />
+                      )}
                     </div>
                   </div>
                 ) : (

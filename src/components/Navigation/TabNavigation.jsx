@@ -1,32 +1,37 @@
-import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
-import { faCalendarDays, faUser } from "@fortawesome/free-regular-svg-icons";
-import { faChartLine, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAddressCard,
+  faCalendarDay,
+  faChartLine,
+  faClipboardQuestion,
+  faScrewdriverWrench,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
-import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { LoggedFooter } from "../Footer/LoggedFooter";
 
 export const TabNavigation = () => {
   const location = useLocation();
-  const user = useSelector((state) => state.user.profile);
+  const global = useSelector((state) => state.global);
 
   const navLinks = [
-    ...(user
+    ...(global.isAuthenticated
       ? [
           {
             to: "/people",
-            name: "Search and Schedule",
-            icon: <FontAwesomeIcon icon={faSearchengin} />,
+            name: "People",
+            icon: <FontAwesomeIcon icon={faUsers} />,
           },
           {
             to: "/profile",
             name: "Profile",
-            icon: <FontAwesomeIcon icon={faUser} />,
+            icon: <FontAwesomeIcon icon={faAddressCard} />,
           },
           {
             to: "/availability",
             name: "Schedule",
-            icon: <FontAwesomeIcon icon={faCalendarDays} />,
+            icon: <FontAwesomeIcon icon={faCalendarDay} />,
           },
           {
             to: "/progress",
@@ -36,7 +41,16 @@ export const TabNavigation = () => {
           {
             to: "/interviews",
             name: "Interviews",
-            icon: <FontAwesomeIcon icon={faHeadset} />,
+            icon: <FontAwesomeIcon icon={faClipboardQuestion} />,
+          },
+        ]
+      : []),
+    ...(global.isAdmin
+      ? [
+          {
+            to: "/admin",
+            name: "Admin",
+            icon: <FontAwesomeIcon icon={faScrewdriverWrench} />,
           },
         ]
       : []),
