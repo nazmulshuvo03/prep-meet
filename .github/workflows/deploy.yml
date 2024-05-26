@@ -26,4 +26,11 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/private-key.pem ${{ secrets.USER }}@${{ secrets.SERVER_IP }} "sudo -i && cd ${{ secrets.APP_PATH }} && git pull origin master && npm ci && npm run build:production && rsync -a --delete dist/ ../frontend/ && systemctl reload nginx"
+          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/private-key.pem ${{ secrets.USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd ${{ secrets.APP_PATH }}
+            git pull origin master
+            npm ci
+            npm run build:production
+            sudo rsync -a --delete dist/ /var/www/html/
+            sudo systemctl reload nginx
+          EOF
