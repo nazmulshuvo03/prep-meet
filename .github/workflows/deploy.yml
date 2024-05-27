@@ -30,9 +30,9 @@ jobs:
             pm2 stop all
             cd ${{ secrets.APP_PATH }}
             git pull origin master
-            npm ci
             npm run build:production
             sudo rsync -a --delete dist/ /var/www/html/frontend
+            cd /home/ubuntu/
             pm2 restart ecosystem.config.js
             sudo systemctl reload nginx
           EOF
