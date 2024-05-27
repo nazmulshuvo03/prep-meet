@@ -27,10 +27,12 @@ jobs:
       - name: Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/private-key.pem ${{ secrets.USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            pm2 stop all
             cd ${{ secrets.APP_PATH }}
             git pull origin master
             npm ci
             npm run build:production
             sudo rsync -a --delete dist/ /var/www/html/frontend
+            pm2 restart ecosystem.config.js
             sudo systemctl reload nginx
           EOF
