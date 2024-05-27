@@ -31,6 +31,6 @@ jobs:
             git pull origin master
             npm ci
             npm run build:production
-            sudo rsync -a --delete dist/ /var/www/html/
+            sudo rsync -a --delete dist/ /var/www/html/frontend
             sudo systemctl reload nginx
           EOF
