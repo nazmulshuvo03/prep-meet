@@ -205,15 +205,17 @@ export const MostRecent = ({ data }) => {
                 </div>
               )}
             </div>
-            <Button
-              size="small"
-              className={
-                "w-full !bg-transparent border !border-gray-400 !text-gray-400"
-              }
-              onClick={handleCancel}
-            >
-              Cancel Meeting
-            </Button>
+            {data.eventId && (
+              <Button
+                size="small"
+                className={
+                  "w-full !bg-transparent border !border-gray-400 !text-gray-400"
+                }
+                onClick={handleCancel}
+              >
+                Cancel Meeting
+              </Button>
+            )}
           </div>
         </div>
       ) : (
