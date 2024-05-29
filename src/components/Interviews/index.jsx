@@ -23,10 +23,11 @@ export const Meetings = () => {
   const [openNotes, setOpenNotes] = useState();
 
   const splitByTime = (arr) => {
-    const past = [];
-    const nowAndFuture = [];
-    const currentTime = new Date().getTime();
-    if (arr) {
+    let past = [];
+    let nowAndFuture = [];
+    let currentTime = new Date().getTime();
+    let mostRecent;
+    if (arr && arr.length) {
       arr.forEach((obj) => {
         const timeValue = obj.dayHour;
         if (timeValue <= currentTime) {
@@ -36,9 +37,9 @@ export const Meetings = () => {
         }
       });
       nowAndFuture.sort((a, b) => a.dayHour - b.dayHour);
-      const mostRecent = nowAndFuture.shift();
-      return { past, nowAndFuture, mostRecent };
-    } else return {};
+      mostRecent = nowAndFuture.shift();
+    }
+    return { past, nowAndFuture, mostRecent };
   };
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export const Meetings = () => {
   }, [profile]);
 
   useEffect(() => {
-    if (meetings && meetings.length) {
+    if (meetings) {
       const { past, nowAndFuture, mostRecent } = splitByTime(meetings);
       setPast(past);
       setUpcoming(nowAndFuture);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "../Button/IconButton";
 import { getDataLabelFromKey } from "../../utils/data";
 import { Button } from "../Button";
@@ -8,9 +8,11 @@ import { Modal } from "../Modal";
 import { Block } from "../Layouts/Block";
 import { NoData } from "../NoData";
 import moment from "moment";
+import { cancelMeeting } from "../../store/middlewares/meeting";
 
 export const MostRecent = ({ data }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const profile = useSelector((state) => state.user.profile);
   const allSkill = useSelector((state) => state.profession.allSkill);
@@ -76,6 +78,15 @@ export const MostRecent = ({ data }) => {
 
   const handleJoin = () => {
     window.open(data.meet, "_blank");
+  };
+
+  const handleCancel = () => {
+    dispatch(
+      cancelMeeting({
+        meetingId: data.id,
+        userId: profile.id,
+      })
+    );
   };
 
   return (
@@ -199,8 +210,9 @@ export const MostRecent = ({ data }) => {
               className={
                 "w-full !bg-transparent border !border-gray-400 !text-gray-400"
               }
+              onClick={handleCancel}
             >
-              Reschedule
+              Cancel Meeting
             </Button>
           </div>
         </div>

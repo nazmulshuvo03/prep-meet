@@ -2,12 +2,17 @@ import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { fetchContent, postContent } from "../../services/api";
 import {
+  cancel_meeting_url,
   meeting_url,
   single_meeting_url,
   user_meeting_url,
 } from "../../services/urls/meeting";
 import { updateAvailabilityState } from "../slices/availability";
-import { setMeetingDetails, setUserMeetings } from "../slices/meeting";
+import {
+  removeUserMeeting,
+  setMeetingDetails,
+  setUserMeetings,
+} from "../slices/meeting";
 import {
   setLoading,
   setModalMessageData,
@@ -76,6 +81,34 @@ export const getSingleMeeting = (id) =>
           setToastMessage({
             type: TOAST_TYPES[1],
             message: `Error finding meeting`,
+          })
+        );
+      }
+    );
+    dispatch(setLoading(false));
+  });
+
+export const cancelMeeting = (data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const res = await postContent(cancel_meeting_url(), data);
+    console.log("cancel meeting response: ", res, data);
+    responseHandler(
+      res,
+      () => {
+        dispatch(removeUserMeeting(data.meetingId));
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[0],
+            message: res.data,
+          })
+        );
+      },
+      () => {
+        dispatch(
+          setToastMessage({
+            type: TOAST_TYPES[1],
+            message: res.data,
           })
         );
       }
