@@ -3,6 +3,7 @@ import { Info } from "./Info";
 import { Details } from "./Details";
 import { DisplayAvailability } from "./DisplayAvailability";
 import { Reviews } from "./Reviews";
+import { CompletionChecklist } from "./CompletionChecklist";
 
 export const UserProfile = ({ visit = false }) => {
   const profile = useSelector((state) =>
@@ -25,7 +26,8 @@ export const UserProfile = ({ visit = false }) => {
             </div>
           ) : (
             <div className="flex flex-col gap-5 md:w-1/3">
-              <Reviews />
+              <CompletionChecklist />
+              {/* <Reviews /> */}
             </div>
           )}
         </div>

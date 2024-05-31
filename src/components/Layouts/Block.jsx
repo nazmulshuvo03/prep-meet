@@ -8,6 +8,8 @@ export const Block = ({
   className = "",
   titleClass = "",
   titleInfo = "",
+  infoClass = "",
+  infoPosition = "top",
   ...rest
 }) => {
   return (
@@ -19,7 +21,16 @@ export const Block = ({
         <div
           className={`font-semibold text-lg pt-2 pb-3 ${titleClass} flex items-center gap-1`}
         >
-          {title} {titleInfo ? <InfoTooltip message={titleInfo} /> : ""}
+          {title}{" "}
+          {titleInfo ? (
+            <InfoTooltip
+              message={titleInfo}
+              tooltoipClass={infoClass}
+              tooltipPostion={infoPosition}
+            />
+          ) : (
+            ""
+          )}
           {titleStar ? <MandatoryStar /> : ""}
         </div>
       )}
