@@ -4,11 +4,13 @@ import { Details } from "./Details";
 import { DisplayAvailability } from "./DisplayAvailability";
 import { Reviews } from "./Reviews";
 import { CompletionChecklist } from "./CompletionChecklist";
+import { isProfileComplete } from "../../utils/profile";
 
 export const UserProfile = ({ visit = false }) => {
   const profile = useSelector((state) =>
     visit ? state.user.visitingProfile : state.user.profile
   );
+  const completionStatus = useSelector((state) => state.user.completionStatus);
 
   return (
     <>
@@ -26,8 +28,17 @@ export const UserProfile = ({ visit = false }) => {
             </div>
           ) : (
             <div className="flex flex-col gap-5 md:w-1/3">
-              <CompletionChecklist />
-              {/* <Reviews /> */}
+              {profile.reviews && profile.reviews.length ? (
+                <Reviews />
+              ) : (
+                <>
+                  {isProfileComplete(completionStatus) ? (
+                    <Reviews />
+                  ) : (
+                    <CompletionChecklist />
+                  )}
+                </>
+              )}
             </div>
           )}
         </div>
