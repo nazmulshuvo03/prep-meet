@@ -30,6 +30,7 @@ jobs:
             pm2 stop all
             cd ${{ secrets.APP_PATH }}
             git pull origin master
+            npm i
             npm run build:production
             sudo rsync -a --delete dist/ /var/www/html/frontend
             cd /home/ubuntu/
