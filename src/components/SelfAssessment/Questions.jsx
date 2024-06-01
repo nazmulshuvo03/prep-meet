@@ -7,7 +7,7 @@ export const Questions = ({
   setSelections = () => {},
 }) => {
   return (
-    <div className="py-4">
+    <div className="py-2">
       <div className="flex gap-4 py-1">
         <div className={"flex-1"} />
         {questions && questions.length && answers && answers.length ? (

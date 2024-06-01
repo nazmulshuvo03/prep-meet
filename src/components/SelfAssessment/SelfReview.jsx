@@ -58,7 +58,7 @@ export const SelfReview = ({
     <>
       {meeting && practiceAreaId && (
         <div className="">
-          <div className="w-full flex items-center justify-center gap-3 pt-4 pb-8">
+          <div className="w-full flex items-center justify-center gap-3 pt-4 pb-0">
             <div className="flex-1 border-t mx-2" />
             <div className="text-lg font-medium text-gray-600">
               Summarize your Interview Experience

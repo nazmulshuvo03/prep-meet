@@ -41,7 +41,7 @@ export const ProfessionAdmin = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Input
           className=""
@@ -53,35 +53,40 @@ export const ProfessionAdmin = () => {
           Add Profession
         </Button>
       </div>
-      {filteredData && filteredData.length ? (
-        filteredData.map((profession) => {
-          return (
-            <div
-              key={profession.id}
-              className="my-4 rounded-md border border-gray-200"
-            >
-              <div className="flex items-center justify-between bg-secondary text-white font-bold text-lg py-2 px-3 rounded-t-md">
-                <div>{profession.name}</div>
-                <div
-                  className="bg-accent rounded-full text-md text-white text-center h-8 w-8 cursor-pointer"
-                  onClick={() => dispatch(deleteProfession(profession.id))}
-                >
-                  x
+      <div style={{ height: "70vh", overflowY: "auto" }}>
+        {filteredData && filteredData.length ? (
+          filteredData.map((profession) => {
+            return (
+              <div
+                key={profession.id}
+                className="my-4 rounded-md border border-gray-200"
+              >
+                <div className="flex items-center justify-between bg-secondary text-white font-bold text-lg py-2 px-3 rounded-t-md">
+                  <div>{profession.name}</div>
+                  <div
+                    className="bg-accent rounded-full text-md text-white text-center h-8 w-8 cursor-pointer"
+                    onClick={() => dispatch(deleteProfession(profession.id))}
+                  >
+                    x
+                  </div>
+                </div>
+                <div className="p-1 mb-2 flex justify-between items-start h-60">
+                  <Skills
+                    professionId={profession.id}
+                    data={profession.skills}
+                  />
+                  <ExperienceTypes
+                    professionId={profession.id}
+                    data={profession.experienceTypes}
+                  />
                 </div>
               </div>
-              <div className="p-1 mb-2 flex justify-between items-start h-60">
-                <Skills professionId={profession.id} data={profession.skills} />
-                <ExperienceTypes
-                  professionId={profession.id}
-                  data={profession.experienceTypes}
-                />
-              </div>
-            </div>
-          );
-        })
-      ) : (
-        <div />
-      )}
+            );
+          })
+        ) : (
+          <div />
+        )}
+      </div>
     </div>
   );
 };
