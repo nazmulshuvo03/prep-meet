@@ -138,6 +138,11 @@ export const UserAdmin = () => {
                     <div className="col-span-1">
                       {moment(profile.createdAt).fromNow()}
                     </div>
+                    <div className="col-span-1">
+                      {profile.lastVisit
+                        ? moment(profile.lastVisit).fromNow()
+                        : "-"}
+                    </div>
                   </div>
                 );
               })}
