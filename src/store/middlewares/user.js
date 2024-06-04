@@ -15,6 +15,7 @@ import {
   user_url,
   users_check_prop_url,
   all_profile_url,
+  user_last_visit_url,
 } from "../../services/urls/user";
 import { setLoading, setToastMessage } from "../slices/global";
 import {
@@ -28,6 +29,7 @@ import {
 } from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
+import { updateLastVisit } from "../../utils/visit";
 
 export const fetchPeople = (query = "") =>
   asyncWrapper(async (dispatch) => {
@@ -157,4 +159,16 @@ export const deleteUserData = (userId) =>
       }
     );
     dispatch(setLoading(false));
+  });
+
+export const updateUserLastVisit = () =>
+  asyncWrapper(async (dispatch) => {
+    const lastVisitTime = new Date().toISOString();
+    const res = await putContent(user_last_visit_url(), {
+      lastVisit: lastVisitTime,
+    });
+    console.log("last visit response: ", res);
+    responseHandler(res, () => {
+      updateLastVisit(lastVisitTime);
+    });
   });

@@ -37,6 +37,8 @@ import ModalMessage from "./components/ModalMessages";
 import Availability from "./routes/Availability";
 import Verify from "./routes/Verify";
 import Unsubscribe from "./routes/Unsubscribe";
+import { updateUserLastVisit } from "./store/middlewares/user";
+import { shouldUpdateLastVisit, updateLastVisit } from "./utils/visit";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +66,18 @@ function App() {
     dispatch(fetchCompanies());
     dispatch(fetchAllSkill());
     dispatch(fetchAllExperienceType());
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (shouldUpdateLastVisit()) {
+        dispatch(updateUserLastVisit());
+      }
+    }, 5 * 60 * 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (
