@@ -79,13 +79,15 @@ export const Login = ({ switchMode = () => {} }) => {
           <div className="text-xs text-red-500 font-medium min-h-4 text-center">
             {errorMessage}
           </div>
-          <Button
-            onClick={handleLogin}
-            className={"!w-full !bg-secondary !py-1"}
-          >
-            Sign In
-          </Button>
-          <GoogleAuth />
+          <div className="w-full flex flex-col items-center justify-center gap-2">
+            <Button
+              onClick={handleLogin}
+              className={"!w-72 !bg-secondary !py-1"}
+            >
+              Sign In
+            </Button>
+            <GoogleAuth />
+          </div>
           <div className="py-2 flex justify-center gap-1 text-sm text-text underline">
             <div>Don't have an account ?</div>
             <div

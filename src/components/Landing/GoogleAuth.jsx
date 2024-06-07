@@ -38,12 +38,15 @@ export const GoogleAuth = ({ additionalData = {}, useOneTap = false }) => {
   } else {
     return (
       <GoogleLogin
+        id="GoogleLoginButton"
         onSuccess={handleSuccess}
         onError={handleError}
         type="standard"
         theme="filled_blue"
         flow="auth-code"
+        width={288}
         // useOneTap={useOneTap}
+        // style={{ width: "100%" }}
       />
     );
   }

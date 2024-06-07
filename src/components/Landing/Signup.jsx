@@ -120,17 +120,19 @@ export const Signup = ({ switchMode = () => {} }) => {
           <div className="text-xs text-red-500 font-medium min-h-4 text-center">
             {errorMessage}
           </div>
-          <Button
-            onClick={handleSignup}
-            className={"!w-full !bg-secondary !py-1"}
-          >
-            Sign Up
-          </Button>
-          <GoogleAuth
-            additionalData={{
-              targetProfessionId: state.targetProfessionId,
-            }}
-          />
+          <div className="w-full flex flex-col items-center justify-center gap-2">
+            <Button
+              onClick={handleSignup}
+              className={"!w-72 !bg-secondary !py-1"}
+            >
+              Sign Up
+            </Button>
+            <GoogleAuth
+              additionalData={{
+                targetProfessionId: state.targetProfessionId,
+              }}
+            />
+          </div>
           <div className="py-2 flex justify-center gap-1 text-sm text-text underline">
             <div>Alreay have an account ?</div>
             <div
