@@ -35,6 +35,7 @@ import TermsConditions from "./routes/TermsConditions";
 import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
 import Availability from "./routes/Availability";
+import Message from "./routes/Message";
 import Verify from "./routes/Verify";
 import Unsubscribe from "./routes/Unsubscribe";
 import { updateUserLastVisit } from "./store/middlewares/user";
@@ -128,6 +129,7 @@ function App() {
                       <Route exact path="/progress" component={Progress} />
                       <Route exact path="/interviews" component={Interviews} />
                       <Route exact path="/user/:userId" component={Visit} />
+                      <Route exact path="/message" component={Message} />
                       <Route
                         exact
                         path="/availability"
