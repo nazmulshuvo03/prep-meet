@@ -4,45 +4,45 @@ import {
   markMessagesAsRead,
   sendMessage,
 } from "../../services/functions/message";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Chat } from "./Chat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "../Button/IconButton";
 import { Button } from "../Button";
+import { setChat } from "../../store/slices/global";
 
-export const Chatbox = ({ otherUserId, closeChat }) => {
+export const Chatbox = () => {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
+  const otherUser = useSelector((state) => state.global.chat);
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [otherUser, setOtherUser] = useState(null);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const loadMessages = async () => {
-      try {
-        const data = await fetchChatboxMessages(otherUserId);
-        if (data && data.length) {
-          setMessages(data);
-          scrollToBottom();
-          setOtherUser(data[0].sender);
-          await markMessagesAsRead({ otherUserId });
-        }
-      } catch (error) {
-        console.error("Error fetching messages:", error);
+      const data = await fetchChatboxMessages(otherUser.id);
+      if (data && data.length) {
+        setMessages(data);
+        scrollToBottom();
+        await markMessagesAsRead({ otherUserId: otherUser.id });
       }
     };
 
-    loadMessages();
-  }, [otherUserId]);
+    if (otherUser && otherUser.id) {
+      setMessages([]);
+      loadMessages();
+    }
+  }, [otherUser]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
 
     const messageData = {
       senderId: profile.id,
-      receiverId: otherUserId,
+      receiverId: otherUser.id,
       subject: "",
       body: newMessage,
     };
@@ -61,10 +61,14 @@ export const Chatbox = ({ otherUserId, closeChat }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const closeChat = () => {
+    dispatch(setChat());
+  };
+
   return (
-    <div className="chatbox flex flex-col h-full bg-white rounded-t-md shadow-2xl">
-      {otherUser && (
-        <div className="chatbox-header flex justify-between items-center px-4 py-2 bg-primary rounded-t-md shadow-md">
+    <div className="chatbox fixed bottom-0 right-5 w-96 h-1/2 flex flex-col !bg-white rounded-t-md shadow-2xl z-50">
+      <div className="chatbox-header flex justify-between items-center px-4 py-2 bg-primary rounded-t-md shadow-md">
+        {otherUser && (
           <div className="flex items-center">
             <img
               src={otherUser.photoURL}
@@ -73,11 +77,11 @@ export const Chatbox = ({ otherUserId, closeChat }) => {
             />
             <div className="text-lg font-semibold">{otherUser.userName}</div>
           </div>
-          <IconButton className={"!text-text"} onClick={closeChat}>
-            <FontAwesomeIcon icon={faClose} />
-          </IconButton>
-        </div>
-      )}
+        )}
+        <IconButton className={"!text-text"} onClick={closeChat}>
+          <FontAwesomeIcon icon={faClose} />
+        </IconButton>
+      </div>
       <div className="messages flex-1 overflow-y-auto p-4">
         {messages.map((msg, index) => (
           <Chat key={index} message={msg} />

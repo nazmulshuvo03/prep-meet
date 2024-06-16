@@ -11,6 +11,7 @@ const globalSlice = createSlice({
     toastMessage: null, // { type: TOAST_TYPES, message: "", description: "" }
     modalMessageData: null, // { name: "", data: {} }
     dashboardQuery: {},
+    chat: {}, // { otherUser }
   },
   reducers: {
     setAuthenticated: (state, action) => {
@@ -34,6 +35,9 @@ const globalSlice = createSlice({
     setAdmin: (state, action) => {
       state.isAdmin = action.payload;
     },
+    setChat: (state, action) => {
+      state.chat = action.payload;
+    },
   },
 });
 
@@ -45,6 +49,7 @@ export const {
   setToastMessage,
   setModalMessageData,
   setAdmin,
+  setChat,
 } = globalSlice.actions;
 export const selectTheme = (state) => state.global.dark;
 export const switchLoading = (state) => !state.global.switchLoading;

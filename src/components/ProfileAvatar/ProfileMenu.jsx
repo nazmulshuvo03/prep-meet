@@ -44,6 +44,9 @@ export const ProfileMenu = () => {
         </div>
       )}
       <MenuLink>
+        <Link to="/message">Messages</Link>
+      </MenuLink>
+      <MenuLink>
         <Link to="/about-us">About Us</Link>
       </MenuLink>
       <MenuLink>

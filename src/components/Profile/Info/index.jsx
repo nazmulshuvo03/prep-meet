@@ -9,6 +9,8 @@ import { uploadFile } from "../../../store/middlewares/file";
 import { updateUserData } from "../../../store/middlewares/user";
 import { ProfileBlock } from "../../Layouts/ProfileBlock";
 import { ProfilePhoto } from "./ProfilePhoto";
+import { IconButton } from "../../Button/IconButton";
+import { setChat } from "../../../store/slices/global";
 
 export const Info = ({ visit = false }) => {
   const dispatch = useDispatch();
@@ -23,6 +25,10 @@ export const Info = ({ visit = false }) => {
     const imageData = await dispatch(uploadFile(formData));
     dispatch(updateUserData(profile.id, { photoURL: imageData.Location }));
     setNewPP();
+  };
+
+  const openChat = () => {
+    dispatch(setChat(profile));
   };
 
   return (
@@ -48,6 +54,14 @@ export const Info = ({ visit = false }) => {
                 <div className="text-xs md:text-sm font-normal text-gray-500">
                   {profile.country}
                 </div>
+                {visit && (
+                  <IconButton
+                    className={"!text-secondary !text-xs my-2 hover:underline"}
+                    onClick={openChat}
+                  >
+                    Send Message
+                  </IconButton>
+                )}
               </div>
             </div>
             <div className="pt-5">

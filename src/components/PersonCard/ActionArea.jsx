@@ -1,18 +1,20 @@
 import { Button } from "../Button";
 import { getDateDescription, timeDistance } from "../../utils/timeDate";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isAllTrue } from "../../utils/object";
 import { Tooltip } from "../Tooltip";
 import { AdditionalInfo } from "../Profile/Reviews/AdditionalInfo";
 import { completionRemaining } from "../../utils/profile";
 import moment from "moment";
+import { setChat } from "../../store/slices/global";
 
 export const ActionArea = ({
   data = null,
   onNextAvailableClick = () => {},
   handleClick = () => {},
 }) => {
+  const dispatch = useDispatch();
   const completionStatus = useSelector((state) => state.user.completionStatus);
   const [latest, setLatest] = useState();
 
@@ -84,6 +86,13 @@ export const ActionArea = ({
           ) : (
             <div />
           )}
+          <Button
+            onClick={() => dispatch(setChat(data))}
+            size="small"
+            className="bg-white !text-gray-700 !font-bold border border-gray-700 text-xs !py-1 !px-2"
+          >
+            Direct Message
+          </Button>
         </div>
       </div>
     </div>

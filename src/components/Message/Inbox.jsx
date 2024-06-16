@@ -3,8 +3,11 @@ import { fetchInboxMessages } from "../../services/functions/message";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { setChat } from "../../store/slices/global";
 
-export const Inbox = ({ setUserForChat }) => {
+export const Inbox = () => {
+  const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -20,8 +23,6 @@ export const Inbox = ({ setUserForChat }) => {
     loadMessages();
   }, []);
 
-  console.log("!!!!!!", messages);
-
   return (
     <div className="inbox-container p-4">
       {messages.length === 0 ? (
@@ -34,7 +35,7 @@ export const Inbox = ({ setUserForChat }) => {
               className={`${
                 msg.isRead ? "bg-white" : "bg-gray-100"
               } message-item px-4 py-2 shadow rounded-lg hover:bg-gray-100 cursor-pointer`}
-              onClick={() => setUserForChat(msg.senderId)}
+              onClick={() => dispatch(setChat(msg.sender))}
             >
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">

@@ -27,7 +27,6 @@ export const Sentbox = () => {
             <li
               key={msg.id}
               className="message-item p-4 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"
-              onClick={() => setUserForChat(msg.receiverId)}
             >
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
