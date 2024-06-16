@@ -1,5 +1,20 @@
-import { fetchContent } from "../api";
-import { message_inbox_url, sent_message_url } from "../urls/message";
+import { fetchContent, postContent } from "../api";
+import {
+  all_messge_url,
+  message_inbox_url,
+  sent_message_url,
+  user_chat_url,
+} from "../urls/message";
+
+export const sendMessage = async (messageData) => {
+  const res = await postContent(all_messge_url(), messageData);
+  console.log("send message response: ", res);
+  if (res.success) {
+    return res.data;
+  } else {
+    return null;
+  }
+};
 
 export const fetchInboxMessages = async () => {
   const res = await fetchContent(message_inbox_url());
@@ -14,6 +29,16 @@ export const fetchInboxMessages = async () => {
 export const fetchSentMessages = async () => {
   const res = await fetchContent(sent_message_url());
   console.log("Sent message response: ", res);
+  if (res.success) {
+    return res.data;
+  } else {
+    return null;
+  }
+};
+
+export const fetchChatboxMessages = async (otherUserId) => {
+  const res = await fetchContent(user_chat_url(otherUserId));
+  console.log("chat response: ", res);
   if (res.success) {
     return res.data;
   } else {
