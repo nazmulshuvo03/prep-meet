@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   fetchChatboxMessages,
+  markMessagesAsRead,
   sendMessage,
 } from "../../services/functions/message";
 import { useSelector } from "react-redux";
@@ -26,6 +27,7 @@ export const Chatbox = ({ otherUserId, closeChat }) => {
           setMessages(data);
           scrollToBottom();
           setOtherUser(data[0].sender);
+          await markMessagesAsRead({ otherUserId });
         }
       } catch (error) {
         console.error("Error fetching messages:", error);

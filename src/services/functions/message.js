@@ -1,6 +1,7 @@
-import { fetchContent, postContent } from "../api";
+import { fetchContent, postContent, putContent } from "../api";
 import {
   all_messge_url,
+  mark_as_read_url,
   message_inbox_url,
   sent_message_url,
   user_chat_url,
@@ -39,6 +40,16 @@ export const fetchSentMessages = async () => {
 export const fetchChatboxMessages = async (otherUserId) => {
   const res = await fetchContent(user_chat_url(otherUserId));
   console.log("chat response: ", res);
+  if (res.success) {
+    return res.data;
+  } else {
+    return null;
+  }
+};
+
+export const markMessagesAsRead = async (otherUserId) => {
+  const res = await putContent(mark_as_read_url(), otherUserId);
+  console.log("mark as read response: ", res);
   if (res.success) {
     return res.data;
   } else {

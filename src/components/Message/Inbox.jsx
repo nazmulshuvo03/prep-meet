@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchInboxMessages } from "../../services/functions/message";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
 
 export const Inbox = ({ setUserForChat }) => {
   const [messages, setMessages] = useState([]);
@@ -18,6 +20,8 @@ export const Inbox = ({ setUserForChat }) => {
     loadMessages();
   }, []);
 
+  console.log("!!!!!!", messages);
+
   return (
     <div className="inbox-container p-4">
       {messages.length === 0 ? (
@@ -27,7 +31,9 @@ export const Inbox = ({ setUserForChat }) => {
           {messages.map((msg) => (
             <li
               key={msg.id}
-              className="message-item p-4 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"
+              className={`${
+                msg.isRead ? "bg-white" : "bg-gray-100"
+              } message-item px-4 py-2 shadow rounded-lg hover:bg-gray-100 cursor-pointer`}
               onClick={() => setUserForChat(msg.senderId)}
             >
               <div className="flex justify-between items-center mb-2">
@@ -42,7 +48,7 @@ export const Inbox = ({ setUserForChat }) => {
                       {msg.sender.userName}
                     </div>
                     {msg.subject ? (
-                      <div className="text-md ">{msg.subject}</div>
+                      <div className="text-md">{msg.subject}</div>
                     ) : (
                       <div className="text-sm text-gray-700">
                         {msg.body.slice(0, 20)}...
@@ -50,8 +56,14 @@ export const Inbox = ({ setUserForChat }) => {
                     )}
                   </div>
                 </div>
-                <div className="text-xs text-gray-500">
-                  {moment(msg.createdAt).fromNow()}
+                <div className="flex flex-col items-end gap-1">
+                  <FontAwesomeIcon
+                    icon={msg.isRead ? faEnvelopeOpen : faEnvelope}
+                    className="w-3 h-3 text-gray-500"
+                  />
+                  <div className="text-xs text-gray-500">
+                    {moment(msg.createdAt).fromNow()}
+                  </div>
                 </div>
               </div>
             </li>
