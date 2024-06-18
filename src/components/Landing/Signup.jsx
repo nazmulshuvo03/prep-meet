@@ -136,7 +136,7 @@ export const Signup = ({ switchMode = () => {} }) => {
           <div className="py-2 flex justify-center gap-1 text-sm text-text underline">
             <div>Alreay have an account ?</div>
             <div
-              onClick={switchMode}
+              onClick={() => switchMode("login")}
               className="text-secondary font-medium cursor-pointer"
             >
               Sign In

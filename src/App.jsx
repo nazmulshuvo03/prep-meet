@@ -41,6 +41,7 @@ import Unsubscribe from "./routes/Unsubscribe";
 import { updateUserLastVisit } from "./store/middlewares/user";
 import { shouldUpdateLastVisit, updateLastVisit } from "./utils/visit";
 import { Chatbox } from "./components/Message/Chatbox";
+import ResetPassword from "./routes/ResetPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -117,6 +118,11 @@ function App() {
               <Route exact path="/verify/:token" component={Verify} />
               <Route
                 exact
+                path="/resetPassword/:token"
+                component={ResetPassword}
+              />
+              <Route
+                exact
                 path="/unsubscribe/:userId"
                 component={Unsubscribe}
               />
@@ -148,11 +154,11 @@ function App() {
             </Switch>
           </div>
         </div>
+        {global?.loading && <CircularProgress />}
+        {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
+        {global?.modalMessageData && <ModalMessage />}
+        {global?.chat && Object.keys(global.chat).length !== 0 && <Chatbox />}
       </Router>
-      {global?.loading && <CircularProgress />}
-      {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
-      {global?.modalMessageData && <ModalMessage />}
-      {global?.chat && <Chatbox />}
     </div>
   );
 }

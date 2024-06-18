@@ -6,22 +6,17 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
+import { ForgetPass } from "./ForgetPass";
 
 export const Auth = ({ authMode = "" }) => {
   const history = useHistory();
   const location = useLocation();
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
-  const changeAuthMode = () => {
-    if (authMode && authMode === "login") {
-      history.push({
-        search: "?auth=signup",
-      });
-    } else {
-      history.push({
-        search: "?auth=login",
-      });
-    }
+  const changeAuthMode = (changeTo = "") => {
+    history.push({
+      search: `?auth=${changeTo}`,
+    });
   };
 
   useEffect(() => {
@@ -55,6 +50,8 @@ export const Auth = ({ authMode = "" }) => {
         <div className="h-full">
           {authMode === "login" ? (
             <Login switchMode={changeAuthMode} />
+          ) : authMode === "forget_password" ? (
+            <ForgetPass switchMode={changeAuthMode} />
           ) : (
             <Signup switchMode={changeAuthMode} />
           )}

@@ -2,10 +2,12 @@ import { responseHandler } from "../../utils/api";
 import { asyncWrapper } from "../../utils/async";
 import { postContent } from "../../services/api";
 import {
+  forget_pass_url,
   google_auth_url,
   login_url,
   logout_url,
   resend_email_verification_url,
+  reset_pass_url,
   signup_url,
   validate_email_verification_url,
 } from "../../services/urls/auth";
@@ -175,4 +177,47 @@ export const validateEmailVerification = (data) =>
       }
     );
     dispatch(setLoading(false));
+  });
+
+export const sendForgetPassword = (data) =>
+  asyncWrapper(async (dispatch) => {
+    dispatch(setLoading());
+    const response = await postContent(forget_pass_url(), data);
+    console.log("forget password response: ", response);
+    responseHandler(
+      response,
+      () => {
+        dispatch(
+          setToastMessage({ type: TOAST_TYPES[0], message: response.data })
+        );
+      },
+      () => {
+        dispatch(
+          setToastMessage({ type: TOAST_TYPES[1], message: response.data })
+        );
+      }
+    );
+    dispatch(setLoading(false));
+  });
+
+export const resetPassword = (data) =>
+  asyncWrapper(async (dispatch) => {
+    const response = await postContent(reset_pass_url(), data);
+    console.log("user login response: ", response);
+    responseHandler(
+      response,
+      () => {
+        dispatch(
+          setModalMessageData({
+            name: "resetPassSuccess",
+            data: { message: response.data },
+          })
+        );
+      },
+      () => {
+        dispatch(
+          setToastMessage({ type: TOAST_TYPES[1], message: response.data })
+        );
+      }
+    );
   });
