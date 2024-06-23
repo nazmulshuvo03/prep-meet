@@ -11,36 +11,37 @@ const socket = io(config.SERVER_URL);
 export const NotificationProvider = ({ children }) => {
   const profile = useSelector((state) => state.user.profile);
   const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
-    if (profile) {
-      // Send user ID to server
-      socket.emit("identify", profile.id);
+    // Send user ID to server
+    socket.emit("identify", profile.id);
 
-      socket.on("connect", () => {
-        console.log("Connected to socket server");
-      });
+    socket.on("connect", () => {
+      console.log("Connected to socket server");
+    });
 
-      const getInitialNotifications = async () => {
-        const data = await fetchUserNotifications(profile.id);
-        if (data && data.length) {
-          setNotifications(data);
-        }
-      };
+    const getInitialNotifications = async () => {
+      const data = await fetchUserNotifications(profile.id);
+      setUnreadCount(data.unreadCount);
+      if (data && data.notifications && data.notifications.length) {
+        setNotifications(data.notifications);
+      }
+    };
 
-      getInitialNotifications();
+    if (profile) getInitialNotifications();
 
-      socket.on("notification", (notification) => {
-        setNotifications((prevNotifications) => [
-          notification,
-          ...prevNotifications,
-        ]);
-      });
+    socket.on("notification", (notification) => {
+      setNotifications((prevNotifications) => [
+        notification,
+        ...prevNotifications,
+      ]);
+      setUnreadCount((prev) => prev + 1);
+    });
 
-      socket.on("disconnect", () => {
-        console.log("Disconnected from socket server");
-      });
-    }
+    socket.on("disconnect", () => {
+      console.log("Disconnected from socket server");
+    });
 
     return () => {
       socket.off("notification");
@@ -48,7 +49,9 @@ export const NotificationProvider = ({ children }) => {
   }, [profile]);
 
   return (
-    <NotificationContext.Provider value={{ notifications, setNotifications }}>
+    <NotificationContext.Provider
+      value={{ notifications, setNotifications, unreadCount }}
+    >
       {children}
     </NotificationContext.Provider>
   );
