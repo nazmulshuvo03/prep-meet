@@ -7,13 +7,16 @@ import store, { persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { config } from "../.config.js";
+import { NotificationProvider } from "./context/notification";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
-          <App />
+          <NotificationProvider>
+            <App />
+          </NotificationProvider>
         </GoogleOAuthProvider>
       </PersistGate>
     </Provider>
