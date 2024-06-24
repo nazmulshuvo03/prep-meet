@@ -4,47 +4,61 @@ import { NotificationContext } from "../../context/notification";
 import { IconButton } from "../Button/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { NoData } from "../NoData";
+import { Link } from "react-router-dom";
 
-export const NotificationInbox = () => {
+export const NotificationInbox = ({ setShowData }) => {
   const { notifications } = useContext(NotificationContext);
 
   return (
-    <ul className="w-96 max-h-72 p-1 overflow-y-auto">
-      {notifications && notifications.length ? (
-        notifications.map((notification, i) => (
-          <li
-            key={notification.id}
-            className={`flex px-2 my-1 rounded ${
-              i < notifications.length - 1 ? "border-b border-gray-300" : ""
-            } ${notification.read ? "" : "bg-gray-50"}`}
-          >
-            <div
-              className="flex-1 pr-3 flex flex-col justify-center"
-              style={{ maxWidth: "95%" }}
+    <div className="w-96 max-h-96 flex flex-col">
+      <ul className="w-full flex-1 p-1 overflow-y-auto">
+        {notifications && notifications.length ? (
+          notifications.map((notification, i) => (
+            <li
+              key={notification.id}
+              className={`flex px-2 my-1 rounded ${
+                i < notifications.length - 1 ? "border-b border-gray-300" : ""
+              } ${notification.read ? "" : "bg-gray-100"}`}
             >
-              {notification.title && (
-                <p className="text-xs font-bold text-ellipsis overflow-hidden whitespace-nowrap">
-                  Title: {notification.title}
-                </p>
-              )}
-              <p className="text-xs font-normal text-wrap break-words overflow-hidden">
-                {notification.message}
-              </p>
-              <p
-                className="font-light text-gray-400"
-                style={{ fontSize: "10px" }}
+              <div
+                className="flex-1 pr-3 flex flex-col justify-center"
+                style={{ maxWidth: "95%" }}
               >
-                {moment(notification.createdAt).fromNow()}
-              </p>
-            </div>
-            <IconButton>
-              <FontAwesomeIcon icon={faClose} className="!text-gray-400" />
-            </IconButton>
-          </li>
-        ))
-      ) : (
-        <div>No Data</div>
-      )}
-    </ul>
+                {notification.title && (
+                  <p className="text-xs font-bold text-ellipsis overflow-hidden whitespace-nowrap">
+                    Title: {notification.title}
+                  </p>
+                )}
+                <p className="text-xs font-normal text-wrap break-words overflow-hidden">
+                  {notification.message}
+                </p>
+                <p
+                  className="font-light text-gray-400"
+                  style={{ fontSize: "10px" }}
+                >
+                  {moment(notification.createdAt).fromNow()}
+                </p>
+              </div>
+              <IconButton>
+                <FontAwesomeIcon icon={faClose} className="!text-gray-400" />
+              </IconButton>
+            </li>
+          ))
+        ) : (
+          <NoData
+            size={80}
+            message="You do not have any notification at this moment"
+          />
+        )}
+      </ul>
+      <Link
+        to="/notification"
+        className="w-full text-center py-1 text-secondary font-bold"
+        onClick={() => setShowData(false)}
+      >
+        See all...
+      </Link>
+    </div>
   );
 };

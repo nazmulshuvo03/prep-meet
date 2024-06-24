@@ -15,7 +15,7 @@ export const Notification = () => {
         setShowMenu={setShowData}
         menuClasses="!top-7 -right-4"
       >
-        <NotificationInbox />
+        <NotificationInbox setShowData={setShowData} />
       </Menu>
     </NotificationProvider>
   );

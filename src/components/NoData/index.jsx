@@ -22,7 +22,7 @@ export const NoData = ({
         alt="No Data"
       />
       <div
-        className={`font-light text-sm md:text-xl text-text ${fontClassName}`}
+        className={`font-light text-sm md:text-xl text-text text-center ${fontClassName}`}
       >
         {message}
       </div>

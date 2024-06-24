@@ -36,6 +36,7 @@ import Faqs from "./routes/Faqs";
 import ModalMessage from "./components/ModalMessages";
 import Availability from "./routes/Availability";
 import Message from "./routes/Message";
+import Notification from "./routes/Notification";
 import Verify from "./routes/Verify";
 import Unsubscribe from "./routes/Unsubscribe";
 import { updateUserLastVisit } from "./store/middlewares/user";
@@ -137,6 +138,11 @@ function App() {
                       <Route exact path="/interviews" component={Interviews} />
                       <Route exact path="/user/:userId" component={Visit} />
                       <Route exact path="/message" component={Message} />
+                      <Route
+                        exact
+                        path="/notification"
+                        component={Notification}
+                      />
                       <Route
                         exact
                         path="/availability"
