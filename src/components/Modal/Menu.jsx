@@ -9,7 +9,9 @@ export const Menu = ({
 }) => {
   return (
     <div className="relative w-fit h-fit rounded-full z-20">
-      <div onClick={() => setShowMenu(true)}>{handlerComponent}</div>
+      <div className="cursor-pointer" onClick={() => setShowMenu(true)}>
+        {handlerComponent}
+      </div>
       {showMenu && (
         <>
           <div

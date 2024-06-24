@@ -1,22 +1,50 @@
 import { useContext } from "react";
+import moment from "moment";
 import { NotificationContext } from "../../context/notification";
+import { IconButton } from "../Button/IconButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 export const NotificationInbox = () => {
   const { notifications } = useContext(NotificationContext);
 
   return (
-    <div>
-      <h2>Notifications</h2>
-      <ul>
-        {notifications &&
-          notifications.length &&
-          notifications.map((notification) => (
-            <li key={notification.id}>
-              <strong>{notification.title || "Notification"}</strong>:{" "}
-              {notification.message}
-            </li>
-          ))}
-      </ul>
-    </div>
+    <ul className="w-96 max-h-72 p-1 overflow-y-auto">
+      {notifications && notifications.length ? (
+        notifications.map((notification, i) => (
+          <li
+            key={notification.id}
+            className={`flex px-2 my-1 rounded ${
+              i < notifications.length - 1 ? "border-b border-gray-300" : ""
+            } ${notification.read ? "" : "bg-gray-50"}`}
+          >
+            <div
+              className="flex-1 pr-3 flex flex-col justify-center"
+              style={{ maxWidth: "95%" }}
+            >
+              {notification.title && (
+                <p className="text-xs font-bold text-ellipsis overflow-hidden whitespace-nowrap">
+                  Title: {notification.title}
+                </p>
+              )}
+              <p className="text-xs font-normal text-wrap break-words overflow-hidden">
+                {notification.message}
+              </p>
+              <p
+                className="font-light text-gray-400"
+                style={{ fontSize: "10px" }}
+              >
+                {moment(notification.createdAt).fromNow()}
+              </p>
+            </div>
+            <IconButton>
+              <FontAwesomeIcon icon={faClose} className="!text-gray-400" />
+            </IconButton>
+          </li>
+        ))
+      ) : (
+        <div>No Data</div>
+      )}
+    </ul>
   );
 };
