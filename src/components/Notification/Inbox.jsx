@@ -6,19 +6,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { NoData } from "../NoData";
 import { Link } from "react-router-dom";
+import { markNotificationAsRead } from "../../services/functions/notification";
 
 export const NotificationInbox = ({ setShowData }) => {
-  const { notifications } = useContext(NotificationContext);
+  const { unreadNotifications, handleNotificationReadContext } =
+    useContext(NotificationContext);
 
   return (
     <div className="w-96 max-h-96 flex flex-col">
       <ul className="w-full flex-1 p-1 overflow-y-auto">
-        {notifications && notifications.length ? (
-          notifications.map((notification, i) => (
+        {unreadNotifications && unreadNotifications.length ? (
+          unreadNotifications.map((notification, i) => (
             <li
               key={notification.id}
               className={`flex px-2 my-1 rounded ${
-                i < notifications.length - 1 ? "border-b border-gray-300" : ""
+                i < unreadNotifications.length - 1
+                  ? "border-b border-gray-300"
+                  : ""
               } ${notification.read ? "" : "bg-gray-100"}`}
             >
               <div
@@ -40,7 +44,12 @@ export const NotificationInbox = ({ setShowData }) => {
                   {moment(notification.createdAt).fromNow()}
                 </p>
               </div>
-              <IconButton>
+              <IconButton
+                onClick={() => {
+                  markNotificationAsRead(notification.id);
+                  handleNotificationReadContext(notification.id);
+                }}
+              >
                 <FontAwesomeIcon icon={faClose} className="!text-gray-400" />
               </IconButton>
             </li>

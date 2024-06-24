@@ -11,6 +11,7 @@ const socket = io(config.SERVER_URL);
 export const NotificationProvider = ({ children }) => {
   const profile = useSelector((state) => state.user.profile);
   const [notifications, setNotifications] = useState([]);
+  const [unreadNotifications, setUnreadNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
@@ -27,12 +28,19 @@ export const NotificationProvider = ({ children }) => {
       if (data && data.notifications && data.notifications.length) {
         setNotifications(data.notifications);
       }
+      if (data && data.unreadNotifications && data.unreadNotifications.length) {
+        setUnreadNotifications(data.unreadNotifications);
+      }
     };
 
     if (profile) getInitialNotifications();
 
     socket.on("notification", (notification) => {
       setNotifications((prevNotifications) => [
+        notification,
+        ...prevNotifications,
+      ]);
+      setUnreadNotifications((prevNotifications) => [
         notification,
         ...prevNotifications,
       ]);
@@ -48,9 +56,21 @@ export const NotificationProvider = ({ children }) => {
     };
   }, [profile]);
 
+  const handleNotificationReadContext = (id) => {
+    setUnreadNotifications((prev) => prev.filter((item) => item.id !== id));
+    setUnreadCount((prev) => prev - 1);
+  };
+
   return (
     <NotificationContext.Provider
-      value={{ notifications, setNotifications, unreadCount }}
+      value={{
+        notifications,
+        setNotifications,
+        unreadNotifications,
+        setUnreadNotifications,
+        unreadCount,
+        handleNotificationReadContext,
+      }}
     >
       {children}
     </NotificationContext.Provider>
