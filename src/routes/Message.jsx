@@ -1,7 +1,7 @@
-import { MessageComponent } from "../components/Message/AllMessage";
+import { AllMessage } from "../components/Message/AllMessage";
 
 const Message = () => {
-  return <MessageComponent />;
+  return <AllMessage />;
 };
 
 export default Message;

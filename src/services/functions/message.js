@@ -1,5 +1,6 @@
 import { fetchContent, postContent, putContent } from "../api";
 import {
+  all_message_url,
   all_messge_url,
   mark_as_read_url,
   message_inbox_url,
@@ -10,6 +11,16 @@ import {
 export const sendMessage = async (messageData) => {
   const res = await postContent(all_messge_url(), messageData);
   console.log("send message response: ", res);
+  if (res.success) {
+    return res.data;
+  } else {
+    return null;
+  }
+};
+
+export const fetchAllMessages = async () => {
+  const res = await fetchContent(all_message_url());
+  console.log("Message Inbox response: ", res);
   if (res.success) {
     return res.data;
   } else {
