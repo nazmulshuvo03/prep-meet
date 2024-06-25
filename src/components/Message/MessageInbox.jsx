@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { fetchInboxMessages } from "../../services/functions/message";
+import { useContext } from "react";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
@@ -7,29 +6,18 @@ import { useDispatch } from "react-redux";
 import { setChat } from "../../store/slices/global";
 import { NoData } from "../NoData";
 import { Link } from "react-router-dom";
+import { MessageContext } from "../../context/message";
 
 export const MessageInbox = ({ setShowData }) => {
   const dispatch = useDispatch();
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    const loadMessages = async () => {
-      try {
-        const inboxMessages = await fetchInboxMessages();
-        if (inboxMessages && inboxMessages.length) setMessages(inboxMessages);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
-
-    loadMessages();
-  }, []);
+  const { inboxMessages, handleMessageReadContext } =
+    useContext(MessageContext);
 
   return (
     <div className="w-96 max-h-96 flex flex-col">
       <ul className="w-full flex-1 p-1 overflow-y-auto">
-        {messages && messages.length ? (
-          messages.map((msg) => (
+        {inboxMessages && inboxMessages.length ? (
+          inboxMessages.map((msg) => (
             <li
               key={msg.id}
               className={`${
@@ -38,6 +26,7 @@ export const MessageInbox = ({ setShowData }) => {
               onClick={() => {
                 dispatch(setChat(msg.sender));
                 setShowData(false);
+                handleMessageReadContext(msg.id);
               }}
             >
               <div className="flex justify-between items-center mb-2">

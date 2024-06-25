@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  fetchAllMessages,
-  fetchInboxMessages,
-} from "../../services/functions/message";
+import { fetchAllMessages } from "../../services/functions/message";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";

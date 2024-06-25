@@ -1,8 +1,10 @@
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { MessageContext } from "../../context/message";
 
 export const MessageIcon = () => {
-  const { unreadCount } = {};
+  const { unreadCount } = useContext(MessageContext);
 
   return (
     <div className="relative">
