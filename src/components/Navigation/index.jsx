@@ -15,6 +15,7 @@ import { Auth } from "../Landing/Auth";
 import { resendVerificationEmail } from "../../store/middlewares/auth";
 import { GoogleAuth } from "../Landing/GoogleAuth";
 import { Notification } from "../Notification";
+import { Message } from "../Message";
 
 export const Navigation = () => {
   const location = useLocation();
@@ -152,6 +153,7 @@ export const Navigation = () => {
             })}
           </nav>
           {isAuthenticated && <Notification />}
+          {isAuthenticated && <Message />}
           {isAuthenticated ? (
             <ProfileAvatar />
           ) : (

@@ -1,25 +1,19 @@
-import React from "react";
-import { HorizontalTabs } from "../Tabs/HorizontalTabs";
-import { Inbox } from "./Inbox";
-import { Sentbox } from "./Sentbox";
+import { useState } from "react";
+import { Menu } from "../Modal/Menu";
+import { MessageIcon } from "./MessageIcon";
+import { MessageInbox } from "./MessageInbox";
 
-export const MessageComponent = () => {
-  const TABS = [
-    {
-      id: 1,
-      name: "Inbox",
-      component: <Inbox />,
-    },
-    {
-      id: 2,
-      name: "Sent",
-      component: <Sentbox />,
-    },
-  ];
+export const Message = () => {
+  const [showData, setShowData] = useState(false);
 
   return (
-    <div className="main-page flex flex-col h-screen">
-      <HorizontalTabs data={TABS} />
-    </div>
+    <Menu
+      handlerComponent={<MessageIcon />}
+      showMenu={showData}
+      setShowMenu={setShowData}
+      menuClasses="!top-7 -right-4"
+    >
+      <MessageInbox setShowData={setShowData} />
+    </Menu>
   );
 };

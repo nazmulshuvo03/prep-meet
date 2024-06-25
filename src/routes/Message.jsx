@@ -1,4 +1,4 @@
-import { MessageComponent } from "../components/Message";
+import { MessageComponent } from "../components/Message/AllMessage";
 
 const Message = () => {
   return <MessageComponent />;
