@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import {
   fetchChatboxMessages,
   markMessagesAsRead,
@@ -11,31 +11,26 @@ import { faClose, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "../Button/IconButton";
 import { Button } from "../Button";
 import { setChat } from "../../store/slices/global";
+import { MessageContext } from "../../context/message";
 
 export const Chatbox = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const otherUser = useSelector((state) => state.global.chat);
+  const { chatboxMessages, setChatboxMessages } = useContext(MessageContext);
 
-  const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-    const loadMessages = async () => {
-      const data = await fetchChatboxMessages(otherUser.id);
-      if (data && data.length) {
-        setMessages(data);
-        scrollToBottom();
-        await markMessagesAsRead({ otherUserId: otherUser.id });
-      }
-    };
-
-    if (otherUser && otherUser.id) {
-      setMessages([]);
-      loadMessages();
+  const scrollToBottom = () => {
+    if (messagesEndRef && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "auto" });
     }
-  }, [otherUser]);
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatboxMessages]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
@@ -49,16 +44,12 @@ export const Chatbox = () => {
 
     try {
       const sentMessage = await sendMessage(messageData);
-      setMessages([...messages, sentMessage]);
-      setNewMessage("");
+      setChatboxMessages((prev) => [...prev, sentMessage]);
       scrollToBottom();
+      setNewMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
     }
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const closeChat = () => {
@@ -83,9 +74,11 @@ export const Chatbox = () => {
         </IconButton>
       </div>
       <div className="messages flex-1 overflow-y-auto p-4">
-        {messages.map((msg, index) => (
-          <Chat key={index} message={msg} />
-        ))}
+        {chatboxMessages &&
+          chatboxMessages.length &&
+          chatboxMessages.map((msg, index) => (
+            <Chat key={index} message={msg} />
+          ))}
         <div ref={messagesEndRef} />
       </div>
       <div className="input-box flex p-4 border-t border-gray-200">

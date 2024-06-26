@@ -2,14 +2,11 @@ import { useContext } from "react";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { setChat } from "../../store/slices/global";
 import { NoData } from "../NoData";
 import { Link } from "react-router-dom";
 import { MessageContext } from "../../context/message";
 
 export const MessageInbox = ({ setShowData }) => {
-  const dispatch = useDispatch();
   const { inboxMessages, handleMessageReadContext } =
     useContext(MessageContext);
 
@@ -24,8 +21,7 @@ export const MessageInbox = ({ setShowData }) => {
                 msg.isRead ? "bg-white" : "bg-gray-100"
               } message-item px-4 py-2 shadow rounded-lg hover:bg-gray-100 cursor-pointer`}
               onClick={() => {
-                handleMessageReadContext(msg.id);
-                dispatch(setChat(msg.sender));
+                handleMessageReadContext(msg);
                 setShowData(false);
               }}
             >

@@ -41,7 +41,7 @@ import Verify from "./routes/Verify";
 import Unsubscribe from "./routes/Unsubscribe";
 import { updateUserLastVisit } from "./store/middlewares/user";
 import { shouldUpdateLastVisit, updateLastVisit } from "./utils/visit";
-import { Chatbox } from "./components/Message/Chatbox";
+import { Chats } from "./components/Message/Chats";
 import ResetPassword from "./routes/ResetPassword";
 
 function App() {
@@ -163,7 +163,7 @@ function App() {
         {global?.loading && <CircularProgress />}
         {global?.toastMessage && <Toast {...{ ...global.toastMessage }} />}
         {global?.modalMessageData && <ModalMessage />}
-        {global?.chat && Object.keys(global.chat).length !== 0 && <Chatbox />}
+        {global?.chat && Object.keys(global.chat).length !== 0 && <Chats />}
       </Router>
     </div>
   );
