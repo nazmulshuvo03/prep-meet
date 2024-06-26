@@ -24,9 +24,9 @@ export const MessageInbox = ({ setShowData }) => {
                 msg.isRead ? "bg-white" : "bg-gray-100"
               } message-item px-4 py-2 shadow rounded-lg hover:bg-gray-100 cursor-pointer`}
               onClick={() => {
+                handleMessageReadContext(msg.id);
                 dispatch(setChat(msg.sender));
                 setShowData(false);
-                handleMessageReadContext(msg.id);
               }}
             >
               <div className="flex justify-between items-center mb-2">

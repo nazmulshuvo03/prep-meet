@@ -79,7 +79,10 @@ export const MessageProvider = ({ children }) => {
         message.id === id ? { ...message, isRead: true } : message
       )
     );
-    setUnreadCount((prev) => prev - 1);
+    const found = inboxMessages.find((message) => message.id === id);
+    if (found && found.isRead === false) {
+      setUnreadCount((prev) => prev - 1);
+    }
   };
 
   return (
