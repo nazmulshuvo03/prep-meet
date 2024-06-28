@@ -6,7 +6,10 @@ import { useSelector } from "react-redux";
 
 export const NotificationContext = createContext();
 
-const socket = io(config.SOCKET_URL);
+const socket = io(config.SERVER_URL, {
+  path: "/api/socket.io",
+  withCredentials: true,
+});
 
 export const NotificationProvider = ({ children }) => {
   const profile = useSelector((state) => state.user.profile);

@@ -12,7 +12,10 @@ import { setChat } from "../store/slices/global";
 
 export const MessageContext = createContext();
 
-const socket = io(config.SOCKET_URL);
+const socket = io(config.SERVER_URL, {
+  path: "/api/socket.io",
+  withCredentials: true,
+});
 
 export const MessageProvider = ({ children }) => {
   const dispatch = useDispatch();
