@@ -1,6 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import io from "socket.io-client";
-import { config } from "../../.config";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllMessages,
@@ -9,13 +7,9 @@ import {
   markMessagesAsRead,
 } from "../services/functions/message";
 import { setChat } from "../store/slices/global";
+import socket from "../socket";
 
 export const MessageContext = createContext();
-
-const socket = io(config.SERVER_URL, {
-  path: "/api/socket.io",
-  withCredentials: true,
-});
 
 export const MessageProvider = ({ children }) => {
   const dispatch = useDispatch();
@@ -27,7 +21,6 @@ export const MessageProvider = ({ children }) => {
   const [chatboxMessages, setChatboxMessages] = useState([]);
 
   useEffect(() => {
-    // Send user ID to server
     socket.emit("identify", profile.id);
 
     socket.on("connect", () => {
@@ -90,12 +83,10 @@ export const MessageProvider = ({ children }) => {
     );
 
     if (existingMessageIndex !== -1) {
-      // Replace the old message
       const updatedMessages = [...prevMessages];
       updatedMessages[existingMessageIndex] = message;
       return updatedMessages;
     } else {
-      // Add the new message
       return [message, ...prevMessages];
     }
   };

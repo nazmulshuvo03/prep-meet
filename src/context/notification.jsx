@@ -1,15 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
-import io from "socket.io-client";
-import { config } from "../../.config";
 import { fetchUserNotifications } from "../services/functions/notification";
 import { useSelector } from "react-redux";
+import socket from "../socket";
 
 export const NotificationContext = createContext();
-
-const socket = io(config.SERVER_URL, {
-  path: "/api/socket.io",
-  withCredentials: true,
-});
 
 export const NotificationProvider = ({ children }) => {
   const profile = useSelector((state) => state.user.profile);
@@ -18,7 +12,6 @@ export const NotificationProvider = ({ children }) => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
-    // Send user ID to server
     socket.emit("identify", profile.id);
 
     socket.on("connect", () => {
