@@ -22,7 +22,7 @@ export const ProfileMenu = () => {
   const handleLogout = async () => {
     await dispatch(logoutUser({ userId: user.id }));
     googleLogout();
-    history.push("/");
+    // history.push("/");
   };
 
   return (

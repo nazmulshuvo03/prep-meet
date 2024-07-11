@@ -39,6 +39,7 @@ import Message from "./routes/Message";
 import Notification from "./routes/Notification";
 import Verify from "./routes/Verify";
 import Unsubscribe from "./routes/Unsubscribe";
+import Home from "./routes/Home";
 import { updateUserLastVisit } from "./store/middlewares/user";
 import { shouldUpdateLastVisit, updateLastVisit } from "./utils/visit";
 import { Chats } from "./components/Message/Chats";
@@ -105,6 +106,7 @@ function App() {
               <Route exact path="/">
                 <Landing {...{ landingHowItWorksRef, landingFaqsRef }} />
               </Route>
+              <Route exact path="/dashboard/:userId" component={Home} />
               <Route exact path="/onboard" component={Onboard} />
               <Route exact path="/about-us" component={AboutUs} />
               <Route exact path="/how-it-works" component={HowItWorks} />

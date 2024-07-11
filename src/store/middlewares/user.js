@@ -17,7 +17,12 @@ import {
   all_profile_url,
   user_last_visit_url,
 } from "../../services/urls/user";
-import { setLoading, setToastMessage } from "../slices/global";
+import {
+  setAdmin,
+  setAuthenticated,
+  setLoading,
+  setToastMessage,
+} from "../slices/global";
 import {
   setCompletionStatus,
   setPeople,
@@ -59,8 +64,11 @@ export const fetchUserProfile = (
     console.log("user doc: ", response);
     const handleSuccess = () => {
       dispatch(setProfile(response.data));
+      dispatch(setAuthenticated(true));
       dispatch(setTargetProfession(response.data.targetProfessionId));
       dispatch(setUserAvailabilities(response.data.availabilities));
+      dispatch(setCompletionStatus(response.data.completionStatus));
+      dispatch(setAdmin(response.data.type === "ADMIN"));
       successHandler();
     };
     responseHandler(response, handleSuccess, errorHandler);

@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import {
-  fetchChatboxMessages,
-  markMessagesAsRead,
-  sendMessage,
-} from "../../services/functions/message";
+import { sendMessage } from "../../services/functions/message";
 import { useDispatch, useSelector } from "react-redux";
 import { Chat } from "./Chat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
