@@ -4,8 +4,8 @@ import { config } from "../../../.config";
 export const wpLogout = async () => {
   try {
     const response = await axios.get(
-      `${config.FRONTEND_URL}/blog/wp-login.php?action=logout`,
-      // `http://localhost/learning/wp-login.php?action=logout`,
+      `${config.FRONTEND_URL}/blog/my-account/user-logout`,
+      // `http://localhost/learning/my-account/user-logout`,
       {
         withCredentials: true, // This ensures cookies are sent with the request
       }
