@@ -106,7 +106,7 @@ function App() {
               <Route exact path="/">
                 <Landing {...{ landingHowItWorksRef, landingFaqsRef }} />
               </Route>
-              <Route exact path="/dashboard/:userId" component={Home} />
+              <Route exact path="/home/:userId" component={Home} />
               <Route exact path="/onboard" component={Onboard} />
               <Route exact path="/about-us" component={AboutUs} />
               <Route exact path="/how-it-works" component={HowItWorks} />
