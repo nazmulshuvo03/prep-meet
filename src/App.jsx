@@ -91,7 +91,7 @@ function App() {
         global.dark ? "dark" : ""
       } h-screen w-screen overflow-hidden`}
     >
-      <Router basename="/dashboard">
+      <Router>
         <div
           className={`bg-background text-text h-full w-full flex flex-col overflow-y-auto`}
         >

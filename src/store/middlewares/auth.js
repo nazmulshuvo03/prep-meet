@@ -28,12 +28,12 @@ import {
 } from "../slices/user";
 import { setTargetProfession } from "../slices/profession";
 import { setUserAvailabilities } from "../slices/availability";
-import { wpLogout } from "../../services/functions/auth";
+// import { wpLogout } from "../../services/functions/auth";
 
 export const logoutUser = (data) =>
   asyncWrapper(async (dispatch) => {
     const res = await postContent(logout_url(), data);
-    await wpLogout();
+    // await wpLogout();
     responseHandler(res, () => {
       persistor.purge();
       dispatch(setAuthenticated(false));
